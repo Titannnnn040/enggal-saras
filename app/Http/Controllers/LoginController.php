@@ -22,7 +22,7 @@ class LoginController extends Controller
        if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
             activity()->causedBy(Auth::user())->log(auth()->user()->username.'Melakukan Login');
-            return redirect()->intended('/')->with('success', 'Login Success');   
+            return redirect()->intended('/admin/user')->with('success', 'Login Success');   
         } else{
             return back()->with('loginError', 'Login Failed');
     }}

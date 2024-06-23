@@ -196,7 +196,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="/admin/user/{{ $users->nik }}" method="post" class="">
+                    <form action="/admin/user/{{ $users->id }}" method="post" class="">
                       @method('put')
                         @csrf
                         <div class="row col-lg-12 col-sm-12 mx-0 d-flex flex-column">
@@ -245,7 +245,6 @@
                             
                             <div class="col-lg-3 position-absolute end-6">
                             <form action="/admin/user/{{ $users->nik }}">
-
                               <button type="submit" class="btn btn-primary btn-block btn-md shadow-lg mt-1" style="width: 100%;background-color: #5DB461;">Submit</button>
                             </form>
                       

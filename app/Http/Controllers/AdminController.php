@@ -34,7 +34,6 @@ class AdminController extends Controller
             'nik' => ['required', 'max:5'],
             'username' => ['required'],
             'division_id' => ['required'],
-            // 'password' => ['required']
         ]);
         $defaultPassword = '12345678';
         $hashedPassword = Hash::make($defaultPassword);
@@ -44,47 +43,41 @@ class AdminController extends Controller
             'division_id'=> $request->division_id,
             'password'=> $hashedPassword
         ]);
-        $request->session()->flash('success','Data Berhasil di registrasi!');
-        return redirect('/admin/user');
-    }
-    public function destroy($nik)
-    {
-        $user = User::where('nik', $nik)->first();
-        if ($user) {
-            $user->delete();
-            return redirect('/admin/user')->with('success-deleted', 'Data User Berhasil di Hapus');
-        } else {
-            return redirect('/admin/user')->with('error-deleted', 'User not found');
+        if($request->session()){ 
+            return redirect('/admin/user')->with('success', 'Data Berhasil di Tambahkan!');
+        }else{
+            return redirect('/admin/user')->with('error', 'Data Gagal di Tambahkan!');
         }
     }
-    public function edit($nik){
-        $users = User::where('nik',$nik)->first();
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/admin/user');
+    }
+    public function edit($id){
+        $users = User::find($id);
         $division = Division::all();
         return view('admin/user-edit', compact('division', 'users'),[
             'title' => 'user'
         ]);
     }
-    public function update(Request $request, $nik){
+    public function update(Request $request, $id){
         $request->validate([
-            'nik' => ['required', 'max:5', 'string', 'numeric'],
+            'nik' => ['required', 'max:5'],
             'username' => ['required'],
-            'division_id' => ['required'],
-            // 'password' => ['required']
+            'division_id' => ['required'] 
         ]);
-        $defaultPassword = '12345678';
-        $hashedPassword = Hash::make($defaultPassword);
-        $user = User::where('nik',$nik)->first();
+        $user = User::find($id);
         $user->update([
             'username'=> $request->username,
             'nik'=> $request->nik,
-            'division_id'=> $request->division_id,
-            'password'=> $hashedPassword
+            'division_id'=> $request->division_id
         ]);
-        if($user){$request->session()->flash('success','Data berhasil di ubah');
-            return redirect('/admin/user');
+        if($request->session()){ 
+            return redirect('/admin/user')->with('success', 'Data Berhasil di Edit!');
         }else{
-            $request->session()->flash('failed','Data Gagal di ubah');
-            return redirect('/admin/user');
+            return redirect('/admin/user')->with('error', 'Data Gagal di Edit!');
         }
         
     }

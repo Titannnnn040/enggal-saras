@@ -132,7 +132,6 @@ body{height:730px;}
     overflow: hidden;
 }
 .login_box .left{
-  
   width: 61%;
   height: 100%;
   padding: 25px 25px;
@@ -188,7 +187,7 @@ body{height:730px;}
 
 .left .form-control{
   box-shadow: none;
-  border-bottom: solid 1px #74b71b;
+  border-bottom: solid 1px #447360;
   border-radius: none !important;
 }
 .left{
@@ -229,17 +228,13 @@ body{height:730px;}
     display: block;
     margin: auto;
     margin-top: 120px;
-    background: #74b71b;
+    background: #4CAF50;
     color: #fff;
     font-weight: bold;
     transition: background-color 0.2s ease-in-out;
     -webkit-box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
     -moz-box-shadow: 0px 9px 15px -11px rgb(43, 26, 55);
     box-shadow: 0px 9px 15px -11px rgb(23, 22, 24);
-}
-.submit:hover{
-  background-color: #12204d;
-  transition: .7s;
 }
 .logout {
 
@@ -288,9 +283,12 @@ body{height:730px;}
 
 
 .right {
-	background: linear-gradient(50.38deg, rgba(234, 230, 231, 0.7) 0%, rgba(115, 183, 27, 0.278)
-  100%),url('/img/lab.jpg');
+	background: linear-gradient(50.38deg, #e2e1e12c 0%, #232c293d
+  100%),url('/img/klinik.jpg'); 
+  background-position: left;
+  background-size: cover;
 	color: #fff;
+  background-repeat: no-repeat;
 	position: relative;
 }
 

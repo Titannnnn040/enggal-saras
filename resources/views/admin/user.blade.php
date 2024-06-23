@@ -1,19 +1,9 @@
 @extends('layouts/dashboard')
 @section('dashboard')
 <!-- Page Content  -->
-
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-  @if (session()->has('success'))
-  <div id="success-alert" class="alert position-absolute top-0 end-1 border border-success" style="background-color:#4cf34754;" role="alert">
-    {{ session('success') }} 
-  </div>
-  @endif
-  @if (session()->has('success-deleted'))
-  <div id="success-alert" class="alert position-absolute top-0 end-1 border border-danger" style="background-color:#eb574c54;" role="alert">
-    {{ session('success-deleted') }} 
-  </div>
-  @endif
-  <h1 class="ms-3 mt-2 mb-0">KalGen-Innolab</h1>
+
+  <h1 class="ms-3 mt-2 mb-0">Enggal Saras</h1>
   <div class="container-fluid py-4">
     <div class="row">
       <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -143,7 +133,7 @@
                       <thead>
                           <tr>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Division</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nik</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created-At</th>
@@ -160,6 +150,7 @@
                               <td class="align-middle text-center text-xs">
                                   <h6 class="mb-0 text-xs">{{ $i++ }}</h6>
                               </td>
+
                               <td class="align-middle text-center text-xs">
                                   <p class="text-xs font-weight-bold mb-0 text-center">{{ $user->username }}</p>
                               </td>
@@ -177,15 +168,13 @@
                               </td>
                               <td class="align-middle text-center">
                                   <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                 
-                                      <a href="/admin/user/{{$user->nik}}/edit">
+                                    <a href="/admin/user/{{$user->id}}/edit">
                                         <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
-                                      </a>
-
-                                    <form action="/admin/user/{{$user->nik}}" method="post">
-                                      @method('delete')
+                                    </a>
+                                    <form action="/admin/user/{{$user->id}}" method="post">
+                                      @method("delete")
                                       @csrf
-                                      <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">
+                                      <button class="btn btn-outline-danger" style="margin-top:10px; margin-bottom:10px;">
                                         <i class="fa-solid fa-trash"></i>
                                       </button>                                      
                                     </form>
@@ -265,7 +254,7 @@
                       </div>
                       <div class="button d-flex">
                         <div class="col-lg-3" style="margin-left: .7rem">
-                                <a href="/admin/user">
+                                <a href="/admin/user" id="delete">
                                     <button type="button" class="btn btn-primary btn-block btn-md shadow-lg mt-1 close" style="width: 100%;background-color:#EA4744 ;">Cancel</button>
                                 </a>
                             </div>

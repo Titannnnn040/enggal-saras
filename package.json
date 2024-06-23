@@ -10,6 +10,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "datatables.net-dt": "^2.0.7"
+        "datatables.net-dt": "^2.0.7",
+        "sweetalert2": "^11.11.1"
     }
 }
