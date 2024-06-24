@@ -11,25 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rawat-jalan', function (Blueprint $table) {
+        Schema::create('rawat_jalan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap');
             $table->string('nama_panggilan');
             $table->string('jenis_kelamin');
             $table->date('birth_date');
-            $table->id('status_pernikahan');
-            $table->id('pendidikan_sederajat');
-            $table->id('pekerjaan');
-            $table->id('jenis_pembayaran');
-            $table->id('phone_number');
-            $table->id('address');
-            $table->id('agama');
-            $table->id('nama_ayah');
-            $table->id('nama_ibu');
-            $table->id('jenis_pembayaran');
-            $table->id('jenis_pembayaran');
-            $table->id('jenis_pembayaran');
-
+            $table->string('status_pernikahan');
+            $table->string('pendidikan_sederajat');
+            $table->string('pekerjaan');
+            $table->foreignId('payment_id');
+            $table->string('phone_number');
+            $table->string('address');
+            $table->string('agama');
+            $table->string('nama_ayah');
+            $table->string('nama_ibu');
             $table->timestamps();
         });
     }
@@ -39,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rawats');
+        Schema::dropIfExists('rawat_jalan');
     }
 };

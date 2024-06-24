@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
           <li class="nav-item" style="cursor: pointer">
-            <a class="nav-link text-white {{ ($title === "rawat-jalan") ? "active" : '' }}" href="/admin/user">
+            <a class="nav-link text-white {{ ($title === "rawat-jalan" || "create-pasien") ? "active" : '' }}" href="/admin/user">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="fa-solid fa-users"></i>
               </div>

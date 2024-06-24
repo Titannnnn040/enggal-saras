@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\RawatController;
+use App\Http\Controllers\RawatJalanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use GuzzleHttp\Middleware;
@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/dashboard/rawat-jalan',[RawatController::class,'store'])->name('rawat-jalan');
-Route::get('/dashboard/rawat-jalan/create-pasien',[RawatController::class,'createPasien'])->name('rawat-jalan');
+Route::get('/dashboard/rawat-jalan',[RawatJalanController::class,'store'])->name('rawat-jalan');
+Route::get('/dashboard/rawat-jalan/create-pasien',[RawatJalanController::class,'createPasien'])->name('rawat-jalan');
+Route::post('/dashboard/rawat-jalan/create-pasien',[RawatJalanController::class,'createData'])->name('rawat-jalan');
 
 Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
 Route::get('/admin/user',[AdminController::class,'user'])->name('user');
