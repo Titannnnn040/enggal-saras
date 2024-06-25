@@ -24559,6 +24559,33 @@ body:not(.dark-version) .sidenav.bg-transparent .collapse .nav-item .nav-link.ac
   background-color: #4CAF50;
 }
 
+.navbar-vertical .navbar-nav .nav-item .dropdown-btn{
+  border-radius:5px;
+  width:13.6rem;
+  background-color: #344767; 
+  border:unset; 
+  color:white; 
+  font-weight:100; 
+  padding:.76rem; 
+  font-size:14px;
+  transition: .2s;
+}
+
+.navbar-vertical .navbar-nav .nav-item .dropdown-btn.active{
+  color: #fff;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  background-color: #4CAF50 !important;
+}
+
+.navbar-vertical .navbar-nav .nav-item .dropdown-btn:hover {
+  color: #fff;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  background-color: #4CAF50 !important;
+  transition: .2s;
+}
+
 .navbar-vertical .navbar-nav>.nav-item .nav-link.active+.collapse .nav-item.active .nav-link.active,
 .navbar-vertical .navbar-nav>.nav-item .nav-link.active+.collapsing .nav-item.active .nav-link.active {
   background-image: linear-gradient(195deg, #e91e63 0%, #e91e63 100%);
@@ -28057,4 +28084,32 @@ pre[class*="language-"] {
   padding: 20px;
   border: unset;
   width: 30%;
+}
+
+/* CREATE PASIEN */
+.content .create-pasien input, select, textarea{
+  border:unset;
+  border:1px solid #00000025; 
+  outline:none; 
+  border-radius:5px;
+}
+.content .create-pasien input:focus,.content .create-pasien input:active{
+  outline: none !important;
+  box-shadow: none !important;
+  border:solid 1px #58B05C;
+  transition: .3s;
+  color: black;
+  font-size: 14px;
+}
+.content .create-pasien textarea:focus,.content .create-pasien textarea:active{
+  outline: none !important;
+  box-shadow: none !important;
+  border:solid 1px #58B05C;
+  transition: .3s;
+}
+.content .create-pasien select:focus,.content .create-pasien select:active{
+  outline: #58B05C !important;
+  box-shadow: none !important;
+  border:solid 1px #58B05C;
+  transition: .3s;
 }

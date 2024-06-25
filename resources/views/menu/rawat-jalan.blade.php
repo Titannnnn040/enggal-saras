@@ -124,9 +124,6 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3">Notifications Table</h6>
-                    <a href="/dashboard/rawat-jalan/create-pasien" style="border:none; color:green;background-color:white; border-radius:13px; position:absolute; right:2%; top:25%;padding:.3rem;">
-                        <i class="fa-solid fa-plus"></i>Create Data
-                    </a>
               </div>
             </div>
             <div class="card-body px-5 pb-2">
