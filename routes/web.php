@@ -2,6 +2,10 @@
 use App\Http\Controllers\RawatJalanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\KecamatanController;
+
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 /*
@@ -14,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/get-cities-by-province/{provincename}', [ProvinceController::class, 'getCitiesByProvince']);
+Route::get('/get-kecamatan-by-city/{cityname}', [CityController::class, 'getKecamatanByCity']);
+Route::get('/get-kelurahan-by-kecamatan/{kecamatanname}', [KecamatanController::class, 'getKelurahanByKecamatan']);
+
+
 Route::get('/dashboard/rawat-jalan',[RawatJalanController::class,'store'])->name('rawat-jalan');
 Route::get('/dashboard/rawat-jalan/create-pasien',[RawatJalanController::class,'createPasien'])->name('rawat-jalan');
 Route::post('/dashboard/rawat-jalan/create-pasien',[RawatJalanController::class,'createData'])->name('rawat-jalan');

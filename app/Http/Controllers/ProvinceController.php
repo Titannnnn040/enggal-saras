@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rawat_Jalan;
 use App\Models\Province;
 use App\Models\City;
-use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 
-class RawatJalanController extends Controller
+class ProvinceController extends Controller
 {
-
-
+    public function getCitiesByProvince($provinceName)
+    {
+        $province = Province::where('name', $provinceName)->first();
+        $cities = $province ? City::where('province_id', $province->id)->get() : [];
+        return response()->json($cities);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -23,10 +25,9 @@ class RawatJalanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function createData(Request $request)
+    public function create()
     {
-        return $request->all();
-        die;
+        //
     }
 
     /**
@@ -34,19 +35,13 @@ class RawatJalanController extends Controller
      */
     public function store(Request $request)
     {
-        return view('menu/rawat-jalan', ['title' => 'rawat-jalan']);
+        //
     }
 
-    public function createPasien(Request $request){
-        $province = Province::all();
-        $city     = City::all();
-        $kecamatan     = Kecamatan::all();
-        return view('menu/create-pasien', compact('province', 'city', 'kecamatan'), ['title' => 'create-pasien']);
-    }
     /**
      * Display the specified resource.
      */
-    public function show(Rawat_Jalan $rawat_Jalan)
+    public function show(Province $province)
     {
         //
     }
@@ -54,7 +49,7 @@ class RawatJalanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Rawat_Jalan $rawat_Jalan)
+    public function edit(Province $province)
     {
         //
     }
@@ -62,7 +57,7 @@ class RawatJalanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rawat_Jalan $rawat_Jalan)
+    public function update(Request $request, Province $province)
     {
         //
     }
@@ -70,7 +65,7 @@ class RawatJalanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rawat_Jalan $rawat_Jalan)
+    public function destroy(Province $province)
     {
         //
     }
