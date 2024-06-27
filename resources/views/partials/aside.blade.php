@@ -21,13 +21,13 @@
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user"></i>
                 </div>
-                <span class="nav-link-text ms-1">Data Patient</span>
+                <span class="nav-link-text ms-1">Data Pasien</span>
               </a>
               <a href="/dashboard/rawat-jalan/create-pasien" class="dropdown-btn col-lg-10 d-flex mt-1  {{ ($title === "create-pasien") ? "active" : '' }}">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-user-plus fs-8"></i>
                 </div>
-                <span class="nav-link-text">Create Data Patient</span>
+                <span class="nav-link-text">Create Data Pasien</span>
               </a>
             </div>
             <script>
