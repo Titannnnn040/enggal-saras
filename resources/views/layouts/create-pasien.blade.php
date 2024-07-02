@@ -39,16 +39,16 @@
   <link rel="stylesheet" href="">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="/css/bootstrap/dist/css/bootstrap.css">
 
-  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- DataTables JS -->
   {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> --}}
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<body class="g-sidenav-show  bg-gray-200">
+<body class="g-sidenav-show  bg-gray-200" style="font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif' !important;">
   @include('partials/aside')
-  @yield('dashboard')
+  @yield('create-pasien')
   @include('sweetalert::alert')
 </body>
 </html>

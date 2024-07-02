@@ -25,8 +25,9 @@ class RawatJalanController extends Controller
      */
     public function createData(Request $request)
     {
-        return $request->all();
-        die;
+        $request->validate([
+            'nama_lengkap' => ['required', 'max:5']
+        ]);
     }
 
     /**
@@ -34,10 +35,12 @@ class RawatJalanController extends Controller
      */
     public function store(Request $request)
     {
-        return view('menu/rawat-jalan', ['title' => 'rawat-jalan']);
+        $rawatJalan = Rawat_Jalan::all();
+        return view('menu/rawat-jalan',compact('rawatJalan') , ['title' => 'rawat-jalan']);
     }
 
     public function createPasien(Request $request){
+        
         $province = Province::all();
         $city     = City::all();
         $kecamatan     = Kecamatan::all();

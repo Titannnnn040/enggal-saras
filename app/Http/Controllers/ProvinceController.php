@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class ProvinceController extends Controller
 {
-    public function getCitiesByProvince($provinceName)
+    public function getCitiesByProvince($provinceId)
     {
-        $province = Province::where('name', $provinceName)->first();
+        $province = Province::where('id', $provinceId)->first();
         $cities = $province ? City::where('province_id', $province->id)->get() : [];
         return response()->json($cities);
     }

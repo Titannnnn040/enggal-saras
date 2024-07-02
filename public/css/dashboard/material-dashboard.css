@@ -2743,8 +2743,8 @@ progress {
 }
 
 .form-control {
-  display: block;
   width: 100%;
+  display: block;
   padding: 0.5rem 0;
   font-size: 0.875rem;
   font-weight: 400;
@@ -2821,7 +2821,6 @@ progress {
 
 .form-control-plaintext {
   display: block;
-  width: 100%;
   padding: 0.5rem 0;
   margin-bottom: 0;
   line-height: 1.5rem;
@@ -20513,7 +20512,6 @@ fieldset:disabled .btn {
 .btn {
   margin-bottom: 1rem;
   letter-spacing: 0;
-  text-transform: uppercase;
   background-size: 150%;
   background-position-x: 25%;
   position: relative;
@@ -22675,10 +22673,6 @@ label,
   top: 0.6125rem;
   margin-left: 0;
   transition: 0.2s ease all;
-}
-
-.form-control {
-  border: none;
 }
 
 .form-control.is-invalid {
@@ -28087,7 +28081,7 @@ pre[class*="language-"] {
 }
 
 /* CREATE PASIEN */
-.content .create-pasien input, select, textarea{
+/* .content .create-pasien input, select, textarea{
   border:unset;
   border:1px solid #00000025; 
   outline:none; 
@@ -28096,7 +28090,6 @@ pre[class*="language-"] {
 .content .create-pasien input:focus,.content .create-pasien input:active{
   outline: none !important;
   box-shadow: none !important;
-  border:solid 1px #58B05C;
   transition: .3s;
   color: black;
   font-size: 14px;
@@ -28104,12 +28097,10 @@ pre[class*="language-"] {
 .content .create-pasien textarea:focus,.content .create-pasien textarea:active{
   outline: none !important;
   box-shadow: none !important;
-  border:solid 1px #58B05C;
   transition: .3s;
 }
 .content .create-pasien select:focus,.content .create-pasien select:active{
   outline: #58B05C !important;
   box-shadow: none !important;
-  border:solid 1px #58B05C;
   transition: .3s;
-}
+} */

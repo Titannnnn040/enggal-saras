@@ -11,25 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rawat_jalan', function (Blueprint $table) {
+        Schema::create('m_pasien', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap');
             $table->string('nama_panggilan');
             $table->string('jenis_kelamin');
             $table->string('umur');
-            $table->string('birth-date');
+            $table->string('birth_date');
             $table->unsignedBigInteger('nik');
             $table->string('status_pernikahan');
             $table->string('pekerjaan');
-            $table->foreignId('payment_id');
-            $table->interger('no_bpjs/asuransi');
-            $table->file('upload_foto');
+            $table->foreignId('payment_id')->constrained('payment_methods');
+            $table->integer('no_bpjs_asuransi');
+            $table->string('upload_foto');
             $table->string('note');
             $table->string('phone_number');
-            $table->foreignId('province_id');
-            $table->foreignId('cities_id');
-            $table->foreignId('kecamatan_id');
-            $table->foreignId('kelurahan_id');
+            $table->foreignId('province_id')->constrained('provinces');
+            $table->foreignId('cities_id')->constrained('cities');
+            $table->foreignId('kecamatan_id')->constrained('kecamatans');
+            $table->foreignId('kelurahan_id')->constrained('kelurahans');
             $table->string('address');
             $table->string('agama');
             $table->string('pendidikan');
@@ -45,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rawat_jalan');
+        Schema::dropIfExists('m_pasien');
     }
 };

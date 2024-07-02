@@ -132,49 +132,124 @@
                       <thead>
                           <tr>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Division</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nik</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created-At</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update-At</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Lengkap</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Panggilan</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Kelamin</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Umur</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Lahir</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NIK</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status Pernikahan</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pekerjaan</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Metode Pembayaran</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No. BPJS / Asuransi</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Upload Foto</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Catatan Alergi Obat</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No. Handphone</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Provinsi</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kota</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kecamatan</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelurahan</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat Lengkap</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Agama</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pendidikan</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Ayah</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Ibu</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kondisi Khusus</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
-                      <tbody>
-                          <tr>
-                              <td class="align-middle text-center text-xs">
-                                  <h6 class="mb-0 text-xs"></h6>
-                              </td>
+                      <?php $num = 1 ?>
+                      @foreach ($rawatJalan as $item)
+                        <tbody>
+                            <tr>
+                                <td class="align-middle text-center text-xs">
+                                    <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
+                                </td>
 
-                              <td class="align-middle text-center text-xs">
-                                  <p class="text-xs font-weight-bold mb-0 text-center"></p>
-                              </td>
-                              <td class="align-middle text-center text-xs">
-                                  <h6 class="mb-0 text-sm"></h6>
-                              </td>
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bold"></span>
-                              </td>
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bold"></span>
-                              </td>
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bold"></span>
-                              </td>
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                   
-                                        <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
-                                   
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_lengkap }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_panggilan }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jenis_kelamin }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->umur }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->birth_date }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nik }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->status_pernikahan }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pekerjaan }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->payment_method->name }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_bpjs_asuransi }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->upload_foto }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->note }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->phone_number }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->province->name }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->city->name }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kecamatan->name }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kelurahan->name }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->address }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->agama }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pendidikan }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_ayah }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_ibu }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kondisi_khusus }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
                                     
-                                      <button class="btn btn-outline-danger" style="margin-top:10px; margin-bottom:10px;">
-                                        <i class="fa-solid fa-trash"></i>
-                                      </button>                                      
+                                          <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                    
+                                      
+                                        <button class="btn btn-outline-danger" style="margin-top:10px; margin-bottom:10px;">
+                                          <i class="fa-solid fa-trash"></i>
+                                        </button>                                      
 
-                                  </span>
-                              </td>
-                          </tr>
-                      </tbody>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                      @endforeach
                   </table>
               </div>
           </div>

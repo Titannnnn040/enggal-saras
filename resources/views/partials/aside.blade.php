@@ -1,12 +1,12 @@
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-light" id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="" target="">
+      <a class="navbar-brand m-0 " href="" target="">
         <img src="/img/enggal.gif" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-0 font-weight-bold fs-4 align-middle text-center">Rekam Medis</span>
+        <span class="ms-0 font-weight-bold fs-4 align-middle text-center"  style="font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif'; color:#344767;">Rekam Medis</span>
       </a>
     </div>
-    <hr class="horizontal light mt-0 mb-2">
+    <br>
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
@@ -17,15 +17,15 @@
               <span class="nav-link-text ms-1">Rawat Jalan</span>
             </button>
             <div class="dropdown-container" style="display: none">
-              <a href="/dashboard/rawat-jalan" class="dropdown-btn col-lg-10 d-flex mt-1 {{ ($title === "rawat-jalan") ? "active" : '' }}">
+              <a href="/dashboard/rawat-jalan" class="dropdown-btn col-lg-10 d-flex mt-1 {{ ($title === "rawat-jalan") ? "active" : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user"></i>
                 </div>
                 <span class="nav-link-text ms-1">Data Pasien</span>
               </a>
-              <a href="/dashboard/rawat-jalan/create-pasien" class="dropdown-btn col-lg-10 d-flex mt-1  {{ ($title === "create-pasien") ? "active" : '' }}">
+              <a href="/dashboard/rawat-jalan/create-pasien" class="dropdown-btn col-lg-10 d-flex mt-1  {{ ($title === "create-pasien") ? "active" : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus fs-8"></i>
+                  <i class="fa-solid fa-user-plus"></i>
                 </div>
                 <span class="nav-link-text">Create Data Pasien</span>
               </a>

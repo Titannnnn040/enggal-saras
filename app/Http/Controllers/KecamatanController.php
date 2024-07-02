@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class KecamatanController extends Controller
 {
-    public function getKelurahanByKecamatan($kecamatanName)
+    public function getKelurahanByKecamatan($kecamatanId)
     {
-        $kecamatan = Kecamatan::where('name', $kecamatanName)->first();
+        $kecamatan = Kecamatan::where('id', $kecamatanId)->first();
         $kelurahan = $kecamatan ? Kelurahan::where('kecamatan_id', $kecamatan->id)->get() : [];
         return response()->json($kelurahan);
     }

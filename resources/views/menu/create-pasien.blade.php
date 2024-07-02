@@ -1,13 +1,13 @@
-@extends('layouts/dashboard')
-@section('dashboard')
+@extends('layouts/create-pasien')
+@section('create-pasien')
 <!-- Page Content  -->
-<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg overflow-x-hidden" >
     <div class="container-fluid py-1">
-        <h1>Enggal Saras MHCC</h1>
+        <h1 class="fw-bolder m-1 " style="font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif'; font-size:48px; color:#344767;">Enggal Saras</h1>
         <div class="row">
           <div class="mt-4"> 
-            <div class="card my-3">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="card my-3  border border-0">
+              <div class="card-header p-0 position-relative border border-0 mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
                   <h6 class="text-white text-capitalize ps-3">Create Pasien</h6>
                 </div>
@@ -18,89 +18,162 @@
                         <form action="" method="post" class="d-flex col-lg-12"> 
                             @csrf     
                             <div class="d-flex flex-column">
-                                <div class="d-flex create-pasien col-lg-12">
-                                    <div class="col-lg-12 me-0">
+                                <div class="d-flex create-pasien  col-lg-12">
+                                    <div class="col-lg-6 col-xl-6 col-xxl-6 me-0 row">
 
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label class="col-lg-2 me-2" for="code">No.Rekam Medis :</label>
-                                            <label for="">autogenerate</label>
-                                        </div>
-        
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label class="col-lg-2 me-2" for="nama-lengkap">Nama Lengkap :</label>
-                                            <input name="nama-lengkap" id="nama-lengkap"  type="text" class="col-lg-9" style="">
-                                        </div>
-        
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label for="panggilan" class="col-lg-2 me-2">Nama Panggilan :</label>
-                                            <input class="col-lg-9" id="panggilan"  type="text" name="panggilan" >
-                                        </div>
-          
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label for="ge
-                                            nder" class="col-lg-2 me-2">Jenis Kelamin :</label>
-                                            <select name="gender" class="col-lg-9" id="gender">
-                                                <option value="">Please Select</option>
-                                                <option value="Laki-laki">Laki-laki</option>
-                                                <option value="Perempuan">Perempuan</option>
-                                            </select>
-                                        </div>
-                                       
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label for="umur" class="col-lg-2 me-2">Umur :</label>
-                                            <input class="col-lg-9" name="umur" id="umur" type="text">
-                                        </div>
-                                        
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label for="birth-date" class="col-lg-2 me-2">Tanggal Lahir :</label>
-                                            <input name="birth-date" class="col-lg-9" id="birth-date" type="date">
-                                        </div>
-
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label for="nik" class="col-lg-2 me-2">NIK :</label>
-                                            <input class="col-lg-9" name="nik" id="nik" type="text">
-                                        </div>
-                                        
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label for="status-perkawinan" class="col-lg-2 me-2">Status Pernikahan :</label>
-                                            <select name="status-perkawinan" class="col-lg-9" id="status-perkawinan">
-                                                <option value="">Please Select</option>
-                                                <option value="Menikah">Menikah</option>
-                                                <option value="Belum Menikah">Belum Menikah</option>
-                                                <option value="Janda">Janda</option>
-                                                <option value="Duda">Duda</option>
-                                            </select>
-                                        </div>
-        
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label for="pekerjaan" class="col-lg-2 me-2">Pekerjaan :</label>
-                                            <input type="text" name="pekerjaan" id="pekerjaan" class="col-lg-9">
-                                        </div>
-
-                                        <div class="d-flex col-lg-12 mb-3">                                    
-                                            <label for="payment-method" class="col-lg-2 me-2">Jenis Pembayaran :</label>
-                                            <select name="payment-method" class="col-lg-9" id="payment-method">
-                                                <option value="">Please Select</option>
-                                                <option id="pribadi" value="Pribadi">Pribadi</option>
-                                                <option id="bpjs" value="BPJS">BPJS</option>
-                                                <option id="asuransi" value="Asuransi">Asuransi</option>
-                                            </select>
-                                        </div>
-                                        
-                                        <div id="no-payment" style="display: none">
-                                            <div class="d-flex col-lg-12 mb-3">
-                                                <label for="no-bpjs" class="col-lg-2 me-2">No.BPJS / Asuransi :</label>
-                                                <input id="no-bpjs" name="no-bpjs" class="col-lg-9" type="text">
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="code" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">No.Rekam Medis :</label>
+                                                <label>autogenerate</label>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="nama_lengkap" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Nama Lengkap :</label>
+                                                <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name="nama_lengkap" value="{{ old('nama_lengkap') }}">
+                                            </div>
+                                            @error('nama_lengkap')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                     
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="nama_panggilan" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Nama Panggilan :</label>
+                                                <input type="text" class="form-control @error('nama_panggilan') is-invalid @enderror" id="nama_panggilan" name="nama_panggilan" value="{{ old('nama_panggilan') }}">
+                                            </div>
+                                            @error('nama_panggilan')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="jenis_kelamin" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2 ">Jenis Kelamin :</label>
+                                                <select class="form-select @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin"  id="jenis_kelamin">
+                                                    <option value="">Please Select</option>
+                                                    <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                    <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                </select>
+                                            </div>
+                                            @error('jenis_kelamin')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="umur" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Umur :</label>
+                                                <input type="text" class="form-control  @error('umur') is-invalid @enderror" id="umur" name="umur" value="{{ old('umur') }}">
+                                            </div>
+                                            @error('umur')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                         
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="birth_date" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Tanggal Lahir :</label>
+                                                <input type="date" class="form-control @error('birth_date') is-invalid @enderror" id="birth_date" name="birth_date" value="{{ old('birth_date') }}">
+                                            </div>
+                                            @error('birth_date')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                       
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="nik" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">NIK :</label>
+                                                <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" value="{{ old('nik') }}">
+                                            </div>
+                                            @error('nik')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+   
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="status_pernikahan" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Status Pernikahan :</label>
+                                                <select class="form-select @error('status_pernikahan') is-invalid @enderror" name="status_pernikahan"  id="status_pernikahan" >
+                                                    <option value="">Please Select</option>
+                                                    <option value="Menikah" {{ old('status_pernikahan') == 'Menikah' ? 'selected' : '' }}>Menikah</option>
+                                                    <option value="Belum Menikah" {{ old('status_pernikahan') == 'Belum Menikah' ? 'selected' : '' }}>Belum Menikah</option>
+                                                    <option value="Janda" {{ old('status_pernikahan') == 'Janda' ? 'selected' : '' }}>Janda</option>
+                                                    <option value="Duda" {{ old('status_pernikahan') == 'Duda' ? 'selected' : '' }}>Duda</option>
+                                                </select>
+                                            </div>
+                                            @error('status_pernikahan')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+        
+      
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="pekerjaan" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Pekerjaan :</label>
+                                                <input type="text" class="form-control @error('pekerjaan') is-invalid @enderror" id="pekerjaan" name="pekerjaan" value="{{ old('pekerjaan') }}">
+                                            </div>
+                                            @error('pekerjaan')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="payment_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Jenis Pembayaran :</label>
+                                                <select class="form-select @error('payment_id') is-invalid @enderror" name="payment_id"  id="payment_id" >
+                                                    <option value="">Please Select</option>
+                                                    @foreach ($payment as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('payment_id')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="" id="no-payment" style="display: none">
+                                            <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                                <div class="d-flex">
+                                                    <label for="no_bpjs_asuransi" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">No.BPJS / Asuransi :</label>
+                                                    <input type="text" class="form-control @error('no_bpjs_asuransi') is-invalid @enderror" id="no_bpjs_asuransi" name="no_bpjs_asuransi" value="{{ old('no_bpjs_asuransi') }}">
+                                                </div>
+                                                @error('no_bpjs_asuransi')
+                                                    <div class="invalid-feedback d-block ms-8">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                         <script>
                                             document.addEventListener('DOMContentLoaded', function () {
-                                                const paymentMethod = document.getElementById('payment-method');
+                                                const paymentMethod = document.getElementById('payment_id');
                                                 const noPayment = document.getElementById('no-payment');
                                         
                                                 function toggleDivisionSection() {
-                                                    if (paymentMethod.value === 'BPJS' || paymentMethod.value === 'Asuransi') {
+                                                    if (paymentMethod.value === '2' || paymentMethod.value === '3') {
                                                         noPayment.style.display = 'block';
                                                     } else {
                                                         noPayment.style.display = 'none';
@@ -113,58 +186,91 @@
                                                 toggleDivisionSection();
                                             });
                                         </script>
-
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="upload-foto" class="col-lg-2 me-2">Upload foto :</label>
-                                            <input id="upload-foto" name="upload-foto" class="col-lg-9" type="file">
+      
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="upload_foto" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Upload foto :</label>
+                                                <input type="file" class="form-control @error('upload_foto') is-invalid @enderror" id="upload_foto" name="upload_foto" value="">
+                                            </div>
+                                            @error('upload_foto')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="note" class="col-lg-2 me-2">Catatan Alergi Obat :</label>
-                                            <textarea name="note" id="note" class="col-lg-9" cols="30" rows="1"></textarea>
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="note" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Catatan Alergi Obat :</label>
+                                                <textarea name="note" id="note" class="form-control @error('note') is-invalid @enderror" rows="1" value="">{{ old('note') }}</textarea>
+                                            </div>
+                                            @error('note')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
-        
+
                                     </div>
     
-                                    <div class="col-lg-12 ms-0 p-0">
+                                    <div class="col-lg-6 col-xl-6 col-xxl-6 ms-0 row">
 
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label for="nomor-handphone" class="col-lg-2 me-2">Nomor Handphone :</label>
-                                            <input class="col-lg-9" name="phone_number" id="nomor-handphone" type="text">
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-6 mb-3">
+                                            <div class="d-flex">
+                                                <label for="phone_number" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Nomor Handphone :</label>
+                                                <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" value="{{ old('phone_number') }}">
+                                            </div>
+                                            @error('phone_number')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="province" class="col-lg-2 me-2">Provinsi :</label>
-                                            <select name="province" class="col-lg-9" id="province">
-                                                <option value="">Please Select</option>
-                                                @foreach ($province as $item)
-                                                    <option value="{{ $item->name }}">{{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="province_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Provinsi :</label>
+                                                <select class="form-select @error('province_id') is-invalid @enderror" name="province_id"  id="province_id" >
+                                                    <option value="">Please Select</option>
+                                                    @foreach ($province as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('province_id')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
-                                        
-                                        <!-- Blade template for cities -->
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="city" class="col-lg-2 me-2">Kota :</label>
-                                            <select name="city" class="col-lg-9" id="city">
-                                                <option value="">Please Select</option>
-                                                <!-- Cities will be populated using JavaScript -->
-                                            </select>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="cities_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kota :</label>
+                                                <select class="form-select @error('cities_id') is-invalid @enderror" name="cities_id"  id="cities_id" >
+                                                    <option value="">Please Select</option>
+                                                </select>
+                                            </div>
+                                            @error('cities_id')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
-                                        
+
                                         <!-- JavaScript to handle dynamic city loading based on province -->
                                         <script>
                                         document.addEventListener('DOMContentLoaded', function () {
-                                            document.getElementById('province').addEventListener('change', function () {
-                                                var provinceName = this.value;
-                                                fetch('/get-cities-by-province/' + provinceName)
+                                            document.getElementById('province_id').addEventListener('change', function () {
+                                                var provinceId = this.value;
+                                                fetch('/get-cities-by-province/' + provinceId)
                                                     .then(response => response.json())
                                                     .then(data => {
-                                                        var citySelect = document.getElementById('city');
+                                                        var citySelect = document.getElementById('cities_id');
                                                         citySelect.innerHTML = '<option value="">Please Select</option>';
                                                         data.forEach(function (city) {
                                                             var option = document.createElement('option');
-                                                            option.value = city.name;
+                                                            option.value = city.id;
                                                             option.text = city.name;
                                                             citySelect.add(option);
                                                         });
@@ -174,24 +280,31 @@
                                         });
                                         </script>
         
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="kecamatan" class="col-lg-2 me-2">Kecamatan :</label>
-                                            <select name="kecamatan" class="col-lg-9" id="kecamatan">
-                                                <option value="-">Please Select</option>
-                                            </select>
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="kecamatan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kecamatan_id :</label>
+                                                <select class="form-select @error('kecamatan_id') is-invalid @enderror" name="kecamatan_id"  id="kecamatan_id" >
+                                                    <option value="">Please Select</option>
+                                                </select>
+                                            </div>
+                                            @error('kecamatan_id')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
-        
+
                                         <script>
-                                              document.getElementById('city').addEventListener('change', function () {
+                                              document.getElementById('cities_id').addEventListener('change', function () {
                                                 var cityName = this.value;
                                                 fetch('/get-kecamatan-by-city/' + cityName)
                                                     .then(response => response.json())
                                                     .then(data => {
-                                                        var kecamatanSelect = document.getElementById('kecamatan');
+                                                        var kecamatanSelect = document.getElementById('kecamatan_id');
                                                         kecamatanSelect.innerHTML = '<option value="">Please Select</option>';
                                                         data.forEach(function (kecamatan) {
                                                             var option = document.createElement('option');
-                                                            option.value = kecamatan.name;
+                                                            option.value = kecamatan.id;
                                                             option.text = kecamatan.name;
                                                             kecamatanSelect.add(option);
                                                         });
@@ -200,25 +313,31 @@
                                             });
                                         </script>
                                         
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="kelurahan" class="col-lg-2 me-2">Kelurahan :</label>
-                                            <select name="kelurahan" class="col-lg-9" id="kelurahan">
-                                                
-                                                <option value="-">Please Select</option>
-                                            </select>
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="kelurahan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kelurahan_id :</label>
+                                                <select class="form-select @error('kelurahan_id') is-invalid @enderror" name="kelurahan_id"  id="kelurahan_id" >
+                                                    <option value="">Please Select</option>
+                                                </select>
+                                            </div>
+                                            @error('kelurahan_id')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
-        
+
                                         <script>
-                                            document.getElementById('kecamatan').addEventListener('change', function () {
+                                            document.getElementById('kecamatan_id').addEventListener('change', function () {
                                               var kecamatanName = this.value;
                                               fetch('/get-kelurahan-by-kecamatan/' + kecamatanName)
                                                   .then(response => response.json())
                                                   .then(data => {
-                                                      var kelurahanSelect = document.getElementById('kelurahan');
+                                                      var kelurahanSelect = document.getElementById('kelurahan_id');
                                                       kelurahanSelect.innerHTML = '<option value="">Please Select</option>';
                                                       data.forEach(function (kelurahan) {
                                                           var option = document.createElement('option');
-                                                          option.value = kelurahan.name;
+                                                          option.value = kelurahan.id;
                                                           option.text = kelurahan.name;
                                                           kelurahanSelect.add(option);
                                                       });
@@ -227,63 +346,107 @@
                                           });
                                       </script>
 
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="address" class="col-lg-2 me-2">Alamat Lengkap :</label>
-                                            <textarea name="address" id="address" class="col-lg-9" cols="30" rows="1"></textarea>
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="address" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Alamat Lengkap :</label>
+                                                <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror" rows="1" value="">{{ old('address') }}</textarea>
+                                            </div>
+                                            @error('address')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
-                                        <div class="d-flex col-lg-12 mb-3">                                    
-                                            <label for="agama" class="col-lg-2 me-2">Agama :</label>
-                                            <select name="agama" class="col-lg-9" id="agama">
-                                                <option value="-">Please Select</option>
-                                                <option value="Islam">Islam</option>
-                                                <option value="Kristen">Kristen</option>
-                                                <option value="Katolik">Katolik</option>
-                                                <option value="Hindu">Hindu</option>
-                                                <option value="Buddha">Buddha</option>
-                                                <option value="Khonghucu">Khonghucu</option>
-                                            </select>
-                                        </div>
-        
-                                        <div class="d-flex col-lg-12 mb-3">
-                                            <label for="pendidikan" class="col-lg-2 me-2">Pendidikan :</label>
-                                            <select name="pendidikan" class="col-lg-9" id="pendidikan">
-                                                <option value="-">Please Select</option>
-                                                <option value="SD">SD</option>
-                                                <option value="SMP">SMP</option>
-                                                <option value="SMA">SMA</option>
-                                                <option value="D3">Diploma</option>
-                                                <option value="S1/D4">S1</option>
-                                                <option value="S2">S2/S3</option>
-                                                <option value="Doktor">Non Formal</option>
-                                            </select>
-                                        </div> 
-        
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="ayah" class="col-lg-2 me-2">Nama Ayah :</label>
-                                            <input id="ayah" name="nama-ayah" class="col-lg-9" type="text">
-                                        </div>
-        
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="ibu" class="col-lg-2 me-2">Nama Ibu :</label>
-                                            <input id="ibu" name="ibu" class="col-lg-9" type="text">
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="agama" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Agama :</label>
+                                                <select class="form-select @error('agama') is-invalid @enderror" name="agama"  id="agama" >
+                                                    <option value="">Please Select</option>
+                                                    <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                                    <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                                                    <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                                                    <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                                    <option value="Buddha" {{ old('agama') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+                                                    <option value="Khonghucu" {{ old('agama') == 'Khonghucu' ? 'selected' : '' }}>Khonghucu</option>
+                                                </select>
+                                            </div>
+                                            @error('agama')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="kodisi-khusus" class="col-lg-2 me-2">Kondisi Khusus :</label>
-                                            <input id="kodisi-khusus" name="kodisi-khusus" class="col-lg-9" type="text">
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="pendidikan" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Pendidikan :</label>
+                                                <select class="form-select   @error('pendidikan') is-invalid @enderror" name="pendidikan"  id="pendidikan" >
+                                                    <option value="">Please Select</option>
+                                                    <option value="SD" {{ old('pendidikan') == 'SD' ? 'selected' : '' }}>SD</option>
+                                                    <option value="SMP" {{ old('pendidikan') == 'SMP' ? 'selected' : '' }}>SMP</option>
+                                                    <option value="SMA" {{ old('pendidikan') == 'SMA' ? 'selected' : '' }}>SMA</option>
+                                                    <option value="D3" {{ old('pendidikan') == 'D3' ? 'selected' : '' }}>Diploma</option>
+                                                    <option value="S1/D4" {{ old('pendidikan') == 'S1/D4' ? 'selected' : '' }}>S1/D4</option>
+                                                    <option value="S2/S3" {{ old('pendidikan') == 'S2/S3' ? 'selected' : '' }}>S2/S3</option>
+                                                    <option value="Non Formal" {{ old('pendidikan') == 'Non Formal' ? 'selected' : '' }}>Non Formal</option>
+                                                </select>
+                                            </div>
+                                            @error('pendidikan')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="nama_ayah" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Nama Ayah :</label>
+                                                <input type="text" class="form-control @error('nama_ayah') is-invalid @enderror" id="nama_ayah" name="nama_ayah" value="{{ old('nama_ayah') }}">
+                                            </div>
+                                            @error('nama_ayah')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="nama_ibu" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Nama Ibu :</label>
+                                                <input type="text" class="form-control @error('nama_ibu') is-invalid @enderror" id="nama_ibu" name="nama_ibu" value="{{ old('nama_ibu') }}">
+                                            </div>
+                                            @error('nama_ibu')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                        
-                                        <div class="d-flex col-lg-12 mb-3">                                   
-                                            <label for="note" class="col-lg-2 me-2">ID Satu Sehat :</label>
-                                            <label for="">autogenerate </label>
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="kondisi_khusus" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kondisi Khusus :</label>
+                                                <input type="text" class="form-control @error('kondisi_khusus') is-invalid @enderror" id="kondisi_khusus" name="kondisi_khusus" value="{{ old('kondisi_khusus') }}">
+                                            </div>
+                                            @error('kondisi_khusus')
+                                                <div class="invalid-feedback d-block ms-8">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="code" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">No.Rekam Medis :</label>
+                                                <label >autogenerate</label>
+                                            </div>
                                         </div>
                                         
                                     </div>
 
                                 </div>   
                                 <div class="col-lg-12">
-                                    <a href="/dashboard/rawat-jalan" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
+                                    <a href="/dashboard/rawat-jalan" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
                                     <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                 </div> 
                             </div>

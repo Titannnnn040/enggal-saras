@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\RawatJalanController;
+use App\Http\Controllers\CreatePasienController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -18,14 +19,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/get-cities-by-province/{provincename}', [ProvinceController::class, 'getCitiesByProvince']);
-Route::get('/get-kecamatan-by-city/{cityname}', [CityController::class, 'getKecamatanByCity']);
-Route::get('/get-kelurahan-by-kecamatan/{kecamatanname}', [KecamatanController::class, 'getKelurahanByKecamatan']);
+Route::get('/get-cities-by-province/{provinceId}', [ProvinceController::class, 'getCitiesByProvince']);
+Route::get('/get-kecamatan-by-city/{cityId}', [CityController::class, 'getKecamatanByCity']);
+Route::get('/get-kelurahan-by-kecamatan/{kecamatanId}', [KecamatanController::class, 'getKelurahanByKecamatan']);
 
 
 Route::get('/dashboard/rawat-jalan',[RawatJalanController::class,'store'])->name('rawat-jalan');
-Route::get('/dashboard/rawat-jalan/create-pasien',[RawatJalanController::class,'createPasien'])->name('rawat-jalan');
-Route::post('/dashboard/rawat-jalan/create-pasien',[RawatJalanController::class,'createData'])->name('rawat-jalan');
+Route::get('/dashboard/rawat-jalan/create-pasien',[CreatePasienController::class,'createPasien'])->name('create-pasien');
+Route::post('/dashboard/rawat-jalan/create-pasien',[CreatePasienController::class,'createData'])->name('create-pasien');
 
 Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
 Route::get('/admin/user',[AdminController::class,'user'])->name('user');
