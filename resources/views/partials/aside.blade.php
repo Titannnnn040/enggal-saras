@@ -17,7 +17,7 @@
               <span class="nav-link-text ms-1">Rawat Jalan</span>
             </button>
             <div class="dropdown-container" style="display: none">
-              <a href="/dashboard/rawat-jalan" class="dropdown-btn col-lg-10 d-flex mt-1 {{ ($title === "rawat-jalan") ? "active" : '' }} text-decoration-none">
+              <a href="/dashboard/rawat-jalan" class="dropdown-btn col-lg-10 d-flex mt-1 {{ ($title === "rawat-jalan" || "user-edit") ? "active" : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user"></i>
                 </div>

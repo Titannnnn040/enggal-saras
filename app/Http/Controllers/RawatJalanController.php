@@ -59,7 +59,7 @@ class RawatJalanController extends Controller
      */
     public function edit(Rawat_Jalan $rawat_Jalan)
     {
-        //
+        
     }
 
     /**

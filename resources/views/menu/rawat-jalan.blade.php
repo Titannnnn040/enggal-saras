@@ -237,13 +237,18 @@
                                 </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                    <form action="/dashboard/rawat-jalan/edit/{{ $item->id }}">
+                                      @csrf
+                                      <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                    </form>
                                     
-                                          <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
-                                    
-                                      
-                                        <button class="btn btn-outline-danger" style="margin-top:10px; margin-bottom:10px;">
+                                      <form action="/dashboard/rawat-jalan/{{ $item->id }}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">
                                           <i class="fa-solid fa-trash"></i>
                                         </button>                                      
+                                      </form>
 
                                     </span>
                                 </td>
