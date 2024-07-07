@@ -197,7 +197,9 @@
                                   <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_bpjs_asuransi }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->upload_foto }}</p>
+                                  @if ($item->upload_foto)
+                                    <img src="{{ asset('storage/' . $item->upload_foto) }}" width="100" alt="{{ $item->upload_foto }}">
+                                  @endif                              
                                 </td>
                                 <td class="align-middle text-center">
                                   <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->note }}</p>
@@ -237,12 +239,12 @@
                                 </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                    <form action="/dashboard/rawat-jalan/edit/{{ $item->id }}">
+                                    <form action="/dashboard/pendaftaran/edit/{{ $item->id }}">
                                       @csrf
                                       <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
                                     </form>
                                     
-                                      <form action="/dashboard/rawat-jalan/{{ $item->id }}" method="post">
+                                      <form action="/dashboard/pendaftaran/{{ $item->id }}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">
@@ -270,7 +272,7 @@
               © <script>
                 document.write(new Date().getFullYear())
               </script>,
-              <a href="" class="font-weight-bold" target="_blank">KalGen-Innolab</a>
+              <a href="" class="font-weight-bold" target="_blank">Klinik Enggal Saras</a>
               All Right Reserved
             </div>
           </div>

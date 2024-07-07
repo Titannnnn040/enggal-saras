@@ -37,27 +37,31 @@ class CreatePasienController extends Controller
             'status_pernikahan' => ['required',],
             'pekerjaan'         => ['required','max:255'],
             'payment_id'        => ['required',],
-            'no_bpjs_asuransi'  => ['min:5', 'max:5'],
-            // 'upload_foto'       => ['required',],
+            'no_bpjs_asuransi'  => ['nullable','min:5', 'max:5'],
+            'upload_foto'       => ['nullable', 'image','file', 'max:1024'],
             'note'              => ['required','max:255'],
-            'phone_number'   => ['required','max:15'],
-            'province_id'          => ['required',],
-            'cities_id'              => ['required',],
-            'kecamatan_id'         => ['required',],
-            'kelurahan_id'         => ['required',],
+            'phone_number'      => ['required','max:15'],
+            'province_id'       => ['required',],
+            'cities_id'         => ['required',],
+            'kecamatan_id'      => ['required',],
+            'kelurahan_id'      => ['required',],
             'address'           => ['required','max:255'],
             'agama'             => ['required',],
             'pendidikan'        => ['required',],
-            'nama_ayah'         => ['required','max:255'],
-            'nama_ibu'          => ['required','max:255'],
-            'kondisi_khusus'     => ['required','max:255'],
+            'nama_ayah'         => ['nullable','max:255'],
+            'nama_ibu'          => ['nullable','max:255'],
+            'kondisi_khusus'    => ['nullable','max:255'],
         ]);
         // return $request->all();
         // die;
 
+        if($request->file('upload_foto')){
+            $validatedpasien['upload_foto'] = $request->file('upload_foto')->store('post_images');
+        }
+
         Rawat_Jalan::create($validatedpasien);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
-        return redirect('/dashboard/rawat-jalan');
+        return redirect('/dashboard/pendaftaran');
        
     }
 
@@ -66,7 +70,7 @@ class CreatePasienController extends Controller
      */
     public function store(Request $request)
     {
-        return view('menu/rawat-jalan', ['title' => 'rawat-jalan']);
+        return view('menu/pendaftaran', ['title' => 'pendaftaran']);
     }
 
     public function createPasien(Request $request){
@@ -113,8 +117,8 @@ class CreatePasienController extends Controller
             'status_pernikahan' => ['required',],
             'pekerjaan'         => ['required','max:255'],
             'payment_id'        => ['required',],
-            'no_bpjs_asuransi'  => ['required','min:5', 'max:5'],
-            'upload_foto'       => ['required',],
+            'no_bpjs_asuransi'  => ['nullable','min:5', 'max:5'],
+            'upload_foto'       => ['nullable', 'image','file', 'max:1024'],
             'note'              => ['required','max:255'],
             'phone_number'      => ['required','max:15'],
             'province_id'       => ['required',],
@@ -124,9 +128,9 @@ class CreatePasienController extends Controller
             'address'           => ['required','max:255'],
             'agama'             => ['required',],
             'pendidikan'        => ['required',],
-            'nama_ayah'         => ['required','max:255'],
-            'nama_ibu'          => ['required','max:255'],
-            'kondisi_khusus'    => ['required','max:255'],
+            'nama_ayah'         => ['nullable','max:255'],
+            'nama_ibu'          => ['nullable','max:255'],
+            'kondisi_khusus'    => ['nullable','max:255'],
         ]);
         $rawatJalan = Rawat_Jalan::find($id);
         $rawatJalan->update([
@@ -154,12 +158,16 @@ class CreatePasienController extends Controller
             'nama_ibu'          => $request->nama_ibu,
             'kondisi_khusus'    => $request->kondisi_khusus
         ]);
+        if($request->file('upload_foto')){
+            $validatedpasien['upload_foto'] = $request->file('upload_foto')->store('post_images');
+        }
+
         if($rawatJalan){
             $request->session()->flash('success','Data berhasil di ubah');
-            return redirect('/dashboard/rawat-jalan');
+            return redirect('/dashboard/pendaftaran');
         }else{
             $request->session()->flash('failed','Data Gagal di ubah');
-            return redirect('/dashboard/rawat-jalan');
+            return redirect('/dashboard/pendaftaran');
         }
     }
 
@@ -171,11 +179,11 @@ class CreatePasienController extends Controller
         $rawatJalan = Rawat_Jalan::find($id);
         $rawatJalan->delete($id);
         if($rawatJalan){
-            $request->session()->flash('success','Data berhasil di ubah');
-            return redirect('/dashboard/rawat-jalan')->with('success-deleted', 'Data User Berhasil di Hapus');
+            $request->session()->flash('success','Data berhasil di hapus');
+            return redirect('/dashboard/pendaftaran')->with('success-deleted', 'Data User Berhasil di Hapus');
         } else {
-            $request->session()->flash('failed','Data Gagal di ubah');
-            return redirect('/dashboard/rawat-jalan')->with('error-deleted', 'User not found');
+            $request->session()->flash('failed','Data Gagal di hapus');
+            return redirect('/dashboard/pendaftaran')->with('error-deleted', 'User not found');
         }
         }
     }

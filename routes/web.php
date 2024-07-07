@@ -24,12 +24,12 @@ Route::get('/get-kecamatan-by-city/{cityId}', [CityController::class, 'getKecama
 Route::get('/get-kelurahan-by-kecamatan/{kecamatanId}', [KecamatanController::class, 'getKelurahanByKecamatan']);
 
 
-Route::get('/dashboard/rawat-jalan',[RawatJalanController::class,'store'])->name('rawat-jalan');
-Route::get('/dashboard/rawat-jalan/create-pasien',[CreatePasienController::class,'createPasien'])->name('create-pasien');
-Route::post('/dashboard/rawat-jalan/create-pasien',[CreatePasienController::class,'createData'])->name('create-pasien');
-Route::get('/dashboard/rawat-jalan/edit/{id}',[CreatePasienController::class,'edit'])->name('edit-pasien');
-Route::put('/dashboard/rawat-jalan/{id}',[CreatePasienController::class,'update'])->name('update-pasien');
-Route::delete('/dashboard/rawat-jalan/{id}',[CreatePasienController::class,'destroy'])->name('destroy-pasien');
+Route::get('/dashboard/pendaftaran',[RawatJalanController::class,'store'])->name('rawat-jalan');
+Route::get('/dashboard/pendaftaran/create-pasien',[CreatePasienController::class,'createPasien'])->name('create-pasien');
+Route::post('/dashboard/pendaftaran/create-pasien',[CreatePasienController::class,'createData'])->name('create-pasien');
+Route::get('/dashboard/pendaftaran/edit/{id}',[CreatePasienController::class,'edit'])->name('edit-pasien');
+Route::put('/dashboard/pendaftaran/{id}',[CreatePasienController::class,'update'])->name('update-pasien');
+Route::delete('/dashboard/pendaftaran/{id}',[CreatePasienController::class,'destroy'])->name('destroy-pasien');
 
 Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
 Route::get('/admin/user',[AdminController::class,'user'])->name('user');

@@ -9,46 +9,87 @@
     <br>
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
-          <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
-            <button class="dropdown-btn col-lg-10 d-flex" style="">
-              <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                <i class="fa-solid fa-stethoscope"></i>
+          {{-- <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
+
+            <div  class="dropdown-btn col-lg-10 d-flex" style="">
+              <div class="item ">
+                <a href="" class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-stethoscope"></i>
+                  <span class="nav-link-text ms-1">Rawat Jalan</span>
+                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4 mt-1"></i>
+                </a>
               </div>
-              <span class="nav-link-text ms-1">Rawat Jalan</span>
-            </button>
-            <div class="dropdown-container" style="display: none">
-              <a href="/dashboard/rawat-jalan" class="dropdown-btn col-lg-10 d-flex mt-1 {{ ($title === "rawat-jalan" || "user-edit") ? "active" : '' }} text-decoration-none">
+            </div>
+
+            <div class="sub-menu">
+              <a href="/dashboard/rawat-jalan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === "rawat-jalan") ? "active" : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user"></i>
+                  <span class="nav-link-text ms-1">Data Pasien</span>
                 </div>
-                <span class="nav-link-text ms-1">Data Pasien</span>
-              </a>
-              <a href="/dashboard/rawat-jalan/create-pasien" class="dropdown-btn col-lg-10 d-flex mt-1  {{ ($title === "create-pasien") ? "active" : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus"></i>
-                </div>
-                <span class="nav-link-text">Create Data Pasien</span>
               </a>
             </div>
+
+            <div class="sub-menu">
+              <a href="/dashboard/rawat-jalan/create-pasien" class="dropdown-menu col-lg-10 d-flex mt-1  {{ ($title === "create-pasien") ? "active" : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span class="nav-link-text">Create Data Pasien</span>
+                </div>
+              </a>
+            </div>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
             <script>
-              /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-              var dropdown = document.getElementsByClassName("dropdown-btn");
-              var i;
-              
-              for (i = 0; i < dropdown.length; i++) {
-                dropdown[i].addEventListener("click", function() {
-                  this.classList.toggle("active");
-                  var dropdownContent = this.nextElementSibling;
-                  if (dropdownContent.style.display === "block") {
-                    dropdownContent.style.display = "none";
-                  } else {
-                    dropdownContent.style.display = "block";
-                  }
-                });
+              $(document).ready(function){
+                $('dropdown-btn').click(function(){
+                  $('this').next('dropdown-menu').slideToggle();
+                  $(this).find('.dropdown')toggleClass('rotate');
+                })
               }
-              </script>
+            </script>
+
+          </li> --}}
+          <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
+            <div class="dropdown-btn col-lg-10 d-flex  {{ ($title === 'pendaftaran') ? 'active' : '' }}" style="">
+              <div class="item">
+                <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-stethoscope me-2"></i>
+                  <span class="nav-link-text ms-1">Pendaftaran</span>
+                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4"></i>
+                </a>
+              </div>
+            </div>
+          
+            <div class="sub-menu">
+
+              <a href="/dashboard/pendaftaran" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'pendaftaran') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-clipboard-user me-2"></i>
+                  <span class="nav-link-text ms-2">Data Pasien</span>
+                </div>
+              </a>
+
+              <a href="/dashboard/pendaftaran/create-pasien" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-pasien') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1">Create Data Pasien</span>
+                </div>
+              </a>
+
+            </div>
           </li>
       </ul>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+          <script>
+            $(document).ready(function() {
+              $('.dropdown-btn').click(function() {
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate');
+              });
+            });
+          </script>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">

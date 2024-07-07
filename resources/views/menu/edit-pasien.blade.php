@@ -15,7 +15,7 @@
               <div class="card-body px-5 pb-2">
                 <div class="form"  style="background-color:#FDFEFD;">
                     <div class="content">
-                        <form action="/dashboard/rawat-jalan/{{ $rawatJalan->id }}" method="post" class="d-flex col-lg-12"> 
+                        <form action="/dashboard/pendaftaran/{{ $rawatJalan->id }}" method="post" class="d-flex col-lg-12"> 
                             @csrf     
                             @method('put')
                             <div class="d-flex flex-column">
@@ -209,12 +209,17 @@
                                                 toggleDivisionSection();
                                             });
                                         </script>
-      
+                                            
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="upload_foto" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Upload foto :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
-                                                    <input type="file" class="form-control @error('upload_foto') is-invalid @enderror" id="upload_foto" name="upload_foto" value="{{ $rawatJalan->upload_foto }}">
+                                                    @if ($rawatJalan->upload_foto)
+                                                        <div class="mb-3">
+                                                            <img src="{{ asset('storage/' . $rawatJalan->upload_foto) }}" width="100" alt="{{ $rawatJalan->upload_foto }}">
+                                                        </div>
+                                                    @endif
+                                                    <input type="file" class="form-control @error('upload_foto') is-invalid @enderror" id="upload_foto" name="upload_foto">
                                                     @error('upload_foto')
                                                         <div class="invalid-feedback d-block">
                                                             {{ $message }}
@@ -223,6 +228,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                            
 
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
@@ -262,7 +268,7 @@
                                                     <select class="form-select @error('province_id') is-invalid @enderror" name="province_id"  id="province_id" >
                                                         <option value="">Please Select</option>
                                                         @foreach ($province as $item)
-                                                            <option value="{{ $item->id }}" {{ $item->id == $rawatJalan->province_id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                            <option value="{{ $item->id }}" {{ $rawatJalan->province_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('province_id')
@@ -280,9 +286,7 @@
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
                                                     <select class="form-select @error('cities_id') is-invalid @enderror" name="cities_id"  id="cities_id" >
                                                         @foreach ($city as $item)
-                                                            @if ($rawatJalan->province_id == $item->province_id)
-                                                                <option value="{{ $item->id }}" {{ $item->id == $rawatJalan->cities_id ? 'selected' : '' }}>{{ $item->name }}</option>
-                                                            @endif
+                                                            <option value="{{ $item->id }}" {{ $rawatJalan->cities_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('cities_id')
@@ -294,16 +298,35 @@
                                             </div>
                                         </div>
 
-                                  
+                                        <!-- JavaScript to handle dynamic city loading based on province -->
+                                        <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            document.getElementById('province_id').addEventListener('change', function () {
+                                                var provinceId = this.value;
+                                                fetch('/get-cities-by-province/' + provinceId)
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        var citySelect = document.getElementById('cities_id');
+                                                        citySelect.innerHTML = '<option value="">Please Select</option>';
+                                                        data.forEach(function (city) {
+                                                            var option = document.createElement('option');
+                                                            option.value = city.id;
+                                                            option.text = city.name;
+                                                            citySelect.add(option);
+                                                        });
+                                                    })
+                                                    .catch(error => console.error('Error:', error));
+                                            });
+                                        });
+                                        </script>
+        
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="kecamatan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kecamatan_id :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
                                                     <select class="form-select @error('kecamatan_id') is-invalid @enderror" name="kecamatan_id"  id="kecamatan_id" >
                                                         @foreach ($kecamatan as $item)
-                                                            @if ($rawatJalan->cities_id == $item->city_id)
-                                                                <option value="{{ $item->id }}" {{ $item->id == $rawatJalan->kecamatan_id ? 'selected' : '' }}>{{ $item->name }}</option>
-                                                            @endif
+                                                            <option value="{{ $item->id }}" {{ $rawatJalan->kecamatan_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('kecamatan_id')
@@ -315,15 +338,32 @@
                                             </div>
                                         </div>
 
+                                        <script>
+                                            document.getElementById('cities_id').addEventListener('change', function () {
+                                                var cityName = this.value;
+                                                fetch('/get-kecamatan-by-city/' + cityName)
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        var kecamatanSelect = document.getElementById('kecamatan_id');
+                                                        kecamatanSelect.innerHTML = '<option value="">Please Select</option>';
+                                                        data.forEach(function (kecamatan) {
+                                                            var option = document.createElement('option');
+                                                            option.value = kecamatan.id;
+                                                            option.text = kecamatan.name;
+                                                            kecamatanSelect.add(option);
+                                                        });
+                                                    })
+                                                    .catch(error => console.error('Error:', error));
+                                            });
+                                        </script>
+                                        
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="kelurahan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kelurahan_id :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
                                                     <select class="form-select @error('kelurahan_id') is-invalid @enderror" name="kelurahan_id"  id="kelurahan_id" >
                                                         @foreach ($kelurahan as $item)
-                                                            @if ($rawatJalan->kecamatan_id == $item->kecamatan_id)
-                                                                <option value="{{ $item->id }}" {{ $item->id == $rawatJalan->kelurahan_id ? 'selected' : '' }}>{{ $item->name }}</option>
-                                                            @endif
+                                                            <option value="{{ $item->id }}" {{ $rawatJalan->kelurahan_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('kelurahan_id')
@@ -334,6 +374,25 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <script>
+                                                document.getElementById('kecamatan_id').addEventListener('change', function () {
+                                                var kecamatanName = this.value;
+                                                fetch('/get-kelurahan-by-kecamatan/' + kecamatanName)
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        var kelurahanSelect = document.getElementById('kelurahan_id');
+                                                        kelurahanSelect.innerHTML = '<option value="">Please Select</option>';
+                                                        data.forEach(function (kelurahan) {
+                                                            var option = document.createElement('option');
+                                                            option.value = kelurahan.id;
+                                                            option.text = kelurahan.name;
+                                                            kelurahanSelect.add(option);
+                                                        });
+                                                    })
+                                                    .catch(error => console.error('Error:', error));
+                                            });
+                                        </script>
 
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
@@ -447,7 +506,7 @@
 
                                 </div>   
                                 <div class="col-lg-12">
-                                    <a href="/dashboard/rawat-jalan" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
+                                    <a href="/dashboard/pendaftaran" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
                                     <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                 </div> 
                             </div>
