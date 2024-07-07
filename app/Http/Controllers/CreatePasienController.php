@@ -33,14 +33,14 @@ class CreatePasienController extends Controller
             'jenis_kelamin'     => ['required',],
             'umur'              => ['required','min:1', 'max:100'],
             'birth_date'        => ['required',],
-            'nik'               => ['required','max:17'],
+            'nik'               => ['required','digits:15'],
             'status_pernikahan' => ['required',],
             'pekerjaan'         => ['required','max:255'],
             'payment_id'        => ['required',],
-            'no_bpjs_asuransi'  => ['nullable','min:13', 'max:20'],
+            'no_bpjs_asuransi'  => ['nullable','digits_between:13,20', 'max:20'],
             'upload_foto'       => ['nullable', 'image','file', 'max:1024'],
             'note'              => ['required','max:255'],
-            'phone_number'      => ['required','max:15'],
+            'phone_number'      => ['required','digits_between:13,20'],
             'province_id'       => ['required',],
             'cities_id'         => ['required',],
             'kecamatan_id'      => ['required',],
@@ -51,6 +51,7 @@ class CreatePasienController extends Controller
             'nama_ayah'         => ['nullable','max:255'],
             'nama_ibu'          => ['nullable','max:255'],
             'kondisi_khusus'    => ['nullable','max:255'],
+            'agama'         
         ]);
         // return $request->all();
         // die;
