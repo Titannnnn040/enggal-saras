@@ -9,11 +9,20 @@ use App\Models\City;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CreatePasienController extends Controller
 {
 
+    private function generateRmNumber()
+    {
+        $count = Rawat_Jalan::all('id')->count();
 
+        $count = $count + 1;
+        $kd = str_pad($count, 5, '0', STR_PAD_LEFT);
+
+        return 'RM' . '-' . $kd;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -31,16 +40,16 @@ class CreatePasienController extends Controller
             'nama_lengkap'      => ['required','max:255'],
             'nama_panggilan'    => ['required','max:255'],
             'jenis_kelamin'     => ['required',],
-            'umur'              => ['required','min:1', 'max:100'],
+            'umur'              => ['required','numeric', 'min:1', 'max:100'],
             'birth_date'        => ['required',],
-            'nik'               => ['required','digits:15'],
+            'nik'               => ['required','numeric', 'digits:15'],
             'status_pernikahan' => ['required',],
             'pekerjaan'         => ['required','max:255'],
             'payment_id'        => ['required',],
-            'no_bpjs_asuransi'  => ['nullable','digits_between:13,20', 'max:20'],
+            'no_bpjs_asuransi'  => ['nullable','numeric', 'digits_between:13,20'],
             'upload_foto'       => ['nullable', 'image','file', 'max:1024'],
             'note'              => ['required','max:255'],
-            'phone_number'      => ['required','digits_between:13,20'],
+            'phone_number'      => ['required', 'numeric','digits_between:10,20'],
             'province_id'       => ['required',],
             'cities_id'         => ['required',],
             'kecamatan_id'      => ['required',],
@@ -51,10 +60,11 @@ class CreatePasienController extends Controller
             'nama_ayah'         => ['nullable','max:255'],
             'nama_ibu'          => ['nullable','max:255'],
             'kondisi_khusus'    => ['nullable','max:255'],
-            'agama'         
         ]);
         // return $request->all();
         // die;
+
+        $validatedpasien['no_rekam_medis'] = $this->generateRmNumber();
 
         if($request->file('upload_foto')){
             $validatedpasien['upload_foto'] = $request->file('upload_foto')->store('post_images');
@@ -112,7 +122,7 @@ class CreatePasienController extends Controller
             'nama_lengkap'      => ['required','max:255'],
             'nama_panggilan'    => ['required','max:255'],
             'jenis_kelamin'     => ['required',],
-            'umur'              => ['required','min:1', 'max:100'],
+            'umur'              => ['required','numeric', 'digits_between:1,3'],
             'birth_date'        => ['required',],
             'nik'               => ['required','digits:15'],
             'status_pernikahan' => ['required',],

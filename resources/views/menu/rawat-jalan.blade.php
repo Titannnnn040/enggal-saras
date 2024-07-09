@@ -132,6 +132,7 @@
                       <thead>
                           <tr>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.Rekam-Medis</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Lengkap</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Panggilan</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Kelamin</th>
@@ -168,6 +169,9 @@
 
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_lengkap }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_rekam_medis }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                   <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_panggilan }}</p>

@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('m_pasien', function (Blueprint $table) {
             $table->id();
+            $table->text('no_rekam_medis')->nullable();
             $table->string('nama_lengkap');
             $table->string('nama_panggilan');
             $table->string('jenis_kelamin');
             $table->string('umur');
             $table->string('birth_date');
-            $table->unsignedBigInteger('nik');
+            $table->string('nik')->unique();
             $table->string('status_pernikahan');
             $table->string('pekerjaan');
             $table->foreignId('payment_id')->constrained('payment_methods');
-            $table->integer('no_bpjs_asuransi');
+            $table->string('no_bpjs_asuransi')->unique();
             $table->string('upload_foto');
             $table->string('note');
             $table->string('phone_number');
