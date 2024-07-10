@@ -44,7 +44,7 @@ class CreatePasienController extends Controller
             'birth_date'        => ['required',],
             'nik'               => ['required','numeric', 'digits:15,17'],
             'status_pernikahan' => ['required',],
-            'pekerjaan'         => ['required','max:255'],
+            'pekerjaan'         => ['required','max:255', 'required'],
             'payment_id'        => ['required',],
             'no_bpjs_asuransi'  => ['nullable','numeric', 'digits_between:13,16'],
             'upload_foto'       => ['nullable', 'image','file', 'max:1024'],
