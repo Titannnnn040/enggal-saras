@@ -168,10 +168,10 @@
                                 </td>
 
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_lengkap }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_rekam_medis }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_rekam_medis }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_lengkap }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                   <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_panggilan }}</p>
