@@ -161,8 +161,7 @@
                                                     <select class="form-select @error('payment_id') is-invalid @enderror" name="payment_id"  id="payment_id" >
                                                         <option value="">Please Select</option>
                                                         @foreach ($payment as $item)
-                                                            <option value="@if(){
-                                                            }@endif">{{ $item->name }}</option>
+                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                         @endforeach
                                                     </select>       
                                                     @error('payment_id')

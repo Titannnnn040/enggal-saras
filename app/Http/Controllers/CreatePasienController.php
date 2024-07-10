@@ -42,7 +42,7 @@ class CreatePasienController extends Controller
             'jenis_kelamin'     => ['required',],
             'umur'              => ['required','numeric', 'min:1', 'max:100'],
             'birth_date'        => ['required',],
-            'nik'               => ['required','numeric', 'digits:15,17'],
+            'nik'               => ['required','numeric', 'digits-between:15,17'],
             'status_pernikahan' => ['required',],
             'pekerjaan'         => ['required','max:255'],
             'payment_id'        => ['required',],
