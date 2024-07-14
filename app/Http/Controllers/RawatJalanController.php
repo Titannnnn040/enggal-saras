@@ -25,9 +25,6 @@ class RawatJalanController extends Controller
      */
     public function createData(Request $request)
     {
-        $request->validate([
-            'nama_lengkap' => ['required', 'max:5']
-        ]);
     }
 
     /**
@@ -35,8 +32,26 @@ class RawatJalanController extends Controller
      */
     public function store(Request $request)
     {
-        $rawatJalan = Rawat_Jalan::all();
-        return view('menu/rawat-jalan',compact('rawatJalan') , ['title' => 'rawat-jalan']);
+        $rawatJalan = Rawat_Jalan::latest();
+
+        if(request('no_rekam_medis')){
+            // $rawatJalan = Rawat_Jalan::latest();
+            $rawatJalan->where('no_rekam_medis', 'like', request('search-name'));
+        } 
+        if(request('nama_lengkap')){
+            // $rawatJalan = Rawat_Jalan::latest();
+            $rawatJalan->where('nama_lengkap', 'like', '%' . request('nama_lengkap') . '%');
+        } 
+        if(request('nik')){
+            // $rawatJalan = Rawat_Jalan::latest();
+            $rawatJalan->where('nik', 'like', request('nik'));
+        } 
+        if(request('no_bpjs')){
+            // $rawatJalan = Rawat_Jalan::latest();
+            $rawatJalan->where('no_bpjs_asuransi', 'like', request('no_bpjs'));
+        } 
+
+        return view('menu/rawat-jalan', ['title' => 'rawat-jalan', "rawatJalan" => $rawatJalan->get()]);
     }
 
     public function createPasien(Request $request){

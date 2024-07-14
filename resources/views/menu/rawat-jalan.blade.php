@@ -116,7 +116,46 @@
           </div>
         </div>
       </div>
-   
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card my-3">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Filter</h6>
+              </div>
+            </div>
+            <div class="card-body px-5 pb-2">
+              <div class="filter-data mb-3">
+                <form action="" class="d-flex col-lg-12">
+                  <div class="row col-lg-12">
+                    <div class="search col-lg-6">
+                      <h6>No.Rekam Medis</h6>
+                      <input type="text" name="no_rekam_medis">
+                    </div>
+                    <div class="search col-lg-6">
+                      <h6>Nama Lengkap</h6>
+                      <input type="text" name="nama_lengkap">
+                    </div>
+                    <div class="search col-lg-6">
+                      <h6>No. BPJS</h6>
+                      <input type="text" name="no_bpjs">
+                    </div>
+                    <div class="search col-lg-6">
+                      <h6>Nik</h6>
+                      <input type="text" name="nik">
+                    </div>
+                    <div class="submit-filter d-flex  justify-content-between mt-3">
+                      <button type="submit" class="btn btn-success col-lg-1">Search</button>
+                      <a href="/dashboard/pendaftaran" class="btn btn-danger col-lg-1">clear</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
     <div class="container-fluid py-1">
       <div class="row">
         <div class="col-lg-12">

@@ -28147,3 +28147,14 @@ pre[class*="language-"] {
   box-shadow: none !important;
   transition: .3s;
 } */
+
+.filter-data .search input{
+  border:solid 2px #00000025;
+  outline: unset;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.dataTables_filter{
+  display: none !important;
+}

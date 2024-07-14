@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('status_pernikahan');
             $table->string('pekerjaan');
             $table->foreignId('payment_id')->constrained('payment_methods');
-            $table->string('no_bpjs_asuransi')->unique();
-            $table->string('upload_foto');
+            $table->string('no_bpjs_asuransi')->unique()->nullable();
+            $table->string('upload_foto')->nullable();
             $table->string('note');
             $table->string('phone_number');
             $table->foreignId('province_id')->constrained('provinces');
@@ -34,9 +34,9 @@ return new class extends Migration
             $table->string('address');
             $table->string('agama');
             $table->string('pendidikan');
-            $table->string('nama_ayah');
-            $table->string('nama_ibu');
-            $table->string('kondisi_khusus');
+            $table->string('nama_ayah')->nullable();
+            $table->string('nama_ibu')->nullable();
+            $table->string('kondisi_khusus')->nullable();
             $table->timestamps();
         });
     }
