@@ -48,7 +48,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <body class="g-sidenav-show  bg-gray-200" style="font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif' !important;">
   @include('partials/aside')
-  @yield('create-pasien')
+  @yield('form_layouts')
   @include('sweetalert::alert')
 </body>
 </html>

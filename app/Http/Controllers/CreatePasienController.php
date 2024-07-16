@@ -89,7 +89,7 @@ class CreatePasienController extends Controller
         $province = Province::all();
         $city     = City::all();
         $kecamatan     = Kecamatan::all();
-        return view('menu/create-pasien', compact('province', 'city', 'kecamatan', 'payment'), ['title' => 'create-pasien']);
+        return view('m_pasien/create-pasien', compact('province', 'city', 'kecamatan', 'payment'), ['title' => 'create-pasien']);
     }
     /**
      * Display the specified resource.
@@ -110,7 +110,7 @@ class CreatePasienController extends Controller
         $kecamatan     = Kecamatan::all();
         $kelurahan     = Kelurahan::all();
         $rawatJalan = Rawat_Jalan::find($id);
-        return view('menu/edit-pasien', compact('rawatJalan', 'province', 'city', 'kecamatan', 'kelurahan', 'payment'), ['title' => 'user-edit']);        
+        return view('m_pasien/edit-pasien', compact('rawatJalan', 'province', 'city', 'kecamatan', 'kelurahan', 'payment'), ['title' => 'user-edit']);        
     }
 
     /**

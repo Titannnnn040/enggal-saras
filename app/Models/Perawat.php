@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Division extends Model
+class Perawat extends Model
 {
     use HasFactory;
-
-    public function User(){
-        return $this->hasMany(User::class);
-    }
+    
+    protected $table = 'm_perawat';
+    protected $guarded=['id'];
+    
 }

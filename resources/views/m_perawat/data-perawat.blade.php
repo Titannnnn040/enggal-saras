@@ -1,9 +1,9 @@
 @extends('layouts/dashboard')
 @section('dashboard')
 <!-- Page Content  -->
-
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-  <h1 class="ms-3 mt-2 mb-0">KalGen-Innolab</h1>
+
+  <h1 class="ms-3 mt-2 mb-0">Enggal Saras</h1>
   <div class="container-fluid py-4">
     <div class="row">
       <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -13,8 +13,8 @@
               <i class="fa-solid fa-calendar-days"></i>
             </div>
             <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">Total Notif</p>
-              <h4 class="mb-0">530</h4>
+              <p class="text-sm mb-0 text-capitalize">Total Employess</p>
+              <h4 class="mb-0"></h4>
             </div>
           </div>
           <hr class="dark horizontal my-0">
@@ -30,8 +30,8 @@
               <i class="fa-solid fa-plus"></i>
             </div>
             <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">Today's Notif</p>
-              <h4 class="mb-0">2,300</h4>
+              <p class="text-sm mb-0 text-capitalize">Today's Visitors</p>
+              <h4 class="mb-0"></h4>
             </div>
           </div>
           <hr class="dark horizontal my-0">
@@ -116,7 +116,39 @@
           </div>
         </div>
       </div>
-     
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card my-3">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Filter</h6>
+              </div>
+            </div>
+            <div class="card-body px-5 pb-2">
+              <div class="filter-data mb-3">
+                <form action="" class="d-flex col-lg-12">
+                  <div class="row col-lg-12">
+                    <div class="search col-lg-6">
+                      <h6>Nama Lengkap</h6>
+                      <input type="text" name="nama_lengkap">
+                    </div>
+                   
+                    <div class="search col-lg-6">
+                      <h6>Nik</h6>
+                      <input type="text" name="nik">
+                    </div>
+                    <div class="submit-filter d-flex  justify-content-between mt-3">
+                      <button type="submit" class="btn btn-success col-lg-1">Search</button>
+                      <a href="/dashboard/perawat/data-perawat" class="btn btn-danger col-lg-1">clear</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
     <div class="container-fluid py-1">
       <div class="row">
         <div class="col-lg-12">
@@ -131,55 +163,53 @@
                   <table class="table align-items-center mb-0" id="myTables">
                       <thead>
                           <tr>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Division</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nik</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created-At</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update-At</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Lengkap</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NIK</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
-                      <tbody>
-                          @foreach ($users as $user)
-                          <tr>
-                              <td class="align-middle text-center text-xs">
-                                  <h6 class="mb-0 text-xs">{{ $user->id }}</h6>
-                              </td>
-                              <td class="align-middle text-center text-xs">
-                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $user->username }}</p>
-                              </td>
-                              <td class="align-middle text-center text-xs">
-                                  <h6 class="mb-0 text-sm">{{ $user->division->name }}</h6>
-                              </td>
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bold">{{ $user->nik }}</span>
-                              </td>
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bold">{{ $user->created_at }}</span>
-                              </td>
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bold">{{$user->updated_at}}</span>
-                              </td>
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bolder">
-                                      <a href="" class="">
-                                          <button class="btn btn-outline-success " style="margin-top:10px;margin-bottom:10px;"><i class="fa-solid fa-user-pen"></i></button>
-                                      </a>
-                                      <a href="" id="delete">
-                                          <button class="btn btn-outline-danger" style="margin-top:10px;margin-bottom:10px;"><i class="fa-solid fa-trash"></i></button>
-                                      </a>
-                                  </span>
-                              </td>
-                          </tr>
-                          @endforeach
-                      </tbody>
+                      <?php $num = 1 ?>
+                      @foreach ($perawat as $item)
+                        <tbody>
+                            <tr>
+                                <td class="align-middle text-center text-xs">
+                                    <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
+                                </td>
+
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_lengkap }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nik }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                    <form action="/dashboard/perawat/edit/{{ $item->id }}">
+                                      @csrf
+                                      <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                    </form>
+                                    
+                                      <form action="/dashboard/perawat/{{ $item->id }}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">
+                                          <i class="fa-solid fa-trash"></i>
+                                        </button>                                      
+                                      </form>
+
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                      @endforeach
                   </table>
               </div>
           </div>
           </div>
         </div>
       </div>
+    </div>
     <footer class="footer py-4  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">
@@ -188,7 +218,7 @@
               © <script>
                 document.write(new Date().getFullYear())
               </script>,
-              <a href="" class="font-weight-bold" target="_blank">KalGen-Innolab</a>
+              <a href="" class="font-weight-bold" target="_blank">Klinik Enggal Saras</a>
               All Right Reserved
             </div>
           </div>
@@ -485,4 +515,56 @@
       $('#myTables').DataTable();
   });
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the modal
+    var modal = document.getElementById("createUserModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("button-create-user");
+
+    // Get the <span> element that closes the modal
+    var closeBtn = document.querySelector(".close");
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block"; // Ensure the modal is displayed
+        setTimeout(function () {
+            modal.classList.add("show"); // Add the transition class after a slight delay
+        }, 10);
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    closeBtn.onclick = function () {
+        modal.classList.remove("show"); // Remove the transition class
+        setTimeout(function () {
+            modal.style.display = "none"; // Hide the modal after the transition
+        }, 400); // Match this duration with the CSS transition duration
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.classList.remove("show"); // Remove the transition class
+            setTimeout(function () {
+                modal.style.display = "none"; // Hide the modal after the transition
+            }, 400); // Match this duration with the CSS transition duration
+        }
+    }
+});
+</script>
+{{-- Notification --}}
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+      const alert = document.getElementById('success-alert');
+      if (alert) {
+          setTimeout(() => {
+              alert.style.display = 'none';
+          }, 5000); // 5000 ms = 5 detik
+      }
+  });
+</script>
 @endsection
+
+

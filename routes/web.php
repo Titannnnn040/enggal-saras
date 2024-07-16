@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\RawatJalanController;
 use App\Http\Controllers\CreatePasienController;
+use App\Http\Controllers\PerawatController;
+use App\Http\Controllers\DataPerawatController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -31,12 +33,12 @@ Route::get('/dashboard/pendaftaran/edit/{id}',[CreatePasienController::class,'ed
 Route::put('/dashboard/pendaftaran/{id}',[CreatePasienController::class,'update'])->name('update-pasien');
 Route::delete('/dashboard/pendaftaran/{id}',[CreatePasienController::class,'destroy'])->name('destroy-pasien');
 
-Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
-Route::get('/admin/user',[AdminController::class,'user'])->name('user');
-Route::post('/admin/user',[AdminController::class,'create'])->name('create_user');
-Route::get('/admin/user/{id}/edit',[AdminController::class,'edit'])->name('edit-user');
-Route::put('/admin/user/{id}',[AdminController::class,'update'])->name('edit-user');
-Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('del-user');
+Route::get('/dashboard/perawat/create-perawat',[PerawatController::class,'store'])->name('create-perawat');
+Route::post('/dashboard/perawat/create-perawat',[PerawatController::class,'create'])->name('create-perawat');
+Route::get('/dashboard/perawat/data-perawat',[DataPerawatController::class,'store'])->name('data-perawat');
+Route::get('/dashboard/perawat/edit/{id}',[DataPerawatController::class,'edit'])->name('edit-perawat');
+Route::put('/dashboard/perawat/{id}',[DataPerawatController::class,'update'])->name('update-perawat');
+Route::delete('/dashboard/perawat/{id}',[DataPerawatController::class,'destroy'])->name('destroy-perawat');
 
 Route::get('/login',[LoginController::class,'index'])->name('login')->middleware('guest');
 Route::post('/login',[LoginController::class,'authenticate']);
