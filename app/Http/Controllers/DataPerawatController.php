@@ -50,10 +50,10 @@ class DataPerawatController extends Controller
         $findPerawat = Perawat::find($id);
         $findPerawat->delete($id);
         if($findPerawat){
-            $request->session()->flash('success','Data berhasil di ubah');
+            $request->session()->flash('success','Data berhasil di hapus');
             return redirect('/dashboard/perawat/data-perawat');
         }else{
-            $request->session()->flash('failed','Data Gagal di ubah');
+            $request->session()->flash('failed','Data Gagal di hapus');
             return redirect('/dashboard/perawat/data-perawat');
         }
     }
