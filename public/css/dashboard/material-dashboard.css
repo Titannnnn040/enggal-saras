@@ -22532,10 +22532,7 @@ body.dark-version {
   position: relative;
 }
 
-.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked,
-.form-check:not(.form-switch) .form-check-input[type="radio"]:checked {
-  border-color: #e91e63;
-}
+
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"] {
   background-image: none;
@@ -22556,9 +22553,6 @@ body.dark-version {
   opacity: 0;
 }
 
-.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
-  background: #e91e63;
-}
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked:after {
   opacity: 1;

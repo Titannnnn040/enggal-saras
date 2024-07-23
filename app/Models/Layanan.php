@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Dokter;
+use App\Models\JenisLayanan;
 
 class Layanan extends Model
 {
@@ -14,5 +15,8 @@ class Layanan extends Model
 
     public function Dokter(){
         return $this->hasMany(Dokter::class);
+    }
+    public function JenisLayanan(){
+        return $this->belongsTo(JenisLayanan::class);
     }
 }

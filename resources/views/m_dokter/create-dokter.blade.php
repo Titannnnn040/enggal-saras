@@ -124,6 +124,8 @@
                                             </div>
                                         </div>
 
+                                        <h5>Satu Sehat</h5>
+                                        <hr>
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="nik_dokter" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">NIK Dokter :</label>

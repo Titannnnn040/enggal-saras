@@ -139,6 +139,37 @@
 
             </div>
           </li>
+
+          <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
+            <div class="dropdown-btn col-lg-10 d-flex" style="">
+              <div class="item">
+                <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-stethoscope me-2"></i>
+                  <span class="nav-link-text ms-1">Master Layanan</span>
+                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4"></i>
+                </a>
+              </div>
+            </div>
+          
+            <div class="sub-menu">
+
+              <a href="/layanan/data-layanan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-layanan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-clipboard-user me-2"></i>
+                  <span class="nav-link-text ms-2">Data Layanan</span>
+                </div>
+              </a>
+
+              <a href="/layanan/create-layanan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-layanan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1">Create Layanan</span>
+                </div>
+              </a>
+
+            </div>
+          </li>
+
       </ul>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
           <script>

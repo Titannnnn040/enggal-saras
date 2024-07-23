@@ -4,6 +4,7 @@ use App\Http\Controllers\CreatePasienController;
 use App\Http\Controllers\PerawatController;
 use App\Http\Controllers\DataPerawatController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -52,9 +53,18 @@ Route::put('/dashboard/perawat/{id}',[DataPerawatController::class,'update'])->n
 Route::delete('/dashboard/perawat/{id}',[DataPerawatController::class,'destroy'])->name('destroy-perawat');
 
 // ROUTE MASTER TENAGA MEDIS
-Route::get('/tenaga-medis/create-tenaga-medis',[DokterController::class,'store'])->name('create-dokter');
-Route::get('/tenaga-medis/data-tenaga-medis',[DokterController::class,'storeData'])->name('create-dokter');
+Route::get('/tenaga-medis/create-tenaga-medis',[DokterController::class,'store'])->name('store-dokter');
+Route::get('/tenaga-medis/data-tenaga-medis',[DokterController::class,'storeData'])->name('data-dokter');
 Route::post('/tenaga-medis/create-tenaga-medis',[DokterController::class,'create'])->name('create-dokter');
 Route::get('/tenaga-medis/edit-tenaga-medis/{id}',[DokterController::class,'edit'])->name('edit-dokter');
 Route::put('/tenaga-medis/{id}',[DokterController::class,'update'])->name('update-dokter');
 Route::delete('/tenaga-medis/{id}',[DokterController::class,'destroy'])->name('delete-dokter');
+
+// ROUTE MASTER LAYANAN
+Route::get('/layanan/create-layanan',[LayananController::class,'store'])->name('create-layanan');
+Route::post('/layanan/create-layanan',[LayananController::class,'create'])->name('create-layanan');
+Route::get('/layanan/data-layanan',[LayananController::class,'storeData'])->name('data-layanan');
+Route::get('/layanan/edit-layanan/{id}',[LayananController::class,'edit'])->name('edit-layanan');
+Route::put('/layanan/update-layanan/{id}',[LayananController::class,'update'])->name('update-layanan');
+Route::delete('/layanan/delete-layanan/{id}',[LayananController::class,'destroy'])->name('delete-layanan');
+

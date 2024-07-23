@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('m_layanan', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_layanan');
             $table->string('nama_layanan');
+            $table->foreignId('jenis_layanan_id');
+            $table->string('kode_layanan_bpjs')->nullable();
+            $table->string('id_satu_sehat')->nullable();
+            $table->string('medical_checkup')->nullable();
+            $table->string('ibu_hamil')->nullable();
             $table->timestamps();
         });
     }
