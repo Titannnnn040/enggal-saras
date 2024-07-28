@@ -129,11 +129,25 @@
                   <span class="nav-link-text ms-2">Data Tenaga Medis</span>
                 </div>
               </a>
-
-              <a href="/tenaga-medis/create-tenaga-medis" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-dokter') ? 'active' : '' }} text-decoration-none">
+             
+              <a href="/tenaga-medis/create-tenaga-medis" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-dokter') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-clipboard-user me-2"></i>
+                  <span class="nav-link-text ms-2">Create Dokter</span>
+                </div>
+              </a>
+          
+              <a href="/tenaga-medis/jadwal-dokter" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'jadwal-dokter') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1">Create Data Dokter</span>
+                  <span class="nav-link-text ms-1">Jadwal Dokter</span>
+                </div>
+              </a>
+              
+              <a href="/tenaga-medis/create-jadwal-dokter" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-jadwal-dokter') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1">Create Jadwal Dokter</span>
                 </div>
               </a>
 

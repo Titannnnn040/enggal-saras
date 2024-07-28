@@ -4,6 +4,7 @@ use App\Http\Controllers\CreatePasienController;
 use App\Http\Controllers\PerawatController;
 use App\Http\Controllers\DataPerawatController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\ScheduleDokterController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -60,6 +61,14 @@ Route::get('/tenaga-medis/edit-tenaga-medis/{id}',[DokterController::class,'edit
 Route::put('/tenaga-medis/{id}',[DokterController::class,'update'])->name('update-dokter');
 Route::delete('/tenaga-medis/{id}',[DokterController::class,'destroy'])->name('delete-dokter');
 
+Route::get('/tenaga-medis/jadwal-dokter',[ScheduleDokterController::class,'store'])->name('penjadwalan-dokter');
+Route::get('/tenaga-medis/create-jadwal-dokter',[ScheduleDokterController::class,'storeForm'])->name('create-jadwal-dokter');
+Route::post('/tenaga-medis/create-jadwal-dokter',[ScheduleDokterController::class,'create'])->name('create-jadwal-dokter');
+Route::get('/tenaga-medis/edit-jadwal-dokter/{id}',[ScheduleDokterController::class,'edit'])->name('edit-jadwal-dokter');
+Route::put('/tenaga-medis/update-jadwal-dokter/{id}',[ScheduleDokterController::class,'update'])->name('update-jadwal-dokter');
+Route::delete('/tenaga-medis/delete-jadwal-dokter/{id}',[ScheduleDokterController::class,'destroy'])->name('delete-jadwal-dokter');
+
+
 // ROUTE MASTER LAYANAN
 Route::get('/layanan/create-layanan',[LayananController::class,'store'])->name('create-layanan');
 Route::post('/layanan/create-layanan',[LayananController::class,'create'])->name('create-layanan');
@@ -67,4 +76,3 @@ Route::get('/layanan/data-layanan',[LayananController::class,'storeData'])->name
 Route::get('/layanan/edit-layanan/{id}',[LayananController::class,'edit'])->name('edit-layanan');
 Route::put('/layanan/update-layanan/{id}',[LayananController::class,'update'])->name('update-layanan');
 Route::delete('/layanan/delete-layanan/{id}',[LayananController::class,'destroy'])->name('delete-layanan');
-

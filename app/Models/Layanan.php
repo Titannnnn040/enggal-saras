@@ -19,4 +19,8 @@ class Layanan extends Model
     public function JenisLayanan(){
         return $this->belongsTo(JenisLayanan::class);
     }
+
+    public function PenjadwalanDokter(){
+        return $this->hasMany(PenjadwalanDokter::class);
+    }
 }
