@@ -68,6 +68,8 @@ Route::get('/tenaga-medis/edit-jadwal-dokter/{id}',[ScheduleDokterController::cl
 Route::put('/tenaga-medis/update-jadwal-dokter/{id}',[ScheduleDokterController::class,'update'])->name('update-jadwal-dokter');
 Route::delete('/tenaga-medis/delete-jadwal-dokter/{id}',[ScheduleDokterController::class,'destroy'])->name('delete-jadwal-dokter');
 
+Route::get('/get-jadwal/{dokter_id}/{layanan_id}', [ScheduleDokterController::class, 'getJadwal']);
+
 
 // ROUTE MASTER LAYANAN
 Route::get('/layanan/create-layanan',[LayananController::class,'store'])->name('create-layanan');

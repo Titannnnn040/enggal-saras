@@ -15,7 +15,7 @@
               <div class="card-body px-5 pb-2">
                 <div class="form"  style="background-color:#FDFEFD;">
                     <div class="content">
-                        <form action="" method="post" class="d-flex col-lg-12"> 
+                        <form action="" id="jadwal-form" method="post" class="d-flex col-lg-12"> 
                             @csrf     
                             <div class="d-flex flex-column">
 
@@ -28,10 +28,11 @@
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
                                                     <select class="form-select @error('layanan_id') is-invalid @enderror" name="layanan_id"  id="layanan_id">
                                                         <option value="">Please Select</option>
-                                                            @foreach ($layanan as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->nama_layanan }}</option>
-                                                            @endforeach
-                                                    </select> 
+                                                        @foreach ($layanan as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->nama_layanan }}</option>
+                                                        @endforeach
+
+                                                    </select>
                                                     @error('layanan_id')
                                                     <div class="invalid-feedback d-block">
                                                         {{ $message }}
@@ -89,7 +90,7 @@
                                                         <input type="checkbox" class="form-check-input @error('medical_checkup') is-invalid @enderror" id="medical_checkup" name="medical_checkup" value="yes">
                                                         <label for="medical_checkup" class="form-label me-2">Medical Check Up</label>
                                                     </div> --}}
-                                                    <div class="">
+                                                    {{-- <div class="">
                                                         <input type="checkbox" class="form-check-input @error('senin') is-invalid @enderror" id="senin" name="senin" value="yes">
                                                         <label for="senin" class="form-label me-2">SENIN</label>
                                                     </div>
@@ -117,10 +118,59 @@
                                                     <div class="ms-5">
                                                         <input type="checkbox" class="form-check-input @error('minggu') is-invalid @enderror" id="minggu" name="minggu" value="yes">
                                                         <label for="minggu" class="form-label me-2">MINGGU</label>
-                                                    </div>
-                                                </div>
+                                                    </div> --}}
 
-                                                <div class="d-flex col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                    @php
+                                                        $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu' ];   
+                                                    @endphp
+                                                
+                                                    @foreach($days as $item)
+                                                        @php
+                                                            $disabled = $jadwals->where('dokter_id', old('dokter_id'))->where($item, '!=', '')->isNotEmpty();
+                                                        @endphp
+                                                        <div class="ms-5">
+                                                            <input type="checkbox" class="form-check-input @error( $item ) is-invalid @enderror" id="{{ $item }}" name="{{ $item }}" value="yes">
+                                                            <label for="{{ $item }}" class="form-label me-2">{{strtoupper($item)}}</label>
+                                                        </div>
+                                                    @endforeach
+
+                                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                                    <script>
+                                                        document.getElementById('dokter_id').addEventListener('change', function() {
+                                                            updateCheckboxes();
+                                                        });
+                                                    
+                                                        document.getElementById('layanan_id').addEventListener('change', function() {
+                                                            updateCheckboxes();
+                                                        });
+                                                    
+                                                        function updateCheckboxes() {
+                                                            let dokterId = document.getElementById('dokter_id').value;
+                                                            let layananId = document.getElementById('layanan_id').value;
+                                                            let days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
+                                                    
+                                                            // Reset semua checkbox
+                                                            days.forEach(day => {
+                                                                document.getElementById(day).disabled = false;
+                                                            });
+                                                    
+                                                            // Lakukan AJAX request untuk mendapatkan jadwal dokter
+                                                            if (dokterId && layananId) {
+                                                                fetch(`/get-jadwal/${dokterId}/${layananId}`)
+                                                                    .then(response => response.json())
+                                                                    .then(data => {
+                                                                        if (data) {
+                                                                            days.forEach(day => {
+                                                                                if (data[day]) {
+                                                                                    document.getElementById(day).disabled = true;
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                    });
+                                                            }
+                                                        }
+                                                    </script>
+
                                                 </div>
                                             </div>
                                         </div>

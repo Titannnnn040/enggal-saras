@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class ScheduleDokterController extends Controller
 {
+    public function getJadwal($dokter_id, $layanan_id) {
+        $jadwal = PenjadwalanDokter::where('dokter_id', $dokter_id)
+                                    ->where('layanan_id', $layanan_id)
+                                    ->first();
+        return response()->json($jadwal);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -57,24 +63,17 @@ class ScheduleDokterController extends Controller
             'finish'         => ['required']
         ]);
     
-        // Mengatur nilai untuk setiap hari berdasarkan checkbox
-        $data = [
-            'senin'  => $request->has('senin') ? $request->start . '-' .  $request->finish : '-',
-            'selasa' => $request->has('selasa') ? $request->start . '-' . $request->finish : '-',
-            'rabu'   => $request->has('rabu') ? $request->start . '-' . $request->finish : '-',
-            'kamis'  => $request->has('kamis') ? $request->start . '-' . $request->finish : '-',
-            'jumat'  => $request->has('jumat') ? $request->start . '-' . $request->finish : '-',
-            'sabtu'  => $request->has('sabtu') ? $request->start . '-' . $request->finish : '-',
-            'minggu' => $request->has('minggu') ? $request->start . '-' . $request->finish : '-'
-        ];
-    
-        // Gabungkan data checkbox dengan data yang divalidasi
+        $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
+        $data = [];
+
+        foreach ($days as $day) {
+            $data[$day] = $request->has($day) ? $request->start . '-' . $request->finish : '';
+        }
+
         $validatedData = array_merge($validatedData, $data);
     
-        // Debug data sebelum menyimpan
         // dd($validatedData);
-    
-        // Simpan data ke database
+
         PenjadwalanDokter::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/tenaga-medis/jadwal-dokter');
@@ -93,7 +92,8 @@ class ScheduleDokterController extends Controller
     {
         $layanan = Layanan::all();
         $dokter = Dokter::all();
-        return view('m_dokter/create-jadwal-dokter', ['title' => 'create-jadwal-dokter', 'layanan' => $layanan, 'dokter' => $dokter]);
+        $jadwals = PenjadwalanDokter::all();
+        return view('m_dokter/create-jadwal-dokter', ['title' => 'create-jadwal-dokter', 'layanan' => $layanan, 'dokter' => $dokter, 'jadwals' => $jadwals]);
     }
 
     /**
