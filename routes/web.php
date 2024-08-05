@@ -6,6 +6,7 @@ use App\Http\Controllers\DataPerawatController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\ScheduleDokterController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\KamarController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -78,3 +79,11 @@ Route::get('/layanan/data-layanan',[LayananController::class,'storeData'])->name
 Route::get('/layanan/edit-layanan/{id}',[LayananController::class,'edit'])->name('edit-layanan');
 Route::put('/layanan/update-layanan/{id}',[LayananController::class,'update'])->name('update-layanan');
 Route::delete('/layanan/delete-layanan/{id}',[LayananController::class,'destroy'])->name('delete-layanan');
+
+// ROUTE MASTER KAMAR
+Route::get('/kamar/create-kamar',[KamarController::class,'storeForm'])->name('create-kamar');
+Route::post('/kamar/create-kamar',[KamarController::class,'create'])->name('create-kamar');
+Route::get('/kamar/data-kamar',[KamarController::class,'storeData'])->name('data-kamar');
+Route::get('/kamar/edit-kamar/{id}',[KamarController::class,'edit'])->name('edit-kamar');
+Route::put('/kamar/update-kamar/{id}',[KamarController::class,'update'])->name('update-kamar');
+Route::delete('/kamar/{id}',[KamarController::class,'destroy'])->name('delete-kamar');

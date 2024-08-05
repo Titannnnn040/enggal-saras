@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use App\Models\Layanan;
 class Dokter extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
     protected $table = 'm_dokter';
     protected $guarded=['id'];
 

@@ -4,18 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokter;
 use App\Models\Layanan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DokterController extends Controller
 {
     private function generateTmNumber()
     {
-        $count = Dokter::all('id')->count();
+        $lastTmNumber = Dokter::whereDate('created_at', Carbon::today())
+        ->where('no_dokter', 'like', 'KM-' . date('dmy') . '%')
+        ->orderBy('no_dokter', 'desc')
+        ->first();
 
-        $count = $count + 1;
-        $kd = str_pad($count, 5, '0', STR_PAD_LEFT);
+        if ($lastTmNumber) {
+        $lastNumber = intval(substr($lastTmNumber->no_dokter, -2));
+        $newNumber = $lastNumber + 1;
+        } else {
+        $newNumber = 1;
+        }
 
-        return 'TM' . '-' . $kd;
+        $kd = str_pad($newNumber, 2, '0', STR_PAD_LEFT);
+
+        return 'TM-' . date('dmy') . $kd;
     }
     /**
      * Display a listing of the resource.

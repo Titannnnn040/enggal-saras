@@ -20,41 +20,10 @@ class ScheduleDokterController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    // public function create(Request $request){
-
-    //     $validatedData = $request->validate([
-    //         'layanan_id'     => ['required'],
-    //         'dokter_id'      => ['required'],
-    //         'jadwal_praktik' => ['required'],
-    //         'senin'          => [],
-    //         'selasa'         => [],
-    //         'rabu'           => [],
-    //         'kamis'          => [],
-    //         'jumat'          => [],
-    //         'sabtu'          => [],
-    //         'minggu'         => [],
-    //         'start'          => ['required'],
-    //         'finish'         => ['required']
-    //     ]);
-
-    //     // Gabungkan data checkbox dengan data yang divalidasi  
-    //     // Simpan data ke database
-    //     PenjadwalanDokter::create($validatedData);
-    //     $request->session()->flash('success', 'Data berhasil ditambahkan');
-    //     return redirect('/tenaga-medis/jadwal-dokter');
-    // }
-
     public function create(Request $request) {
-        // Debug data yang dikirim dari formulir
-        // dd($request->all());
-    
-        // Validasi input
         $validatedData = $request->validate([
             'layanan_id'     => ['required'],
             'dokter_id'      => ['required'],
