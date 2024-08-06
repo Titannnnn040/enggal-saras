@@ -164,16 +164,16 @@
                       <thead>
                           <tr>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Kamar</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Bed</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Bed</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Kamar</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Bed</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cadangan</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
                       <?php $num = 1 ?>
-                      @foreach ($kamar as $item)
+                      @foreach ($bed as $item)
                         <tbody>
                             <tr>
                                 <td class="align-middle text-center text-xs">
@@ -181,28 +181,28 @@
                                 </td>
 
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kode_kamar }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kode_bed }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_kamar }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_bed }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jenis_kamar }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jumlah_bed }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kamar->nama_kamar }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->status }}</p>
                                 </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->cadangan }}</p>
+                                </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                    <form action="/kamar/edit-kamar/{{ $item->id }}">
+                                    <form action="/bed/edit-bed/{{ $item->id }}">
                                       @csrf
                                       <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
                                     </form>
                                     
-                                      <form action="/kamar/{{ $item->id }}" method="post">
+                                      <form action="/bed/{{ $item->id }}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">

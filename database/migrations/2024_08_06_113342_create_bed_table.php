@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('m_kamar', function (Blueprint $table) {
+        Schema::create('m_bed', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_kamar')->unique();
-            $table->string('nama_kamar');
-            $table->string('jenis_kamar');
-            $table->string('jumlah_bed')->nullable();
+            $table->string('kode_bed')->unique();
+            $table->string('nama_bed');
+            $table->foreignId('kamar_id');
             $table->string('status');
+            $table->string('cadangan');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('m_kamar');
+        Schema::dropIfExists('m_bed');
     }
 };

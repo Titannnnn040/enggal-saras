@@ -7,6 +7,7 @@ use App\Http\Controllers\DokterController;
 use App\Http\Controllers\ScheduleDokterController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\KamarController;
+use App\Http\Controllers\BedController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -87,3 +88,11 @@ Route::get('/kamar/data-kamar',[KamarController::class,'storeData'])->name('data
 Route::get('/kamar/edit-kamar/{id}',[KamarController::class,'edit'])->name('edit-kamar');
 Route::put('/kamar/update-kamar/{id}',[KamarController::class,'update'])->name('update-kamar');
 Route::delete('/kamar/{id}',[KamarController::class,'destroy'])->name('delete-kamar');
+
+// ROUTE MASTER BED
+Route::get('/bed/create-bed',[BedController::class,'storeForm'])->name('create-kamar');
+Route::post('/bed/create-bed',[BedController::class,'create'])->name('create-bed');
+Route::get('/bed/data-bed',[BedController::class,'storeData'])->name('data-bed');
+Route::get('/bed/edit-bed/{id}',[BedController::class,'edit'])->name('edit-bed');
+Route::put('/bed/update-bed/{id}',[BedController::class,'update'])->name('update-bed');
+Route::delete('/bed/{id}',[BedController::class,'destroy'])->name('delete-bed');

@@ -15,26 +15,20 @@ class KamarController extends Controller
      */
     private function generateTmNumber()
     {
-        // Ambil kode terakhir yang di-generate hari ini dengan memeriksa kode secara keseluruhan
         $lastTmNumber = Kamar::whereDate('created_at', Carbon::today())
                             ->where('kode_kamar', 'like', 'KM-' . date('dmy') . '%')
                             ->orderBy('kode_kamar', 'desc')
                             ->first();
     
         if ($lastTmNumber) {
-            // Ambil bagian angka dari kode terakhir (mengambil dua digit terakhir)
             $lastNumber = intval(substr($lastTmNumber->kode_kamar, -2));
-            // Tambahkan 1 untuk mendapatkan kode baru
             $newNumber = $lastNumber + 1;
         } else {
-            // Jika belum ada kode hari ini, mulai dari 1
             $newNumber = 1;
         }
     
-        // Formatkan angka baru menjadi dua digit dengan leading zero
         $kd = str_pad($newNumber, 2, '0', STR_PAD_LEFT);
     
-        // Kode baru dengan format KM-DDMMYY-XX
         return 'KM-' . date('dmy') . $kd;
     }
 
@@ -53,6 +47,7 @@ class KamarController extends Controller
             'kode_kamar'  => [],
             'nama_kamar'  => ['required'],
             'jenis_kamar' => ['required'],
+            'jumlah_bed'  => [],
             'status'      => []
         ]);
 
@@ -61,6 +56,9 @@ class KamarController extends Controller
         $validatedData['kode_kamar'] = $this->generateTmNumber();
         if($request['status'] == ''){
             $validatedData['status'] = 'tidak aktif';
+        }
+        if($request['jumlah_bed'] == NULL){
+            $validatedData['jumlah_bed'] = '0';
         }
 
         Kamar::create($validatedData);
@@ -109,6 +107,7 @@ class KamarController extends Controller
             'kode_kamar'  => [],
             'nama_kamar'  => ['required'],
             'jenis_kamar' => ['required'],
+            'jumlah_bed' => [],
             'status'      => []
         ]);
 
