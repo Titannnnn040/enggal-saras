@@ -107,7 +107,7 @@ class KamarController extends Controller
             'kode_kamar'  => [],
             'nama_kamar'  => ['required'],
             'jenis_kamar' => ['required'],
-            'jumlah_bed' => [],
+            'jumlah_bed'  => [],
             'status'      => []
         ]);
 

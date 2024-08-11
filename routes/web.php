@@ -8,6 +8,7 @@ use App\Http\Controllers\ScheduleDokterController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\BedController;
+use App\Http\Controllers\TarifKamarController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -96,3 +97,9 @@ Route::get('/bed/data-bed',[BedController::class,'storeData'])->name('data-bed')
 Route::get('/bed/edit-bed/{id}',[BedController::class,'edit'])->name('edit-bed');
 Route::put('/bed/update-bed/{id}',[BedController::class,'update'])->name('update-bed');
 Route::delete('/bed/{id}',[BedController::class,'destroy'])->name('delete-bed');
+
+// ROUTE TARIF BED
+Route::get('/tarif/create-tarif-kamar',[TarifKamarController::class,'storeForm'])->name('create-tarif-bed');
+Route::get('/tarif/data-tarif-kamar',[TarifKamarController::class,'storeData'])->name('data-tarif-bed');
+Route::get('/tarif/create-tarif-kamar/{id}',[TarifKamarController::class,'edit'])->name('create-tarif-kamar');
+Route::put('/tarif/update-tarif-kamar/{id}',[TarifKamarController::class,'update'])->name('update-tarif-kamar');

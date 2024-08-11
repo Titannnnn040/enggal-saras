@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('nama_kamar');
             $table->string('jenis_kamar');
             $table->string('jumlah_bed')->nullable();
+            $table->integer('tarif_kamar')->default(0);
+            $table->integer('jasa_pelaksana')->default(0);
+            $table->integer('total_tarif')->default(0);
             $table->string('status');
             $table->timestamps();
         });

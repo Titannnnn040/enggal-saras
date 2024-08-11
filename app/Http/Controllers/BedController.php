@@ -111,7 +111,7 @@ class BedController extends Controller
         $request->validate([
             'kode_bed'  => [],
             'nama_bed'  => ['required'],
-            'kamar_id'=> ['required'],
+            'kamar_id'  => ['required'],
             'status'    => [],
             'cadangan'  => []
         ]);
