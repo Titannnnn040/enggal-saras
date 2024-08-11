@@ -186,7 +186,7 @@
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_kamar }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->total_tarif }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">Rp.{{ number_format($item->total_tarif) }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->status }}</p>
