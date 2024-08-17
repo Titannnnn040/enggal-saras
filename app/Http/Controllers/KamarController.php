@@ -42,7 +42,6 @@ class KamarController extends Controller
      */
     public function create(Request $request)
     {
-        // return $request->all();
         $validatedData = $request->validate([
             'kode_kamar'  => [],
             'nama_kamar'  => ['required'],
@@ -50,9 +49,9 @@ class KamarController extends Controller
             'jumlah_bed'  => [],
             'status'      => []
         ]);
-
         
-
+        
+        
         $validatedData['kode_kamar'] = $this->generateTmNumber();
         if($request['status'] == ''){
             $validatedData['status'] = 'tidak aktif';
@@ -60,6 +59,7 @@ class KamarController extends Controller
         if($request['jumlah_bed'] == NULL){
             $validatedData['jumlah_bed'] = '0';
         }
+        // return $request->all();
 
         Kamar::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');

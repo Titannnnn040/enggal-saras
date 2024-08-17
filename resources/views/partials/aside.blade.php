@@ -9,48 +9,6 @@
     <br>
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
-          {{-- <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
-
-            <div  class="dropdown-btn col-lg-10 d-flex" style="">
-              <div class="item ">
-                <a href="" class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-stethoscope"></i>
-                  <span class="nav-link-text ms-1">Rawat Jalan</span>
-                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4 mt-1"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="sub-menu">
-              <a href="/dashboard/rawat-jalan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === "rawat-jalan") ? "active" : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-clipboard-user"></i>
-                  <span class="nav-link-text ms-1">Data Pasien</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="sub-menu">
-              <a href="/dashboard/rawat-jalan/create-pasien" class="dropdown-menu col-lg-10 d-flex mt-1  {{ ($title === "create-pasien") ? "active" : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus"></i>
-                  <span class="nav-link-text">Create Data Pasien</span>
-                </div>
-              </a>
-            </div>
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-            <script>
-              $(document).ready(function){
-                $('dropdown-btn').click(function(){
-                  $('this').next('dropdown-menu').slideToggle();
-                  $(this).find('.dropdown')toggleClass('rotate');
-                })
-              }
-            </script>
-
-          </li> --}}
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
             <div class="dropdown-btn col-lg-10 d-flex  {{ ($title === 'pendaftaran') ? 'active' : '' }}" style="">
               <div class="item">
@@ -64,22 +22,22 @@
           
             <div class="sub-menu">
 
-              <a href="/dashboard/pendaftaran" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'pendaftaran') ? 'active' : '' }} text-decoration-none">
+              <a class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'pendaftaran') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
                   <span class="nav-link-text ms-2">Data Pasien</span>
                 </div>
               </a>
 
-              <a href="/dashboard/pendaftaran/create-pasien" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-pasien') ? 'active' : '' }} text-decoration-none">
+              <a class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-pasien') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
                   <span class="nav-link-text ms-1">Create Data Pasien</span>
                 </div>
               </a>
-
             </div>
           </li>
+
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
             <div class="dropdown-btn col-lg-10 d-flex" style="">
               <div class="item">
@@ -249,9 +207,44 @@
                   <span class="nav-link-text ms-1">Data Tarif Kamar</span>
                 </div>
               </a>
+              <a href="/tarif/group-tarif" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'group-tarif') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1">Group Tarif</span>
+                </div>
+              </a>
+              <a href="/tarif/create-group-tarif" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-group-tarif') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1">Create Group Tarif</span>
+                </div>
+              </a>
+              <a href="/tarif/group-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-group-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Group Tarif Tindakan</span>
+                </div>
+              </a>
+              <a href="/tarif/create-group-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-group-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Create Group Tarif Tindakan</span>
+                </div>
+              </a>
+              <a href="/tarif/data-tarif-pendaftaran" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-pendaftaran') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Tarif Pendaftaran</span>
+                </div>
+              </a>
+              <a href="/tarif/create-tarif-pendaftaran" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-tarif-pendaftaran') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Create Tarif Pendaftaran</span>
+                </div>
+              </a>
             </div>
           </li>
-
       </ul>
 
 
@@ -260,6 +253,12 @@
             $(document).ready(function() {
               $('.dropdown-btn').click(function() {
                 $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate');
+              });
+            });
+            $(document).ready(function() {
+              $('.sub-menu').click(function() {
+                $(this).next('.super-sub-menu').slideToggle();
                 $(this).find('.dropdown').toggleClass('rotate');
               });
             });

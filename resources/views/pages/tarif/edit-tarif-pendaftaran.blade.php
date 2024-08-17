@@ -15,38 +15,39 @@
               <div class="card-body px-5 pb-2">
                 <div class="form"  style="background-color:#FDFEFD;">
                     <div class="content">
-                        <form action="/tarif/update-tarif-kamar/{{$kamar->id}}" method="post" class="d-flex col-lg-12"> 
-                            @csrf    
-                            @method('put') 
+                        <form action="" method="post" class="d-flex col-lg-12"> 
+                            @method('put')
+                            @csrf
                             <div class="d-flex flex-column">
 
                                 <div class="d-flex col-lg-12 mb-4">
                                     <div class="col-lg-12 col-xl-12 col-xxl-12 me-0 row">
+                                    
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="code" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Kode Tarif Pendaftraran :</label>
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                    <input type="text" class="form-control "  id="nama_pendaftaran" name="nama_pendaftaran"  value="{{ $pendaftaran->code_pendaftaran }}" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="code" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Kode Kamar :</label>
+                                                <label for="nama_pendaftaran" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama Tarif Pendaftraran :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control " disabled id="kode-kamar" name="kode-kamar"  value="{{ $kamar->kode_kamar }}">
+                                                    <input type="text" class="form-control "  id="nama_pendaftaran" name="nama_pendaftaran"  value="{{ $pendaftaran->nama_pendaftaran}}">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="nama_kamar" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama Kamar :</label>
+                                                <label for="fee_medis" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Jasa Dokter / Fee Medis :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control "  id="nama_kamar" name="nama_kamar"  value="{{ $kamar->nama_kamar }}">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
-                                            <div class="d-flex">
-                                                <label for="tarif_kamar" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Tarif Kamar :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('tarif_kamar') is-invalid @enderror"  oninput="calculateTotal()" id="tarif_kamar" name="tarif_kamar" value="{{ number_format($kamar->tarif_kamar) }}">
-                                                    @error('tarif_kamar')
+                                                    <input type="text" class="form-control @error('fee_medis') is-invalid @enderror"  oninput="calculateTotal()" id="fee_medis" name="fee_medis" value="{{ number_format($pendaftaran->fee_medis) }}">
+                                                    @error('fee_medis')
                                                     <div class="invalid-feedback d-block">
                                                         {{ $message }}
                                                     </div>
@@ -57,10 +58,10 @@
                         
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="jasa_pelaksana" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Jasa Pelaksana :</label>
+                                                <label for="jasa_klinik" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Jasa Klinik / Administrasi :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('jasa_pelaksana') is-invalid @enderror" id="jasa_pelaksana"  oninput="calculateTotal()"  name="jasa_pelaksana" value="{{ number_format($kamar->jasa_pelaksana) }}">
-                                                    @error('jasa_pelaksana')
+                                                    <input type="text" class="form-control @error('jasa_klinik') is-invalid @enderror" id="jasa_klinik"  oninput="calculateTotal()"  name="jasa_klinik" value="{{ number_format($pendaftaran->jasa_klinik) }}">
+                                                    @error('jasa_klinik')
                                                     <div class="invalid-feedback d-block">
                                                         {{ $message }}
                                                     </div>
@@ -71,9 +72,9 @@
 
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="total_tarif" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Total Tarif :</label>
+                                                <label for="total_tarif" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Tarif Daftar :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control " disabled id="total_tarif" name="kode-kamar"  value="{{ number_format($kamar->total_tarif) }}">
+                                                    <input type="text" class="form-control " disabled id="total_tarif" name="kode-kamar"  value="{{ number_format($pendaftaran->total_tarif) }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -95,25 +96,25 @@
                                             }
                                         
                                             function calculateTotal() {
-                                                let roomPrice = parseNumber(document.getElementById('tarif_kamar').value);
-                                                let serviceFee = parseNumber(document.getElementById('jasa_pelaksana').value);
+                                                let roomPrice = parseNumber(document.getElementById('fee_medis').value);
+                                                let serviceFee = parseNumber(document.getElementById('jasa_klinik').value);
                                                 let totalFee = roomPrice + serviceFee;
                                                 document.getElementById('total_tarif').value = formatNumber(totalFee);
                                             }
                                         
-                                            document.getElementById('tarif_kamar').addEventListener('input', function() {
+                                            document.getElementById('fee_medis').addEventListener('input', function() {
                                                 formatInput(this);
                                             });
                                         
-                                            document.getElementById('jasa_pelaksana').addEventListener('input', function() {
+                                            document.getElementById('jasa_klinik').addEventListener('input', function() {
                                                 formatInput(this);
                                             });
                                         </script>
                         
                                     </div>
                                 </div>   
-                                <div class="col-lg-12">
-                                    <a href="/tarif/group-tarif" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
+                                <div class="col-lg-4">
+                                    <a href="/tarif/data-tarif-pendaftaran" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
                                     <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                 </div> 
 
