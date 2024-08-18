@@ -15,7 +15,7 @@
               <div class="card-body px-5 pb-2">
                 <div class="form"  style="background-color:#FDFEFD;">
                     <div class="content">
-                        <form action="" method="post" class="d-flex col-lg-12"> 
+                        <form action="/tarif/update-tarif-pendaftaran/{{ $pendaftaran->id }}" method="post" class="d-flex col-lg-12"> 
                             @method('put')
                             @csrf
                             <div class="d-flex flex-column">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\GroupTarif;
 use App\Models\GroupTarifTindakan;
 use App\Models\TarifPendaftaran;
+use App\Models\TarifTindakan;
 use Carbon\Carbon;
 
 class TarifController extends Controller
@@ -64,6 +65,24 @@ class TarifController extends Controller
         $kd = str_pad($newNumber, 2, '0', STR_PAD_LEFT);
     
         return 'TP-' . date('dmy') . $kd;
+    }
+        private function generateTtNumber()
+    {
+        $lastTmNumber = TarifTindakan::whereDate('created_at', Carbon::today())
+                            ->where('code_tarif_tindakan', 'like', 'TT-' . date('dmy') . '%')
+                            ->orderBy('code_tarif_tindakan', 'desc')
+                            ->first();
+    
+        if ($lastTmNumber) {
+            $lastNumber = intval(substr($lastTmNumber->code_tarif_tindakan, -2));
+            $newNumber = $lastNumber + 1;
+        } else {
+            $newNumber = 1;
+        }
+    
+        $kd = str_pad($newNumber, 2, '0', STR_PAD_LEFT);
+    
+        return 'TT-' . date('dmy') . $kd;
     }
     /**
      * Display a listing of the resource.
@@ -337,6 +356,104 @@ class TarifController extends Controller
         $pendaftaran->destroy($id);
         $request->session()->flash('success', 'Data berhasil dihapus');
         return redirect('/tarif/data-tarif-pendaftaran');
+
+    }
+
+    public function indexTarifTindakan(){
+        $groupTarifTindakan = GroupTarifTindakan::all();
+        return view('pages/tarif/tarif-tindakan/create-tarif-tindakan', ['title' => 'create-tarif-tindakan', 'groupTarifTindakan' => $groupTarifTindakan]);
+    }
+
+    public function storeTarifTindakan(Request $request){
+        // return $request->all();
+
+        $validatedData = $request->validate([
+            'code_tarif_tindakan'       => [''],
+            'nama_tarif_tindakan'       => ['required'],
+            'group_tarif_id'            => ['required'],
+            'fee_medis'                 => ['required'],
+            'jasa_klinik'               => ['required'],
+            'jasa_lainya'               => ['required'],
+            'total_tarif'               => [''],
+            'kode_tarif_bpjs'           => [''],
+            'nama_tarif_tindakan_bpjs'  => ['']
+        ]);
+        if($request['fee_medis']){
+            $validatedData['fee_medis'] = preg_replace('/[^\d.-]/', '',$request->fee_medis);
+        }
+        if($request['jasa_klinik']){
+            $validatedData['jasa_klinik'] = preg_replace('/[^\d.-]/', '',$request->jasa_klinik);
+        }
+        if($request['jasa_lainya']){
+            $validatedData['jasa_lainya'] = preg_replace('/[^\d.-]/', '',$request->jasa_lainya);
+        }
+        if($request['total_tarif'] == ''){
+            $validatedData['total_tarif'] = preg_replace('/[^\d.-]/', '',$request->fee_medis) +  preg_replace('/[^\d.-]/', '',$request->jasa_klinik) +  preg_replace('/[^\d.-]/', '',$request->jasa_lainya);
+        }
+        if($request['code_tarif_tindakan'] == ''){
+            $validatedData['code_tarif_tindakan'] = $this->generateTtNumber();
+        }
+        $tindakan = TarifTindakan::create($validatedData);
+        $request->session()->flash('success', 'Data berhasil ditambahkan');
+        return redirect('/tarif/data-tarif-tindakan');
+    }
+
+    public function indexDataTarifTindakan(){
+        $tindakan = TarifTindakan::all();
+        return view('pages/tarif/tarif-tindakan/data-tarif-tindakan', ['title' => 'data-tarif-tindakan',  'tindakan' => $tindakan]);
+    }
+  
+    public function editTarifTindakan($id){
+        $groupTarifTindakan = GroupTarifTindakan::all();
+        $tindakan = TarifTindakan::find($id);
+        return view('pages/tarif/tarif-tindakan/edit-tarif-tindakan', ['title' => 'edit-tarif-tindakan',  'tindakan' => $tindakan, 'groupTarifTindakan' => $groupTarifTindakan]);
+    }
+    public function updateTarifTindakan(Request $request, $id){
+        $groupTarifTindakan = GroupTarifTindakan::all();
+        $request->validate([
+            'nama_tarif_tindakan'       => ['required'],
+            'group_tarif_id'            => ['required'],
+            'fee_medis'                 => ['required'],
+            'jasa_klinik'               => ['required'],
+            'jasa_lainya'               => ['required'],
+            'total_tarif'               => [''],
+            'kode_tarif_bpjs'           => [''],
+            'nama_tarif_tindakan_bpjs'  => ['']
+        ]);
+        if($request['fee_medis']){
+            $request['fee_medis'] = preg_replace('/[^\d.-]/', '',$request->fee_medis);
+        }
+        if($request['jasa_klinik']){
+            $request['jasa_klinik'] = preg_replace('/[^\d.-]/', '',$request->jasa_klinik);
+        }
+        if($request['jasa_lainya']){
+            $request['jasa_lainya'] = preg_replace('/[^\d.-]/', '',$request->jasa_lainya);
+        }
+        if($request['total_tarif'] == ''){
+            $request['total_tarif'] = preg_replace('/[^\d.-]/', '',$request->fee_medis) +  preg_replace('/[^\d.-]/', '',$request->jasa_klinik) +  preg_replace('/[^\d.-]/', '',$request->jasa_lainya);
+        }
+        $tindakan = TarifTindakan::find($id);
+        $tindakan->update([
+            'nama_tarif_tindakan'       => $request->nama_tarif_tindakan,
+            'group_tarif_id'            => $request->group_tarif_id,
+            'fee_medis'                 => $request->fee_medis,
+            'jasa_klinik'               => $request->jasa_klinik,
+            'jasa_lainya'               => $request->jasa_lainya,
+            'total_tarif'               => $request->total_tarif,
+            'kode_tarif_bpjs'           => $request->kode_tarif_bpjs,
+            'nama_tarif_tindakan_bpjs'  => $request->nama_tarif_tindakan_bpjs
+        ]);
+        
+        $request->session()->flash('success', 'Data berhasil dirubah');
+        return redirect('tarif/data-tarif-tindakan');
+    }
+
+    public function destroyTarifTindakan(Request $request, $id)
+    {
+        $tindakan = TarifTindakan::find($id);
+        $tindakan->destroy($id);
+        $request->session()->flash('success', 'Data berhasil dihapus');
+        return redirect('/tarif/data-tarif-tindakan');
 
     }
 }

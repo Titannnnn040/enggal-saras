@@ -115,13 +115,19 @@ Route::get('/tarif/create-group-tarif-tindakan',[TarifController::class,'indexGr
 Route::post('/tarif/create-group-tarif-tindakan',[TarifController::class,'storeGroupTarifTindakan'])->name('create-group-tarif-tindakan');
 Route::get('/tarif/group-tarif-tindakan',[TarifController::class,'indexDataGroupTarifTindakan'])->name('data-group-tarif-tindakan');
 Route::get('/tarif/edit-group-tarif-tindakan/{id}',[TarifController::class,'editGroupTarifTindakan'])->name('edit-group-tarif-tindakan');
-Route::put('/tarif/edit-group-tarif-tindakan/{id}',[TarifController::class,'updateGroupTarifTindakan'])->name('update-group-tarif-tindakan');
+Route::put('/tarif/update-group-tarif-tindakan/{id}',[TarifController::class,'updateGroupTarifTindakan'])->name('update-group-tarif-tindakan');
 Route::delete('/tarif/delete-group-tarif-tindakan/{id}',[TarifController::class,'destroyGroupTarifTindakan'])->name('delete-group-tarif-tindakan');
 
 Route::get('/tarif/create-tarif-pendaftaran',[TarifController::class,'indexTarifPendaftaran'])->name('tarif-pendaftaran');
 Route::post('/tarif/create-tarif-pendaftaran',[TarifController::class,'storeTarifPendaftaran'])->name('create-tarif-pendaftaran');
 Route::get('/tarif/data-tarif-pendaftaran',[TarifController::class,'indexDataTarifPendaftaran'])->name('data-tarif-pendaftaran');
 Route::get('/tarif/edit-tarif-pendaftaran/{id}',[TarifController::class,'editTarifPendaftaran'])->name('edit-tarif-pendaftaran');
-Route::put('/tarif/edit-tarif-pendaftaran/{id}',[TarifController::class,'updateTarifPendaftaran'])->name('update-tarif-pendaftaran');
+Route::put('/tarif/update-tarif-pendaftaran/{id}',[TarifController::class,'updateTarifPendaftaran'])->name('update-tarif-pendaftaran');
 Route::delete('/tarif/delete-tarif-pendaftaran/{id}',[TarifController::class,'destroyTarifPendaftaran'])->name('delete-tarif-pendaftaran');
 
+Route::get('/tarif/create-tarif-tindakan',[TarifController::class,'indexTarifTindakan'])->name('tarif-tindakan');
+Route::post('/tarif/create-tarif-tindakan',[TarifController::class,'storeTarifTindakan'])->name('create-tarif-tindakan');
+Route::get('/tarif/data-tarif-tindakan',[TarifController::class,'indexDataTarifTindakan'])->name('data-tarif-tindakan');
+Route::get('/tarif/edit-tarif-tindakan/{id}',[TarifController::class,'editTarifTindakan'])->name('edit-tarif-tindakan');
+Route::put('/tarif/update-tarif-tindakan/{id}',[TarifController::class,'updateTarifTindakan'])->name('update-tarif-tindakan');
+Route::delete('/tarif/delete-tarif-tindakan/{id}',[TarifController::class,'destroyTarifTindakan'])->name('delete-tarif-tindakan');

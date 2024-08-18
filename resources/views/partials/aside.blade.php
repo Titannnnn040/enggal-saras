@@ -1,4 +1,11 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-light" id="sidenav-main">
+<style>
+  ::-webkit-scrollbar {
+  display: none !important;  /* Chrome, Safari, and Opera */
+}
+
+</style>
+
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-light hide-scrollbar" id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0 " href="" target="">
@@ -10,16 +17,28 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
-            <div class="dropdown-btn col-lg-10 d-flex  {{ ($title === 'pendaftaran') ? 'active' : '' }}" style="">
+            {{-- <div class="dropdown-btn col-lg-10 d-flex  {{ ($title === 'pendaftaran') ? 'active' : '' }}" style="">
+              <div class="item">
+                <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center">
+                  <i class="fa-solid fa-stethoscope me-2"></i>
+                  <span class="nav-link-text ms-1  text-end">Pendaftaran</span>
+                  <i class="fas fa-angle-right dropdown me-4" style=""></i>
+                </a>
+              </div>
+            </div> --}}
+          
+            <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center">
               <div class="item">
                 <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-stethoscope me-2"></i>
                   <span class="nav-link-text ms-1">Pendaftaran</span>
-                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4"></i>
                 </a>
               </div>
+              <div class="item">
+                <i class="fas fa-angle-right dropdown"></i>
+              </div>
             </div>
-          
+
             <div class="sub-menu">
 
               <a class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'pendaftaran') ? 'active' : '' }} text-decoration-none">
@@ -39,13 +58,15 @@
           </li>
 
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
-            <div class="dropdown-btn col-lg-10 d-flex" style="">
+            <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center" style="">
               <div class="item">
                 <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-stethoscope me-2"></i>
                   <span class="nav-link-text ms-1">Master Perawat</span>
-                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4"></i>
                 </a>
+              </div>
+              <div class="item">
+                <i class="fas fa-angle-right dropdown"></i>
               </div>
             </div>
           
@@ -69,13 +90,15 @@
           </li>
 
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
-            <div class="dropdown-btn col-lg-10 d-flex" style="">
+            <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center" style="">
               <div class="item">
                 <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-stethoscope me-2"></i>
                   <span class="nav-link-text ms-1">Master Tenaga Medis</span>
-                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4"></i>
                 </a>
+              </div>
+              <div class="item">
+                <i class="fas fa-angle-right dropdown"></i>
               </div>
             </div>
           
@@ -113,13 +136,15 @@
           </li>
 
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
-            <div class="dropdown-btn col-lg-10 d-flex" style="">
+            <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center" style="">
               <div class="item">
                 <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-stethoscope me-2"></i>
                   <span class="nav-link-text ms-1">Master Layanan</span>
-                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4"></i>
                 </a>
+              </div>
+              <div class="item">
+                <i class="fas fa-angle-right dropdown"></i>
               </div>
             </div>
             <div class="sub-menu">
@@ -139,13 +164,15 @@
           </li>
 
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
-            <div class="dropdown-btn col-lg-10 d-flex" style="">
+            <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center" style="">
               <div class="item">
                 <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-stethoscope me-2"></i>
                   <span class="nav-link-text ms-1">Master Kamar</span>
-                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4"></i>
                 </a>
+              </div>
+              <div class="item">
+                <i class="fas fa-angle-right dropdown"></i>
               </div>
             </div>
             <div class="sub-menu">
@@ -165,13 +192,15 @@
           </li>
 
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
-            <div class="dropdown-btn col-lg-10 d-flex" style="">
+            <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center" style="">
               <div class="item">
-                <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-around">
                   <i class="fa-solid fa-stethoscope me-2"></i>
                   <span class="nav-link-text ms-1">Master Bed</span>
-                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4"></i>
                 </a>
+              </div>
+              <div class="item">
+                <i class="fas fa-angle-right dropdown"></i>
               </div>
             </div>
             <div class="sub-menu">
@@ -191,13 +220,15 @@
           </li>
 
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
-            <div class="dropdown-btn col-lg-10 d-flex" style="">
+            <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center" style="">
               <div class="item">
                 <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-stethoscope me-2"></i>
                   <span class="nav-link-text ms-1">Tarif</span>
-                  <i class="fas fa-angle-right dropdown position-absolute end-0 me-4"></i>
                 </a>
+              </div>
+              <div class="item">
+                <i class="fas fa-angle-right dropdown"></i>
               </div>
             </div>
             <div class="sub-menu">
@@ -243,6 +274,18 @@
                   <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Create Tarif Pendaftaran</span>
                 </div>
               </a>
+              <a href="/tarif/data-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Tarif Tindakan</span>
+                </div>
+              </a>
+              <a href="/tarif/create-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Create Tarif Tindakan</span>
+                </div>
+              </a>
             </div>
           </li>
       </ul>
@@ -250,12 +293,12 @@
 
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
           <script>
-            $(document).ready(function() {
-              $('.dropdown-btn').click(function() {
-                $(this).next('.sub-menu').slideToggle();
-                $(this).find('.dropdown').toggleClass('rotate');
-              });
+         $(document).ready(function() {
+            $('.dropdown-btn').click(function() {
+              $(this).find('.dropdown').toggleClass('rotate'); // Menemukan elemen <i> dengan kelas .dropdown
+              $(this).next('.sub-menu').slideToggle(); // Menampilkan atau menyembunyikan sub-menu
             });
+          });
             $(document).ready(function() {
               $('.sub-menu').click(function() {
                 $(this).next('.super-sub-menu').slideToggle();
