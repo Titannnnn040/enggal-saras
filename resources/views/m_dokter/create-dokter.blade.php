@@ -173,7 +173,7 @@
                                 </div>   
 
                                 <div class="col-lg-12">
-                                    <a href="/dashboard/pendaftaran" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
+                                    <a href="/tenaga-medis/data-tenaga-medis" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
                                     <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                 </div> 
 

@@ -154,8 +154,12 @@
         <div class="col-lg-12">
           <div class="card my-3">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Notifications Table</h6>
+              <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Jadwal Dokter</h6>
+                <a href="/tenaga-medis/create-jadwal-dokter" class="my-0 me-3 btn-add-data d-flex align-items-center">
+                  <i class="fa-solid fa-plus me-1"></i>
+                  tambah data
+                </a>
               </div>
             </div>
             <div class="card-body px-5 pb-2">

@@ -49,12 +49,12 @@ Route::put('/dashboard/pendaftaran/{id}',[CreatePasienController::class,'update'
 Route::delete('/dashboard/pendaftaran/{id}',[CreatePasienController::class,'destroy'])->name('destroy-pasien');
 
 // ROUTE MASTER PERAWAT
-Route::get('/dashboard/perawat/create-perawat',[PerawatController::class,'store'])->name('create-perawat');
-Route::post('/dashboard/perawat/create-perawat',[PerawatController::class,'create'])->name('create-perawat');
-Route::get('/dashboard/perawat/data-perawat',[DataPerawatController::class,'store'])->name('data-perawat');
-Route::get('/dashboard/perawat/edit/{id}',[DataPerawatController::class,'edit'])->name('edit-perawat');
-Route::put('/dashboard/perawat/{id}',[DataPerawatController::class,'update'])->name('update-perawat');
-Route::delete('/dashboard/perawat/{id}',[DataPerawatController::class,'destroy'])->name('destroy-perawat');
+Route::get('/perawat/create-perawat',[PerawatController::class,'store'])->name('create-perawat');
+Route::post('/perawat/create-perawat',[PerawatController::class,'create'])->name('create-perawat');
+Route::get('/perawat/data-perawat',[DataPerawatController::class,'store'])->name('data-perawat');
+Route::get('/perawat/edit/{id}',[DataPerawatController::class,'edit'])->name('edit-perawat');
+Route::put('/perawat/{id}',[DataPerawatController::class,'update'])->name('update-perawat');
+Route::delete('/perawat/{id}',[DataPerawatController::class,'destroy'])->name('destroy-perawat');
 
 // ROUTE MASTER TENAGA MEDIS
 Route::get('/tenaga-medis/create-tenaga-medis',[DokterController::class,'store'])->name('store-dokter');

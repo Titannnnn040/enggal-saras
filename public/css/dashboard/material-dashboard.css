@@ -28152,3 +28152,14 @@ pre[class*="language-"] {
 .dataTables_filter{
   display: none !important;
 }
+
+.btn-add-data{
+  background-color: white;
+  color: #5DB461;
+  padding:5px;
+  border-radius: 5px;
+  margin-top:-9px !important;
+}
+.btn-add-data:hover{  
+  color: #5DB461;
+}

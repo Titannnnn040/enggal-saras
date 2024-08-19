@@ -41,19 +41,13 @@
 
             <div class="sub-menu">
 
-              <a class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'pendaftaran') ? 'active' : '' }} text-decoration-none">
+              <a href="/dashboard/pendaftaran" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'pendaftaran') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
-                  <span class="nav-link-text ms-2">Data Pasien</span>
+                  <span class="nav-link-text ms-2">Pasien</span>
                 </div>
               </a>
 
-              <a class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-pasien') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1">Create Data Pasien</span>
-                </div>
-              </a>
             </div>
           </li>
 
@@ -72,17 +66,10 @@
           
             <div class="sub-menu">
 
-              <a href="/dashboard/perawat/data-perawat" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-perawat') ? 'active' : '' }} text-decoration-none">
+              <a href="/perawat/data-perawat" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-perawat') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
-                  <span class="nav-link-text ms-2">Data Perawat</span>
-                </div>
-              </a>
-
-              <a href="/dashboard/perawat/create-perawat" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-perawat') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1">Create Data Perawat</span>
+                  <span class="nav-link-text ms-2">Perawat</span>
                 </div>
               </a>
 
@@ -107,31 +94,17 @@
               <a href="/tenaga-medis/data-tenaga-medis" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-dokter') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
-                  <span class="nav-link-text ms-2">Data Tenaga Medis</span>
+                  <span class="nav-link-text ms-2">Tenaga Medis</span>
                 </div>
               </a>
              
-              <a href="/tenaga-medis/create-tenaga-medis" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-dokter') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-clipboard-user me-2"></i>
-                  <span class="nav-link-text ms-2">Create Dokter</span>
-                </div>
-              </a>
-          
               <a href="/tenaga-medis/jadwal-dokter" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'jadwal-dokter') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
                   <span class="nav-link-text ms-1">Jadwal Dokter</span>
                 </div>
               </a>
-              
-              <a href="/tenaga-medis/create-jadwal-dokter" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-jadwal-dokter') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1">Create Jadwal Dokter</span>
-                </div>
-              </a>
-
+        
             </div>
           </li>
 
@@ -147,17 +120,12 @@
                 <i class="fas fa-angle-right dropdown"></i>
               </div>
             </div>
+
             <div class="sub-menu">
               <a href="/layanan/data-layanan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-layanan') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
-                  <span class="nav-link-text ms-2">Data Layanan</span>
-                </div>
-              </a>
-              <a href="/layanan/create-layanan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-layanan') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1">Create Layanan</span>
+                  <span class="nav-link-text ms-2">Layanan</span>
                 </div>
               </a>
             </div>
@@ -179,13 +147,7 @@
               <a href="/kamar/data-kamar" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-kamar') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
-                  <span class="nav-link-text ms-2">Data Kamar</span>
-                </div>
-              </a>
-              <a href="/kamar/create-kamar" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-kamar') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1">Create Kamar</span>
+                  <span class="nav-link-text ms-2">Kamar</span>
                 </div>
               </a>
             </div>
@@ -207,13 +169,7 @@
               <a href="/bed/data-bed" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-bed') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
-                  <span class="nav-link-text ms-2">Data Bed</span>
-                </div>
-              </a>
-              <a href="/bed/create-bed" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-bed') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1">Create Bed</span>
+                  <span class="nav-link-text ms-2">Bed</span>
                 </div>
               </a>
             </div>
@@ -235,7 +191,7 @@
               <a href="/tarif/data-tarif-kamar" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-kamar') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1">Data Tarif Kamar</span>
+                  <span class="nav-link-text ms-1">Tarif Kamar</span>
                 </div>
               </a>
               <a href="/tarif/group-tarif" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'group-tarif') ? 'active' : '' }} text-decoration-none">
@@ -244,22 +200,10 @@
                   <span class="nav-link-text ms-1">Group Tarif</span>
                 </div>
               </a>
-              <a href="/tarif/create-group-tarif" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-group-tarif') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1">Create Group Tarif</span>
-                </div>
-              </a>
               <a href="/tarif/group-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-group-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
                   <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Group Tarif Tindakan</span>
-                </div>
-              </a>
-              <a href="/tarif/create-group-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-group-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Create Group Tarif Tindakan</span>
                 </div>
               </a>
               <a href="/tarif/data-tarif-pendaftaran" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-pendaftaran') ? 'active' : '' }} text-decoration-none">
@@ -268,22 +212,10 @@
                   <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Tarif Pendaftaran</span>
                 </div>
               </a>
-              <a href="/tarif/create-tarif-pendaftaran" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-tarif-pendaftaran') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Create Tarif Pendaftaran</span>
-                </div>
-              </a>
               <a href="/tarif/data-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
                   <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Tarif Tindakan</span>
-                </div>
-              </a>
-              <a href="/tarif/create-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'create-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
-                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Create Tarif Tindakan</span>
                 </div>
               </a>
             </div>
