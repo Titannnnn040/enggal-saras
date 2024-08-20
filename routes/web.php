@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\RawatJalanController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreatePasienController;
 use App\Http\Controllers\PerawatController;
 use App\Http\Controllers\DataPerawatController;
@@ -38,7 +39,7 @@ Route::get('/get-cities-by-province/{provinceId}', [ProvinceController::class, '
 Route::get('/get-kecamatan-by-city/{cityId}', [CityController::class, 'getKecamatanByCity']);
 Route::get('/get-kelurahan-by-kecamatan/{kecamatanId}', [KecamatanController::class, 'getKelurahanByKecamatan']);
 
-Route::get('/dashboard',[RawatJalanController::class,'store'])->name('rawat-jalan');
+Route::get('/',[DashboardController::class,'indexDashboard'])->name('dashboard');
 
 // ROUTE MASTER PASIEN
 Route::get('/dashboard/pendaftaran',[RawatJalanController::class,'store'])->name('rawat-jalan');
