@@ -31,7 +31,7 @@ class PerawatController extends Controller
         
         Perawat::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
-        return redirect('/dashboard/perawat/data-perawat');
+        return redirect('/perawat/data-perawat');
     }
 
     /**
