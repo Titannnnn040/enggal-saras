@@ -322,7 +322,7 @@
         
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="kecamatan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kecamatan_id :</label>
+                                                <label for="kecamatan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kecamatan :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
                                                     <select class="form-select @error('kecamatan_id') is-invalid @enderror" name="kecamatan_id"  id="kecamatan_id" >
                                                         @foreach ($kecamatan as $item)
@@ -359,7 +359,7 @@
                                         
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="kelurahan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kelurahan_id :</label>
+                                                <label for="kelurahan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kelurahan :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
                                                     <select class="form-select @error('kelurahan_id') is-invalid @enderror" name="kelurahan_id"  id="kelurahan_id" >
                                                         @foreach ($kelurahan as $item)
