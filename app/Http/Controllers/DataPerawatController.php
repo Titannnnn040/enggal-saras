@@ -39,10 +39,10 @@ class DataPerawatController extends Controller
         
         if($findPerawat){
             $request->session()->flash('success','Data berhasil di ubah');
-            return redirect('/dashboard/perawat/data-perawat');
+            return redirect('/perawat/data-perawat');
         }else{
             $request->session()->flash('failed','Data Gagal di ubah');
-            return redirect('/dashboard/perawat/data-perawat');
+            return redirect('/perawat/data-perawat');
         }
     }
 
@@ -51,10 +51,10 @@ class DataPerawatController extends Controller
         $findPerawat->delete($id);
         if($findPerawat){
             $request->session()->flash('success','Data berhasil di hapus');
-            return redirect('/dashboard/perawat/data-perawat');
+            return redirect('/perawat/data-perawat');
         }else{
             $request->session()->flash('failed','Data Gagal di hapus');
-            return redirect('/dashboard/perawat/data-perawat');
+            return redirect('/perawat/data-perawat');
         }
     }
 }
