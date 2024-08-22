@@ -43,12 +43,12 @@ class DokterController extends Controller
         $validatedDokter = $request->validate([
             'no_dokter'     => [''],
             'nama_lengkap'  => ['required', 'max:255'],
-            'code_bpjs'     => ['required', 'numeric', 'digits_between:12,15'],
+            'code_bpjs'     => ['required', 'numeric', 'digits_between:12,15', 'unique:m_dokter,code_bpjs'],
             'sip'           => ['required', 'numeric', 'digits_between:12,15'],
             'end_date'      => ['required'],
             'layanan_id'       => ['required'],
             'status'        => ['required'],
-            'nik_dokter'    => ['required', 'digits_between:12,15'],
+            'nik_dokter'    => ['required', 'digits_between:12,15', 'unique:m_dokter,nik_dokter'],
             'id_dokter'     => [],
             'nama_petugas'  => []
         ]);
@@ -100,12 +100,12 @@ class DokterController extends Controller
         $request->validate([
             'no_dokter'     => [''],
             'nama_lengkap'  => ['required', 'max:255'],
-            'code_bpjs'     => ['required', 'numeric', 'digits_between:12,15'],
+            'code_bpjs'     => ['required', 'numeric', 'digits_between:12,15', 'unique:m_dokter,code_bpjs'],
             'sip'           => ['required', 'numeric', 'digits_between:12,15'],
             'end_date'      => ['required'],
             'layanan_id'       => ['required'],
             'status'        => ['required'],
-            'nik_dokter'    => ['required', 'digits_between:12,15'],
+            'nik_dokter'    => ['required', 'digits_between:12,15', 'unique:m_dokter,nik_dokter'],
             'id_dokter'     => [],
             'nama_petugas'  => []
         ]);

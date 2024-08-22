@@ -9,7 +9,7 @@ use App\Models\Rawat_Jalan;
 class Payment_Method extends Model
 {
     use HasFactory;
-    protected $table = 'payment_methods';
+    protected $table = 'm_payment';
     // public function Rawat_Jalan(){
     //     echo "Hello";
     //     die;

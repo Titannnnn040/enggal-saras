@@ -29,7 +29,7 @@ class DataPerawatController extends Controller
     public function update(Request $request, $id){
         $request->validate([
             'nama_lengkap' => ['required', 'max:255'],
-            'nik'          => ['required', 'numeric', 'digits:15']
+            'nik'          => ['required', 'numeric', 'digits_between:3,20', 'unique:m_perawat,nik']
         ]);
         $findPerawat = Perawat::find($id);
         $findPerawat->update([
