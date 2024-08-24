@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\RawatJalanController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\CreatePasienController;
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PerawatController;
 use App\Http\Controllers\DataPerawatController;
 use App\Http\Controllers\DokterController;
@@ -10,6 +10,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\TarifController;
+use App\Http\Controllers\TarifRadiologiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -39,15 +40,16 @@ Route::get('/get-cities-by-province/{provinceId}', [ProvinceController::class, '
 Route::get('/get-kecamatan-by-city/{cityId}', [CityController::class, 'getKecamatanByCity']);
 Route::get('/get-kelurahan-by-kecamatan/{kecamatanId}', [KecamatanController::class, 'getKelurahanByKecamatan']);
 
+// DASHBOARDx
 Route::get('/',[DashboardController::class,'indexDashboard'])->name('dashboard');
 
 // ROUTE MASTER PASIEN
-Route::get('/dashboard/pendaftaran',[RawatJalanController::class,'store'])->name('rawat-jalan');
-Route::get('/dashboard/pendaftaran/create-pasien',[CreatePasienController::class,'createPasien'])->name('create-pasien');
-Route::post('/dashboard/pendaftaran/create-pasien',[CreatePasienController::class,'createData'])->name('create-pasien');
-Route::get('/dashboard/pendaftaran/edit/{id}',[CreatePasienController::class,'edit'])->name('edit-pasien');
-Route::put('/dashboard/pendaftaran/{id}',[CreatePasienController::class,'update'])->name('update-pasien');
-Route::delete('/dashboard/pendaftaran/{id}',[CreatePasienController::class,'destroy'])->name('destroy-pasien');
+Route::get('/pasien/data-pasien',[PasienController::class,'indexDataPasien'])->name('data-pasien');
+Route::get('/pasien/create-pasien',[PasienController::class,'indexCreatePasien'])->name('create-pasien');
+Route::post('/pasien/create-pasien',[PasienController::class,'storePasien'])->name('store-pasien');
+Route::get('/pasien/edit-pasien/{id}',[PasienController::class,'edit'])->name('edit-pasien');
+Route::put('/pasien/update-pasien/{id}',[PasienController::class,'update'])->name('update-pasien');
+Route::delete('/pasien/delete-pasien/{id}',[PasienController::class,'destroy'])->name('destroy-pasien');
 
 // ROUTE MASTER PERAWAT
 Route::get('/perawat/create-perawat',[PerawatController::class,'store'])->name('create-perawat');
@@ -132,3 +134,10 @@ Route::get('/tarif/data-tarif-tindakan',[TarifController::class,'indexDataTarifT
 Route::get('/tarif/edit-tarif-tindakan/{id}',[TarifController::class,'editTarifTindakan'])->name('edit-tarif-tindakan');
 Route::put('/tarif/update-tarif-tindakan/{id}',[TarifController::class,'updateTarifTindakan'])->name('update-tarif-tindakan');
 Route::delete('/tarif/delete-tarif-tindakan/{id}',[TarifController::class,'destroyTarifTindakan'])->name('delete-tarif-tindakan');
+
+Route::get('/tarif/data-tarif-radiologi',[TarifRadiologiController::class,'indexDataTarifRadiologi'])->name('data-tarif-radiologi');
+Route::get('/tarif/create-tarif-radiologi',[TarifRadiologiController::class,'indexTarifRadiologi'])->name('tarif-radiologi');
+Route::post('/tarif/create-tarif-radiologi',[TarifRadiologiController::class,'storeTarifRadiologi'])->name('create-tarif-radiologi');
+Route::get('/tarif/edit-tarif-radiologi/{id}',[TarifRadiologiController::class,'edit'])->name('edit-tarif-radiologi');
+Route::put('/tarif/update-tarif-radiologi/{id}',[TarifRadiologiController::class,'update'])->name('update-tarif-radiologi');
+Route::delete('/tarif/delete-tarif-radiologi/{id}',[TarifRadiologiController::class,'destroy'])->name('delete-tarif-radiologi');

@@ -15,7 +15,7 @@
               <div class="card-body px-5 pb-2">
                 <div class="form"  style="background-color:#FDFEFD;">
                     <div class="content">
-                        <form action="/dashboard/pendaftaran/{{ $rawatJalan->id }}" method="post" class="d-flex col-lg-12"> 
+                        <form action="/pasien/update-pasien/{{ $rawatJalan->id }}" method="post" class="d-flex col-lg-12" enctype="multipart/form-data"> 
                             @csrf     
                             @method('put')
                             <div class="d-flex flex-column">
@@ -25,7 +25,9 @@
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="code" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">No.Rekam Medis :</label>
-                                                <label>autogenerate</label>
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
+                                                    <input type="text" class="form-control" id="" name="" value="{{ $rawatJalan->no_rekam_medis }}" disabled>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -215,11 +217,25 @@
                                                 <label for="upload_foto" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Upload foto :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
                                                     @if ($rawatJalan->upload_foto)
-                                                        <div class="mb-3">
-                                                            <img src="{{ asset('storage/' . $rawatJalan->upload_foto) }}" width="100" alt="{{ $rawatJalan->upload_foto }}">
-                                                        </div>
+                                                        <button type="button" class="btn btn-success col-lg-1" id="show-image-{{ $item->id }}"><i class="fa-solid fa-eye"></i></button>
+                                                        <img id="img-show-{{ $item->id }}" src="{{ asset('storage/' . $rawatJalan->upload_foto) }}" width="100" alt="{{ $rawatJalan->upload_foto }}" style="display:none;">
                                                     @endif
-                                                    <input type="file" class="form-control @error('upload_foto') is-invalid @enderror" id="upload_foto" name="upload_foto">
+                                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>   
+                                                <script>
+                                                    $(document).ready(function(){
+                                                        $("#show-image-{{ $item->id }}").click(function(){
+                                                            $("#img-show-{{ $item->id }}").toggle();
+                                                            $("#show-image-{{ $item->id }}").toggle();
+                                                        });
+                                                    });
+                                                    $(document).ready(function(){
+                                                        $("#img-show-{{ $item->id }}").click(function(){
+                                                            $("#show-image-{{ $item->id }}").toggle();
+                                                            $("#img-show-{{ $item->id }}").toggle();
+                                                        });
+                                                    });
+                                                </script> 
+                                                    <input type="file" class="form-control @error('upload_foto') is-invalid @enderror" id="upload_foto" name="upload_foto" value="" multiple>
                                                     @error('upload_foto')
                                                         <div class="invalid-feedback d-block">
                                                             {{ $message }}
@@ -265,7 +281,7 @@
                                             <div class="d-flex">
                                                 <label for="province_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Provinsi :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
-                                                    <select class="form-select @error('province_id') is-invalid @enderror" name="province_id"  id="province_id" >
+                                                    <select class="form-select @error('province_id') is-invalid @enderror" name="province_id" id="province_id">
                                                         <option value="">Please Select</option>
                                                         @foreach ($province as $item)
                                                             <option value="{{ $item->id }}" {{ $rawatJalan->province_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
@@ -279,15 +295,13 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="cities_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kota :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
-                                                    <select class="form-select @error('cities_id') is-invalid @enderror" name="cities_id"  id="cities_id" >
-                                                        @foreach ($city as $item)
-                                                            <option value="{{ $item->id }}" {{ $rawatJalan->cities_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
-                                                        @endforeach
+                                                    <select class="form-select @error('cities_id') is-invalid @enderror" name="cities_id" id="cities_id">
+                                                        <option value="">Please Select</option>
                                                     </select>
                                                     @error('cities_id')
                                                         <div class="invalid-feedback d-block">
@@ -297,12 +311,55 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <!-- JavaScript to handle dynamic city loading based on province -->
+                                        
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="kecamatan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kecamatan :</label>
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
+                                                    <select class="form-select @error('kecamatan_id') is-invalid @enderror" name="kecamatan_id" id="kecamatan_id">
+                                                        <option value="">Please Select</option>
+                                                    </select>
+                                                    @error('kecamatan_id')
+                                                        <div class="invalid-feedback d-block">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="kelurahan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kelurahan :</label>
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
+                                                    <select class="form-select @error('kelurahan_id') is-invalid @enderror" name="kelurahan_id" id="kelurahan_id">
+                                                        <option value="">Please Select</option>
+                                                    </select>
+                                                    @error('kelurahan_id')
+                                                        <div class="invalid-feedback d-block">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                         <script>
-                                        document.addEventListener('DOMContentLoaded', function () {
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                            var provinceId = document.getElementById('province_id').value;
+                                            var selectedCityId = "{{ $rawatJalan->cities_id }}"; // Selected city ID from database
+                                            var selectedKecamatanId = "{{ $rawatJalan->kecamatan_id }}"; // Selected kecamatan ID from database
+                                            var selectedKelurahanId = "{{ $rawatJalan->kelurahan_id }}"; // Selected kelurahan ID from database
+                                            
+                                            if (provinceId) {
+                                                loadCities(provinceId, selectedCityId, selectedKecamatanId);
+                                            }
+
                                             document.getElementById('province_id').addEventListener('change', function () {
-                                                var provinceId = this.value;
+                                                loadCities(this.value, "", ""); // Reset city and kecamatan when province changes
+                                            });
+
+                                            function loadCities(provinceId, selectedCityId, selectedKecamatanId) {
                                                 fetch('/get-cities-by-province/' + provinceId)
                                                     .then(response => response.json())
                                                     .then(data => {
@@ -313,35 +370,22 @@
                                                             option.value = city.id;
                                                             option.text = city.name;
                                                             citySelect.add(option);
+                                                            if (city.id == selectedCityId) {
+                                                                option.selected = true;
+                                                                loadKecamatan(city.id, selectedKecamatanId); // Load kecamatan ketika kota dipilih
+                                                            }
+                                                        });
+
+                                                        // Tambahkan event listener untuk loadKecamatan saat kota berubah
+                                                        citySelect.addEventListener('change', function () {
+                                                            loadKecamatan(this.value, ""); // Reset kecamatan dan kelurahan saat kota berubah
                                                         });
                                                     })
                                                     .catch(error => console.error('Error:', error));
-                                            });
-                                        });
-                                        </script>
-        
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
-                                            <div class="d-flex">
-                                                <label for="kecamatan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kecamatan :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
-                                                    <select class="form-select @error('kecamatan_id') is-invalid @enderror" name="kecamatan_id"  id="kecamatan_id" >
-                                                        @foreach ($kecamatan as $item)
-                                                            <option value="{{ $item->id }}" {{ $rawatJalan->kecamatan_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('kecamatan_id')
-                                                        <div class="invalid-feedback d-block">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
+                                            }
 
-                                        <script>
-                                            document.getElementById('cities_id').addEventListener('change', function () {
-                                                var cityName = this.value;
-                                                fetch('/get-kecamatan-by-city/' + cityName)
+                                            function loadKecamatan(cityId, selectedKecamatanId) {
+                                                fetch('/get-kecamatan-by-city/' + cityId)
                                                     .then(response => response.json())
                                                     .then(data => {
                                                         var kecamatanSelect = document.getElementById('kecamatan_id');
@@ -351,34 +395,22 @@
                                                             option.value = kecamatan.id;
                                                             option.text = kecamatan.name;
                                                             kecamatanSelect.add(option);
+                                                            if (kecamatan.id == selectedKecamatanId) {
+                                                                option.selected = true;
+                                                                loadKelurahan(kecamatan.id, selectedKelurahanId); // Load kelurahan ketika kecamatan dipilih
+                                                            }
+                                                        });
+
+                                                        // Tambahkan event listener untuk loadKelurahan saat kecamatan berubah
+                                                        kecamatanSelect.addEventListener('change', function () {
+                                                            loadKelurahan(this.value, ""); // Reset kelurahan saat kecamatan berubah
                                                         });
                                                     })
                                                     .catch(error => console.error('Error:', error));
-                                            });
-                                        </script>
-                                        
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
-                                            <div class="d-flex">
-                                                <label for="kelurahan_id" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kelurahan :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8">
-                                                    <select class="form-select @error('kelurahan_id') is-invalid @enderror" name="kelurahan_id"  id="kelurahan_id" >
-                                                        @foreach ($kelurahan as $item)
-                                                            <option value="{{ $item->id }}" {{ $rawatJalan->kelurahan_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('kelurahan_id')
-                                                        <div class="invalid-feedback d-block">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
+                                            }
 
-                                        <script>
-                                                document.getElementById('kecamatan_id').addEventListener('change', function () {
-                                                var kecamatanName = this.value;
-                                                fetch('/get-kelurahan-by-kecamatan/' + kecamatanName)
+                                            function loadKelurahan(kecamatanId, selectedKelurahanId) {
+                                                fetch('/get-kelurahan-by-kecamatan/' + kecamatanId)
                                                     .then(response => response.json())
                                                     .then(data => {
                                                         var kelurahanSelect = document.getElementById('kelurahan_id');
@@ -388,12 +420,17 @@
                                                             option.value = kelurahan.id;
                                                             option.text = kelurahan.name;
                                                             kelurahanSelect.add(option);
+                                                            if (kelurahan.id == selectedKelurahanId) {
+                                                                option.selected = true;
+                                                            }
                                                         });
                                                     })
                                                     .catch(error => console.error('Error:', error));
-                                            });
+                                            }
+                                        });
                                         </script>
-
+                                        
+                                        
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="address" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Alamat Lengkap :</label>
@@ -506,7 +543,7 @@
 
                                 </div>   
                                 <div class="col-lg-12">
-                                    <a href="/dashboard/pendaftaran" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
+                                    <a href="/pasien/data-pasien" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
                                     <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                 </div> 
                             </div>

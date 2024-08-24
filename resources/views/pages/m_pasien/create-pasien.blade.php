@@ -364,22 +364,22 @@
 
                                         <script>
                                             document.getElementById('kecamatan_id').addEventListener('change', function () {
-                                              var kecamatanName = this.value;
-                                              fetch('/get-kelurahan-by-kecamatan/' + kecamatanName)
-                                                  .then(response => response.json())
-                                                  .then(data => {
-                                                      var kelurahanSelect = document.getElementById('kelurahan_id');
-                                                      kelurahanSelect.innerHTML = '<option value="">Please Select</option>';
-                                                      data.forEach(function (kelurahan) {
-                                                          var option = document.createElement('option');
-                                                          option.value = kelurahan.id;
-                                                          option.text = kelurahan.name;
-                                                          kelurahanSelect.add(option);
-                                                      });
-                                                  })
-                                                  .catch(error => console.error('Error:', error));
-                                          });
-                                      </script>
+                                                var kecamatanName = this.value;
+                                                fetch('/get-kelurahan-by-kecamatan/' + kecamatanName)
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        var kelurahanSelect = document.getElementById('kelurahan_id');
+                                                        kelurahanSelect.innerHTML = '<option value="">Please Select</option>';
+                                                        data.forEach(function (kelurahan) {
+                                                            var option = document.createElement('option');
+                                                            option.value = kelurahan.id;
+                                                            option.text = kelurahan.name;
+                                                            kelurahanSelect.add(option);
+                                                        });
+                                                    })
+                                                    .catch(error => console.error('Error:', error));
+                                            });
+                                        </script>
 
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
@@ -493,7 +493,7 @@
 
                                 </div>   
                                 <div class="col-lg-12">
-                                    <a href="/dashboard/pendaftaran" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
+                                    <a href="/pasien/data-pasien" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
                                     <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                 </div> 
                             </div>

@@ -44,7 +44,7 @@
 
             <div class="sub-menu">
 
-              <a href="/dashboard/pendaftaran" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'pendaftaran') ? 'active' : '' }} text-decoration-none">
+              <a href="/pasien/data-pasien" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pasien') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
                   <span class="nav-link-text ms-2">Pasien</span>
@@ -213,6 +213,18 @@
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
                   <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Tarif Pendaftaran</span>
+                </div>
+              </a>
+              <a href="/tarif/data-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Tarif Tindakan</span>
+                </div>
+              </a>
+              <a href="/tarif/data-tarif-radiologi" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-radiologi') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
+                  <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Tarif Radiologi</span>
                 </div>
               </a>
               <a href="/tarif/data-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-tindakan') ? 'active' : '' }} text-decoration-none">

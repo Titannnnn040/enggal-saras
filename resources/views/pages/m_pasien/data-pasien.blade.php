@@ -52,7 +52,7 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Pasien</h6>
-                <a href="/dashboard/pendaftaran/create-pasien" class="my-0 me-3 btn-add-data d-flex align-items-center">
+                <a href="/pasien/create-pasien" class="my-0 me-3 btn-add-data d-flex align-items-center">
                   <i class="fa-solid fa-plus me-1"></i>
                   tambah data
                 </a>
@@ -134,9 +134,25 @@
                                 </td>
                                 <td class="align-middle text-center">
                                   @if ($item->upload_foto)
-                                    <img src="{{ asset('storage/' . $item->upload_foto) }}" width="100" alt="{{ $item->upload_foto }}">
-                                  @endif                              
-                                </td>
+                                      <button class="btn btn-success" id="show-image-{{ $item->id }}"><i class="fa-solid fa-eye"></i></button>
+                                      <img id="img-show-{{ $item->id }}" src="{{ asset('storage/' . $item->upload_foto) }}" width="100" alt="{{ $item->upload_foto }}" style="display:none;">
+                                  @endif   
+                              </td>
+                              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>   
+                              <script>
+                                  $(document).ready(function(){
+                                      $("#show-image-{{ $item->id }}").click(function(){
+                                          $("#img-show-{{ $item->id }}").toggle();
+                                          $("#show-image-{{ $item->id }}").toggle();
+                                      });
+                                  });
+                                  $(document).ready(function(){
+                                      $("#img-show-{{ $item->id }}").click(function(){
+                                          $("#show-image-{{ $item->id }}").toggle();
+                                          $("#img-show-{{ $item->id }}").toggle();
+                                      });
+                                  });
+                              </script>                              
                                 <td class="align-middle text-center">
                                   <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->note }}</p>
                                 </td>
@@ -175,12 +191,12 @@
                                 </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                    <form action="/dashboard/pendaftaran/edit/{{ $item->id }}">
+                                    <form action="/pasien/edit-pasien/{{ $item->id }}">
                                       @csrf
                                       <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
                                     </form>
                                     
-                                      <form action="/dashboard/pendaftaran/{{ $item->id }}" method="post">
+                                      <form action="/pasien/delete-pasien/{{ $item->id }}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">
