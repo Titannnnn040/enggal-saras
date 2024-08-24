@@ -44,8 +44,8 @@
           <div class="card my-3">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Tarif Radiologi</h6>
-                <a href="/tarif/create-tarif-radiologi" class="my-0 me-3 btn-add-data d-flex align-items-center">
+                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Tarif Laboratorium</h6>
+                <a href="/tarif/create-tarif-lab" class="my-0 me-3 btn-add-data d-flex align-items-center">
                   <i class="fa-solid fa-plus me-1"></i>
                   tambah data
                 </a>
@@ -57,19 +57,19 @@
                       <thead>
                           <tr>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Tarif Radiologi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Tarif Radiologi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Group Tarif Radiologi</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Tarif Laboratorium</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Tarif Laboratorium</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Group Tarif Laboratorium</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fee Medis</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jasa Klinik</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jasa Radiologi</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jasa Pengirim</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Biaya Rujukan</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Tarif</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
                       <?php $num = 1 ?>
-                      @foreach ($tarifRadiologi as $item)
+                      @foreach ($tarifLab as $item)
                         <tbody>
                             <tr>
                                 <td class="align-middle text-center text-xs">
@@ -77,10 +77,10 @@
                                 </td>
 
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->tarif_radiologi_code }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->code_tarif_lab }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_tarif_radiologi }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_tarif_lab }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $groupTarif->where('id', $item->group_tarif_id)->first()->nama_group_tarif ?? '' }}
@@ -93,7 +93,7 @@
                                     <p class="text-xs font-weight-bold mb-0 text-center">Rp.{{ number_format($item->jasa_klinik) }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">Rp.{{ number_format($item->jasa_radiologi) }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">Rp.{{ number_format($item->jasa_pengirim) }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">Rp.{{ number_format($item->biaya_rujukan) }}</p>
@@ -103,12 +103,12 @@
                                 </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                      <form action="/tarif/edit-tarif-radiologi/{{ $item->id }}">
+                                      <form action="/tarif/edit-tarif-lab/{{ $item->id }}">
                                         @csrf
                                         <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
                                       </form>
 
-                                      <form action="/tarif/delete-tarif-radiologi/{{ $item->id }}" method="post">
+                                      <form action="/tarif/delete-tarif-lab/{{ $item->id }}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">

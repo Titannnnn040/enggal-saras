@@ -9,7 +9,7 @@
             <div class="card my-3  border border-0">
               <div class="card-header p-0 position-relative border border-0 mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
-                  <h6 class="text-white text-capitalize ps-3">Create Tarif Tindakan</h6>
+                  <h6 class="text-white text-capitalize ps-3">Create Tarif Radiologi</h6>
                 </div>
               </div>
               <div class="card-body px-5 pb-2">

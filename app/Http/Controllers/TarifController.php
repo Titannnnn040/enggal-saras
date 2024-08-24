@@ -443,7 +443,7 @@ class TarifController extends Controller
             'kode_tarif_bpjs'           => $request->kode_tarif_bpjs,
             'nama_tarif_tindakan_bpjs'  => $request->nama_tarif_tindakan_bpjs
         ]);
-        
+
         $request->session()->flash('success', 'Data berhasil dirubah');
         return redirect('tarif/data-tarif-tindakan');
     }

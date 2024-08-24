@@ -11,6 +11,7 @@ use App\Http\Controllers\KamarController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\TarifController;
 use App\Http\Controllers\TarifRadiologiController;
+use App\Http\Controllers\TarifLabController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -141,3 +142,11 @@ Route::post('/tarif/create-tarif-radiologi',[TarifRadiologiController::class,'st
 Route::get('/tarif/edit-tarif-radiologi/{id}',[TarifRadiologiController::class,'edit'])->name('edit-tarif-radiologi');
 Route::put('/tarif/update-tarif-radiologi/{id}',[TarifRadiologiController::class,'update'])->name('update-tarif-radiologi');
 Route::delete('/tarif/delete-tarif-radiologi/{id}',[TarifRadiologiController::class,'destroy'])->name('delete-tarif-radiologi');
+
+Route::get('/tarif/data-tarif-lab',[TarifLabController::class,'indexDataTarifLab'])->name('data-tarif-lab');
+Route::get('/tarif/create-tarif-lab',[TarifLabController::class,'indexTarifLab'])->name('tarif-lab');
+Route::post('/tarif/create-tarif-lab',[TarifLabController::class,'storeTarifLab'])->name('create-tarif-lab');
+Route::get('/tarif/edit-tarif-lab/{id}',[TarifLabController::class,'edit'])->name('edit-tarif-lab');
+Route::put('/tarif/update-tarif-lab/{id}',[TarifLabController::class,'update'])->name('update-tarif-lab');
+Route::delete('/tarif/delete-tarif-lab/{id}',[TarifLabController::class,'destroy'])->name('delete-tarif-lab');
+

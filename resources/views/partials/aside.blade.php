@@ -227,7 +227,7 @@
                   <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Tarif Radiologi</span>
                 </div>
               </a>
-              <a href="/tarif/data-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-tindakan') ? 'active' : '' }} text-decoration-none">
+              <a href="/tarif/data-tarif-lab" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-tarif-lab') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-user-plus me-2" style="font-size: 12px"></i>
                   <span class="nav-link-text ms-1" style="font-size: 13px; text-align:left;">Tarif Laboratorium</span>

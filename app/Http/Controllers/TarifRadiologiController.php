@@ -140,13 +140,8 @@ class TarifRadiologiController extends Controller
         if($request['total_tarif'] == ''){
             $request['total_tarif'] = preg_replace('/[^\d.-]/', '',$request->fee_medis) +  preg_replace('/[^\d.-]/', '',$request->jasa_klinik) + preg_replace('/[^\d.-]/', '',$request->jasa_radiologi) + preg_replace('/[^\d.-]/', '',$request->biaya_rujukan);
         }
-        if($request['tarif_radiologi_code'] == ''){
-            $request['tarif_radiologi_code'] = $this->generateRoNumber();
-        }
-
         $tarifRadiologi = TarifRadiologi::find($id);
         $tarifRadiologi->update([
-            'code_tarif_radiologi' => $request->code_tarif_radiologi,
             'nama_tarif_radiologi' => $request->nama_tarif_radiologi,
             'group_tarif_id'       => $request->group_tarif_id,
             'fee_medis'            => $request->fee_medis, 
