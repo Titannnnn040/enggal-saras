@@ -33,7 +33,12 @@
                                             <div class="d-flex">
                                                 <label for="nama_tarif_radiologi" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama Tarif Radiologi :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control "  id="nama_tarif_radiologi" name="nama_tarif_radiologi"  value="">
+                                                    <input type="text" class="form-control @error('nama_tarif_radiologi') is-invalid @enderror"  id="nama_tarif_radiologi" name="nama_tarif_radiologi"  value="{{ old('nama_tarif_radiologi') }}">
+                                                    @error('nama_tarif_radiologi')
+                                                        <div class="invalid-feedback d-block">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -45,7 +50,7 @@
                                                     <select class="form-select @error('group_tarif_id') is-invalid @enderror" name="group_tarif_id"  id="group_tarif_id">
                                                         <option value="">Please Select</option>
                                                         @foreach ($groupTarif as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->nama_group_tarif }}</option>
+                                                            <option value="{{ $item->id }}" {{ old('group_tarif_id') == $item->id ? 'selected' : '' }}>{{ $item->nama_group_tarif }}</option>
                                                         @endforeach
                                                     </select>          
                                                     @error('group_tarif_id')

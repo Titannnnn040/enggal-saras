@@ -6,6 +6,7 @@ use App\Models\TarifRadiologi;
 use App\Models\GroupTarif;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 class TarifRadiologiController extends Controller
 {
@@ -47,7 +48,7 @@ class TarifRadiologiController extends Controller
     {
        $validatedData = $request->validate([
             'code_tarif_radiologi' => [''],
-            'nama_tarif_radiologi' => ['required'],
+            'nama_tarif_radiologi' => ['required', 'unique:m_tarif_radiologi,nama_tarif_radiologi'],
             'group_tarif_id'       => ['required'],
             'fee_medis'            => ['required'],
             'jasa_klinik'          => ['required'],
@@ -116,7 +117,7 @@ class TarifRadiologiController extends Controller
     {
         $request->validate([
             'code_tarif_radiologi' => [''],
-            'nama_tarif_radiologi' => ['required'],
+            'nama_tarif_radiologi' => ['required', Rule::unique('m_tarif_radiologi', 'nama_tarif_radiologi')->ignore($id)],
             'group_tarif_id'       => ['required'],
             'fee_medis'            => ['required'],
             'jasa_klinik'          => ['required'],

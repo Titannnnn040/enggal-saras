@@ -6,6 +6,7 @@ use App\Models\TarifLab;
 use App\Models\GroupTarif;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 class TarifLabController extends Controller
 {
@@ -47,14 +48,15 @@ class TarifLabController extends Controller
     {
         $validatedData = $request->validate([
             'code_tarif_lab' => [''], 
-            'nama_tarif_lab' => ['required'],
+            'nama_tarif_lab' => ['required', 'unique:m_tarif_lab,nama_tarif_lab'],
             'group_tarif_id' => ['required'],
             'fee_medis'      => ['required'],
             'jasa_klinik'    => ['required'],
             'jasa_pengirim'  => ['required'],
             'biaya_rujukan'  => ['required'],
             'total_tarif'    => [''],
-            'kode_tarif_bpjs'=> ['']
+            'kode_tarif_bpjs'=> [''],
+            'nama_tarif_bpjs'=> [''],
         ]);
         if($request['fee_medis']){
             $validatedData['fee_medis'] = preg_replace('/[^\d.-]/', '',$request->fee_medis);
@@ -91,14 +93,15 @@ class TarifLabController extends Controller
     {
         $request->validate([
             'code_tarif_lab' => [''], 
-            'nama_tarif_lab' => ['required'],
+            'nama_tarif_lab' => ['required', Rule::unique('m_tarif_lab', 'nama_tarif_lab')->ignore($id)],
             'group_tarif_id' => ['required'],
             'fee_medis'      => ['required'],
             'jasa_klinik'    => ['required'],
             'jasa_pengirim'  => ['required'],
             'biaya_rujukan'  => ['required'],
             'total_tarif'    => [''],
-            'kode_tarif_bpjs'=> ['']
+            'kode_tarif_bpjs'=> [''],
+            'nama_tarif_bpjs'=> [''],
         ]);
         if($request['fee_medis']){
             $request['fee_medis'] = preg_replace('/[^\d.-]/', '',$request->fee_medis);

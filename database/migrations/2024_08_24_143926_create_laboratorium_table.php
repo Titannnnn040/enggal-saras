@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('biaya_rujukan');
             $table->string('total_tarif');
             $table->string('kode_tarif_bpjs')->nullable();
+            $table->string('nama_tarif_bpjs')->nullable();
             $table->timestamps();
         });
     }

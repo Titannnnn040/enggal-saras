@@ -167,6 +167,37 @@
                                             });
                                         </script>
                         
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="kode_tarif_bpjs" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Kode Tarif BPJS :</label>
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                    <select class="form-select @error('kode_tarif_bpjs') is-invalid @enderror" name="kode_tarif_bpjs"  id="kode_tarif_bpjs">
+                                                        <option value="">Please Select</option>
+                                                    </select>          
+                                                    @error('kode_tarif_bpjs')
+                                                    <div class="invalid-feedback d-block">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="nama_tarif_bpjs" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Nama Tarif BPJS :</label>
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                    <select class="form-select @error('nama_tarif_bpjs') is-invalid @enderror" name="nama_tarif_bpjs"  id="nama_tarif_bpjs">
+                                                        <option value="">Please Select</option>
+                                                    </select>          
+                                                    @error('nama_tarif_bpjs')
+                                                    <div class="invalid-feedback d-block">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>   
                                 <div class="col-lg-12">
