@@ -24573,19 +24573,19 @@ body:not(.dark-version) .sidenav.bg-transparent .collapse .nav-item .nav-link.ac
   background-color: #4CAF50 !important;
   transition: .2s;
 }
-.navbar-vertical .navbar-nav .nav-item .sub-menu {
+.navbar-vertical .navbar-nav .nav-item .sub-menu,
+.navbar-vertical .navbar-nav .nav-item .super-sub-menu {
   display: none;
   overflow: hidden;
-  
 }
 
-.navbar-vertical .navbar-nav .nav-item .dropdown-btn .item .dropdown {
-  /* transform: rotate(90deg); */
+.navbar-vertical .navbar-nav .nav-item .dropdown-btn .item .dropdown,
+.navbar-vertical .navbar-nav .nav-item .sub-menu .item .dropdown {
   transition: transform 0.3s ease-out;
 }
-.navbar-vertical .navbar-nav .nav-item .dropdown-btn .item .dropdown.rotate {
+.navbar-vertical .navbar-nav .nav-item .dropdown-btn .item .dropdown.rotate,
+.navbar-vertical .navbar-nav .nav-item .sub-menu .item .dropdown.rotate {
   transform: rotate(90deg);
-  transition: transform 0.3s ease-out;
 }
 .navbar-vertical .navbar-nav .nav-item .dropdown-container{
 

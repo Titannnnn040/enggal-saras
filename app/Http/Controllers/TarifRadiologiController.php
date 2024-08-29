@@ -35,7 +35,7 @@ class TarifRadiologiController extends Controller
     {
         $groupTarif = GroupTarif::all();
         $tarifRadiologi = TarifRadiologi::all();
-        return view('pages/tarif/tarif_radiologi/data-tarif-radiologi', ['title' => 'create-tarif-radiologi', 'tarifRadiologi' => $tarifRadiologi, 'groupTarif' => $groupTarif]);
+        return view('pages/tarif/tarif_radiologi/data-tarif-radiologi', ['title' => 'data-tarif-radiologi', 'tarifRadiologi' => $tarifRadiologi, 'groupTarif' => $groupTarif]);
     }
 
     public function indexTarifRadiologi()
