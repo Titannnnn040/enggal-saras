@@ -26,6 +26,39 @@
               </a>
             </div>
           </li>
+          <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
+            <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center">
+              <div class="item">
+                <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-stethoscope me-2"></i>
+                  <span class="nav-link-text ms-1">Pendaftaran</span>
+                </a>
+              </div>
+              <div class="item">
+                <i class="fas fa-angle-right dropdown"></i>
+              </div>
+            </div>
+
+            <div class="sub-menu">
+              {{-- <a class="dropdown-menu justify-content-between col-lg-10 d-flex mt-1 text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-clipboard-user me-2"></i>
+                  <span class="nav-link-text ms-2">Pendaftaran</span>
+                </div>
+                <div class="item">
+                  <i class="fas fa-angle-right dropdown"></i>
+                </div>
+              </a>
+              <div class="super-sub-menu"> --}}
+                <a href="/pasien/data-pasien" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pasien') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Pasien</span>
+                  </div>
+                </a>
+              </div>
+            {{-- </div> --}}
+          </li>
 
           <li class="nav-item d-flex flex-column justify-content-center align-items-center" style="cursor: pointer">
             <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center">
@@ -40,26 +73,6 @@
               </div>
             </div>
           
-            <div class="sub-menu">
-              <a class="dropdown-menu justify-content-between col-lg-10 d-flex mt-1 text-decoration-none">
-                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-clipboard-user me-2"></i>
-                  <span class="nav-link-text ms-2">Pendaftaran</span>
-                </div>
-                <div class="item">
-                  <i class="fas fa-angle-right dropdown"></i>
-                </div>
-              </a>
-              <div class="super-sub-menu">
-                <a href="/pasien/data-pasien" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pasien') ? 'active' : '' }} text-decoration-none">
-                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                    <i class="fa-solid fa-clipboard-user me-2"></i>
-                    <span class="nav-link-text ms-2">Pasien</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-
             <div class="sub-menu">
               <a class="dropdown-menu justify-content-between col-lg-10 d-flex mt-1 text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
@@ -152,7 +165,7 @@
               <a class="dropdown-menu justify-content-between col-lg-10 d-flex mt-1 text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
-                  <span class="nav-link-text ms-2">Tarif</span>
+                  <span class="nav-link-text ms-2">Data Tarif</span>
                 </div>
                 <div class="item">
                   <i class="fas fa-angle-right dropdown"></i>
@@ -214,6 +227,15 @@
                   </div>
                 </a>
               </div>
+            </div>
+
+            <div class="sub-menu">
+              <a href="/tipe-jaminan/data-tipe-jaminan" class="dropdown-menu justify-content-between col-lg-10 d-flex mt-1 {{ ($title === 'data-tipe-jaminan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-clipboard-user me-2"></i>
+                  <span class="nav-link-text ms-2">Tipe Jaminan</span>
+                </div>
+              </a>
             </div>
 
           </li>

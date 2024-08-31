@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('status_pernikahan');
             $table->string('pekerjaan');
             $table->foreignId('payment_id');
-            $table->interger('no_bpjs/asuransi');
-            $table->file('upload_foto');
+            $table->integer('no_bpjs/asuransi');
+            $table->string('upload_foto');
             $table->string('note');
             $table->string('phone_number');
             $table->foreignId('province_id');
