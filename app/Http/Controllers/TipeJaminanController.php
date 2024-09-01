@@ -40,17 +40,6 @@ class TipeJaminanController extends Controller
         return view('pages/m_tipe_jaminan/create-tipe-jaminan', ['title' => 'create-tipe-jaminan']);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function storeTipeJaminan(Request $request)
     {
         $validatedData = $request->validate([
@@ -68,26 +57,12 @@ class TipeJaminanController extends Controller
         return redirect('/tipe-jaminan/data-tipe-jaminan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TipeJaminan $tipeJaminan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $tipeJaminan = TipeJaminan::find($id);
         return view('pages/m_tipe_jaminan/edit-tipe-jaminan', ['title' => 'edit-tipe-jaminan', 'tipeJaminan' => $tipeJaminan]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -99,13 +74,10 @@ class TipeJaminanController extends Controller
             'nama_tipe_jaminan'  => $request->nama_tipe_jaminan,
             'tipe_jaminan'       => $request->tipe_jaminan
         ]);
-        $request->session()->flash('success', 'Data berhasil ditambahkan');
+        $request->session()->flash('success', 'Data berhasil dirubah');
         return redirect('/tipe-jaminan/data-tipe-jaminan');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request, $id)
     {
         $tipeJaminan = TipeJaminan::find($id);

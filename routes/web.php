@@ -13,6 +13,7 @@ use App\Http\Controllers\TarifController;
 use App\Http\Controllers\TarifRadiologiController;
 use App\Http\Controllers\TarifLabController;
 use App\Http\Controllers\TipeJaminanController;
+use App\Http\Controllers\JaminanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -158,3 +159,11 @@ Route::post('/tipe-jaminan/create-tipe-jaminan',[TipeJaminanController::class,'s
 Route::get('/tipe-jaminan/edit-tipe-jaminan/{id}',[TipeJaminanController::class,'edit'])->name('edit-tipe-jaminan');
 Route::put('/tipe-jaminan/update-tipe-jaminan/{id}',[TipeJaminanController::class,'update'])->name('update-tipe-jaminan');
 Route::delete('/tipe-jaminan/delete-tipe-jaminan/{id}',[TipeJaminanController::class,'destroy'])->name('delete-tipe-jaminan');
+
+// ROUTE JAMINAN
+Route::get('/jaminan/data-jaminan',[JaminanController::class,'indexDataJaminan'])->name('data-jaminan');
+Route::get('/jaminan/create-jaminan',[JaminanController::class,'indexCreateJaminan'])->name('jaminan');
+Route::post('/jaminan/create-jaminan',[JaminanController::class,'storeJaminan'])->name('create-jaminan');
+Route::get('/jaminan/edit-jaminan/{id}',[JaminanController::class,'edit'])->name('edit-jaminan');
+Route::put('/jaminan/update-jaminan/{id}',[JaminanController::class,'update'])->name('update-jaminan');
+Route::delete('/jaminan/delete-jaminan/{id}',[JaminanController::class,'destroy'])->name('delete-jaminan');

@@ -230,6 +230,15 @@
             </div>
 
             <div class="sub-menu">
+              <a href="/jaminan/data-jaminan" class="dropdown-menu justify-content-between col-lg-10 d-flex mt-1 {{ ($title === 'data-jaminan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-clipboard-user me-2"></i>
+                  <span class="nav-link-text ms-2">Jaminan</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="sub-menu">
               <a href="/tipe-jaminan/data-tipe-jaminan" class="dropdown-menu justify-content-between col-lg-10 d-flex mt-1 {{ ($title === 'data-tipe-jaminan') ? 'active' : '' }} text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-clipboard-user me-2"></i>
