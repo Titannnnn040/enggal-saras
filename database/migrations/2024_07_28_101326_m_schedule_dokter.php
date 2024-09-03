@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('m_schedule_dokter', function (Blueprint $table) {
             $table->id();
             $table->foreignId('layanan_id');
-            $table->foreignId('dokter_id');
+            $table->uuid('dokter_id');
             $table->string('jadwal_praktik');
             $table->string('senin')->nullable();
             $table->string('selasa')->nullable();
@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('start');
             $table->string('finish');
             $table->timestamps();
+
+            $table->foreign('dokter_id')->references('id')->on('m_dokter')->onDelete('cascade');
         });
     }
 

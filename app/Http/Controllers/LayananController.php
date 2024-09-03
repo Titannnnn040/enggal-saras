@@ -58,9 +58,15 @@ class LayananController extends Controller
 
     public function storeData(Request $request)
     {
-        $layanan = Layanan::all();
+        $layanan = Layanan::latest();
+        if(request('kode_layanan')){
+            $layanan->where('kode_layanan', 'like', '%' . request('kode_layanan') . '%');
+        } 
+        if(request('nama_layanan')){
+            $layanan->where('nama_layanan', 'like', '%' . request('nama_layanan') . '%');
+        } 
         $jenisLayanan = JenisLayanan::all();
-        return view('m_layanan/data-layanan', ['layanan' => $layanan,'title' => 'data-layanan']);
+        return view('m_layanan/data-layanan', ['layanan' => $layanan->get(),'title' => 'data-layanan']);
     }
 
     /**

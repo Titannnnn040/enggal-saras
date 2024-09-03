@@ -87,6 +87,12 @@ class TarifController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function filterData($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, 'like', '%' . request($field) . '%');
+        }
+    }
     public function index()
     {
         
@@ -111,8 +117,14 @@ class TarifController extends Controller
 
     public function storeData()
     {
-        $kamar = Kamar::all();
-        return view('pages/tarif/data-tarif-kamar', ['title' => 'data-tarif-kamar', 'kamar' => $kamar]);
+        $kamar = Kamar::latest();
+        if (request('kode_kamar')) {
+            $this->filterData('kode_kamar', $kamar);
+        }
+        if (request('nama_kamar')) {
+            $this->filterData('nama_kamar', $kamar);
+        }
+        return view('pages/tarif/data-tarif-kamar', ['title' => 'data-tarif-kamar', 'kamar' => $kamar->get()]);
     }
 
     /**
@@ -171,8 +183,14 @@ class TarifController extends Controller
     }
     public function indexDataGroupTarif()
     {
-        $groupTarif = GroupTarif::all();
-        return view('pages/tarif/group-tarif', ['title' => 'group-tarif', 'groupTarif' => $groupTarif]);
+        $groupTarif = GroupTarif::latest();
+        if (request('g_tarif_code')) {
+            $this->filterData('g_tarif_code', $groupTarif);
+        }
+        if (request('nama_group_tarif')) {
+            $this->filterData('nama_group_tarif', $groupTarif);
+        }
+        return view('pages/tarif/group-tarif', ['title' => 'group-tarif', 'groupTarif' => $groupTarif->get()]);
     }
 
     public function storeGroupTarif(Request $request)
@@ -238,8 +256,14 @@ class TarifController extends Controller
 
     public function indexDataGroupTarifTindakan()
     {
-        $groupTarifTindakan = GroupTarifTindakan::all();
-        return view('pages/tarif/group-tarif-tindakan', ['title' => 'group-tarif-tindakan', 'groupTarifTindakan' => $groupTarifTindakan]);
+        $groupTarifTindakan = GroupTarifTindakan::latest();
+        if (request('g_tarif_tindakan_code')) {
+            $this->filterData('g_tarif_tindakan_code', $groupTarifTindakan);
+        }
+        if (request('nama_group_tarif_tindakan')) {
+            $this->filterData('nama_group_tarif_tindakan', $groupTarifTindakan);
+        }
+        return view('pages/tarif/group-tarif-tindakan', ['title' => 'group-tarif-tindakan', 'groupTarifTindakan' => $groupTarifTindakan->get()]);
     }
 
     public function editGroupTarifTindakan($id){
@@ -305,8 +329,14 @@ class TarifController extends Controller
     }
 
     public function indexDataTarifPendaftaran(){
-        $pendaftaran = TarifPendaftaran::all();
-        return view('pages/tarif/data-tarif-pendaftaran', ['title' => 'data-tarif-pendaftaran', 'pendaftaran' => $pendaftaran]);
+        $pendaftaran = TarifPendaftaran::latest();
+        if (request('code_pendaftaran')) {
+            $this->filterData('code_pendaftaran', $pendaftaran);
+        }
+        if (request('nama_pendaftaran')) {
+            $this->filterData('nama_pendaftaran', $pendaftaran);
+        }
+        return view('pages/tarif/data-tarif-pendaftaran', ['title' => 'data-tarif-pendaftaran', 'pendaftaran' => $pendaftaran->get()]);
     }
 
     public function editTarifPendaftaran($id){
@@ -399,8 +429,14 @@ class TarifController extends Controller
     }
 
     public function indexDataTarifTindakan(){
-        $tindakan = TarifTindakan::all();
-        return view('pages/tarif/tarif-tindakan/data-tarif-tindakan', ['title' => 'data-tarif-tindakan',  'tindakan' => $tindakan]);
+        $tindakan = TarifTindakan::latest();
+        if (request('code_tarif_tindakan')) {
+            $this->filterData('code_tarif_tindakan', $tindakan);
+        }
+        if (request('nama_tarif_tindakan')) {
+            $this->filterData('nama_tarif_tindakan', $tindakan);
+        }
+        return view('pages/tarif/tarif-tindakan/data-tarif-tindakan', ['title' => 'data-tarif-tindakan',  'tindakan' => $tindakan->get()]);
     }
   
     public function editTarifTindakan($id){

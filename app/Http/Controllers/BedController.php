@@ -79,10 +79,16 @@ class BedController extends Controller
         return view('/pages/m_bed/create-bed', ['title' => 'create-bed', 'kamar' => $kamar]);
     }
 
-    public function storeData()
+    public function storeData(Request $request)
     {
-        $bed = Bed::all();
-        return view('/pages/m_bed/data-bed', ['title' => 'data-bed', 'bed' => $bed]);
+        $bed = Bed::latest();
+        if(request('kode_bed')){
+            $bed->where('kode_bed', 'like' , '%' . request('kode_bed') . '%');
+        }
+        if(request('nama_bed')){
+            $bed->where('nama_bed', 'like' , '%' . request('nama_bed') . '%');
+        }
+        return view('/pages/m_bed/data-bed', ['title' => 'data-bed', 'bed' => $bed->get()]);
     }
 
     /**

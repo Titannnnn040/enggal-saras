@@ -31,11 +31,23 @@ class TarifLabController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function filterData($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, 'like', '%' . request($field) . '%');
+        }
+    }
     public function indexDataTarifLab()
     {
         $groupTarif = GroupTarif::all();
-        $tarifLab = TarifLab::all();
-        return view('pages/tarif/tarif-lab/data-tarif-lab', ['title' => 'data-tarif-lab', 'tarifLab' => $tarifLab, 'groupTarif' => $groupTarif]);
+        $tarifLab = TarifLab::latest();
+        if (request('code_tarif_lab')) {
+            $this->filterData('code_tarif_lab', $tarifLab);
+        }
+        if (request('nama_tarif_lab')) {
+            $this->filterData('nama_tarif_lab', $tarifLab);
+        }
+        return view('pages/tarif/tarif-lab/data-tarif-lab', ['title' => 'data-tarif-lab', 'tarifLab' => $tarifLab->get(), 'groupTarif' => $groupTarif]);
     }
 
     public function indexTarifLab()

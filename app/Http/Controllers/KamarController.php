@@ -75,10 +75,16 @@ class KamarController extends Controller
         return view('pages/m_kamar/create-kamar', ['title' => 'create-kamar']);
     }
 
-    public function storeData()
+    public function storeData(Request $request)
     {
-        $kamar = Kamar::all();
-        return view('pages/m_kamar/data-kamar', ['title' => 'data-kamar', 'kamar' => $kamar]);
+        $kamar = Kamar::latest();
+        if(request('kode_kamar')){
+            $kamar->where('kode_kamar', 'like', '%' . request('kode_kamar') . '%');
+        }
+        if(request('nama_kamar')){
+            $kamar->where('nama_kamar', 'like', '%' . request('nama_kamar') . '%');
+        }
+        return view('pages/m_kamar/data-kamar', ['title' => 'data-kamar', 'kamar' => $kamar->get()]);
     }
 
     /**

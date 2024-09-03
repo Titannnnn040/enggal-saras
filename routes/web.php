@@ -63,9 +63,9 @@ Route::put('/perawat/{id}',[DataPerawatController::class,'update'])->name('updat
 Route::delete('/perawat/{id}',[DataPerawatController::class,'destroy'])->name('destroy-perawat');
 
 // ROUTE MASTER TENAGA MEDIS
-Route::get('/tenaga-medis/create-tenaga-medis',[DokterController::class,'store'])->name('store-dokter');
-Route::get('/tenaga-medis/data-tenaga-medis',[DokterController::class,'storeData'])->name('data-dokter');
-Route::post('/tenaga-medis/create-tenaga-medis',[DokterController::class,'create'])->name('create-dokter');
+Route::get('/tenaga-medis/create-tenaga-medis',[DokterController::class,'indexCreateDokter'])->name('create-dokter');
+Route::get('/tenaga-medis/data-tenaga-medis',[DokterController::class,'indexDataDokter'])->name('data-dokter');
+Route::post('/tenaga-medis/create-tenaga-medis',[DokterController::class,'create'])->name('store-dokter');
 Route::get('/tenaga-medis/edit-tenaga-medis/{id}',[DokterController::class,'edit'])->name('edit-dokter');
 Route::put('/tenaga-medis/{id}',[DokterController::class,'update'])->name('update-dokter');
 Route::delete('/tenaga-medis/{id}',[DokterController::class,'destroy'])->name('delete-dokter');

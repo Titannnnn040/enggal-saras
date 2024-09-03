@@ -62,16 +62,29 @@ class DokterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function indexCreateDokter(Request $request)
     {   
         $layanan = Layanan::all();
         return view('m_dokter/create-dokter', ['title' => 'create-dokter', 'layanan' => $layanan]);
     }
-    public function storeData(Request $request)
+    public function indexDataDokter(Request $request)
     {   
-        $dokter = Dokter::all();
+        $dokter = Dokter::latest();
+
+        if(request('no_dokter')){
+            $dokter->where('no_dokter', 'like', '%' . request('no_dokter') . '%');
+        } 
+        if(request('nama_lengkap')){
+            $dokter->where('nama_lengkap', 'like', '%' . request('nama_lengkap') . '%');
+        } 
+        if(request('nik')){
+            $dokter->where('nik', 'like', request('nik'));
+        } 
+        if(request('no_bpjs')){
+            $dokter->where('no_bpjs_asuransi', 'like', request('no_bpjs'));
+        } 
         // $layanan = Layanan::all();
-        return view('m_dokter/data-dokter', ['title' => 'data-dokter', 'dokter' => $dokter]);
+        return view('m_dokter/data-dokter', ['title' => 'data-dokter', 'dokter' => $dokter->get()]);
     }
 
     /**

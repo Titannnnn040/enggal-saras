@@ -28,14 +28,26 @@ class TarifRadiologiController extends Controller
 
         return 'RO-' . date('dmy') . $kd;
     }
+    public function filterData($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, 'like', '%' . request($field) . '%');
+        }
+    }
     /**
      * Display a listing of the resource.
      */
     public function indexDataTarifRadiologi()
     {
         $groupTarif = GroupTarif::all();
-        $tarifRadiologi = TarifRadiologi::all();
-        return view('pages/tarif/tarif_radiologi/data-tarif-radiologi', ['title' => 'data-tarif-radiologi', 'tarifRadiologi' => $tarifRadiologi, 'groupTarif' => $groupTarif]);
+        $tarifRadiologi = TarifRadiologi::latest();
+        if (request('tarif_radiologi_code')) {
+            $this->filterData('tarif_radiologi_code', $tarifRadiologi);
+        }
+        if (request('nama_tarif_radiologi')) {
+            $this->filterData('nama_tarif_radiologi', $tarifRadiologi);
+        }
+        return view('pages/tarif/tarif_radiologi/data-tarif-radiologi', ['title' => 'data-tarif-radiologi', 'tarifRadiologi' => $tarifRadiologi->get(), 'groupTarif' => $groupTarif]);
     }
 
     public function indexTarifRadiologi()

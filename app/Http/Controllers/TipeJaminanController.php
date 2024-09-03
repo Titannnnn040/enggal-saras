@@ -27,11 +27,22 @@ class TipeJaminanController extends Controller
 
         return 'TJ-' . date('dmy') . $kd;
     }
-
+    public function filterData($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, 'like', '%' . request($field) . '%');
+        }
+    }
     public function indexDataTipeJaminan()
     {
-        $tipeJaminan = TipeJaminan::all();
-        return view('pages/m_tipe_jaminan/data-tipe-jaminan', ['title' => 'data-tipe-jaminan', 'tipeJaminan' => $tipeJaminan]);
+        $tipeJaminan = TipeJaminan::latest();
+        if (request('code_tipe_jaminan')) {
+            $this->filterData('code_tipe_jaminan', $tipeJaminan);
+        }
+        if (request('nama_tipe_jaminan')) {
+            $this->filterData('nama_tipe_jaminan', $tipeJaminan);
+        }
+        return view('pages/m_tipe_jaminan/data-tipe-jaminan', ['title' => 'data-tipe-jaminan', 'tipeJaminan' => $tipeJaminan->get()]);
     }
 
     public function indexCreateTipeJaminan()

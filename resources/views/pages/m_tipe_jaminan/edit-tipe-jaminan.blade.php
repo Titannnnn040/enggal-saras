@@ -74,7 +74,7 @@
                                     </div>
                                 </div>   
                                 <div class="col-lg-12">
-                                    <a href="/bed/data-bed" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
+                                    <a href="/tipe-jaminan/data-tipe-jaminan" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
                                     <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                 </div> 
 

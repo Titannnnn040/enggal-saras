@@ -95,7 +95,7 @@
                                                     <select class="form-select @error('layanan_id') is-invalid @enderror" name="layanan_id"  id="layanan_id">
                                                         <option value="">Please Select</option>
                                                         @foreach ($layanan as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->nama_layanan }}</option>
+                                                            <option value="{{ $item->id }}" {{ $item->id == old('layanan_id') ? 'selected' : '' }}>{{ $item->nama_layanan }}</option>
                                                         @endforeach
                                                     </select>          
                                                     @error('layanan_id')
@@ -159,7 +159,7 @@
                                                 <label for="nama_petugas" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama :</label>
                                                 
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('nama_petugas') is-invalid @enderror" id="nama_petugas" name="nama_petugas" value="namanya" readonly>
+                                                    <input type="text" class="form-control @error('nama_petugas') is-invalid @enderror" id="nama_petugas" name="nama_petugas" value="" readonly>
                                                     @error('nama_petugas')
                                                         <div class="invalid-feedback d-block">
                                                             {{ $message }}

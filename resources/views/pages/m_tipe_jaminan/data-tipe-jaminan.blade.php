@@ -20,13 +20,13 @@
                 <form action="" class="d-flex col-lg-12">
                   <div class="row col-lg-12">
                     <div class="search col-lg-6">
-                      <h6>Nama Lengkap</h6>
-                      <input type="text" name="nama_lengkap">
+                      <h6>Kode Tipe Jaminan</h6>
+                      <input type="text" name="code_tipe_jaminan">
                     </div>
                    
                     <div class="search col-lg-6">
-                      <h6>Nik</h6>
-                      <input type="text" name="nik">
+                      <h6>Nama Tipe Jaminan</h6>
+                      <input type="text" name="nama_tipe_jaminan">
                     </div>
                     <div class="submit-filter d-flex  justify-content-between mt-3">
                       <button type="submit" class="btn btn-success col-lg-1">Search</button>

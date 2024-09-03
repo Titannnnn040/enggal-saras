@@ -27,11 +27,22 @@ class JaminanController extends Controller
 
         return 'CJ-' . date('dmy') . $kd;
     }
-
+    public function filterData($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, 'like', '%' . request($field) . '%');
+        }
+    }
     public function indexDataJaminan()
     {
-        $Jaminan = Jaminan::all();
-        return view('pages/m_jaminan/data-jaminan', ['title' => 'data-jaminan', 'Jaminan' => $Jaminan]);
+        $Jaminan = Jaminan::latest();
+        if (request('code_jaminan')) {
+            $this->filterData('code_jaminan', $Jaminan);
+        }
+        if (request('nama_jaminan')) {
+            $this->filterData('nama_jaminan', $Jaminan);
+        }
+        return view('pages/m_jaminan/data-jaminan', ['title' => 'data-jaminan', 'Jaminan' => $Jaminan->get()]);
     }
 
     public function indexCreateJaminan()
