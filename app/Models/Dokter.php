@@ -11,6 +11,13 @@ class Dokter extends Model
     use HasFactory, HasUuids;
     protected $table = 'm_dokter';
     protected $guarded=['id'];
+    protected $primaryKey = 'id';
+    
+    // Tentukan tipe primary key
+    protected $keyType = 'string';
+
+    // Nonaktifkan auto-increment karena UUID bukan integer
+    public $incrementing = false;
 
     public function Layanan(){
         return $this->belongsTo(Layanan::class, 'layanan_id', 'id');

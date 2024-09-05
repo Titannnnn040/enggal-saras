@@ -101,6 +101,15 @@
               </div>
             </div>
 
+           <div class="sub-menu">
+              <a href="/perawat/data-perawat" class="dropdown-menu justify-content-between col-lg-10 d-flex mt-1 {{ ($title === 'data-tipe-jaminan') ? 'active' : '' }} text-decoration-none">
+                <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-clipboard-user me-2"></i>
+                  <span class="nav-link-text ms-2">Perawat</span>
+                </div>
+              </a>
+            </div>
+
             <div class="sub-menu">
               <a class="dropdown-menu justify-content-between col-lg-10 d-flex mt-1 text-decoration-none">
                 <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">

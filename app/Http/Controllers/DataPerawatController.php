@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Perawat;
+use Illuminate\Validation\Rule;
 
 class DataPerawatController extends Controller
 {
@@ -29,7 +30,7 @@ class DataPerawatController extends Controller
     public function update(Request $request, $id){
         $request->validate([
             'nama_lengkap' => ['required', 'max:255'],
-            'nik'          => ['required', 'numeric', 'digits_between:3,20', 'unique:m_perawat,nik']
+            'nik'          => ['required', 'numeric', 'digits_between:3,20', Rule::unique('m_perawat', 'nik')->ignore($id)]
         ]);
         $findPerawat = Perawat::find($id);
         $findPerawat->update([

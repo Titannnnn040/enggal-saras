@@ -20,7 +20,7 @@
                 <form action="" class="d-flex col-lg-12">
                   <div class="row col-lg-12">
                     <div class="search col-lg-6">
-                      <h6>Nama Lengkap</h6>
+                      <h6>Nama Dokter</h6>
                       <input type="text" name="nama_lengkap">
                     </div>
                     

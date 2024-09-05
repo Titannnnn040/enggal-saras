@@ -6,6 +6,7 @@ use App\Models\PenjadwalanDokter;
 use App\Models\Layanan;
 use App\Models\Dokter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ScheduleDokterController extends Controller
 {
@@ -22,7 +23,18 @@ class ScheduleDokterController extends Controller
     {
 
     }
-
+    public function filterData($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, 'like', '%' . request($field) . '%');
+        }
+    }
+    public function filterDataUnique($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, request($field));
+        }
+    }
     public function create(Request $request) {
         $validatedData = $request->validate([
             'layanan_id'     => ['required'],
@@ -53,8 +65,12 @@ class ScheduleDokterController extends Controller
      */
     public function store()
     {
-        $jadwalDokter = PenjadwalanDokter::all();
-        return view('m_dokter/jadwal-dokter', ['title' => 'jadwal-dokter', 'jadwalDokter' => $jadwalDokter]);
+        $jadwalDokter = PenjadwalanDokter::latest();
+
+        if(request('nama_lengkap')) {
+            $this->filterData('nama_lengkap', $dokter);
+        }
+        return view('m_dokter/jadwal-dokter', ['title' => 'jadwal-dokter', 'jadwalDokter' => $jadwalDokter->get()]);
     }
 
     public function storeForm()

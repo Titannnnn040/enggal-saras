@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('nik_dokter');
             $table->string('id_dokter');
-            $table->string('nama_petugas');
+            $table->string('nama_petugas')->nullable();
             $table->timestamps();
         });
     }

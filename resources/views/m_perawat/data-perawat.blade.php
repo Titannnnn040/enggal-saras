@@ -30,7 +30,7 @@
                     </div>
                     <div class="submit-filter d-flex  justify-content-between mt-3">
                       <button type="submit" class="btn btn-success col-lg-1">Search</button>
-                      <a href="/dashboard/perawat/data-perawat" class="btn btn-danger col-lg-1">clear</a>
+                      <a href="/perawat/data-perawat" class="btn btn-danger col-lg-1">clear</a>
                     </div>
                   </div>
                 </form>

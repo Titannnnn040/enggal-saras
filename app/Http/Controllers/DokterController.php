@@ -6,13 +6,14 @@ use App\Models\Dokter;
 use App\Models\Layanan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DokterController extends Controller
 {
     private function generateTmNumber()
     {
         $lastTmNumber = Dokter::whereDate('created_at', Carbon::today())
-        ->where('no_dokter', 'like', 'KM-' . date('dmy') . '%')
+        ->where('no_dokter', 'like', 'TM-' . date('dmy') . '%')
         ->orderBy('no_dokter', 'desc')
         ->first();
 
@@ -26,6 +27,18 @@ class DokterController extends Controller
         $kd = str_pad($newNumber, 2, '0', STR_PAD_LEFT);
 
         return 'TM-' . date('dmy') . $kd;
+    }
+    public function filterData($field, $model, $unique)
+    {
+        if (request($field)) {
+            $model->where($field, 'like', '%' . request($field) . '%');
+        }
+    }
+    public function filterDataUnique($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, request($field));
+        }
     }
     /**
      * Display a listing of the resource.
@@ -71,18 +84,12 @@ class DokterController extends Controller
     {   
         $dokter = Dokter::latest();
 
-        if(request('no_dokter')){
-            $dokter->where('no_dokter', 'like', '%' . request('no_dokter') . '%');
-        } 
-        if(request('nama_lengkap')){
-            $dokter->where('nama_lengkap', 'like', '%' . request('nama_lengkap') . '%');
-        } 
-        if(request('nik')){
-            $dokter->where('nik', 'like', request('nik'));
-        } 
-        if(request('no_bpjs')){
-            $dokter->where('no_bpjs_asuransi', 'like', request('no_bpjs'));
-        } 
+        if (request('no_dokter')) {
+            $this->filterDataUnique('no_dokter', $dokter);
+        }
+        if(request('nama_lengkap')) {
+            $this->filterData('nama_lengkap', $dokter);
+        }
         // $layanan = Layanan::all();
         return view('m_dokter/data-dokter', ['title' => 'data-dokter', 'dokter' => $dokter->get()]);
     }
@@ -113,12 +120,12 @@ class DokterController extends Controller
         $request->validate([
             'no_dokter'     => [''],
             'nama_lengkap'  => ['required', 'max:255'],
-            'code_bpjs'     => ['required', 'numeric', 'digits_between:12,15', 'unique:m_dokter,code_bpjs'],
+            'code_bpjs'     => ['required', 'numeric', 'digits_between:12,15', Rule::unique('m_dokter', 'code_bpjs')->ignore($id)],
             'sip'           => ['required', 'numeric', 'digits_between:12,15'],
             'end_date'      => ['required'],
             'layanan_id'       => ['required'],
             'status'        => ['required'],
-            'nik_dokter'    => ['required', 'digits_between:12,15', 'unique:m_dokter,nik_dokter'],
+            'nik_dokter'    => ['required', 'digits_between:12,15', Rule::unique('m_dokter', 'nik_dokter')->ignore($id)],
             'id_dokter'     => [],
             'nama_petugas'  => []
         ]);

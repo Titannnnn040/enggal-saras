@@ -11,16 +11,16 @@ use App\Models\Kelurahan;
 class Kecamatan extends Model
 {
     use HasFactory;
-
+    protected $table = 'districts';
     public function Rawat_Jalan(){
         return $this->hasMany(Rawat_Jalan::class);
     }
 
     public function City(){
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, 'id', 'regency_id');
     }
 
     public function Kelurahan(){
-        return $this->hasMany(Kelurahan::class);
+        return $this->hasMany(Kelurahan::class, 'district_id', 'id');
     }
 }
