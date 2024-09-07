@@ -50,19 +50,15 @@ class PasienController extends Controller
         $rawatJalan = Rawat_Jalan::latest();
 
         if(request('no_rekam_medis')){
-            // $rawatJalan = Rawat_Jalan::latest();
             $rawatJalan->where('no_rekam_medis', 'like', '%' . request('no_rekam_medis') . '%');
         } 
         if(request('nama_lengkap')){
-            // $rawatJalan = Rawat_Jalan::latest();
             $rawatJalan->where('nama_lengkap', 'like', '%' . request('nama_lengkap') . '%');
         } 
         if(request('nik')){
-            // $rawatJalan = Rawat_Jalan::latest();
             $rawatJalan->where('nik', 'like', request('nik'));
         } 
         if(request('no_bpjs')){
-            // $rawatJalan = Rawat_Jalan::latest();
             $rawatJalan->where('no_bpjs_asuransi', 'like', request('no_bpjs'));
         } 
 

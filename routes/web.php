@@ -14,6 +14,7 @@ use App\Http\Controllers\TarifRadiologiController;
 use App\Http\Controllers\TarifLabController;
 use App\Http\Controllers\TipeJaminanController;
 use App\Http\Controllers\JaminanController;
+use App\Http\Controllers\ReservasiPasienController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -167,3 +168,11 @@ Route::post('/jaminan/create-jaminan',[JaminanController::class,'storeJaminan'])
 Route::get('/jaminan/edit-jaminan/{id}',[JaminanController::class,'edit'])->name('edit-jaminan');
 Route::put('/jaminan/update-jaminan/{id}',[JaminanController::class,'update'])->name('update-jaminan');
 Route::delete('/jaminan/delete-jaminan/{id}',[JaminanController::class,'destroy'])->name('delete-jaminan');
+
+// ROUTE RESERVASI PASIEN
+Route::get('/pasien/data-reservasi-pasien',[ReservasiPasienController::class,'indexDataReservasi'])->name('data-reservasi');
+Route::get('/pasien/create-reservasi-pasien',[ReservasiPasienController::class,'indexCreateReservasi'])->name('create-reservasi');
+Route::post('/pasien/create-reservasi-pasien',[ReservasiPasienController::class,'storeReservasi'])->name('reservasi');
+
+Route::get('/getPatientData/{noRekamMedis}', [ReservasiPasienController::class, 'getPatientData']);
+Route::get('/getDoctorsByLayanan/{layanan_id}', [ReservasiPasienController::class, 'getDoctorsByLayanan']);
