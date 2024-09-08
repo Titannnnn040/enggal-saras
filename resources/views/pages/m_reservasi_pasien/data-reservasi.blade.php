@@ -57,44 +57,86 @@
                       <thead>
                           <tr>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Jaminan</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Jaminan</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tipe Jaminan</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Detail Harga Kwitansi</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Reservasi</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Reservasi</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam Reservasi</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Praktek</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Medical Record</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Pasien</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nomor HP</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
                       <?php $num = 1 ?>
-                      {{-- @foreach ($Jaminan as $item)
+                      @foreach ($reservasi as $item)
                         <tbody>
                             <tr>
                                 <td class="align-middle text-center text-xs">
                                     <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                                 </td>
-
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->code_jaminan }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_reservasi }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_jaminan }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->reservasi_date }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->tipe_jaminan }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->time }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->detail_harga }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Layanan->nama_layanan }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                  @foreach ($dokter as $itemDokter)
+                                    @if ($item->dokter_code == $itemDokter->no_dokter)
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $itemDokter->nama_lengkap }}</p>
+                                    @endif
+                                  @endforeach
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jadwal_praktik }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_rm }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pasien_name }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->phone_no }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                  @if($item->status == 1)
+                                    <span class="btn btn-sm btn-info mt-3">Booking</span>
+                                  @elseif ($item->status == 2)
+                                    <span class="btn btn-success mt-3">Register</span>
+                                  @elseif ($item->status == 3)
+                                    <span class="btn btn-danger mt-3">Skip</span>
+                                  @endif
                                 </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                    <form action="/jaminan/edit-jaminan/{{ $item->id }}">
-                                      @csrf
-                                      <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
-                                    </form>
+                                      <form id="update-form" action="/pasien/update-status-reservasi/{{ $item->id }}" method="post">
+                                          @csrf
+                                          @method('put')
+                                          <button type="button" class="btn btn-success mt-3" id="button-create-user" style="margin-right:10px;">
+                                              <i class="fa-solid fa-check"></i>
+                                          </button>
+                                      </form>
                                     
-                                      <form action="/jaminan/delete-jaminan/{{ $item->id }}" method="post">
+
+                                      <form action="/pasien/edit-reservasi-pasien/{{ $item->id }}">
+                                        @csrf
+                                        <button class="btn btn-outline-success mt-3" id="button-create-user" style="margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                      </form>
+                                    
+                                      <form action="/pasien/delete-reservasi-pasien/{{ $item->id }}" method="post">
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">
+                                        <button class="btn btn-outline-danger mt-3" onclick="return confirm('You Sure?')" style=" ">
                                           <i class="fa-solid fa-trash"></i>
                                         </button>                                      
                                       </form>
@@ -103,7 +145,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                      @endforeach --}}
+                      @endforeach
                   </table>
               </div>
           </div>
@@ -408,8 +450,11 @@
     Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
   }
 </script>
-<!-- Github buttons -->
-<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+{{-- SWEET ALERT --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+</script>
 <script src="js/material-dashboard.min.js"></script>
 <script>
   $(document).ready(function () {
@@ -418,42 +463,59 @@
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Get the modal
-    var modal = document.getElementById("createUserModal");
+  document.getElementById('button-create-user').addEventListener('click', function() {
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "Do you want to update the reservation status?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, update it!'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // Jika pengguna mengkonfirmasi, kirim form
+              document.getElementById('update-form').submit();
+          }
+      });
+  });
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("button-create-user");
+  document.addEventListener("DOMContentLoaded", function () {
+      // Get the modal
+      var modal = document.getElementById("createUserModal");
 
-    // Get the <span> element that closes the modal
-    var closeBtn = document.querySelector(".close");
+      // Get the button that opens the modal
+      var btn = document.getElementById("button-create-user");
 
-    // When the user clicks the button, open the modal
-    btn.onclick = function () {
-        modal.style.display = "block"; // Ensure the modal is displayed
-        setTimeout(function () {
-            modal.classList.add("show"); // Add the transition class after a slight delay
-        }, 10);
-    }
+      // Get the <span> element that closes the modal
+      var closeBtn = document.querySelector(".close");
 
-    // When the user clicks on <span> (x), close the modal
-    closeBtn.onclick = function () {
-        modal.classList.remove("show"); // Remove the transition class
-        setTimeout(function () {
-            modal.style.display = "none"; // Hide the modal after the transition
-        }, 400); // Match this duration with the CSS transition duration
-    }
+      // When the user clicks the button, open the modal
+      btn.onclick = function () {
+          modal.style.display = "block"; // Ensure the modal is displayed
+          setTimeout(function () {
+              modal.classList.add("show"); // Add the transition class after a slight delay
+          }, 10);
+      }
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.classList.remove("show"); // Remove the transition class
-            setTimeout(function () {
-                modal.style.display = "none"; // Hide the modal after the transition
-            }, 400); // Match this duration with the CSS transition duration
-        }
-    }
-});
+      // When the user clicks on <span> (x), close the modal
+      closeBtn.onclick = function () {
+          modal.classList.remove("show"); // Remove the transition class
+          setTimeout(function () {
+              modal.style.display = "none"; // Hide the modal after the transition
+          }, 400); // Match this duration with the CSS transition duration
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+          if (event.target == modal) {
+              modal.classList.remove("show"); // Remove the transition class
+              setTimeout(function () {
+                  modal.style.display = "none"; // Hide the modal after the transition
+              }, 400); // Match this duration with the CSS transition duration
+          }
+      }
+  });
 </script>
 {{-- Notification --}}
 <script>

@@ -15,8 +15,9 @@
               <div class="card-body px-5 pb-2">
                 <div class="form"  style="background-color:#FDFEFD;">
                     <div class="content">
-                        <form action="" method="post" class="d-flex col-lg-12"> 
+                        <form action="/pasien/update-reservasi-pasien/{{$reservasi->id}}" method="post" class="d-flex col-lg-12"> 
                             @csrf     
+                            @method('put')
                             <div class="d-flex flex-column">
 
                                 <div class="d-flex col-lg-6 mb-4">
@@ -36,7 +37,7 @@
                                                     <select id="mySelect" class="form-select @error('no_rm') is-invalid @enderror" name="no_rm"  id="no_rm">
                                                         <option value="">Please Select</option>
                                                         @foreach ($rawatJalan as $item)
-                                                            <option value="{{$item->no_rekam_medis}}">{{$item->no_rekam_medis . '|' . $item->nama_lengkap}}</option>
+                                                            <option value="{{$item->no_rekam_medis}}" {{$reservasi->no_rm == $item->no_rekam_medis ? 'selected' : ''}}>{{$item->no_rekam_medis . '|' . $item->nama_lengkap}}</option>
                                                         @endforeach
 
                                                     </select>          
@@ -55,7 +56,7 @@
                                             <div class="d-flex">
                                                 <label for="pasien_name" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama Pasien :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('pasien_name') is-invalid @enderror" id="pasien_name" name="pasien_name" value="" readonly>
+                                                    <input type="text" class="form-control @error('pasien_name') is-invalid @enderror" id="pasien_name" name="pasien_name" value="{{$reservasi->pasien_name}}" readonly>
                                                     @error('pasien_name')
                                                     <div class="invalid-feedback d-block">
                                                         {{ $message }}
@@ -69,7 +70,7 @@
                                             <div class="d-flex">
                                                 <label for="address" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Alamat :</label>
                                                 <div class="d-flex flex-column  col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" readonly>
+                                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ $reservasi->address }}" readonly>
                                                     @error('address')
                                                         <div class="invalid-feedback d-block">
                                                             {{ $message }}
@@ -83,7 +84,7 @@
                                             <div class="d-flex">
                                                 <label for="phone_no" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No. Telp :</label>
                                                 <div class="d-flex flex-column  col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('phone_no') is-invalid @enderror" id="phone_no" name="phone_no" value="{{ old('phone_no') }}" readonly>
+                                                    <input type="text" class="form-control @error('phone_no') is-invalid @enderror" id="phone_no" name="phone_no" value="{{ $reservasi->phone_no }}" readonly>
                                                     @error('phone_no')
                                                         <div class="invalid-feedback d-block">
                                                             {{ $message }}
@@ -96,7 +97,7 @@
                                             <div class="d-flex">
                                                 <label for="gender" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jenis Kelamin :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender" value="{{ old('gender') }}" readonly>   
+                                                    <input type="text" class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender" value="{{ $reservasi->gender }}" readonly>   
                                                     @error('gender')
                                                     <div class="invalid-feedback d-block">
                                                         {{ $message }}
@@ -119,10 +120,10 @@
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
                                                     <div class="d-flex">
                                                         <div class="col-md-7 col-lg-9">
-                                                            <input type="date" class="form-control @error('reservasi_date') is-invalid @enderror" id="reservasi_date" name="reservasi_date" value="{{ old('reservasi_date') }}">      
+                                                            <input type="date" class="form-control @error('reservasi_date') is-invalid @enderror" id="reservasi_date" name="reservasi_date" value="{{ $reservasi->reservasi_date }}">      
                                                         </div>
                                                         <div class="col-lg-3 ms-1">
-                                                            <input type="time" class="form-control @error('time') is-invalid @enderror" id="time" name="time" value="{{ old('time') }}" >      
+                                                            <input type="time" class="form-control @error('time') is-invalid @enderror" id="time" name="time" value="{{ $reservasi->time }}" >      
                                                         </div>
                                                     </div>
                                                     @error('reservasi_date')
@@ -141,7 +142,7 @@
                                                     <select class="form-select @error('layanan_id') is-invalid @enderror" name="layanan_id" id="layananSelect">
                                                         <option value="">Please Select</option>
                                                         @foreach ($layanan as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->nama_layanan }}</option>
+                                                            <option value="{{ $item->id }}" {{$item->id == $reservasi->layanan_id ? 'selected' : ''}}>{{ $item->nama_layanan }}</option>
                                                         @endforeach
                                                     </select>          
                                                     @error('layanan_id')
@@ -158,9 +159,13 @@
                                                 <label for="dokter_code" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Dokter :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
                                                     <select id="dokterSelect" class="form-select @error('dokter_code') is-invalid @enderror" name="dokter_code">
-                                                        <option value="">Please Select</option>
+                                                        @foreach ($dokterAll as $itemDokter)
+                                                            @if ( $itemDokter->layanan_id == $reservasi->layanan_id )
+                                                                <option value="{{$itemDokter->no_dokter}}" {{$itemDokter->no_dokter == $reservasi->dokter_code ? 'selected' : ''}}>{{$itemDokter->no_dokter . '|' . $itemDokter->nama_lengkap }}</option>
+                                                            @endif
+                                                        @endforeach
                                                     </select>          
-                                                    @error('dokter_code')
+                                                    @error('dokter_code')   
                                                     <div class="invalid-feedback d-block">
                                                         {{ $message }}
                                                     </div>
@@ -176,8 +181,8 @@
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
                                                     <select class="form-select @error('jadwal_praktik') is-invalid @enderror" name="jadwal_praktik"  id="jadwal_praktik">
                                                         <option value="">please select</option>
-                                                        <option value="PAGI" {{old('jadwal_praktik' == 'PAGI' ? 'selected' : '')}}>PAGI</option>
-                                                        <option value="SORE-MALAM"{{old('jadwal_praktik' == 'SORE-MALAM' ? 'selected' : '')}}>SORE MALAM</option>
+                                                        <option value="PAGI" {{$reservasi->jadwal_praktik == 'PAGI' ? 'selected' : ''}}>PAGI</option>
+                                                        <option value="SORE-MALAM"{{$reservasi->jadwal_praktik == 'SORE-MALAM' ? 'selected' : ''}}>SORE MALAM</option>
                                                     </select> 
                                                     @error('jadwal_praktik')
                                                         <div class="invalid-feedback d-block">
@@ -195,7 +200,7 @@
                                                     <select class="form-select @error('jaminan_id') is-invalid @enderror" name="jaminan_id"  id="jaminan_id">
                                                         <option value="">Please Select</option>
                                                         @foreach ($jaminan as $item)
-                                                            <option value="{{$item->id}}" {{$item->id == old('jaminan_id')}}>{{$item->nama_jaminan}}</option>
+                                                            <option value="{{$item->id}}" {{$item->id == $reservasi->jaminan_id ? 'selected' : ''}}>{{$item->nama_jaminan}}</option>
                                                         @endforeach
                                                     </select>          
                                                     @error('jaminan_id')

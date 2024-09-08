@@ -23,4 +23,7 @@ class Layanan extends Model
     public function PenjadwalanDokter(){
         return $this->hasMany(PenjadwalanDokter::class);
     }
+    public function ReservasiPasien(){
+        return $this->hasMany(ReservasiPasien::class);
+    }
 }

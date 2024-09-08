@@ -173,6 +173,11 @@ Route::delete('/jaminan/delete-jaminan/{id}',[JaminanController::class,'destroy'
 Route::get('/pasien/data-reservasi-pasien',[ReservasiPasienController::class,'indexDataReservasi'])->name('data-reservasi');
 Route::get('/pasien/create-reservasi-pasien',[ReservasiPasienController::class,'indexCreateReservasi'])->name('create-reservasi');
 Route::post('/pasien/create-reservasi-pasien',[ReservasiPasienController::class,'storeReservasi'])->name('reservasi');
+Route::get('/pasien/edit-reservasi-pasien/{id}',[ReservasiPasienController::class,'edit'])->name('edit-reservasi');
+Route::put('/pasien/update-reservasi-pasien/{id}',[ReservasiPasienController::class,'update'])->name('update-reservasi');
+Route::delete('/pasien/delete-reservasi-pasien/{id}',[ReservasiPasienController::class,'destroy'])->name('delete-reservasi');
+
+Route::put('/pasien/update-status-reservasi/{id}',[ReservasiPasienController::class,'updateStatus'])->name('update-status-reservasi');
 
 Route::get('/getPatientData/{noRekamMedis}', [ReservasiPasienController::class, 'getPatientData']);
 Route::get('/getDoctorsByLayanan/{layanan_id}', [ReservasiPasienController::class, 'getDoctorsByLayanan']);
