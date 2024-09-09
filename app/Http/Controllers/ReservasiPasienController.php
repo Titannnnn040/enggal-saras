@@ -10,6 +10,7 @@ use App\Models\Jaminan;
 use App\Models\PenjadwalanDokter;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservasiPasienController extends Controller
 {
@@ -79,8 +80,32 @@ class ReservasiPasienController extends Controller
         $dokter = Dokter::where('layanan_id', $layananId)->get();
         return view('pages/m_reservasi_pasien/create-reservasi', ['title' => 'create-reservasi-pasien', 'rawatJalan' => $rawatJalan, 'layanan' => $layanan, 'dokter' => $dokter, 'jaminan' => $jaminan, 'jadwalDokter' => $jadwalDokter]);
     }
-
+    public function getQueue($requestParam, $input, $parameter, $table, $output1, $output2)
+    {
+        // Ambil nilai dari request menggunakan parameter input
+        $request = request()->get($requestParam);
+    
+        // Tentukan prefix berdasarkan input yang diberikan
+        $prefix = $request === $input ? $output1 : $output2;
+    
+        // Hitung jumlah antrian berdasarkan parameter
+        $count = DB::table($table)
+                   ->where($parameter, $request)
+                   ->count();
+        
+        // Tentukan nomor antrian berikutnya
+        $value = $prefix . '-' . str_pad($count + 1, 3, '0', STR_PAD_LEFT);
+    
+        return $value;
+    }
     public function storeReservasi(Request $request){
+        $antrian = $request->input('jadwal_praktik');
+
+        // Parameter untuk pemanggilan fungsi getQueue
+        $table = 'm_reservasi_pasien';
+        $parameter = 'jadwal_praktik';
+        
+        // Tentukan nilai no_antrian dengan benar
         $validatedData = $request->validate([
             'no_reservasi'   => [''],
             'no_rm'          => ['required'],
@@ -94,11 +119,13 @@ class ReservasiPasienController extends Controller
             'dokter_code'    => ['required'],
             'jadwal_praktik' => ['required'],
             'jaminan_id'     => ['required'],
-            'status'         => ['']
+            'status'         => [''],
+            'no_antrian'     => ['']
         ]);
 
         $validatedData['no_reservasi'] = $this->generateRnNumber();
         $validatedData['status'] = 1;
+        $validatedData['no_antrian'] = $this->getQueue('jadwal_praktik', 'PAGI', $parameter, $table, 'P', 'S');
         reservasiPasien::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/pasien/data-reservasi-pasien');

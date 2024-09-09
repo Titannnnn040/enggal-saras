@@ -109,12 +109,15 @@
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->phone_no }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_antrian }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
                                   @if($item->status == 1)
                                     <span class="btn btn-sm btn-info mt-3">Booking</span>
                                   @elseif ($item->status == 2)
-                                    <span class="btn btn-success mt-3">Register</span>
+                                    <span class="btn btn-sm btn-success mt-3">Register</span>
                                   @elseif ($item->status == 3)
-                                    <span class="btn btn-danger mt-3">Skip</span>
+                                    <span class="btn btn-sm btn-danger mt-3">Skip</span>
                                   @endif
                                 </td>
                                 <td class="align-middle text-center">
