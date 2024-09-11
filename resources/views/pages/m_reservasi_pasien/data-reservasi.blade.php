@@ -20,17 +20,62 @@
                 <form action="" class="d-flex col-lg-12">
                   <div class="row col-lg-12">
                     <div class="search col-lg-6">
-                      <h6>Kode Jaminan</h6>
-                      <input type="text" name="code_jaminan">
+                      <h6>No Reservasi</h6>
+                      <select id="mySelect" class="form-select" name="no_reservasi">
+                        <option value="">Please Select</option>
+                        @foreach ($reservasiPasien as $item)
+                            <option value="{{$item->no_reservasi}}">{{$item->no_reservasi}}</option>
+                        @endforeach
+                      </select>      
                     </div>
                    
                     <div class="search col-lg-6">
-                      <h6>Nama Jaminan</h6>
-                      <input type="text" name="nama_jaminan">
+                      <h6>No Rekam Medis</h6>
+                      <select id="mySelect2" class="form-select" name="no_rm">
+                        <option value="">Please Select</option>
+                        @foreach ($pasien as $item)
+                            <option value="{{$item->no_rekam_medis}}">{{$item->no_rekam_medis}} &nbsp;  | &nbsp; {{$item->nama_lengkap}}   </option>
+                        @endforeach
+                      </select>
                     </div>
+                   
+                    <div class="search col-lg-6">
+                      <h6>Tanggal Reservasi</h6>
+                      <input type="date" class="" name="reservasi_date">
+                    </div>
+                    
+                    <div class="search col-lg-6">
+                      <h6>Layanan</h6>
+                       <select id="" class="form-select" style="border:#AAAAAA solid 1px; padding:2.5px 0;border-radius:5px;" name="layanan_id">
+                        <option value="">Please Select</option>
+                        @foreach ($layanan as $item)
+                            <option value="{{$item->id}}">{{$item->nama_layanan}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+
+                    <div class="search col-lg-6">
+                      <h6>Jadwal Praktik</h6>
+                      <select id="" class="form-select"  style="border:#AAAAAA solid 1px; padding:2.5px 0;border-radius:5px;" name="jadwal_praktik">
+                        <option value="">&nbsp; Please Select</option>
+                        <option value="PAGI">PAGI</option>
+                        <option value="SORE-MALAM">SORE-MALAM</option>
+                      </select>
+                    </div>
+                    
+                    <div class="search col-lg-6">
+                      <h6>Status</h6>
+                      <select id="" class="form-select"  style="border:#AAAAAA solid 1px; padding:2.5px 0;border-radius:5px;" name="status">
+                        <option value="">Please Select</option>
+                        <option value="1" style="padding: 10px">BOOKING</option>
+                        <option value="2">REGISTER</option>
+                        <option value="3">SKIP</option>
+                      </select>
+                    </div>
+
                     <div class="submit-filter d-flex  justify-content-between mt-3">
                       <button type="submit" class="btn btn-success col-lg-1">Search</button>
-                      <a href="/jaminan/data-jaminan" class="btn btn-danger col-lg-1">clear</a>
+                      <a href="/pasien/data-reservasi-pasien" class="btn btn-danger col-lg-1">clear</a>
                     </div>
                   </div>
                 </form>
@@ -455,9 +500,9 @@
 </script>
 {{-- SWEET ALERT --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
-</script>
 <script src="js/material-dashboard.min.js"></script>
 <script>
   $(document).ready(function () {
@@ -466,6 +511,17 @@
 </script>
 
 <script>
+  $(document).ready(function() {
+    $('#mySelect').select2({
+      placeholder: "Please Select",
+    });
+  });
+  $(document).ready(function() {
+    $('#mySelect2').select2({
+      placeholder: "Please Select",
+    });
+  });
+
   document.getElementById('button-create-user').addEventListener('click', function() {
       Swal.fire({
           title: 'Are you sure?',

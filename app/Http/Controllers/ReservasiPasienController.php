@@ -8,6 +8,7 @@ use App\Models\Layanan;
 use App\Models\Dokter;
 use App\Models\Jaminan;
 use App\Models\PenjadwalanDokter;
+use App\Models\Rawat_Jalan as Pasien;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,12 +34,38 @@ class ReservasiPasienController extends Controller
         return 'RN-' . date('dmy') . $kd;
     }
 
+    public function filterData($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, 'like', '%' . request($field) . '%');
+        }
+    }
+
     public function indexDataReservasi()
     {
-        $reservasi = ReservasiPasien::all();
+        $reservasi = ReservasiPasien::latest();
     
+
+        if (request('no_reservasi')) {
+            $this->filterData('no_reservasi', $reservasi);
+        }elseif(request('no_rm')){
+            $this->filterData('no_rm', $reservasi);
+        }elseif(request('pasien_name')){
+            $this->filterData('pasien_name', $reservasi);
+        }elseif(request('layanan_id')){
+            $this->filterData('layanan_id', $reservasi);
+        }elseif(request('status')){
+            $this->filterData('status', $reservasi);
+        }elseif(request('reservasi_date')){
+            $this->filterData('reservasi_date', $reservasi);
+        }elseif(request('jadwal_praktik')){
+            $this->filterData('jadwal_praktik', $reservasi);
+        }
+        $reservasiPasien = ReservasiPasien::all();
+        $pasien = Pasien::all();
         $dokter = Dokter::all();
-        return view('pages/m_reservasi_pasien/data-reservasi', ['title' => 'data-reservasi-pasien', 'reservasi' => $reservasi, 'dokter' => $dokter]);
+        $layanan = Layanan::all();
+        return view('pages/m_reservasi_pasien/data-reservasi', ['title' => 'data-reservasi-pasien', 'reservasi' => $reservasi->get(), 'dokter' => $dokter, 'reservasiPasien' => $reservasiPasien, 'pasien' => $pasien, 'layanan' => $layanan]);
     }
 
     public function getPatientData($noRekamMedis)

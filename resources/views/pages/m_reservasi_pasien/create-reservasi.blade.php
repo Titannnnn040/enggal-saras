@@ -395,7 +395,7 @@
 <script>
     $(document).ready(function() {
         $('#mySelect').select2({
-            placeholder: "Pleas Select",
+            placeholder: "Please Select",
             });
     });
 
