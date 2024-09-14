@@ -252,7 +252,7 @@ class ReservasiPasienController extends Controller
         $reservasi = ReservasiPasien::find($id);
         if($reservasi->status == 1){
             $reservasi->update(['status' => 2]);
-            $request->session()->flash('success', 'Berhasil, Reservasi berstatus Register');
+            $request->session()->flash('success', 'Berhasil, Reservasi berstatus Confirm');
         }elseif($reservasi->status == 2){
             $reservasi->update(['status' => 3]);
             $request->session()->flash('success', 'Berhasil, Reservasi berstatus Skip');

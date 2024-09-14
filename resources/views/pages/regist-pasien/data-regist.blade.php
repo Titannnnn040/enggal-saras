@@ -23,7 +23,7 @@
                       <h6>No Reservasi</h6>
                       <select id="mySelect" class="form-select" name="no_reservasi">
                         <option value="">Please Select</option>
-                        @foreach ($reservasiPasien as $item)
+                        @foreach ($registPasien as $item)
                             <option value="{{$item->no_reservasi}}">{{$item->no_reservasi}}</option>
                         @endforeach
                       </select>      
@@ -90,10 +90,6 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Reservasi Pasien</h6>
-                <a href="/pasien/create-reservasi-pasien" class="my-0 me-3 btn-add-data d-flex align-items-center">
-                  <i class="fa-solid fa-plus me-1"></i>
-                  tambah data
-                </a>
               </div>
             </div>
             <div class="card-body px-5 pb-2">
@@ -102,48 +98,36 @@
                       <thead>
                           <tr>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Reservasi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Reservasi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam Reservasi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kasir</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Regist Code</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created Date</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">RM Code</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pasien Name</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Keluhan</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Poli Klinik</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Praktek</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Medical Record</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Pasien</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nomor HP</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Antrian</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jaminan</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pcare BPJS</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
                       <?php $num = 1 ?>
-                      @foreach ($reservasi as $item)
+                      @foreach ($registPasien as $item)
                         <tbody>
                             <tr>
                                 <td class="align-middle text-center text-xs">
                                     <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_reservasi }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center"></p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->reservasi_date }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->regist_code }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->time }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Layanan->nama_layanan }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                  @foreach ($dokter as $itemDokter)
-                                    @if ($item->dokter_code == $itemDokter->no_dokter)
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $itemDokter->nama_lengkap }}</p>
-                                    @endif
-                                  @endforeach
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jadwal_praktik }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->created_at }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_rm }}</p>
@@ -152,10 +136,22 @@
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pasien_name }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->phone_no }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->keluhan }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_antrian }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->layanan }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jam_praktek }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{$item->no_antrian}}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->dokter }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jaminan }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                   @if($item->status == 1)
@@ -168,22 +164,10 @@
                                 </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                      <form class="update-form" data-id="{{ $item->id }}" action="/pasien/update-status-reservasi/{{ $item->id }}" method="post">
-                                        @csrf
-                                        @method('put')
-                                        <button type="button" class="btn btn-success mt-3 button-create-user" data-id="{{ $item->id }}" style="margin-right:10px;">
-                                            <i class="fa-solid fa-check"></i>
-                                        </button>
-                                      </form>
-                                    
-                                      <form action="/pasien/register-pasien/{{ $item->id }}">
-                                        @csrf
-                                        <button class="btn btn-facebook mt-3" style="margin-right:10px;">
-                                          <i class="fa-solid fa-address-card"></i>
-                                        </button>
-                                      </form>
-                                    
-
+                                      <button type="button" class="btn btn-info mt-3" style="margin-right:10px;">
+                                        <i class="fa-solid fa-print"></i>
+                                    </button>
+                                  
                                       <form action="/pasien/edit-reservasi-pasien/{{ $item->id }}">
                                         @csrf
                                         <button class="btn btn-outline-success mt-3" style="margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>

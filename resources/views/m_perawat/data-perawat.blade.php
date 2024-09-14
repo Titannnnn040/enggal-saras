@@ -57,6 +57,7 @@
                       <thead>
                           <tr>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Perawat</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Lengkap</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NIK</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
@@ -69,7 +70,9 @@
                                 <td class="align-middle text-center text-xs">
                                     <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                                 </td>
-
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->perawat_code }}</p>
+                                </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_lengkap }}</p>
                                 </td>

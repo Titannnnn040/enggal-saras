@@ -6,71 +6,91 @@ use Illuminate\Http\Request;
 use App\Models\Perawat;
 use App\Http\Requests\StorePerawatRequest;
 use App\Http\Requests\UpdatePerawatRequest;
+use Carbon\Carbon;
 
 class PerawatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    private function generatePnNumber()
     {
-        //
-    }
+        $lastTmNumber = Perawat::whereDate('created_at', Carbon::today())
+        ->where('perawat_code', 'like', 'PN-' . date('dmy') . '%')
+        ->orderBy('perawat_code', 'desc')
+        ->first();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request $request)
+        if ($lastTmNumber) {
+        $lastNumber = intval(substr($lastTmNumber->perawat_code, -2));
+        $newNumber = $lastNumber + 1;
+        } else {
+        $newNumber = 1;
+        }
+
+        $kd = str_pad($newNumber, 2, '0', STR_PAD_LEFT);
+
+        return 'PN-' . date('dmy') . $kd;
+    }
+    public function indexData(Request $request){
+        $perawat = Perawat::latest();
+
+        if(request('nama_lengkap')){
+            $perawat->where('nama_lengkap', 'like', '%' . request('nama_lengkap') . '%');
+        }
+        if(request('nik')){
+            $perawat->where('nik', 'like', request('nik'));
+        }
+
+        return view('m_perawat/data-perawat', ['title' => 'data-perawat', 'perawat' => $perawat->get()]);
+    }
+    public function indexCreate()
+    {
+        return view('m_perawat/create-perawat', ['title' => 'create-perawat']);
+    }
+    public function store(Request $request)
     {
         // return $request->all();
         // die;
         $validatedData = $request->validate([
+            'perawat_code' => [],
             'nama_lengkap' => ['required', 'max:255'],
-            'nik'          => ['required', 'numeric', 'digits_between:3,20', 'unique:m_perawat,nik']
+            'nik'          => ['required', 'max:255', 'unique:m_perawat,nik'],
         ]);
-        
+        $validatedData['perawat_code'] = $this->generatePnNumber();
         Perawat::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/perawat/data-perawat');
     }
+    public function edit($id){
+        $findPerawat = Perawat::find($id);
+        return view('m_perawat/edit-perawat', ['perawat' => $findPerawat, 'title' => 'edit-perawat']);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store()
-    {
-        return view('m_perawat/create-perawat', ['title' => 'create-perawat']);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Perawat $perawat)
-    {
-        //
+    public function update(Request $request, $id){
+        $request->validate([
+            'nama_lengkap' => ['required', 'max:255'],
+            'nik'          => ['required', 'numeric', 'digits_between:3,20', Rule::unique('m_perawat', 'nik')->ignore($id)]
+        ]);
+        $findPerawat = Perawat::find($id);
+        $findPerawat->update([
+            'nama_lengkap' => $request->nama_lengkap,
+            'nik' => $request->nik
+        ]);
+        
+        if($findPerawat){
+            $request->session()->flash('success','Data berhasil di ubah');
+            return redirect('/perawat/data-perawat');
+        }else{
+            $request->session()->flash('failed','Data Gagal di ubah');
+            return redirect('/perawat/data-perawat');
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Perawat $perawat)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePerawatRequest $request, Perawat $perawat)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Perawat $perawat)
-    {
-        //
+    public function destroy(Request $request, $id){
+        $findPerawat = Perawat::find($id);
+        $findPerawat->delete($id);
+        if($findPerawat){
+            $request->session()->flash('success','Data berhasil di hapus');
+            return redirect('/perawat/data-perawat');
+        }else{
+            $request->session()->flash('failed','Data Gagal di hapus');
+            return redirect('/perawat/data-perawat');
+        }
     }
 }

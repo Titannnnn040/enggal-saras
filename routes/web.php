@@ -15,6 +15,7 @@ use App\Http\Controllers\TarifLabController;
 use App\Http\Controllers\TipeJaminanController;
 use App\Http\Controllers\JaminanController;
 use App\Http\Controllers\ReservasiPasienController;
+use App\Http\Controllers\RegisterPasienController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -56,12 +57,12 @@ Route::put('/pasien/update-pasien/{id}',[PasienController::class,'update'])->nam
 Route::delete('/pasien/delete-pasien/{id}',[PasienController::class,'destroy'])->name('destroy-pasien');
 
 // ROUTE MASTER PERAWAT
-Route::get('/perawat/create-perawat',[PerawatController::class,'store'])->name('create-perawat');
-Route::post('/perawat/create-perawat',[PerawatController::class,'create'])->name('create-perawat');
-Route::get('/perawat/data-perawat',[DataPerawatController::class,'store'])->name('data-perawat');
-Route::get('/perawat/edit/{id}',[DataPerawatController::class,'edit'])->name('edit-perawat');
-Route::put('/perawat/{id}',[DataPerawatController::class,'update'])->name('update-perawat');
-Route::delete('/perawat/{id}',[DataPerawatController::class,'destroy'])->name('destroy-perawat');
+Route::get('/perawat/create-perawat',[PerawatController::class,'indexCreate'])->name('create-perawat');
+Route::post('/perawat/create-perawat',[PerawatController::class,'store'])->name('store-perawat');
+Route::get('/perawat/data-perawat',[PerawatController::class,'indexData'])->name('data-perawat');
+Route::get('/perawat/edit/{id}',[PerawatController::class,'edit'])->name('edit-perawat');
+Route::put('/perawat/{id}',[PerawatController::class,'update'])->name('update-perawat');
+Route::delete('/perawat/{id}',[PerawatController::class,'destroy'])->name('destroy-perawat');
 
 // ROUTE MASTER TENAGA MEDIS
 Route::get('/tenaga-medis/create-tenaga-medis',[DokterController::class,'indexCreateDokter'])->name('create-dokter');
@@ -181,3 +182,9 @@ Route::put('/pasien/update-status-reservasi/{id}',[ReservasiPasienController::cl
 
 Route::get('/getPatientData/{noRekamMedis}', [ReservasiPasienController::class, 'getPatientData']);
 Route::get('/getDoctorsByLayanan/{layanan_id}', [ReservasiPasienController::class, 'getDoctorsByLayanan']);
+
+// ROUTE RESERVASI PASIEN
+Route::get('/pasien/data-regist-pasien',[RegisterPasienController::class,'indexDataRegistPasien'])->name('data-regist-pasien');
+Route::get('/pasien/register-pasien/{id}',[RegisterPasienController::class,'indexRegistPasien'])->name('regist-pasien');
+Route::post('/pasien/register-pasien/{id}',[RegisterPasienController::class,'store'])->name('store-regist-pasien');
+
