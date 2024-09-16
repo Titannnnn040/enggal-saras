@@ -79,10 +79,10 @@ class RegisterPasienController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $validatedData = $request->validate([
             'regist_code' => [''],
+            'no_reservasi' => [''],
             'no_antrian' => ['required'],
             'no_rm' => ['required'],
             'pasien_name' => ['required'],
@@ -111,6 +111,12 @@ class RegisterPasienController extends Controller
         ]);
         $validatedData['regist_code'] = $this->generateRnNumber();
         RegisterPasien::create($validatedData);
+
+        $no_reservasi = $request->no_reservasi;
+        ReservasiPasien::where('no_reservasi', $no_reservasi)->update([
+            'status' => 4
+        ]);
+        
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/pasien/data-regist-pasien');
     }
@@ -126,24 +132,71 @@ class RegisterPasienController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RegisterPasien $registerPasien)
+    public function edit(Request $request, $id)
     {
-        //
+        
+        $registerPasien = RegisterPasien::find($id);
+        $rawatJalan = Rawat_Jalan::all();
+        $layanan = Layanan::all();
+        $jaminan = Jaminan::all();
+        $jadwalDokter = PenjadwalanDokter::all();
+        $dokterAll = Dokter::all();
+        $perawat = Perawat::all();
+        $tarifPendaftaran = DB::table('m_tarif_pendaftaran')->select('code_pendaftaran', 'nama_pendaftaran', 'total_tarif')->get();   
+
+        $reservasi = ReservasiPasien::where('no_reservasi', $registerPasien->no_reservasi)->first();
+        $layananId = $request->input('layanan_id');
+
+        $dokter = Dokter::where('layanan_id', $layananId)->get();
+        return view('pages/regist-pasien/edit-regist', ['title' => 'edit-regist', 'registerPasien' => $registerPasien, 'tarifPendaftaran' => $tarifPendaftaran, 'perawat' => $perawat, 'rawatJalan' => $rawatJalan, 'layanan' => $layanan, 'dokter' => $dokter, 'jaminan' => $jaminan, 'jadwalDokter' => $jadwalDokter, 'reservasi' => $reservasi, 'dokterAll' => $dokterAll]);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RegisterPasien $registerPasien)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'jaminan' => ['required'],
+            'layanan' => ['required'],
+            'dokter' => ['required'],
+            'perawat_code' => ['required'],
+            'no_bpjs' => [''],
+            'tarif_pendaftaran' => ['required'],
+            'biaya' => ['required'],
+            'jam_praktek' => ['required'],
+            'keterangan_rujukan' => [''],
+            'jenis_kunjungan' => [''],
+            'saturasi_oksigen' => [''],
+            'suhu' => [''],
+            'tinggi_badan' => [''],
+            'berat_badan' => [''],
+            'lingkar_perut' => [''],
+            'imt' => [''],
+            'keluhan' => [''],
+            'sistole' => [''],
+            'diastole' => [''],
+            'respiratory_rate' => [''],
+            'heart_rate' => [''],
+            'lingkar_kepala' => [''],
+        ]);
+
+        $registerPasien = RegisterPasien::find($id);
+        $registerPasien->update($validatedData);
+        $request->session()->flash('success', 'Data berhasil dirubah');
+        return redirect('/pasien/data-regist-pasien');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RegisterPasien $registerPasien)
+    public function destroy(Request $request, $id)
     {
-        //
+        $registerPasien = RegisterPasien::find($id);
+        $registerPasien->delete($id);
+        $request->session()->flash('success', 'Data berhasil dihapus');
+        return redirect('/pasien/data-regist-pasien');
     }
 }

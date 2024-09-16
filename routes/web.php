@@ -187,4 +187,7 @@ Route::get('/getDoctorsByLayanan/{layanan_id}', [ReservasiPasienController::clas
 Route::get('/pasien/data-regist-pasien',[RegisterPasienController::class,'indexDataRegistPasien'])->name('data-regist-pasien');
 Route::get('/pasien/register-pasien/{id}',[RegisterPasienController::class,'indexRegistPasien'])->name('regist-pasien');
 Route::post('/pasien/register-pasien/{id}',[RegisterPasienController::class,'store'])->name('store-regist-pasien');
+Route::get('/pasien/edit-regist-pasien/{id}',[RegisterPasienController::class,'edit'])->name('edit-regist-pasien');
+Route::put('/pasien/update-regist-pasien/{id}',[RegisterPasienController::class,'update'])->name('update-regist-pasien');
+Route::delete('/pasien/delete-regist-pasien/{id}',[RegisterPasienController::class,'destroy'])->name('delete-regist-pasien');
 

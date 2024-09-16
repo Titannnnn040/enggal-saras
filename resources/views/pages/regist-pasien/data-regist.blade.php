@@ -153,32 +153,23 @@
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jaminan }}</p>
                                 </td>
-                                <td class="align-middle text-center text-xs">
-                                  @if($item->status == 1)
-                                    <span class="btn btn-sm btn-info mt-3">Booking</span>
-                                  @elseif ($item->status == 2)
-                                    <span class="btn btn-sm btn-success mt-3">Confirm</span>
-                                  @elseif ($item->status == 3)
-                                    <span class="btn btn-sm btn-danger mt-3">Skip</span>
-                                  @endif
-                                </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
                                       <button type="button" class="btn btn-info mt-3" style="margin-right:10px;">
                                         <i class="fa-solid fa-print"></i>
                                     </button>
                                   
-                                      <form action="/pasien/edit-reservasi-pasien/{{ $item->id }}">
+                                      <form action="/pasien/edit-regist-pasien/{{ $item->id }}">
                                         @csrf
                                         <button class="btn btn-outline-success mt-3" style="margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
                                       </form>
                                     
-                                      <form action="/pasien/delete-reservasi-pasien/{{ $item->id }}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="btn btn-outline-danger mt-3" onclick="return confirm('You Sure?')" style=" ">
-                                          <i class="fa-solid fa-trash"></i>
-                                        </button>                                      
+                                      <form action="/pasien/delete-regist-pasien/{{ $item->id }}" method="post" class="delete-form" data-id="{{$item->id}}">
+                                          @method('delete')
+                                          @csrf
+                                          <button type="button" class="btn btn-outline-danger mt-3 button-delete" data-id="{{$item->id}}" style=" ">
+                                              <i class="fa-solid fa-trash"></i>
+                                          </button>
                                       </form>
 
                                     </span>
@@ -532,6 +523,26 @@
             }
         });
     });
+  });
+
+  document.querySelectorAll('.button-delete').forEach(function(button) {
+    button.addEventListener('click', function() {
+        let formId = button.getAttribute('data-id');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you really want to delete this record?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit form dengan data-id yang sesuai
+                document.querySelector(`form.delete-form[data-id="${formId}"]`).submit();
+            }
+        });
+      });
   });
 
   

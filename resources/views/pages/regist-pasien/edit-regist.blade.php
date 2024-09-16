@@ -6,12 +6,13 @@
         <h1 class="fw-bolder m-1 " style="font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif'; font-size:48px; color:#344767;">Enggal Saras</h1>
         <div class="row">
             <div class="mt-4"> 
-                <form action="" method="post">
+                <form action="/pasien/update-regist-pasien/{{$registerPasien->id}}" method="post">
+                    @method('put')
                     @csrf
                     <div class="card my-3  border border-0">
                         <div class="card-header p-0 position-relative border border-0 mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">CREATE REGIST PASIEN</h6>
+                                <h6 class="text-white text-capitalize ps-3">EDIT REGIST PASIEN</h6>
                             </div>
                         </div>
                         <div class="card-body px-5 pb-2">
@@ -21,7 +22,20 @@
                                         <div class="d-flex col-lg-12 mb-4">
                                             <div class="col-lg-12 col-xl-12 col-xxl-12 me-0 row">
 
-                                                <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                                <div class="col-md-3 col-lg-3 col-xl-3 col-xxl-3">
+                                                    <div class="d-flex">
+                                                        <label for="date_now" class="form-label col-lg-4 col-xl-5 col-xxl-4 me-2 ">No Regist :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <div class="d-flex">
+                                                                <div class="col-md-7 col-lg-9">
+                                                                    <input type="date_now" class="form-control" value="{{$registerPasien->regist_code}}" readonly>      
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-5">
                                                     <div class="d-flex">
                                                         <label for="date_now" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Tanggal & Jam :</label>
                                                         <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
@@ -171,7 +185,7 @@
                                                             <select class="form-select @error('perawat_code') is-invalid @enderror" name="perawat_code" id="perawat_code">
                                                                 <option value="">please select</option>
                                                                 @foreach ($perawat as $perawat)
-                                                                    <option value="{{$perawat->perawat_code}}">{{$perawat->nama_lengkap}}</option>
+                                                                    <option value="{{$perawat->perawat_code}}" {{$perawat->perawat_code == $registerPasien->perawat_code ? 'selected' : ''}}>{{$perawat->nama_lengkap}}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('perawat_code')
@@ -187,7 +201,7 @@
                                                     <div class="d-flex">
                                                         <label for="no_bpjs" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No. BPJS :</label>
                                                         <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                            <input type="text" class="form-control @error('no_bpjs') is-invalid @enderror" id="no_bpjs" name="no_bpjs" value="" readonly>
+                                                            <input type="text" class="form-control @error('no_bpjs') is-invalid @enderror" id="no_bpjs" name="no_bpjs" value="{{$registerPasien->no_bpjs}}" readonly>
                                                             @error('no_bpjs')
                                                             <div class="invalid-feedback d-block">
                                                                 {{ $message }}
@@ -204,7 +218,7 @@
                                                             <select class="form-select @error('tarif_pendaftaran') is-invalid @enderror" name="tarif_pendaftaran" id="tarif_pendaftaran">
                                                                 <option value="">please select</option>
                                                                 @foreach ($tarifPendaftaran as $tarif)
-                                                                    <option value="{{ $tarif->code_pendaftaran }}" data-harga="{{ $tarif->total_tarif }}">{{ $tarif->nama_pendaftaran }}</option>
+                                                                    <option value="{{ $tarif->code_pendaftaran }}" {{$tarif->code_pendaftaran == $registerPasien->tarif_pendaftaran ? 'selected' : ''}} data-harga="{{ $tarif->total_tarif }}">{{ $tarif->nama_pendaftaran }}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('tarif_pendaftaran')
@@ -220,7 +234,7 @@
                                                     <div class="d-flex">
                                                         <label for="biaya" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Biaya :</label>
                                                         <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                            <input type="text" class="form-control @error('biaya') is-invalid @enderror" id="biaya" name="biaya" value="" readonly>
+                                                            <input type="text" class="form-control @error('biaya') is-invalid @enderror" id="biaya" name="biaya" value="{{$registerPasien->biaya}}" readonly>
                                                             @error('biaya')
                                                                 <div class="invalid-feedback d-block">
                                                                     {{ $message }}
@@ -248,7 +262,7 @@
                                                     <div class="d-flex">
                                                         <label for="keterangan_rujukan" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Keterangan Rujukan :</label>
                                                         <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                            <textarea class="form-control @error('keterangan_rujukan') is-invalid @enderror" id="keterangan_rujukan" name="keterangan_rujukan"cols="30" rows="2"></textarea>
+                                                            <textarea class="form-control @error('keterangan_rujukan') is-invalid @enderror" id="keterangan_rujukan" name="keterangan_rujukan"cols="30" rows="2">{{$registerPasien->keterangan_rujukan}}</textarea>
                                                             @error('keterangan_rujukan')
                                                             <div class="invalid-feedback d-block">
                                                                 {{ $message }}
@@ -280,8 +294,8 @@
                                                             <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
                                                                 <select class="form-select @error('jenis_kunjungan') is-invalid @enderror" name="jenis_kunjungan" id="jenis_kunjungan">
                                                                     <option value="">please select</option>
-                                                                    <option value="Kunjungan Sakit">Kunjungan Sakit</option>
-                                                                    <option value="Kunjungan Sehat">Kunjungan Sehat</option>
+                                                                    <option value="Kunjungan Sakit" {{$registerPasien->jenis_kunjungan == 'Kunjungan Sakit' ? 'selected' : ''}}>Kunjungan Sakit</option>
+                                                                    <option value="Kunjungan Sehat" {{$registerPasien->jenis_kunjungan == 'Kunjungan Sehat' ? 'selected' : ''}}>Kunjungan Sehat</option>
                                                                 </select>
                                                                 @error('jenis_kunjungan')
                                                                     <div class="invalid-feedback d-block">
@@ -297,7 +311,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="saturasi_oksigen" class="form-label col-lg-6 col-xl-6 col-xxl-6">Saturasi Oksigen(SpO2):</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('saturasi_oksigen') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="saturasi_oksigen" name="saturasi_oksigen" value="{{ old('saturasi_oksigen') }}">
+                                                                    <input type="text" class="form-control  @error('saturasi_oksigen') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="saturasi_oksigen" name="saturasi_oksigen" value="{{ $registerPasien->saturasi_oksigen }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">%</span>
                                                                     @error('saturasi_oksigen')
                                                                     <div class="invalid-feedback d-block">
@@ -309,7 +323,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="suhu" class="form-label col-lg-3 col-xl-3 col-xxl-3">Suhu:</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('suhu') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="suhu" name="suhu" value="{{ old('suhu') }}">
+                                                                    <input type="text" class="form-control  @error('suhu') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="suhu" name="suhu" value="{{ $registerPasien->suhu }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">&deg;C</span>
                                                                     @error('suhu')
                                                                     <div class="invalid-feedback d-block">
@@ -326,7 +340,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="tinggi_badan" class="form-label col-lg-6 col-xl-6 col-xxl-6">Tinggi Badan:</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('tinggi_badan') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="tinggi_badan"  oninput="hitungIMT()" name="tinggi_badan" value="{{ old('tinggi_badan') }}">
+                                                                    <input type="text" class="form-control  @error('tinggi_badan') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="tinggi_badan"  oninput="hitungIMT()" name="tinggi_badan" value="{{ $registerPasien->tinggi_badan }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">cm</span>
                                                                     @error('tinggi_badan')
                                                                     <div class="invalid-feedback d-block">
@@ -338,7 +352,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="berat_badan" class="form-label col-lg-3 col-xl-3 col-xxl-3">Berat Badan:</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('berat_badan') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="berat_badan"  oninput="hitungIMT()" name="berat_badan" value="{{ old('berat_badan') }}">
+                                                                    <input type="text" class="form-control  @error('berat_badan') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="berat_badan"  oninput="hitungIMT()" name="berat_badan" value="{{ $registerPasien->berat_badan }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">kg</span>
                                                                     @error('berat_badan')
                                                                     <div class="invalid-feedback d-block">
@@ -355,7 +369,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="lingkar_perut" class="form-label col-lg-6 col-xl-6 col-xxl-6">Lingkat Perut:</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('lingkar_perut') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="lingkar_perut" name="lingkar_perut" value="{{ old('lingkar_perut') }}">
+                                                                    <input type="text" class="form-control  @error('lingkar_perut') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="lingkar_perut" name="lingkar_perut" value="{{ $registerPasien->lingkar_perut }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">cm</span>
                                                                     @error('lingkar_perut')
                                                                     <div class="invalid-feedback d-block">
@@ -367,7 +381,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="imt" class="form-label col-lg-3 col-xl-3 col-xxl-3">IMT:</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('imt') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="imt" name="imt" value="{{ old('imt') }}">
+                                                                    <input type="text" class="form-control  @error('imt') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="imt" name="imt" value="{{ $registerPasien->imt }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">kg/m2</span>
                                                                     @error('imt')
                                                                     <div class="invalid-feedback d-block">
@@ -404,7 +418,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="sistole" class="form-label col-lg-6 col-xl-6 col-xxl-6">Sistole:</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('sistole') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="sistole" name="sistole" value="{{ old('sistole') }}">
+                                                                    <input type="text" class="form-control  @error('sistole') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="sistole" name="sistole" value="{{ $registerPasien->sistole }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">mmHg</span>
                                                                     @error('sistole')
                                                                     <div class="invalid-feedback d-block">
@@ -416,7 +430,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="diastole" class="form-label col-lg-3 col-xl-3 col-xxl-3">Diastole:</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('diastole') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="diastole" name="diastole" value="{{ old('diastole') }}">
+                                                                    <input type="text" class="form-control  @error('diastole') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="diastole" name="diastole" value="{{ $registerPasien->diastole }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">&deg;mmHg</span>
                                                                     @error('diastole')
                                                                     <div class="invalid-feedback d-block">
@@ -433,7 +447,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="respiratory_rate" class="form-label col-lg-6 col-xl-6 col-xxl-6">Respiratory Rate:</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('respiratory_rate') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="respiratory_rate" name="respiratory_rate" value="{{ old('respiratory_rate') }}">
+                                                                    <input type="text" class="form-control  @error('respiratory_rate') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="respiratory_rate" name="respiratory_rate" value="{{ $registerPasien->respiratory_rate }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">/minute</span>
                                                                     @error('respiratory_rate')
                                                                     <div class="invalid-feedback d-block">
@@ -446,7 +460,7 @@
                                                                 <label for="heart_rate" class="form-label col-lg-3 col-xl-3 col-xxl-3">Heart Rate
                                                                     :</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('heart_rate') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="heart_rate" name="heart_rate" value="{{ old('heart_rate') }}">
+                                                                    <input type="text" class="form-control  @error('heart_rate') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="heart_rate" name="heart_rate" value="{{ $registerPasien->heart_rate }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">bpm</span>
                                                                     @error('heart_rate')
                                                                     <div class="invalid-feedback d-block">
@@ -463,7 +477,7 @@
                                                             <div class="col-lg-6 d-flex">
                                                                 <label for="lingkar_kepala" class="form-label col-lg-6 col-xl-6 col-xxl-6">Lingkar Kepala:</label>
                                                                 <div class="d-flex col-lg-5">
-                                                                    <input type="text" class="form-control  @error('lingkar_kepala') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="lingkar_kepala" name="lingkar_kepala" value="{{ old('lingkar_kepala') }}">
+                                                                    <input type="text" class="form-control  @error('lingkar_kepala') is-invalid @enderror" style="border-radius:5px 0 0 5px;" id="lingkar_kepala" name="lingkar_kepala" value="{{ $registerPasien->lingkar_kepala }}">
                                                                     <span class="input-group-text" style="border-radius:0 5px 5px 0;" id="addon-wrapping">cm</span>
                                                                     @error('lingkar_kepala')
                                                                     <div class="invalid-feedback d-block">
@@ -478,7 +492,7 @@
                                             </div>   
                                         </div>
                                         <div class="col-lg-12">
-                                            <a href="/pasien/data-reservasi-pasien" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
+                                            <a href="/pasien/data-regist-pasien" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
                                             <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                         </div> 
 

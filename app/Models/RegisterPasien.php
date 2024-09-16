@@ -11,6 +11,7 @@ class RegisterPasien extends Model
     protected $table = 'm_regist_pasien';
     protected $fillable = [
         'regist_code',
+        'no_reservasi',
         'no_antrian',
         'no_rm',
         'pasien_name',
