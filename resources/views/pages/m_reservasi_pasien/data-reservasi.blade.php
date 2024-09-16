@@ -40,8 +40,13 @@
                     </div>
                    
                     <div class="search col-lg-6">
-                      <h6>Tanggal Reservasi</h6>
-                      <input type="date" class="" name="reservasi_date">
+                      <h6>Start Date Reservasi</h6>
+                      <input type="date" class="" name="reservasi_start_date">
+                    </div>
+
+                    <div class="search col-lg-6">
+                      <h6>End Date Reservasi</h6>
+                      <input type="date" class="" name="reservasi_end_date">
                     </div>
                     
                     <div class="search col-lg-6">

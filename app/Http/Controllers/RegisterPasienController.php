@@ -36,18 +36,40 @@ class RegisterPasienController extends Controller
 
         return 'RG-' . date('dmy') . $kd;
     }
-    /**
-     * Display a listing of the resource.
-     */
+    public function filterData($field, $model)
+    {
+        if (request($field)) {
+            $model->where($field, 'like', '%' . request($field) . '%');
+        }
+    }
     public function indexDataRegistPasien()
     {
+        $registPasien = RegisterPasien::latest();
+        $startDate = request('regist_start_date');
+        $endDate = request('regist_end_date');
+        if ($startDate && $endDate) {
+            // Lakukan query dengan rentang tanggal (start date dan end date)
+            $registPasien->whereBetween('created_at', [$startDate, $endDate]);
+        }
+        if (request('regist_code')) {
+            $this->filterData('regist_code', $registPasien);
+        }elseif(request('no_rm')){
+            $this->filterData('no_rm', $registPasien);
+        }elseif(request('pasien_name')){
+            $this->filterData('pasien_name', $registPasien);
+        }elseif(request('layanan_id')){
+            $this->filterData('layanan_id', $registPasien);
+        }elseif(request('status')){
+            $this->filterData('status', $registPasien);
+        }elseif(request('jadwal_praktik')){
+            $this->filterData('jadwal_praktik', $registPasien);
+        }
         $pasien = Pasien::all();
-        $registPasien = RegisterPasien::all();
         $layanan = Layanan::all();
         $reservasiPasien = ReservasiPasien::all();
         $dokter = Dokter::all();
 
-        return view('pages/regist-pasien/data-regist', ['title' => 'data-regist', 'registPasien' => $registPasien, 'pasien' => $pasien, 'layanan' => $layanan, 'reservasiPasien' => $reservasiPasien, 'dokter' => $dokter]);
+        return view('pages/regist-pasien/data-regist', ['title' => 'data-regist', 'registPasien' => $registPasien->get(), 'pasien' => $pasien, 'layanan' => $layanan, 'reservasiPasien' => $reservasiPasien, 'dokter' => $dokter]);
     }
     public function indexRegistPasien(Request $request, $id)
     {

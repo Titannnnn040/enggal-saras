@@ -44,8 +44,12 @@ class ReservasiPasienController extends Controller
     public function indexDataReservasi()
     {
         $reservasi = ReservasiPasien::latest();
-    
-
+        $startDate = request('reservasi_start_date');
+        $endDate = request('reservasi_end_date');
+        if ($startDate && $endDate) {
+            // Lakukan query dengan rentang tanggal (start date dan end date)
+            $reservasi->whereBetween('reservasi_date', [$startDate, $endDate]);
+        }
         if (request('no_reservasi')) {
             $this->filterData('no_reservasi', $reservasi);
         }elseif(request('no_rm')){
@@ -54,10 +58,6 @@ class ReservasiPasienController extends Controller
             $this->filterData('pasien_name', $reservasi);
         }elseif(request('layanan_id')){
             $this->filterData('layanan_id', $reservasi);
-        }elseif(request('status')){
-            $this->filterData('status', $reservasi);
-        }elseif(request('reservasi_date')){
-            $this->filterData('reservasi_date', $reservasi);
         }elseif(request('jadwal_praktik')){
             $this->filterData('jadwal_praktik', $reservasi);
         }
@@ -79,7 +79,8 @@ class ReservasiPasienController extends Controller
                 'nama_lengkap' => $patient->nama_lengkap,
                 'alamat' => $patient->address,
                 'telepon' => $patient->phone_number,
-                'jenis_kelamin' => $patient->jenis_kelamin
+                'jenis_kelamin' => $patient->jenis_kelamin,
+                'no_bpjs' => $patient->no_bpjs_asuransi
             ]);
         } else {
             return response()->json(['error' => 'Data not found'], 404);
@@ -137,9 +138,11 @@ class ReservasiPasienController extends Controller
             'no_reservasi'   => [''],
             'no_rm'          => ['required'],
             'pasien_name'    => ['required'], 
-            'address'         => [''], 
+            'no_bpjs'    => [''], 
+            'address'        => [''], 
             'phone_no'       => [''], 
             'gender'         => [''], 
+            'no_bpjs'        => [''], 
             'reservasi_date' => ['required'], 
             'time'           => ['required'], 
             'layanan_id'     => ['required'], 

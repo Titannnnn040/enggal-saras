@@ -102,6 +102,20 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3 d-none">
+                                            <div class="d-flex">
+                                                <label for="no_bpjs" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No BPJS :</label>
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                    <input type="text" class="form-control @error('no_bpjs') is-invalid @enderror" id="no_bpjs" name="no_bpjs" value="" readonly>
+                                                    @error('no_bpjs')
+                                                    <div class="invalid-feedback d-block">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-6 mb-3">
                                             <div class="d-flex">
                                                 <label for="address" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Alamat :</label>
@@ -129,6 +143,8 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="gender" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jenis Kelamin :</label>
@@ -449,6 +465,7 @@
                     $('#address').val(data.alamat);
                     $('#phone_no').val(data.telepon);
                     $('#gender').val(data.jenis_kelamin);
+                    $('#no_bpjs').val(data.no_bpjs);
                 },
                 error: function(err) {
                     console.error('Error fetching data:', err);
@@ -460,6 +477,7 @@
             $('#address').val('');
             $('#phone_no').val('');
             $('#gender').val('');
+            $('#no_bpjs').val('');
         }
     });
 

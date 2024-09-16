@@ -20,11 +20,11 @@
                 <form action="" class="d-flex col-lg-12">
                   <div class="row col-lg-12">
                     <div class="search col-lg-6">
-                      <h6>No Reservasi</h6>
-                      <select id="mySelect" class="form-select" name="no_reservasi">
+                      <h6>No Regist</h6>
+                      <select id="mySelect" class="form-select" name="regist_code">
                         <option value="">Please Select</option>
                         @foreach ($registPasien as $item)
-                            <option value="{{$item->no_reservasi}}">{{$item->no_reservasi}}</option>
+                            <option value="{{$item->regist_code}}">{{$item->regist_code}}</option>
                         @endforeach
                       </select>      
                     </div>
@@ -40,8 +40,12 @@
                     </div>
                    
                     <div class="search col-lg-6">
-                      <h6>Tanggal Reservasi</h6>
-                      <input type="date" class="" name="reservasi_date">
+                      <h6>Start Date Reservasi</h6>
+                      <input type="date" class="" name="regist_start_date">
+                    </div>
+                    <div class="search col-lg-6">
+                      <h6>End Date Reservasi</h6>
+                      <input type="date" class="" name="regist_end_date">
                     </div>
                     
                     <div class="search col-lg-6">
@@ -63,19 +67,9 @@
                       </select>
                     </div>
                     
-                    <div class="search col-lg-6">
-                      <h6>Status</h6>
-                      <select id="" class="form-select"  style="border:#AAAAAA solid 1px; padding:2.5px 0;border-radius:5px;" name="status">
-                        <option value="">Please Select</option>
-                        <option value="1" style="padding: 10px">BOOKING</option>
-                        <option value="2">REGISTER</option>
-                        <option value="3">SKIP</option>
-                      </select>
-                    </div>
-
                     <div class="submit-filter d-flex  justify-content-between mt-3">
                       <button type="submit" class="btn btn-success col-lg-1">Search</button>
-                      <a href="/pasien/data-reservasi-pasien" class="btn btn-danger col-lg-1">clear</a>
+                      <a href="/pasien/data-regist-pasien" class="btn btn-danger col-lg-1">clear</a>
                     </div>
                   </div>
                 </form>

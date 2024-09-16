@@ -187,7 +187,7 @@
                                                     <div class="d-flex">
                                                         <label for="no_bpjs" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No. BPJS :</label>
                                                         <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                            <input type="text" class="form-control @error('no_bpjs') is-invalid @enderror" id="no_bpjs" name="no_bpjs" value="" readonly>
+                                                            <input type="text" class="form-control @error('no_bpjs') is-invalid @enderror" id="no_bpjs" name="no_bpjs" value="{{$reservasi->no_bpjs}}" readonly>
                                                             @error('no_bpjs')
                                                             <div class="invalid-feedback d-block">
                                                                 {{ $message }}
@@ -596,6 +596,7 @@
                     $('#address').val(data.alamat);
                     $('#phone_no').val(data.telepon);
                     $('#gender').val(data.jenis_kelamin);
+                    $('#no_bpjs').val(data.no_bpjs_asuransi);
                 },
                 error: function(err) {
                     console.error('Error fetching data:', err);
