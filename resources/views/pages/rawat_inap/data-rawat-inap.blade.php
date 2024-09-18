@@ -147,7 +147,7 @@
                                       <p class="text-xs font-weight-bold mb-0 text-center">{{$item->created_at}}</p>
                                   </td>
                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                    {{-- <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
                                       <button type="button" class="btn btn-info mt-3" style="margin-right:10px;">
                                         <i class="fa-solid fa-print"></i>
                                       </button>
@@ -165,7 +165,7 @@
                                           </button>
                                       </form>
 
-                                    </span>
+                                    </span> --}}
                                 </td>
                             </tr>
                         </tbody>

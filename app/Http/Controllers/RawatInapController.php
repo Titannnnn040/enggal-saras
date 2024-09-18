@@ -64,7 +64,7 @@ class RawatInapController extends Controller
         $tarifPendaftaran = TarifPendaftaran::all();
         $rawatInap = RawatInap::all();
         $tarifPendaftaran = TarifPendaftaran::all();
-        return view('pages.rawat_inap.data-rawat-inap', ['title' => 'create-rawat-inap', 'pasien' => $pasien, 'rawatInap' => $rawatInap, 'jaminan' => $jaminan, 'layanan' => $layanan, 'dokterAll' => $dokterAll, 'perawat' => $perawat, 'tarifPendaftaran' => $tarifPendaftaran]);
+        return view('pages.rawat_inap.data-rawat-inap', ['title' => 'data-rawat-inap', 'pasien' => $pasien, 'rawatInap' => $rawatInap, 'jaminan' => $jaminan, 'layanan' => $layanan, 'dokterAll' => $dokterAll, 'perawat' => $perawat, 'tarifPendaftaran' => $tarifPendaftaran]);
     }
 
     /**
