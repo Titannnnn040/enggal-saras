@@ -131,8 +131,10 @@
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                   <p class="text-xs font-weight-bold mb-0 text-center">
-                                    @foreach ($layanan as $layanan)
-                                    {{ $layanan->id == $item->layanan_id ? $layanan->nama_layanan : '' }}
+                                    @foreach ($layanan as $l)
+                                        @if($l->id == $item->layanan_id)
+                                            {{ $l->nama_layanan }}
+                                        @endif
                                     @endforeach
                                   </p>
                                 </td>
