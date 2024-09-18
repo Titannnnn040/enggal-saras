@@ -16,6 +16,8 @@ use App\Http\Controllers\TipeJaminanController;
 use App\Http\Controllers\JaminanController;
 use App\Http\Controllers\ReservasiPasienController;
 use App\Http\Controllers\RegisterPasienController;
+use App\Http\Controllers\RawatInapController;
+
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProvinceController;
@@ -190,4 +192,9 @@ Route::post('/pasien/register-pasien/{id}',[RegisterPasienController::class,'sto
 Route::get('/pasien/edit-regist-pasien/{id}',[RegisterPasienController::class,'edit'])->name('edit-regist-pasien');
 Route::put('/pasien/update-regist-pasien/{id}',[RegisterPasienController::class,'update'])->name('update-regist-pasien');
 Route::delete('/pasien/delete-regist-pasien/{id}',[RegisterPasienController::class,'destroy'])->name('delete-regist-pasien');
+
+// ROUTE RAWAT INAP
+Route::get('/pasien/rawat-inap-pasien/{id}',[RawatInapController::class,'indexCreateRawatInap'])->name('create-regist-pasien');
+Route::post('/pasien/rawat-inap-pasien/{id}',[RawatInapController::class,'store'])->name('store-regist-pasien');
+Route::get('/pasien/data-rawat-inap',[RawatInapController::class,'indexDataRawatInap'])->name('data-regist-pasien');
 

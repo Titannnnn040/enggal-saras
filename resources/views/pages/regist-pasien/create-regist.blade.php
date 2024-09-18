@@ -143,13 +143,30 @@
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3 d-none">
                                                     <div class="d-flex">
                                                         <label for="dokter" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Dokter :</label>
                                                         <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
                                                             @foreach ($dokterAll as $dokter)
                                                                 @if ($dokter->no_dokter == $reservasi->dokter_code)
-                                                                    <input type="text" class="form-control @error('dokter') is-invalid @enderror" id="dokter" name="dokter" value="{{$dokter->nama_lengkap}}" readonly>
+                                                                    <input type="text" class="form-control @error('dokter') is-invalid @enderror" id="dokter" name="dokter" value="{{$dokter->no_dokter}}" readonly>
+                                                                @endif
+                                                            @endforeach
+                                                            @error('dokter')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                                    <div class="d-flex">
+                                                        <label for="dokter_name" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Dokter :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            @foreach ($dokterAll as $dokter)
+                                                                @if ($dokter->no_dokter == $reservasi->dokter_code)
+                                                                    <input type="text" class="form-control @error('dokter_name') is-invalid @enderror" id="dokter_name" name="dokter_name" value="{{$dokter->nama_lengkap}}" readonly>
                                                                 @endif
                                                             @endforeach
                                                             @error('dokter')

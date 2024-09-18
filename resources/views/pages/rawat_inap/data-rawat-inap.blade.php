@@ -23,7 +23,7 @@
                       <h6>No Regist</h6>
                       <select id="mySelect" class="form-select" name="regist_code">
                         <option value="">Please Select</option>
-                        @foreach ($registPasien as $item)
+                        @foreach ($rawatInap as $item)
                             <option value="{{$item->regist_code}}">{{$item->regist_code}}</option>
                         @endforeach
                       </select>      
@@ -83,7 +83,7 @@
           <div class="card my-3">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Reservasi Pasien</h6>
+                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Rawat Inap</h6>
               </div>
             </div>
             <div class="card-body px-5 pb-2">
@@ -92,37 +92,33 @@
                       <thead>
                           <tr>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kasir</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tindakan</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rawat Inap Code</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Regist Code</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created Date</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">RM Code</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Medical Record</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pasien Name</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Keluhan</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Poli Klinik</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Praktek</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Antrian</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Poli Klinik</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jaminan</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pcare BPJS</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rujuk Rawat Inap</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created At</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
                       <?php $num = 1 ?>
-                      @foreach ($registPasien as $item)
+                      @foreach ($rawatInap as $item)
                         <tbody>
                             <tr>
                                 <td class="align-middle text-center text-xs">
                                     <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center"></p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">-</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->rawat_inap_code }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->regist_code }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->created_at }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_rm }}</p>
@@ -131,34 +127,25 @@
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pasien_name }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->keluhan }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">N/A</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->layanan }}</p>
+                                  <p class="text-xs font-weight-bold mb-0 text-center">
+                                    @foreach ($layanan as $layanan)
+                                    {{ $layanan->id == $item->layanan_id ? $layanan->nama_layanan : '' }}
+                                    @endforeach
+                                  </p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jam_praktek }}</p>
+                                <p class="text-xs font-weight-bold mb-0 text-center">
+                                    @foreach ($dokterAll as $dokter)
+                                      {{ $dokter->no_dokter == $item->dokter_code ? $dokter->nama_lengkap : '' }}
+                                    @endforeach
+                                  </p>
                                 </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{$item->no_antrian}}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->dokter }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jaminan }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center"></p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                      <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                        <form action="/pasien/rawat-inap-pasien/{{ $item->id }}">
-                                          @csrf
-                                          <button class="btn btn-success mt-3" style="margin-right:10px;"><i class="fa-solid fa-plus"></i></button>
-                                        </form>
-                                      </span>
-                                </td>
+                                  <td class="align-middle text-center text-xs">
+                                      <p class="text-xs font-weight-bold mb-0 text-center">{{$item->created_at}}</p>
+                                  </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
                                       <button type="button" class="btn btn-info mt-3" style="margin-right:10px;">
