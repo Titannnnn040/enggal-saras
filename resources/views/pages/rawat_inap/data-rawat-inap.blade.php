@@ -149,25 +149,137 @@
                                       <p class="text-xs font-weight-bold mb-0 text-center">{{$item->created_at}}</p>
                                   </td>
                                 <td class="align-middle text-center">
-                                    {{-- <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                      <button type="button" class="btn btn-info mt-3" style="margin-right:10px;">
+                                    <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                      {{-- <button type="button" class="btn btn-info mt-3" style="margin-right:10px;">
                                         <i class="fa-solid fa-print"></i>
-                                      </button>
+                                      </button> --}}
                                   
-                                      <form action="/pasien/edit-regist-pasien/{{ $item->id }}">
+                                      <form action="/pasien/create-tindakan-rawat-inap/{{ $item->rawat_inap_code }}">
                                         @csrf
-                                        <button class="btn btn-outline-success mt-3" style="margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                        <button class="btn btn-outline-success mt-3" style="margin-right:10px;"><i class="fa-solid fa-plus" style="font-family: unset">Tindakan</i></button>
                                       </form>
                                     
-                                      <form action="/pasien/delete-regist-pasien/{{ $item->id }}" method="post" class="delete-form" data-id="{{$item->id}}">
+                                      {{-- <form action="/pasien/delete-regist-pasien/{{ $item->id }}" method="post" class="delete-form" data-id="{{$item->id}}">
                                           @method('delete')
                                           @csrf
                                           <button type="button" class="btn btn-outline-danger mt-3 button-delete" data-id="{{$item->id}}" style=" ">
                                               <i class="fa-solid fa-trash"></i>
                                           </button>
-                                      </form>
+                                      </form> --}}
 
-                                    </span> --}}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                      @endforeach
+                  </table>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card my-3">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Tindakan</h6>
+              </div>
+            </div>
+            <div class="card-body px-5 pb-2">
+              <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0" id="myTables">
+                      <thead>
+                          <tr>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Foto</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Regist No</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tindakan No</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No RM</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pasien Name</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tindakan</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">PCare</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                          </tr>
+                      </thead>
+                      <?php $num = 1 ?>
+                      @foreach ($tindakanRawatInap as $item)
+                        <tbody>
+                            <tr>
+                                <td class="align-middle text-center text-xs">
+                                    <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">-</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->regist_code }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->tindakan_code }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->tindakan_date }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->tindakan_time }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_rm }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pasien_name }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->layanan_id }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">
+                                      @foreach ($dokterAll as $dokter)
+                                        {{ $dokter->no_dokter == $item->dokter_code ? $dokter->nama_lengkap : '' }}
+                                      @endforeach
+                                    </p>
+                                </td>
+                                <td class="align-middle text-xs">
+                                  <p class="text-xs font-weight-bold mb-0">
+                                      @foreach ($detailTindakanRawatInap as $detailItem)
+                                          @if ($item->tindakan_code == $detailItem->tindakan_rawat_inap_code)
+                                              - {{ $detailItem->tindakan_name }} <br>
+                                          @endif
+                                      @endforeach
+                                  </p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->final_tarif }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                  <p class="text-xs font-weight-bold mb-0 text-center"></p>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                      {{-- <button type="button" class="btn btn-info mt-3" style="margin-right:10px;">
+                                        <i class="fa-solid fa-print"></i>
+                                      </button> --}}
+                                  
+                                      {{-- <form action="/pasien/create-tindakan-rawat-inap/{{ $item->rawat_inap_code }}">
+                                        @csrf
+                                        <button class="btn btn-outline-success mt-3" style="margin-right:10px;"><i class="fa-solid fa-plus" style="font-family: unset">Tindakan</i></button>
+                                      </form> --}}
+                                    
+                                      {{-- <form action="/pasien/delete-regist-pasien/{{ $item->id }}" method="post" class="delete-form" data-id="{{$item->id}}">
+                                          @method('delete')
+                                          @csrf
+                                          <button type="button" class="btn btn-outline-danger mt-3 button-delete" data-id="{{$item->id}}" style=" ">
+                                              <i class="fa-solid fa-trash"></i>
+                                          </button>
+                                      </form> --}}
+
+                                    </span>
                                 </td>
                             </tr>
                         </tbody>

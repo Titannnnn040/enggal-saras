@@ -198,3 +198,7 @@ Route::get('/pasien/rawat-inap-pasien/{id}',[RawatInapController::class,'indexCr
 Route::post('/pasien/rawat-inap-pasien/{id}',[RawatInapController::class,'store'])->name('store-regist-pasien');
 Route::get('/pasien/data-rawat-inap',[RawatInapController::class,'indexDataRawatInap'])->name('data-regist-pasien');
 
+//ROUTE TINDAKAN RAWAT INAP
+Route::get('/pasien/create-tindakan-rawat-inap/{code}',[RawatInapController::class,'indexCreateTindakanRawatInap'])->name('create-tindakan-rawat-inap');
+Route::post('/pasien/create-tindakan-rawat-inap/{code}',[RawatInapController::class,'storeTindakan'])->name('store-tindakan-rawat-inap');
+Route::get('/getTindakanData/{tindakanCode}', [RawatInapController::class, 'getTindakantData']);
