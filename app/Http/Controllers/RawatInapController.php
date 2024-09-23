@@ -72,19 +72,10 @@ class RawatInapController extends Controller
         return view('pages.rawat_inap.data-rawat-inap', ['title' => 'data-rawat-inap', 'pasien' => $pasien, 'rawatInap' => $rawatInap, 'jaminan' => $jaminan, 'layanan' => $layanan, 'dokterAll' => $dokterAll, 'perawat' => $perawat, 'tarifPendaftaran' => $tarifPendaftaran, 'tindakanRawatInap' => $tindakanRawatInap, 'detailTindakanRawatInap' => $detailTindakanRawatInap]); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        // return $request->all();
+        // die();
         if($request->layanan_id == 3){
             $validatedData = $request->validate([
                 'rawat_inap_code' => [''],
@@ -151,9 +142,16 @@ class RawatInapController extends Controller
         $rawatInap = RawatInap::query();
         $validatedData['rawat_inap_code'] = $this->generateCode($rawatInap, 'rawat_inap_code', 'RI-');
         // echo "<pre>"; print_r($validatedData); die;
-        RawatInap::create($validatedData);
-        $request->session()->flash('success', 'Data berhasil ditambahkan');
-        return redirect('/pasien/data-rawat-inap');
+        if($request->layanan_id == 3){
+            RawatInap::create($validatedData);
+            $request->session()->flash('success', 'Data berhasil ditambahkan');
+            return redirect('/pasien/data-rawat-inap');
+        }else{
+            $request->session()->flash('failed', 'Layanan di wajibkan untuk Rawat Inap');
+            return redirect('/pasien/data-rawat-inap')->with('error-deleted', 'User not found');
+        }
+
+       
     }
     public function getTindakantData($tindakanCode)
     {
@@ -199,9 +197,9 @@ class RawatInapController extends Controller
             'no_rm' => $request->no_rm,
             'pasien_name' => $request->pasien_name,
             'layanan_id' => $request->layanan_id,
-            'all_tarif' => $request->all_tarif,
-            'all_discount' => $request->all_discount,
-            'final_tarif' => $request->final_tarif,
+            'all_tarif' => preg_replace('/\D/', '', $request->all_tarif),
+            'all_discount' => preg_replace('/\D/', '', $request->all_discount),
+            'final_tarif' => preg_replace('/\D/', '', $request->final_tarif),
             'dataTindakan' => [],
         ];
 
@@ -242,6 +240,128 @@ class RawatInapController extends Controller
         }
 
         $request->session()->flash('success', 'Data berhasil ditambahkan');
+        return redirect('/pasien/data-rawat-inap');
+    }
+
+    public function editTindakan($code){
+        $tindakan = TarifTindakan::all();
+        // $rawatInap = RawatInap::where('rawat_inap_code', $code)->first();
+        $dokter = Dokter::where('layanan_id', 3)->get();
+        $tindakanRawatInap = TindakanRawatInap::where('tindakan_code', $code)->first();
+        $detailTindakanRawatInap = DetailTindakanRawatInap::where('tindakan_rawat_inap_code', $code)->get();
+        return view('pages.rawat_inap.edit-tindakan', ['title' => 'edit-tindakan-rawat-inap', 'tindakanRawatInap' => $tindakanRawatInap, 'detailTindakanRawatInap' => $detailTindakanRawatInap, 'dokter' => $dokter, 'tindakan' => $tindakan]);
+    }
+
+    public function updateTindakan(Request $request, $code){
+        // return $request->all();
+        // die();
+        $request->validate([
+            'tindakan_date' => ['required'],
+            'tindakan_time' => ['required'],
+            'dokter_code' => ['required'],
+            'tindakan_rawat_inap_code' => [''],
+            'tindakan_code' => ['required'],
+            'tarif_tindakan' => ['required'],
+            'qty' => ['required'],
+            'discount' => ['required'],
+        ]);
+
+        $tindakanRawatInap = TindakanRawatInap::query();
+        $data = [
+            'tindakan_code' => $this->generateCode($tindakanRawatInap, 'tindakan_code', 'TRI-'),
+            'tindakan_date' => $request->tindakan_date,
+            'tindakan_time' => $request->tindakan_time,
+            'dokter_code' => $request->dokter_code,
+            'regist_code' => $request->regist_code,
+            'no_rm' => $request->no_rm,
+            'pasien_name' => $request->pasien_name,
+            'layanan_id' => $request->layanan_id,
+            'all_tarif' => preg_replace('/\D/', '', $request->new_all_tarif),
+            'all_discount' => preg_replace('/\D/', '', $request->new_all_discount),
+            'final_tarif' => preg_replace('/\D/', '', $request->new_final_tarif),
+        ];
+
+        $tindakanCode = $request->tindakan_code ?? [];
+        $tindakanName = $request->tindakan_name ?? [];
+        $tarifTindakan = $request->tarif_tindakan ?? [];
+        $qty = $request->qty ?? [];
+        $discount = $request->discount ?? [];
+        $totalTarif = $request->total_tarif ?? [];
+        $dataDetail = [
+            'dataTindakan' => []
+        ];
+        $totalTindakan = min(count($tindakanCode), count($tindakanName), count($tarifTindakan), count($qty), count($discount), count($totalTarif));
+
+        for ($i = 0; $i < $totalTindakan; $i++) {
+            $dataDetail['dataTindakan'][] = [
+                "tindakan_rawat_inap_code" => $data['tindakan_code'],
+                "tindakanCode" => $tindakanCode[$i],
+                "tindakanName" => $tindakanName[$i],
+                "tarifTindakan" => $tarifTindakan[$i],
+                "qty" => $qty[$i],
+                "discount" => $discount[$i],
+                "totalTarif" => $totalTarif[$i],
+            ];
+        }
+
+        $newTindakanCode = $request->new_tindakan_code ?? [];
+        $newTindakanName = $request->new_tindakan_name ?? [];
+        $newTarifTindakan = $request->new_tarif_tindakan ?? [];
+        $newQty = $request->new_qty ?? [];
+        $newDiscount = $request->new_discount ?? [];
+        $newTotalTarif = $request->new_total_tarif_table ?? [];
+        $newDataDetail = [
+            'dataTindakan' => []
+        ];
+        $newTotalTindakan = min(count($newTindakanCode), count($newTindakanName), count($newTarifTindakan), count($newQty), count($newDiscount), count($newTotalTarif));
+
+        for ($i = 0; $i < $newTotalTindakan; $i++) {
+            $newDataDetail['dataTindakan'][] = [
+                "tindakan_rawat_inap_code" => $data['tindakan_code'],
+                "tindakanCode" => $newTindakanCode[$i],
+                "tindakanName" => $newTindakanName[$i],
+                "tarifTindakan" => $newTarifTindakan[$i],
+                "qty" => $newQty[$i],
+                "discount" => $newDiscount[$i],
+                "totalTarif" => $newTotalTarif[$i],
+            ];
+        }
+
+        echo "<pre>"; print_r($data); print_r($dataDetail) ; print_r($newDataDetail) ;die;
+        // Create TindakanRawatInap record without dataTindakan
+        $tindakanRawatInap = TindakanRawatInap::where('tindakan_code', $code)->update($data);
+
+        if($tindakanRawatInap){
+            foreach ($dataDetail['dataTindakan'] as $detail) {
+                DetailTindakanRawatInap::where('tindakan_rawat_inap_code', $code)->update([
+                    'tindakan_code' => $detail['tindakanCode'],
+                    'tindakan_name' => $detail['tindakanName'],
+                    'tarif_tindakan' => preg_replace('/\D/', '', $detail['tarifTindakan']),
+                    'qty' => $detail['qty'],
+                    'discount' => preg_replace('/\D/', '', $detail['discount']),
+                    'total_tarif' => preg_replace('/\D/', '', $detail['totalTarif']),
+                ]);
+            }
+            foreach ($newDataDetail['dataTindakan'] as $detail) {
+                DetailTindakanRawatInap::create([
+                    'tindakan_code' => $detail['tindakanCode'],
+                    'tindakan_name' => $detail['tindakanName'],
+                    'tarif_tindakan' => preg_replace('/\D/', '', $detail['tarifTindakan']),
+                    'qty' => $detail['qty'],
+                    'discount' => preg_replace('/\D/', '', $detail['discount']),
+                    'total_tarif' => preg_replace('/\D/', '', $detail['totalTarif']),
+                ]);
+            }
+        }
+
+        $request->session()->flash('success', 'Data berhasil dirubah');
+        return redirect('/pasien/data-rawat-inap');
+    }
+
+    public function destroyTindakan(Request $request, $code){
+        $tindakanRawatInap = TindakanRawatInap::where('tindakan_code', $code)->delete();
+        $detailTindakanRawatInap = DetailTindakanRawatInap::where('tindakan_rawat_inap_code', $code)->delete();
+        $request->session()->flash('success', 'Data berhasil dihapus');
         return redirect('/pasien/data-rawat-inap');
     }
 }

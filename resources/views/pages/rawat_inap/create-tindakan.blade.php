@@ -221,7 +221,7 @@
                                         </div>
 
                                         <div class="col-lg-12">
-                                            <a href="/pasien/data-regist-pasien" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
+                                            <a href="/pasien/data-rawat-inap" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
                                             <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                         </div> 
                                     </div>
@@ -568,11 +568,11 @@
 
     function editRow(button) {
         var row = button.parentNode.parentNode.parentNode;
-        var tindakanText = row.cells[1].innerText;
-        var tarifTindakan = row.cells[2].innerText;
-        var qty = row.cells[3].innerText;
-        var discount = row.cells[4].innerText;
-        var totalTarif = row.cells[5].innerText;
+        var tindakanText = row.cells[1].getElementsByTagName('input')[0].value;
+        var tarifTindakan = row.cells[2].getElementsByTagName('input')[0].value;
+        var qty = row.cells[3].getElementsByTagName('input')[0].value;
+        var discount = row.cells[4].getElementsByTagName('input')[0].value;
+        var totalTarif = row.cells[5].getElementsByTagName('input')[0].value;
 
         // Set the input fields with the row data
         var tindakanSelect = document.getElementById('tindakan_select');

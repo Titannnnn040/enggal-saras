@@ -201,4 +201,8 @@ Route::get('/pasien/data-rawat-inap',[RawatInapController::class,'indexDataRawat
 //ROUTE TINDAKAN RAWAT INAP
 Route::get('/pasien/create-tindakan-rawat-inap/{code}',[RawatInapController::class,'indexCreateTindakanRawatInap'])->name('create-tindakan-rawat-inap');
 Route::post('/pasien/create-tindakan-rawat-inap/{code}',[RawatInapController::class,'storeTindakan'])->name('store-tindakan-rawat-inap');
+Route::get('/pasien/edit-tindakan-rawat-inap/{code}', [RawatInapController::class, 'editTindakan'])->name('edit-tindakan-rawat-inap');
+Route::put('/pasien/update-tindakan-rawat-inap/{code}', [RawatInapController::class, 'updateTindakan'])->name('update-tindakan-rawat-inap');
+Route::delete('/pasien/delete-tindakan-rawat-inap/{code}', [RawatInapController::class, 'destroyTindakan'])->name('delete-tindakan-rawat-inap');
+
 Route::get('/getTindakanData/{tindakanCode}', [RawatInapController::class, 'getTindakantData']);

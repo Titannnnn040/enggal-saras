@@ -255,7 +255,7 @@
                                   </p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->final_tarif }}</p>
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ 'Rp ' . number_format($item->final_tarif) }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                   <p class="text-xs font-weight-bold mb-0 text-center"></p>
@@ -265,19 +265,18 @@
                                       {{-- <button type="button" class="btn btn-info mt-3" style="margin-right:10px;">
                                         <i class="fa-solid fa-print"></i>
                                       </button> --}}
-                                  
-                                      {{-- <form action="/pasien/create-tindakan-rawat-inap/{{ $item->rawat_inap_code }}">
+                              
+                                      <form action="/pasien/edit-tindakan-rawat-inap/{{ $item->tindakan_code }}">
                                         @csrf
-                                        <button class="btn btn-outline-success mt-3" style="margin-right:10px;"><i class="fa-solid fa-plus" style="font-family: unset">Tindakan</i></button>
-                                      </form> --}}
-                                    
-                                      {{-- <form action="/pasien/delete-regist-pasien/{{ $item->id }}" method="post" class="delete-form" data-id="{{$item->id}}">
+                                        <button class="btn btn-outline-success" id="button-create-user" style="margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                      </form>
+                                      <form action="/pasien/delete-tindakan-rawat-inap/{{ $item->tindakan_code }}" method="post" class="delete-form" data-id="{{$item->id}}">
                                           @method('delete')
                                           @csrf
-                                          <button type="button" class="btn btn-outline-danger mt-3 button-delete" data-id="{{$item->id}}" style=" ">
+                                          <button type="button" class="btn btn-outline-danger button-delete" data-id="{{$item->id}}" style=" ">
                                               <i class="fa-solid fa-trash"></i>
                                           </button>
-                                      </form> --}}
+                                      </form>
 
                                     </span>
                                 </td>
@@ -657,10 +656,17 @@
 {{-- Notification --}}
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
-      const alert = document.getElementById('success-alert');
-      if (alert) {
+      const successAlert = document.getElementById('success-alert');
+      if (successAlert) {
           setTimeout(() => {
-              alert.style.display = 'none';
+              successAlert.style.display = 'none';
+          }, 5000); // 5000 ms = 5 detik
+      }
+
+      const failAlert = document.getElementById('fail-alert');
+      if (failAlert) {
+          setTimeout(() => {
+              failAlert.style.display = 'none';
           }, 5000); // 5000 ms = 5 detik
       }
   });
