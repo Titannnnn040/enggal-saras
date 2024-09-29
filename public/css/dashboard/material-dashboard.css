@@ -23679,21 +23679,9 @@ hr.horizontal.gray-light {
   letter-spacing: 0.04em;
 }
 
-.navbar-vertical.navbar-expand-xs {
-  display: block;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  max-width: 15.625rem !important;
-  overflow-y: auto;
-  padding: 0;
-  box-shadow: none;
-}
-
 .navbar-vertical.navbar-expand-xs .navbar-collapse {
   display: block;
-  overflow: auto;
+  /* overflow: auto; */
   height: calc(100vh - 200px);
 }
 
@@ -24573,10 +24561,19 @@ body:not(.dark-version) .sidenav.bg-transparent .collapse .nav-item .nav-link.ac
   background-color: #4CAF50 !important;
   transition: .2s;
 }
+
 .navbar-vertical .navbar-nav .nav-item .sub-menu,
 .navbar-vertical .navbar-nav .nav-item .super-sub-menu {
   display: none;
-  overflow: hidden;
+  margin-left:0.25cm;
+}
+
+.navbar-vertical .navbar-nav .nav-item:hover .sub-menu{
+  display: block;
+}
+
+.navbar-vertical .navbar-nav .nav-item .sub-menu:hover .super-sub-menu{
+  display: block;
 }
 
 .navbar-vertical .navbar-nav .nav-item .dropdown-btn .item .dropdown,
