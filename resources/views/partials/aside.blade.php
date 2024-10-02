@@ -27,6 +27,15 @@
 .sub-tenaga-medis:hover {
   display: block;
 }
+.nav-item{
+  position: relative;
+}
+.sub-menu{
+  position: absolute;top: 0;left:6cm;transform: translateY(0);z-index: 999;
+}
+.sub-tenaga-medis , .sub-jaminan, .sub-tarif{
+  position: absolute;top: 0;left:13cm;transform: translateY(0);z-index: 999;
+}
 </style>
 
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-light hide-scrollbar" id="sidenav-main">
@@ -49,7 +58,7 @@
                 </div>
               </a>
             </div> --}}
-            <div class="sub-menu d-block m-0" style="">
+            <div class="sub-menu d-block m-0" style="position:unset">
               <div class="d-flex flex-column">
                 <a href="{{route('dashboard')}}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'dashboard') ? 'active' : '' }} text-decoration-none">
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
@@ -60,7 +69,7 @@
               </div>
             </div>
           </li>
-          <li class="nav-item d-flex ms-3 align-items-baseline" style="cursor: pointer">
+          <li class="nav-item d-flex ms-3 align-items-baseline" style="cursor: pointer;">
             <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center">
               <div class="item">
                 <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
@@ -72,8 +81,8 @@
                 <i class="fas fa-angle-right dropdown"></i>
               </div>
             </div>
-            <div class="sub-menu">
-              <div class="d-flex flex-column rounded p-2 ms-3 mt-2"  style="background-color:#FFFFFF;">
+            <div class="sub-menu" style="">
+              <div class="d-flex flex-column rounded p-2 ms-3"  style="background-color:#FFFFFF;">
                 <a href="/pasien/data-pasien" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pasien') ? 'active' : '' }} text-decoration-none">
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-clipboard-user me-2"></i>
@@ -95,7 +104,7 @@
               </div>
             </div>
           </li>
-          <li class="nav-item d-flex ms-3 align-items-baseline" style="cursor: pointer">
+          <li class="nav-item d-flex ms-3 align-items-baseline" style="cursor: pointer;">
             <div class="dropdown-btn col-lg-10 d-flex justify-content-between align-items-center">
               <div class="item">
                 <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
@@ -109,7 +118,7 @@
             </div>
 
             <div class="sub-menu">
-              <div class="d-flex flex-column rounded p-2 ms-3 mt-2" style="background-color:#FFFFFF;">
+              <div class="d-flex flex-column rounded p-2 ms-3" style="background-color:#FFFFFF;">
                 <a href="/pasien/data-rawat-inap" class="dropdown-menu col-lg-10 d-flex {{ ($title === 'data-rawat-inap') ? 'active' : '' }} text-decoration-none">
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-clipboard-user me-2"></i>
@@ -132,7 +141,7 @@
               </div>
             </div>
             <div class="sub-menu">
-              <div class="d-flex flex-column rounded p-2 ms-3 mt-2"  style="background-color:#FFFFFF;">
+              <div class="d-flex flex-column rounded p-2 ms-3"  style="background-color:#FFFFFF;">
                 <div class="dropdown-btn menu-tenaga-medis col-lg-10 d-flex justify-content-between align-items-center" style="margin:2.5px;">
                   <div class="item">
                     <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
