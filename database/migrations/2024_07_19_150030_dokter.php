@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('nama_lengkap');
             $table->string('code_bpjs');
             $table->string('sip');
-            $table->string('end_date');
+            $table->string('str');
+            $table->string('end_date_sip');
+            $table->string('end_date_str');
             $table->foreignId('layanan_id');
             $table->string('status');
             $table->string('nik_dokter');

@@ -76,11 +76,41 @@
 
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="end_date" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Berlaku Hingga :</label>
+                                                <label for="end_date_sip" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">SIP Berlaku Hingga :</label>
                                                 
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="date" class="form-control @error('end_date') is-invalid @enderror" id="end_date" name="end_date" value="{{ $dokter->end_date }}">
-                                                    @error('end_date')
+                                                    <input type="date" class="form-control @error('end_date_sip') is-invalid @enderror" id="end_date_sip" name="end_date_sip" value="{{ $dokter->end_date_sip }}">
+                                                    @error('end_date_sip')
+                                                        <div class="invalid-feedback d-block">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="str" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Surat Tanda Registrasi (STR) :</label>
+                                                
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                    <input type="text" class="form-control @error('str') is-invalid @enderror" id="str" name="str" value="{{ $dokter->str }}">
+                                                    @error('str')
+                                                        <div class="invalid-feedback d-block">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="end_date_str" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">STR Berlaku Hingga :</label>
+                                                
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                    <input type="date" class="form-control @error('end_date_str') is-invalid @enderror" id="end_date_str" name="end_date_str" value="{{ $dokter->end_date_str }}">
+                                                    @error('end_date_str')
                                                         <div class="invalid-feedback d-block">
                                                             {{ $message }}
                                                         </div>
@@ -124,6 +154,9 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <h5>Satu Sehat</h5>
+                                        <hr>
 
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
