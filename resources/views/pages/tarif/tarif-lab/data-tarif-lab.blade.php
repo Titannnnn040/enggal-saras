@@ -65,6 +65,8 @@
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jasa Pengirim</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Biaya Rujukan</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Tarif</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated At</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated By</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
@@ -99,7 +101,10 @@
                                     <p class="text-xs font-weight-bold mb-0 text-center">Rp.{{ number_format($item->biaya_rujukan) }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">Rp.{{ number_format($item->total_tarif) }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->updated_at }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center"></p>
                                 </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">

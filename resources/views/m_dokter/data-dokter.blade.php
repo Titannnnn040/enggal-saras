@@ -62,7 +62,9 @@
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode BPJS</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Surat Izin Praktek (SIP)</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End Date</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End Date SIP</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Surat Tanda Registrasi(STR)</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End Date STR</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nik</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Satu Sehat</th>
@@ -94,7 +96,13 @@
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->sip }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->end_date }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->end_date_sip }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->str }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->end_date_str }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->status }}</p>
