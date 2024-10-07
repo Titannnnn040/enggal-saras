@@ -65,9 +65,12 @@ class DokterController extends Controller
             'status'        => ['required'],
             'nik_dokter'    => ['required', 'digits_between:12,15', 'unique:m_dokter,nik_dokter'],
             'id_dokter'     => [],
-            'nama_petugas'  => []
+            'nama_petugas'  => [],
+            'username_icare'  => [],
+            'password_icare'  => [],
         ]);
-        $validatedDokter['no_dokter']=$this->generateTmNumber();
+        $validatedDokter['no_dokter'] = $this->generateTmNumber();
+        $validatedDokter['password_icare'] = bcrypt($request->password_icare);
 
         Dokter::create($validatedDokter);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
@@ -121,16 +124,18 @@ class DokterController extends Controller
     {
         $request->validate([
             'nama_lengkap'  => ['required', 'max:255'],
-            'code_bpjs'     => ['required', 'numeric', 'digits_between:12,15', 'unique:m_dokter,code_bpjs'],
+            'code_bpjs'     => ['required', 'numeric', 'digits_between:12,15', Rule::unique('m_dokter', 'code_bpjs')->ignore($id)],
             'sip'           => ['required', 'numeric', 'digits_between:12,15'],
             'str'           => ['required', 'numeric', 'digits_between:12,15'],
             'end_date_sip'  => ['required'],
             'end_date_str'  => ['required'],
             'layanan_id'    => ['required'],
             'status'        => ['required'],
-            'nik_dokter'    => ['required', 'digits_between:12,15', 'unique:m_dokter,nik_dokter'],
+            'nik_dokter'    => ['required', 'digits_between:12,15',  Rule::unique('m_dokter', 'nik_dokter')->ignore($id)],
             'id_dokter'     => [],
-            'nama_petugas'  => []
+            'nama_petugas'  => [],
+            'username_icare'  => [],
+            'password_icare'  => [],
         ]);
         $dokter = Dokter::find($id);
         $dokter->update([
@@ -144,7 +149,9 @@ class DokterController extends Controller
             'status'        => $request->status,
             'nik_dokter'    => $request->nik_dokter,
             'id_dokter'     => $request->id_dokter,
-            'nama_petugas'  => $request->nama_petugas      
+            'nama_petugas'  => $request->nama_petugas,   
+            'username_icare'  => $request->username_icare,   
+            'password_icare'  => bcrypt($request->password_icare)   
         ]);  
         if($dokter){
             $request->session()->flash('success','Data berhasil di ubah');

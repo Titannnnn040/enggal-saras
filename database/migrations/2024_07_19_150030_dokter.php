@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('nik_dokter');
             $table->string('id_dokter');
             $table->string('nama_petugas')->nullable();
+            $table->string('username_icare')->nullable();
+            $table->string('password_icare')->nullable();
             $table->timestamps();
         });
     }

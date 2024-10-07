@@ -186,7 +186,7 @@
 
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="nama_petugas" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama :</label>
+                                                <label for="nama_petugas" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Petugas Medis :</label>
                                                 
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
                                                     <input type="text" class="form-control @error('nama_petugas') is-invalid @enderror" id="nama_petugas" name="nama_petugas" value="" readonly>
@@ -199,6 +199,36 @@
                                             </div>
                                         </div>
 
+                                        <h5>i-Care</h5>
+                                        <hr>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="username_icare" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Username :</label>
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                    <input type="text" class="form-control @error('username_icare') is-invalid @enderror" id="username_icare" name="username_icare" value="">
+                                                    @error('username_icare')
+                                                        <div class="invalid-feedback d-block">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                            <div class="d-flex">
+                                                <label for="password_icare" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Password :</label>
+                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                    <input type="password" class="form-control @error('password_icare') is-invalid @enderror" id="password_icare" name="password_icare" value="">
+                                                    @error('password_icare')
+                                                        <div class="invalid-feedback d-block">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>   
 
