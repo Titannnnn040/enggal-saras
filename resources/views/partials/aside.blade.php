@@ -182,12 +182,6 @@
                     <span class="nav-link-text ms-2">Master Bed</span>
                   </div>
                 </a>
-                <a href="/jaminan/data-jaminan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pasien') ? 'active' : '' }} text-decoration-none" style="margin:2.5px;">
-                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                    <i class="fa-solid fa-clipboard-user me-2"></i>
-                    <span class="nav-link-text ms-2">Master Jaminan</span>
-                  </div>
-                </a>
                 <div class="dropdown-btn menu-tarif col-lg-10 d-flex justify-content-between align-items-center" style="margin:2.5px;">
                   <div class="item">
                     <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
@@ -238,12 +232,6 @@
                   </div>
                 </a>
                 <a href="/tarif/group-tarif-tindakan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-regist-pasien') ? 'active' : '' }} text-decoration-none">
-                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
-                    <i class="fa-solid fa-clipboard-user me-2"></i>
-                    <span class="nav-link-text ms-2">Group Tarif Tindakan</span>
-                  </div>
-                </a>
-                <a href="/tenaga-medis/jadwal-dokter" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-regist-pasien') ? 'active' : '' }} text-decoration-none">
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-clipboard-user me-2"></i>
                     <span class="nav-link-text ms-2">Group Tarif Tindakan</span>

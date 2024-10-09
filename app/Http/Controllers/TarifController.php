@@ -198,9 +198,10 @@ class TarifController extends Controller
         // return $request->all();
         $validatedData = $request->validate([
             'g_tarif_code' => [''],
-            'nama_group_tarif' => ['required']
+            'nama_group_tarif' => ['required', 'unique:m_group_tarif,nama_group_tarif']
         ]);
         $validatedData['g_tarif_code'] = $this->generateGtNumber();
+        $validatedData['nama_group_tarif'] = strtoupper($validatedData['nama_group_tarif']);
         $kamar = GroupTarif::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/tarif/group-tarif');
@@ -215,11 +216,11 @@ class TarifController extends Controller
         
         $request->validate([
             'g_tarif_code' => [''],
-            'nama_group_tarif' => ['required']
+            'nama_group_tarif' => ['required', 'unique:m_group_tarif,nama_group_tarif,' . $id]
         ]);
         $groupTarif = GroupTarif::find($id);
         $groupTarif->update([
-            'nama_group_tarif' => $request->nama_group_tarif
+            'nama_group_tarif' => strtoupper($request->nama_group_tarif)
         ]);
         $request->session()->flash('success', 'Data berhasil dirubah');
         return redirect('/tarif/group-tarif');
@@ -246,9 +247,10 @@ class TarifController extends Controller
         // return $request->all();
         $validatedData = $request->validate([
             'g_tarif_tindakan_code' => [''],
-            'nama_group_tarif_tindakan' => ['required']
+            'nama_group_tarif_tindakan' => ['required', 'unique:m_group_tarif_tindakan,nama_group_tarif_tindakan']
         ]);
         $validatedData['g_tarif_tindakan_code'] = $this->generateTgNumber();
+        $validatedData['nama_group_tarif_tindakan'] = strtoupper($validatedData['nama_group_tarif_tindakan']);
         $kamar = GroupTarifTindakan::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/tarif/group-tarif-tindakan');
@@ -274,11 +276,11 @@ class TarifController extends Controller
     public function updateGroupTarifTindakan(Request $request, $id){
         
         $request->validate([
-            'nama_group_tarif_tindakan' => ['required']
+            'nama_group_tarif_tindakan' => ['required', 'unique:m_group_tarif_tindakan,nama_group_tarif_tindakan,' . $id]
         ]);
         $groupTarifTindakan = GroupTarifTindakan::find($id);
         $groupTarifTindakan->update([
-            'nama_group_tarif_tindakan' => $request->nama_group_tarif_tindakan
+            'nama_group_tarif_tindakan' => strtoupper($request->nama_group_tarif_tindakan)
         ]);
         $request->session()->flash('success', 'Data berhasil dirubah');
         return redirect('/tarif/group-tarif-tindakan');
@@ -399,7 +401,7 @@ class TarifController extends Controller
 
         $validatedData = $request->validate([
             'code_tarif_tindakan'       => [''],
-            'nama_tarif_tindakan'       => ['required'],
+            'nama_tarif_tindakan'       => ['required', 'unique:m_tarif_tindakan,nama_tarif_tindakan'],
             'group_tarif_id'            => ['required'],
             'fee_medis'                 => ['required'],
             'jasa_klinik'               => ['required'],
@@ -408,6 +410,7 @@ class TarifController extends Controller
             'kode_tarif_bpjs'           => [''],
             'nama_tarif_tindakan_bpjs'  => ['']
         ]);
+        $validatedData['nama_tarif_tindakan'] = strtoupper($validatedData['nama_tarif_tindakan']);
         if($request['fee_medis']){
             $validatedData['fee_medis'] = preg_replace('/[^\d.-]/', '',$request->fee_medis);
         }
@@ -447,7 +450,7 @@ class TarifController extends Controller
     public function updateTarifTindakan(Request $request, $id){
         $groupTarifTindakan = GroupTarifTindakan::all();
         $request->validate([
-            'nama_tarif_tindakan'       => ['required'],
+            'nama_tarif_tindakan'       => ['required','unique:m_tarif_tindakan,nama_tarif_tindakan,' . $id],
             'group_tarif_id'            => ['required'],
             'fee_medis'                 => ['required'],
             'jasa_klinik'               => ['required'],
@@ -470,7 +473,7 @@ class TarifController extends Controller
         }
         $tindakan = TarifTindakan::find($id);
         $tindakan->update([
-            'nama_tarif_tindakan'       => $request->nama_tarif_tindakan,
+            'nama_tarif_tindakan'       => strtoupper($request->nama_tarif_tindakan),
             'group_tarif_id'            => $request->group_tarif_id,
             'fee_medis'                 => $request->fee_medis,
             'jasa_klinik'               => $request->jasa_klinik,

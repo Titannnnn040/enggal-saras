@@ -34,7 +34,7 @@
                                             <div class="d-flex">
                                                 <label for="nama_group_tarif_tindakan" class="form-label col-lg-4 col-xl-5 col-xxl-4 me-2">Nama group Tarif Tindakan :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control" id="nama_group_tarif_tindakan" name="nama_group_tarif_tindakan"  value="">
+                                                    <input type="text" class="form-control" id="nama_group_tarif_tindakan" name="nama_group_tarif_tindakan" style="text-transform: uppercase;"  value="">
                                                 </div>
                                             </div>
                                         </div>

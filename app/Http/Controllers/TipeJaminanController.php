@@ -54,15 +54,16 @@ class TipeJaminanController extends Controller
     public function storeTipeJaminan(Request $request)
     {
         $validatedData = $request->validate([
-            'code_tipe_jaminan' => [''],
-            'nama_tipe_jaminan'  => ['required'],
+            'code_tipe_jaminan'  => [''],
+            'nama_tipe_jaminan'  => ['required', 'unique:m_tipe_jaminan,nama_tipe_jaminan'],
             'tipe_jaminan'       => ['required']
         ]);
 
         if($request['code_tipe_jaminan'] == ''){
             $validatedData['code_tipe_jaminan'] = $this->generateTjNumber();
         }
-
+        $validatedData['nama_tipe_jaminan'] = strtoupper($validatedData['nama_tipe_jaminan']);
+        // echo"<pre>";print_r($validatedData);die();
         $tipeJaminan = TipeJaminan::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/tipe-jaminan/data-tipe-jaminan');
@@ -77,12 +78,12 @@ class TipeJaminanController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'nama_tipe_jaminan'  => ['required'],
+            'nama_tipe_jaminan'  => ['required', 'unique:m_tipe_jaminan,nama_tipe_jaminan,' . $id],
             'tipe_jaminan'       => ['required']
         ]);
         $tipeJaminan = TipeJaminan::find($id);
         $tipeJaminan->update([
-            'nama_tipe_jaminan'  => $request->nama_tipe_jaminan,
+            'nama_tipe_jaminan'  => strtoupper($request->nama_tipe_jaminan),
             'tipe_jaminan'       => $request->tipe_jaminan
         ]);
         $request->session()->flash('success', 'Data berhasil dirubah');

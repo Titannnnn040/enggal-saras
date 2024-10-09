@@ -36,7 +36,7 @@
                                             <div class="d-flex">
                                                 <label for="nama_kamar" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama Kamar :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control "  id="nama_kamar" name="nama_kamar"  value="{{ $kamar->nama_kamar }}">
+                                                    <input type="text" class="form-control "  id="nama_kamar" name="nama_kamar" style="text-transform: uppercase;" value="{{ $kamar->nama_kamar }}">
                                                 </div>
                                             </div>
                                         </div>

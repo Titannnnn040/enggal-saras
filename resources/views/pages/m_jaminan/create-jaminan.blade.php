@@ -33,7 +33,7 @@
                                             <div class="d-flex">
                                                 <label for="nama_jaminan" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama Jaminan :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('nama_jaminan') is-invalid @enderror" id="nama_jaminan" name="nama_jaminan" value="{{ old('nama_jaminan') }}">
+                                                    <input type="text" class="form-control @error('nama_jaminan') is-invalid @enderror" id="nama_jaminan" name="nama_jaminan" value="{{ old('nama_jaminan') }}" style="text-transform: uppercase;">
                                                     @error('nama_jaminan')
                                                     <div class="invalid-feedback d-block">
                                                         {{ $message }}

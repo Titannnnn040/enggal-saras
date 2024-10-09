@@ -56,7 +56,7 @@ class JaminanController extends Controller
         // die();
         $validatedData = $request->validate([
             'code_jaminan' => [''],
-            'nama_jaminan' => ['required'],
+            'nama_jaminan' => ['required', 'unique:m_jaminan,nama_jaminan'],
             'tipe_jaminan' => ['required'],
             'detail_harga' => ['']
         ]);
@@ -64,6 +64,7 @@ class JaminanController extends Controller
         if($request['code_jaminan'] == ''){
             $validatedData['code_jaminan'] = $this->generateCjNumber();
         }
+        $validatedData['nama_jaminan'] = strtoupper($validatedData['nama_jaminan']);
 
         $Jaminan = Jaminan::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
@@ -80,15 +81,15 @@ class JaminanController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'nama_jaminan' => ['required'],
+            'nama_jaminan' => ['required', 'unique:m_jaminan,nama_jaminan,' . $id],
             'tipe_jaminan' => ['required'],
             'detail_harga' => ['']
         ]);
         $jaminan = Jaminan::find($id);
         $jaminan->update([
-            'nama_jaminan' => $request->nama_jaminan,
+            'nama_jaminan' => strtoupper($request->nama_jaminan),
             'tipe_jaminan' => $request->tipe_jaminan,
-            'detail_harga' => $request->detail_harga
+            'detail_harga' => $request->detail_harga ?? 'No'
         ]);
         $request->session()->flash('success', 'Data berhasil dirubah');
         return redirect('/jaminan/data-jaminan');

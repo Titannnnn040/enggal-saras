@@ -36,7 +36,7 @@
                                             <div class="d-flex">
                                                 <label for="nama_group_tarif" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Nama group Tarif :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control" id="nama_group_tarif" name="nama_group_tarif"  value="{{ $groupTarif->nama_group_tarif }}">
+                                                    <input type="text" class="form-control" id="nama_group_tarif" name="nama_group_tarif" style="text-transform: uppercase;"  value="{{ $groupTarif->nama_group_tarif }}">
                                                 </div>
                                             </div>
                                         </div>
