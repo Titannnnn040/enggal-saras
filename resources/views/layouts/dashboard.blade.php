@@ -50,5 +50,6 @@
   @include('partials/aside')
   @yield('dashboard')
   @include('sweetalert::alert')
+  @include('partials/script')
 </body>
 </html>

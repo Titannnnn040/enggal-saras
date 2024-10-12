@@ -50,5 +50,6 @@
   @include('partials/aside')
   @yield('form_layouts')
   @include('sweetalert::alert')
+  @include('partials/script')
 </body>
 </html>
