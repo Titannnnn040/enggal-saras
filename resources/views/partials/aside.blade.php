@@ -11,10 +11,7 @@
   max-width: 15.625rem !important;
   padding: 0;
 }
-.sub-tarif, .sub-jaminan {
-  display: none;
-}
-.sub-tenaga-medis {
+.sub-tarif, .sub-jaminan, .sub-tenaga-medis, .sub-farmasi {
   display: none;
 }
 
@@ -33,7 +30,7 @@
 .sub-menu{
   position: absolute;top: 0;left:6cm;transform: translateY(0);z-index: 999;
 }
-.sub-tenaga-medis , .sub-jaminan, .sub-tarif{
+.sub-tenaga-medis , .sub-jaminan, .sub-tarif, .sub-farmasi{
   position: absolute;top: 0;left:13cm;transform: translateY(0);z-index: 999;
 }
 </style>
@@ -164,6 +161,17 @@
                     <i class="fas fa-angle-right dropdown"></i>
                   </div>
                 </div>
+                <div class="dropdown-btn menu-farmasi col-lg-10 d-flex justify-content-between align-items-center" style="margin:2.5px;">
+                  <div class="item">
+                    <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                      <i class="fa-solid fa-stethoscope me-2"></i>
+                      <span class="nav-link-text ms-1">Farmasi</span>
+                    </a>
+                  </div>
+                  <div class="item">
+                    <i class="fas fa-angle-right dropdown"></i>
+                  </div>
+                </div>
                 <a href="/layanan/data-layanan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pasien') ? 'active' : '' }} text-decoration-none" style="margin:2.5px;">
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-clipboard-user me-2"></i>
@@ -279,6 +287,28 @@
                 </a>
               </div>
             </div>
+            <div class="sub-farmasi">
+              <div class="d-flex flex-column rounded p-2 ms-3 mt-2"  style="background-color:#FFFFFF;">
+                <a href="{{ route('data-satuan-barang') }}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-satuan-barang') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Satuan Barang</span>
+                  </div>
+                </a>
+                <a href="{{ route('data-farmakologi') }}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-farmakologi') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Farmakologi</span>
+                  </div>
+                </a>
+                <a href="{{ route('data-pabrik') }}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pabrik') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Pabrik & Principal</span>
+                  </div>
+                </a>
+              </div>
+            </div>
           </li>
       </ul>
 
@@ -292,7 +322,7 @@
 
           // Fungsi untuk menyembunyikan semua submenu
           function hideAllSubMenus() {
-            document.querySelectorAll('.sub-tenaga-medis, .sub-jaminan, .sub-tarif').forEach(sub => {
+            document.querySelectorAll('.sub-tenaga-medis, .sub-jaminan, .sub-tarif, .sub-farmasi').forEach(sub => {
               sub.style.display = 'none';
             });
           }
@@ -326,6 +356,7 @@
         handleSubMenu('.menu-tenaga-medis', '.sub-tenaga-medis');
         handleSubMenu('.menu-jaminan', '.sub-jaminan');
         handleSubMenu('.menu-tarif', '.sub-tarif');
+        handleSubMenu('.menu-farmasi', '.sub-farmasi');
 
       </script>
         

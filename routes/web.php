@@ -17,6 +17,9 @@ use App\Http\Controllers\JaminanController;
 use App\Http\Controllers\ReservasiPasienController;
 use App\Http\Controllers\RegisterPasienController;
 use App\Http\Controllers\RawatInapController;
+use App\Http\Controllers\SatuanBarangController;
+use App\Http\Controllers\FarmakologiController;
+use App\Http\Controllers\PabrikController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -206,3 +209,27 @@ Route::put('/pasien/update-tindakan-rawat-inap/{code}', [RawatInapController::cl
 Route::delete('/pasien/delete-tindakan-rawat-inap/{code}', [RawatInapController::class, 'destroyTindakan'])->name('delete-tindakan-rawat-inap');
 
 Route::get('/getTindakanData/{tindakanCode}', [RawatInapController::class, 'getTindakantData']);
+
+//ROUTE SATUAN BARANG
+Route::get('/satuan-barang/data-satuan-barang',[SatuanBarangController::class,'indexDataSatuanBarang'])->name('data-satuan-barang');
+Route::get('/satuan-barang/create-satuan-barang',[SatuanBarangController::class,'indexCreateSatuanBarang'])->name('create-satuan-barang');
+Route::post('/satuan-barang/create-satuan-barang',[SatuanBarangController::class,'store'])->name('store-satuan-barang');
+Route::get('/satuan-barang/edit-satuan-barang/{code}', [SatuanBarangController::class, 'edit'])->name('edit-satuan-barang');
+Route::put('/satuan-barang/update-satuan-barang/{code}', [SatuanBarangController::class, 'update'])->name('update-satuan-barang');
+Route::delete('/satuan-barang/delete-satuan-barang/{code}', [SatuanBarangController::class, 'destroy'])->name('delete-satuan-barang');
+
+//ROUTE FARMAKOLOGI
+Route::get('/farmakologi/data-farmakologi',[FarmakologiController::class,'indexDataFarmakologi'])->name('data-farmakologi');
+Route::get('/farmakologi/create-farmakologi',[FarmakologiController::class,'indexCreateFarmakologi'])->name('create-farmakologi');
+Route::post('/farmakologi/create-farmakologi',[FarmakologiController::class,'store'])->name('store-farmakologi');
+Route::get('/farmakologi/edit-farmakologi/{code}',[FarmakologiController::class,'edit'])->name('edit-farmakologi');
+Route::put('/farmakologi/edit-farmakologi/{code}',[FarmakologiController::class,'update'])->name('update-farmakologi');
+Route::delete('/farmakologi/delete-farmakologi/{code}',[FarmakologiController::class,'destroy'])->name('delete-farmakologi');
+
+//ROUTE PABRIK
+Route::get('/pabrik/data-pabrik',[PabrikController::class,'indexDataPabrik'])->name('data-pabrik');
+Route::get('/pabrik/create-pabrik',[PabrikController::class,'indexCreatePabrik'])->name('create-pabrik');
+Route::post('/pabrik/create-pabrik',[PabrikController::class,'store'])->name('store-pabrik');
+Route::get('/pabrik/edit-pabrik/{code}',[PabrikController::class,'edit'])->name('edit-pabrik');
+Route::put('/pabrik/edit-pabrik/{code}',[PabrikController::class,'update'])->name('update-pabrik');
+Route::delete('/pabrik/delete-pabrik/{code}',[PabrikController::class,'destroy'])->name('delete-pabrik');

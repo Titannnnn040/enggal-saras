@@ -327,7 +327,7 @@ class RawatInapController extends Controller
             ];
         }
 
-        echo "<pre>"; print_r($data); print_r($dataDetail) ; print_r($newDataDetail) ;die;
+        // echo "<pre>"; print_r($data); print_r($dataDetail) ; print_r($newDataDetail) ;die;
         // Create TindakanRawatInap record without dataTindakan
         $tindakanRawatInap = TindakanRawatInap::where('tindakan_code', $code)->update($data);
 
