@@ -20,6 +20,7 @@ use App\Http\Controllers\RawatInapController;
 use App\Http\Controllers\SatuanBarangController;
 use App\Http\Controllers\FarmakologiController;
 use App\Http\Controllers\PabrikController;
+use App\Http\Controllers\GolonganObatController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -233,3 +234,11 @@ Route::post('/pabrik/create-pabrik',[PabrikController::class,'store'])->name('st
 Route::get('/pabrik/edit-pabrik/{code}',[PabrikController::class,'edit'])->name('edit-pabrik');
 Route::put('/pabrik/edit-pabrik/{code}',[PabrikController::class,'update'])->name('update-pabrik');
 Route::delete('/pabrik/delete-pabrik/{code}',[PabrikController::class,'destroy'])->name('delete-pabrik');
+
+// ROUTE GOLONGAN OBAT
+Route::get('/obat/data-golongan-obat',[GolonganObatController::class,'indexDataGolonganObat'])->name('data-golongan-obat');
+Route::get('/obat/create-golongan-obat',[GolonganObatController::class,'indexCreateGolonganObat'])->name('create-golongan-obat');
+Route::post('/obat/create-golongan-obat',[GolonganObatController::class,'store'])->name('store-golongan-obat');
+Route::get('/obat/edit-golongan-obat/{code}',[GolonganObatController::class,'edit'])->name('edit-golongan-obat');
+Route::put('/obat/update-golongan-obat/{code}',[GolonganObatController::class,'update'])->name('update-golongan-obat');
+Route::delete('/obat/delete-golongan-obat/{code}',[GolonganObatController::class,'destroy'])->name('delete-golongan-obat');
