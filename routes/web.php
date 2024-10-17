@@ -21,6 +21,7 @@ use App\Http\Controllers\SatuanBarangController;
 use App\Http\Controllers\FarmakologiController;
 use App\Http\Controllers\PabrikController;
 use App\Http\Controllers\GolonganObatController;
+use App\Http\Controllers\AturanPakaiController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -242,3 +243,11 @@ Route::post('/obat/create-golongan-obat',[GolonganObatController::class,'store']
 Route::get('/obat/edit-golongan-obat/{code}',[GolonganObatController::class,'edit'])->name('edit-golongan-obat');
 Route::put('/obat/update-golongan-obat/{code}',[GolonganObatController::class,'update'])->name('update-golongan-obat');
 Route::delete('/obat/delete-golongan-obat/{code}',[GolonganObatController::class,'destroy'])->name('delete-golongan-obat');
+
+//  ROUTE ATURAN PAKAI
+Route::get('/obat/data-aturan-pakai',[AturanPakaiController::class,'indexDataAturanPakai'])->name('data-aturan-pakai');
+Route::get('/obat/create-aturan-pakai',[AturanPakaiController::class,'indexCreateAturanPakai'])->name('create-aturan-pakai');
+Route::post('/obat/create-aturan-pakai',[AturanPakaiController::class,'store'])->name('store-aturan-pakai');
+Route::get('/obat/edit-aturan-pakai/{code}',[AturanPakaiController::class,'edit'])->name('edit-aturan-pakai');
+Route::put('/obat/update-aturan-pakai/{code}',[AturanPakaiController::class,'update'])->name('update-aturan-pakai');
+Route::delete('/obat/delete-aturan-pakai/{code}',[AturanPakaiController::class,'destroy'])->name('delete-aturan-pakai');
