@@ -56,7 +56,7 @@ class DistributorController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'distributor_name' => ['required', 'string', 'max:255', 'unique:m_distributor,distributor_name'],
+            'distributor_name' => ['required', 'string', 'max:255'],
             'address'          => ['required', 'string', 'max:255'],
             'city'             => ['required', 'string', 'max:255'],
             'contact_person'   => ['required', 'string', 'max:255'],
@@ -90,7 +90,7 @@ class DistributorController extends Controller
     public function update(Request $request, $code)
     {
         $validatedData = $request->validate([
-            'distributor_name' => ['required', 'string', 'max:255', 'unique:m_distributor,distributor_name'],
+            'distributor_name' => ['required', 'string', 'max:255'],
             'address'          => ['required', 'string', 'max:255'],
             'city'             => ['required', 'string', 'max:255'],
             'contact_person'   => ['required', 'string', 'max:255'],
