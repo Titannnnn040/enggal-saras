@@ -25,12 +25,14 @@ class TemplatePoController extends Controller
 
         return $param . date('dmy') . $kd;
     }
+
     public function filterData($field, $model)
     {
         if (request($field)) {
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
+
     public function indexDataTemplatePo()
     {
         $data = TemplatePo::latest();
@@ -42,14 +44,10 @@ class TemplatePoController extends Controller
         }
         return view('pages.m_template_po.data-template-po', ['title' => 'data-template-po', 'data' => $data->get()]);
     }
+    
     public function indexCreateTemplatePo()
     {
         return view('pages.m_template_po.create-template-po', ['title' => 'create-template-po']);
-    }
-
-    public function create()
-    {
-        //
     }
 
     public function store(Request $request)
@@ -70,11 +68,6 @@ class TemplatePoController extends Controller
         }else{
             return redirect()->route('data-template-po')->with('success', 'Data berhasil ditambahkan');
         }
-    }
-
-    public function show(Pabrik $pabrik)
-    {
-        //
     }
 
     public function edit($code)

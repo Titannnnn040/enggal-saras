@@ -24,6 +24,7 @@ use App\Http\Controllers\GolonganObatController;
 use App\Http\Controllers\AturanPakaiController;
 use App\Http\Controllers\TemplatePoController;
 use App\Http\Controllers\TipeHargaJualController;
+use App\Http\Controllers\DistributorController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -269,3 +270,11 @@ Route::post('/template/create-tipe-harga-jual',[TipeHargaJualController::class,'
 Route::get('/template/edit-tipe-harga-jual/{code}',[TipeHargaJualController::class,'edit'])->name('edit-tipe-harga-jual');
 Route::put('/template/update-tipe-harga-jual/{code}',[TipeHargaJualController::class,'update'])->name('update-tipe-harga-jual');
 Route::delete('/template/delete-tipe-harga-jual/{code}',[TipeHargaJualController::class,'destroy'])->name('delete-tipe-harga-jual');
+
+// ROUTE DISTRIBUTOR
+Route::get('/distributor/data-distributor',[DistributorController::class,'indexDataDistributor'])->name('data-distributor');
+Route::get('/distributor/create-distributor',[DistributorController::class,'indexCreateDistributor'])->name('create-distributor');
+Route::post('/distributor/create-distributor',[DistributorController::class,'store'])->name('store-distributor');
+Route::get('/distributor/edit-distributor/{code}',[DistributorController::class,'edit'])->name('edit-distributor');
+Route::put('/distributor/update-distributor/{code}',[DistributorController::class,'update'])->name('update-distributor');
+Route::delete('/distributor/delete-distributor/{code}',[DistributorController::class,'destroy'])->name('delete-distributor');
