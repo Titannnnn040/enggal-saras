@@ -22,6 +22,8 @@ use App\Http\Controllers\FarmakologiController;
 use App\Http\Controllers\PabrikController;
 use App\Http\Controllers\GolonganObatController;
 use App\Http\Controllers\AturanPakaiController;
+use App\Http\Controllers\TemplatePoController;
+use App\Http\Controllers\TipeHargaJualController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -251,3 +253,19 @@ Route::post('/obat/create-aturan-pakai',[AturanPakaiController::class,'store'])-
 Route::get('/obat/edit-aturan-pakai/{code}',[AturanPakaiController::class,'edit'])->name('edit-aturan-pakai');
 Route::put('/obat/update-aturan-pakai/{code}',[AturanPakaiController::class,'update'])->name('update-aturan-pakai');
 Route::delete('/obat/delete-aturan-pakai/{code}',[AturanPakaiController::class,'destroy'])->name('delete-aturan-pakai');
+
+// ROUTE TEMPLATE PO
+Route::get('/template/data-template-po',[TemplatePoController::class,'indexDataTemplatePo'])->name('data-template-po');
+Route::get('/template/create-template-po',[TemplatePoController::class,'indexCreateTemplatePo'])->name('create-template-po');
+Route::post('/template/create-template-po',[TemplatePoController::class,'store'])->name('store-plate-po');
+Route::get('/template/edit-template-po/{code}',[TemplatePoController::class,'edit'])->name('edit-template-po');
+Route::put('/template/update-template-po/{code}',[TemplatePoController::class,'update'])->name('update-template-po');
+Route::delete('/template/delete-template-po/{code}',[TemplatePoController::class,'destroy'])->name('delete-template-po');
+
+// TIPE HARGA JUAL
+Route::get('/template/data-tipe-harga-jual',[TipeHargaJualController::class,'indexDataTipeHarga'])->name('data-tipe-harga-jual');
+Route::get('/template/create-tipe-harga-jual',[TipeHargaJualController::class,'indexCreateTipeHarga'])->name('create-tipe-harga-jual');
+Route::post('/template/create-tipe-harga-jual',[TipeHargaJualController::class,'store'])->name('store-tipe-harga-jual');
+Route::get('/template/edit-tipe-harga-jual/{code}',[TipeHargaJualController::class,'edit'])->name('edit-tipe-harga-jual');
+Route::put('/template/update-tipe-harga-jual/{code}',[TipeHargaJualController::class,'update'])->name('update-tipe-harga-jual');
+Route::delete('/template/delete-tipe-harga-jual/{code}',[TipeHargaJualController::class,'destroy'])->name('delete-tipe-harga-jual');
