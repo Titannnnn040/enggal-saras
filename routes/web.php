@@ -25,6 +25,7 @@ use App\Http\Controllers\AturanPakaiController;
 use App\Http\Controllers\TemplatePoController;
 use App\Http\Controllers\TipeHargaJualController;
 use App\Http\Controllers\DistributorController;
+use App\Http\Controllers\ObatController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -278,3 +279,11 @@ Route::post('/distributor/create-distributor',[DistributorController::class,'sto
 Route::get('/distributor/edit-distributor/{code}',[DistributorController::class,'edit'])->name('edit-distributor');
 Route::put('/distributor/update-distributor/{code}',[DistributorController::class,'update'])->name('update-distributor');
 Route::delete('/distributor/delete-distributor/{code}',[DistributorController::class,'destroy'])->name('delete-distributor');
+
+// ROUTE OBAT
+Route::get('/obat/data-obat',[ObatController::class, 'indexDataObat'])->name('data-obat');
+Route::get('/obat/create-obat',[ObatController::class, 'indexCreateObat'])->name('create-obat');
+Route::post('/obat/create-obat',[ObatController::class, 'store'])->name('store-obat');
+Route::get('/obat/edit-obat/{code}',[ObatController::class, 'edit'])->name('edit-obat');
+Route::put('/obat/update-obat/{code}',[ObatController::class, 'update'])->name('update-obat');
+Route::delete('/obat/delete-obat/{code}',[ObatController::class, 'destroy'])->name('delete-obat');

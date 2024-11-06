@@ -22,3 +22,24 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        const forms = {
+            'btn-spesifikasi': '#form-spesifikasi-dasar',
+            'btn-setting-harga': '#form-setting-harga',
+            'btn-satuan': '#form-satuan',
+            'btn-stock': '#form-stock',
+            'btn-spek': '#form-spek',
+            'btn-distributor': '#form-distributor',
+        };
+
+        $.each(forms, function(buttonId, formId) {
+            $(`#${buttonId}`).on('click', function() {
+                $.each(forms, function(_, hideFormId) {
+                    $(hideFormId).css('display', 'none');
+                });
+                $(formId).css('display', 'flex');
+            });
+        });
+    });
+</script> 
