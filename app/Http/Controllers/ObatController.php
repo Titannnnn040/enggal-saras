@@ -10,6 +10,7 @@ use App\Models\SpesifikasiDasarObat;
 use App\Models\DataHargaObat;
 use App\Models\SettingHargaObat;
 use App\Models\SatuanObat;
+use App\Models\SatuanBarang;
 use App\Models\Layanan;
 use App\Models\StockLimitObat;
 use App\Models\Farmakologi;
@@ -51,7 +52,7 @@ class ObatController extends Controller
             'spekObat'         => $spekObat,
             'hargaObat'        => $hargaObat,
             'settingHargaObat' => $settingHargaObat,
-            'pabrik'           => $pabrik
+            'pabrik'           => $pabrik,
         ]);
     }
     public function indexCreateObat()
@@ -62,7 +63,18 @@ class ObatController extends Controller
         $layanan       = Layanan::all();
         $farmakologi   = Farmakologi::all();
         $distributor   = Distributor::all();
-        return view('pages.m_obat.create-obat', ['title' => 'create-obat', 'tipeHargaJual' => $tipeHargaJual, 'golonganObat' => $golonganObat, 'pabrik' => $pabrik, 'layanan' => $layanan, 'farmakologi' => $farmakologi, 'distributor' => $distributor]);
+        $satuanBarang  = SatuanBarang::all();
+        
+        return view('pages.m_obat.create-obat', [
+            'title'         => 'create-obat',
+            'tipeHargaJual' => $tipeHargaJual, 
+            'golonganObat'  => $golonganObat, 
+            'pabrik'        => $pabrik, 
+            'layanan'       => $layanan, 
+            'farmakologi'   => $farmakologi, 
+            'distributor'   => $distributor,
+            'satuanBarang'  => $satuanBarang,
+        ]);
     }
     public function store(Request $request){
         $dataObat = [
@@ -183,6 +195,7 @@ class ObatController extends Controller
         $layanan       = Layanan::all();
         $farmakologi   = Farmakologi::all();
         $distributor   = Distributor::all();
+        $satuanBarang  = SatuanBarang::all();
         
         $dataObat         = Obat::where('code_obat', $code)->first();
         $spekDasar        = SpesifikasiDasarObat::where('code_obat', $code)->first();
@@ -192,7 +205,7 @@ class ObatController extends Controller
         $spekObat         = SpesifikasiObat::where('code_obat', $code)->first();
         // echo"<pre>";print_r($spekObat);die;
         $distributorObat  = DistributorObat::where('code_obat', $code)->first();
-        $stockLimitObat  = StockLimitObat::where('code_obat', $code)->get();
+        $stockLimitObat   = StockLimitObat::where('code_obat', $code)->get();
         $data = [
             'dataObat'         => $dataObat,
             'tipeHargaJual'    => $tipeHargaJual,
@@ -202,12 +215,13 @@ class ObatController extends Controller
             'farmakologi'      => $farmakologi,
             'distributor'      => $distributor,
             'spekObat'         => $spekObat,
-            'spekDasar'         => $spekDasar,
+            'spekDasar'        => $spekDasar,
             'hargaObat'        => $hargaObat,
             'settingHargaObat' => $settingHargaObat,
             'satuanObat'       => $satuanObat,
             'distributorObat'  => $distributorObat,
-            'stockLimitObat'  => $stockLimitObat,
+            'stockLimitObat'   => $stockLimitObat,
+            'satuanBarang'     => $satuanBarang,
         ];
         
         // echo "<pre>"; print_r($dataObat['code_obat']); die;

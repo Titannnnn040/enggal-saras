@@ -214,18 +214,9 @@
                                                                 <label for="satuan_kecil" class="form-label col-lg-3 col-xl-3 col-xxl-2 me-2">Satuan Kecil :</label>
                                                                 <div class="col-lg-12 col-xl-12">
                                                                     <select class="form-select @error('satuan_kecil') is-invalid @enderror" name="satuan_kecil" id="satuan_kecil">
-                                                                        @php
-                                                                            $satuanOptions = [
-                                                                                "Ampul", "Anti Virus", "Botol", "Box", "Bungkus", "Caplet", "Cart", "Drops", "Dus", "FLS", "GLN", "GRAM", 
-                                                                                "KALENG", "KAPSUL", "KARTON", "KILOGRAM", "KIT", "KOLF", "KTK", "LEMBAR", "MANTUK", "MILIGRAM", "MILILITER", 
-                                                                                "OBAT JAMUR", "OVULA", "PACK", "PASANG", "PCS", "PULVUS", "ROLL", "SACHETS", "SET", "STICK", "STRIP", "SUPP", 
-                                                                                "TABLET", "TEST", "TETES", "TUBE", "VIAL", "ZAK"
-                                                                            ];
-                                                                        @endphp
-
                                                                         <option value="">Please Select</option>
-                                                                        @foreach ($satuanOptions as $option)
-                                                                            <option value="{{$option}}" {{ strtoupper($option) == $data['satuanObat']['satuan_kecil'] ? 'selected' : '' }}>{{ strtoupper($option) }}</option>
+                                                                        @foreach ($data['satuanBarang'] as $option)
+                                                                            <option value="{{ $option->satuan_barang_code }}" {{$option->satuan_barang_code ==  $data['satuanObat']['satuan_kecil'] ? 'selected' : ''}}>{{ strtoupper($option->satuan_barang_name) }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                     @error('satuan_kecil')
@@ -241,8 +232,8 @@
                                                                     <div class="d-flex">
                                                                         <select class="form-select me-2 @error('satuan_kemasan') is-invalid @enderror" name="satuan_kemasan" id="satuan_kemasan" style="flex: 11; max-height: 100px; overflow-y: auto;">
                                                                             <option value="">Please Select</option>
-                                                                            @foreach ($satuanOptions as $option)
-                                                                                <option value="{{ strtoupper($option) }}" {{ strtoupper($option) == $data['satuanObat']['satuan_kemasan'] ? 'selected' : '' }}>{{ strtoupper($option) }}</option>
+                                                                            @foreach ($data['satuanBarang'] as $option)
+                                                                                <option value="{{ $option->satuan_barang_code }}" {{$option->satuan_barang_code ==  $data['satuanObat']['satuan_kecil'] ? 'selected' : ''}}>{{ strtoupper($option->satuan_barang_name) }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <input type="number" class="form-control @error('qty_satuan_kemasan') is-invalid @enderror" id="qty_satuan_kemasan" name="qty_satuan_kemasan" value="{{$data['satuanObat']['qty_satuan_kemasan']}}" style="flex: 1;">
@@ -260,8 +251,8 @@
                                                                     <div class="d-flex">
                                                                         <select class="form-select me-2 @error('satuan_kemasan_lainya') is-invalid @enderror" name="satuan_kemasan_lainya" id="satuan_kemasan_lainya" style="flex: 11;">
                                                                             <option value="">Please Select</option>
-                                                                            @foreach ($satuanOptions as $option)
-                                                                                <option value="{{ strtoupper($option) }}" {{ strtoupper($option) == $data['satuanObat']['satuan_kemasan_lainya'] ? 'selected' : '' }}>{{ strtoupper($option) }}</option>
+                                                                            @foreach ($data['satuanBarang'] as $option)
+                                                                                <option value="{{ $option->satuan_barang_code }}" {{$option->satuan_barang_code ==  $data['satuanObat']['satuan_kecil'] ? 'selected' : ''}}>{{ strtoupper($option->satuan_barang_name) }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <input type="number" class="form-control @error('qty_satuan_kemasan_lainya') is-invalid @enderror" id="qty_satuan_kemasan_lainya" name="qty_satuan_kemasan_lainya" value="{{$data['satuanObat']['qty_satuan_kemasan_lainya']}}" style="flex: 1;">
@@ -280,8 +271,8 @@
                                                                         <input type="number" class="form-control me-2 @error('qty_satuan_racik') is-invalid @enderror" id="qty_satuan_racik" name="qty_satuan_racik" value="{{$data['satuanObat']['qty_satuan_racik']}}" style="flex: 1;">
                                                                         <select class="form-select @error('satuan_racik') is-invalid @enderror" name="satuan_racik" id="satuan_racik" style="flex: 11;">
                                                                             <option value="">Please Select</option>
-                                                                            @foreach ($satuanOptions as $option)
-                                                                                <option value="{{ strtoupper($option) }}" {{ strtoupper($option) == $data['satuanObat']['satuan_racik'] ? 'selected' : '' }}>{{ strtoupper($option) }}</option>
+                                                                            @foreach ($data['satuanBarang'] as $option)
+                                                                                <option value="{{ $option->satuan_barang_code }}" {{$option->satuan_barang_code ==  $data['satuanObat']['satuan_kecil'] ? 'selected' : ''}}>{{ strtoupper($option->satuan_barang_name) }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -358,7 +349,7 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="isi_kandungan" class="form-label">Isi Kandungan :</label>
-                                                        <input type="text" class="form-control @error('isi_kandungan') is-invalid @enderror" id="isi_kandungan" name="isi_kandungan" value="DEFAULT" readonly>
+                                                        <textarea name="isi_kandungan" id="isi_kandungan" class="form-control @error('isi_kandungan') is-invalid @enderror" cols="30" rows="5">{{ $data['spekObat']['isi_kandungan'] ?? '' }}</textarea>
                                                         @error('isi_kandungan')
                                                         <div class="invalid-feedback d-block">{{ $message }}</div>
                                                         @enderror
