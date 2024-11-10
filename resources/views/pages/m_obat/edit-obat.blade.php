@@ -54,6 +54,7 @@
                                                         <li class="me-2"><button  id="btn-stock" type="button" class="btn btn-success">Stock & Limit</button></li>
                                                         <li class="me-2"><button  id="btn-spek" type="button" class="btn btn-success">Spesifikasi</button></li>
                                                         <li class="me-2"><button  id="btn-distributor" type="button" class="btn btn-success">Distributor</button></li>
+                                                        <li class="me-2"><button  id="btn-satu-sehat" type="button" class="btn btn-success">Satu Sehat</button></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -422,6 +423,91 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 ms-4 mb-4" id="form-satu-sehat" style="display: none;width:1500px !important">
+                                            <div class="row col-lg-12 ms-1 me-0">
+                                                <div class="row">
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label for="code_kfa_variant" class="form-label">Kode KFA Variant (93xxxxxx) :</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <select class="form-select @error('code_kfa_variant') is-invalid @enderror" name="code_kfa_variant" id="code_kfa_variant">
+                                                                <option value="">Please Select</option>
+                                                            </select>
+                                                            @error('code_kfa_variant')
+                                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label for="code_kfa_product" class="form-label">Kode KFA Product (92xxxxxx) :</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <select class="form-select @error('code_kfa_product') is-invalid @enderror" name="code_kfa_product" id="code_kfa_product">
+                                                                <option value="">Please Select</option>
+                                                            </select>
+                                                            @error('code_kfa_product')
+                                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label for="code_kfa_ingredient" class="form-label">Kode KFA Ingredient (93xxxxxx) :</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <select class="form-select @error('code_kfa_ingredient') is-invalid @enderror" name="code_kfa_ingredient" id="code_kfa_ingredient">
+                                                                <option value="">Please Select</option>
+                                                            </select>
+                                                            @error('code_kfa_ingredient')
+                                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                        <p class="mt-2" style="font-size:12px">Daftar Kode obat dapat dilihat dalam browser kamus KFA (Kamus Farmasi & Alat Kesehatan) pada link berikut : https://dto.kemkes.go.id/kfa-browser</p>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="cara_pakai" class="form-label">Cara Pakai :</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <select class="form-select @error('cara_pakai') is-invalid @enderror" name="cara_pakai" id="cara_pakai">
+                                                                <option value="">Please Select</option>
+                                                                @foreach ($data['caraPakai'] as $item)
+                                                                    <option value="{{$item->cara_pakai_name}}" {{$item->cara_pakai_name == $data['satuSehat']->cara_pakai ? 'selected' : ''}}>{{$item->cara_pakai_name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('cara_pakai')
+                                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                        <p class="mt-2" style="font-size:12px">Berisi data yang berkaitan dengan cara/rute yang digunakan untuk memasukkan obat ke dalam tubuh yang nilainya mengacu pada data terminologi WHO ATC/DDD.</p>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="pola_pemberian" class="form-label">Pola Pemberian :</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <select class="form-select @error('pola_pemberian') is-invalid @enderror" name="pola_pemberian" id="pola_pemberian">
+                                                                <option value="">Please Select</option>
+                                                                <option value="Continuous long term therapy"{{$data['satuSehat']->pola_pemberian == 'Continuous long term therapy' ? 'selected' : ''}}>Continuous long term therapy</option>
+                                                                <option value="Short course (acute) therapy"{{$data['satuSehat']->pola_pemberian == 'Short course (acute) therapy' ? 'selected' : ''}}>Short course (acute) therapy</option>
+                                                                <option value="Seasonal" {{$data['satuSehat']->pola_pemberian == 'Seasonal' ? 'selected' : ''}}>Seasonal</option>
+                                                            </select>
+                                                            @error('pola_pemberian')
+                                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                        <p class="mt-2" style="font-size:12px">Berisi data yang mendeskripsikan keseluruhan pola pemberian obat pada pasien dengan tipe data Coding yang nilainya mengacu pada data terminologi MedicationRequest Course of Therapy Codes.</p>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="bentuk_sediaan_obat" class="form-label">Bentuk/Sediaan Obat :</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <select class="form-select @error('bentuk_sediaan_obat') is-invalid @enderror" name="bentuk_sediaan_obat" id="bentuk_sediaan_obat">
+                                                                <option value="">Please Select</option>
+                                                                @foreach ($data['bentukSediaanObat'] as $item)
+                                                                    <option value="{{$item->bentuk_sediaan_name}}" {{$data['satuSehat']->bentuk_sediaan_obat == $item->bentuk_sediaan_name ? 'selected' : ''}}>{{$item->bentuk_sediaan_name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('bentuk_sediaan_obat')
+                                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                        <p class="mt-2" style="font-size:12px">Berisi data yang menjelaskan bentuk dari sediaan obat yang merujuk pada Peraturan Kepala Badan Pengawas Obat dan Makanan Republik Indonesia Nomor 24 Tahun 2017.</p>
+                                                    </div>
+
+                                                    <p style="color:red;font-size:13px">*Wajib diisi bila Bridging dengan Satu Sehat</p>
                                                 </div>
                                             </div>
                                         </div>

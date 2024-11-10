@@ -31,6 +31,7 @@
             'btn-stock': '#form-stock',
             'btn-spek': '#form-spek',
             'btn-distributor': '#form-distributor',
+            'btn-satu-sehat': '#form-satu-sehat',
         };
 
         $.each(forms, function(buttonId, formId) {

@@ -26,6 +26,8 @@ use App\Http\Controllers\TemplatePoController;
 use App\Http\Controllers\TipeHargaJualController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\CaraPakaiObatController;
+use App\Http\Controllers\BentukSediaanObatController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -287,3 +289,19 @@ Route::post('/obat/create-obat',[ObatController::class, 'store'])->name('store-o
 Route::get('/obat/edit-obat/{code}',[ObatController::class, 'edit'])->name('edit-obat');
 Route::put('/obat/update-obat/{code}',[ObatController::class, 'update'])->name('update-obat');
 Route::delete('/obat/delete-obat/{code}',[ObatController::class, 'destroy'])->name('delete-obat');
+
+// ROUTE CARA PAKAI OBAT
+Route::get('/cara-pakai/data-cara-pakai',[CaraPakaiObatController::class, 'indexDataCaraPakai'])->name('data-cara-pakai');
+Route::get('/cara-pakai/create-cara-pakai',[CaraPakaiObatController::class, 'indexCreateCaraPakai'])->name('create-cara-pakai');
+Route::post('/cara-pakai/create-cara-pakai',[CaraPakaiObatController::class, 'store'])->name('store-cara-pakai');
+Route::get('/cara-pakai/edit-cara-pakai/{code}',[CaraPakaiObatController::class, 'edit'])->name('edit-cara-pakai');
+Route::put('/cara-pakai/update-cara-pakai/{code}',[CaraPakaiObatController::class, 'update'])->name('update-cara-pakai');
+Route::delete('/cara-pakai/delete-cara-pakai/{code}',[CaraPakaiObatController::class, 'destroy'])->name('delete-cara-pakai');
+
+// ROUTE CARA PAKAI OBAT
+Route::get('/bentuk-sediaan/data-bentuk-sediaan',[BentukSediaanObatController::class, 'indexDataBentukSediaan'])->name('data-bentuk-sediaan');
+Route::get('/bentuk-sediaan/create-bentuk-sediaan',[BentukSediaanObatController::class, 'indexCreateBentukSediaan'])->name('create-bentuk-sediaan');
+Route::post('/bentuk-sediaan/create-bentuk-sediaan',[BentukSediaanObatController::class, 'store'])->name('store-bentuk-sediaan');
+Route::get('/bentuk-sediaan/edit-bentuk-sediaan/{code}',[BentukSediaanObatController::class, 'edit'])->name('edit-bentuk-sediaan');
+Route::put('/bentuk-sediaan/update-bentuk-sediaan/{code}',[BentukSediaanObatController::class, 'update'])->name('update-bentuk-sediaan');
+Route::delete('/bentuk-sediaan/delete-bentuk-sediaan/{code}',[BentukSediaanObatController::class, 'destroy'])->name('delete-bentuk-sediaan');

@@ -343,6 +343,18 @@
                     <span class="nav-link-text ms-2">Obat & Alkes</span>
                   </div>
                 </a>
+                <a href="{{ route('data-cara-pakai') }}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-cara-pakai') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Cara Pakai</span>
+                  </div>
+                </a>
+                <a href="{{ route('data-bentuk-sediaan') }}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-bentuk-sediaan') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Bentuk Sediaan Oabt</span>
+                  </div>
+                </a>
               </div>
             </div>
           </li>

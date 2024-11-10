@@ -11,12 +11,15 @@ use App\Models\DataHargaObat;
 use App\Models\SettingHargaObat;
 use App\Models\SatuanObat;
 use App\Models\SatuanBarang;
+use App\Models\CaraPakaiObat;
 use App\Models\Layanan;
 use App\Models\StockLimitObat;
 use App\Models\Farmakologi;
 use App\Models\SpesifikasiObat;
 use App\Models\Distributor;
 use App\Models\DistributorObat;
+use App\Models\BentukSediaanObat;
+use App\Models\SatuSehatObat;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -57,13 +60,17 @@ class ObatController extends Controller
     }
     public function indexCreateObat()
     {
-        $tipeHargaJual = TipeHargaJual::all();
-        $golonganObat  = GolonganObat::all();
-        $pabrik        = Pabrik::all();
-        $layanan       = Layanan::all();
-        $farmakologi   = Farmakologi::all();
-        $distributor   = Distributor::all();
-        $satuanBarang  = SatuanBarang::all();
+        $tipeHargaJual      = TipeHargaJual::all();
+        $golonganObat       = GolonganObat::all();
+        $pabrik             = Pabrik::all();
+        $layanan            = Layanan::all();
+        $farmakologi        = Farmakologi::all();
+        $distributor        = Distributor::all();
+        $satuanBarang       = SatuanBarang::all();
+        $caraPakai          = CaraPakaiObat::all();
+        $bentukSediaanObat  = BentukSediaanObat::all();
+        
+        // dd($caraPakai);
         
         return view('pages.m_obat.create-obat', [
             'title'         => 'create-obat',
@@ -74,6 +81,8 @@ class ObatController extends Controller
             'farmakologi'   => $farmakologi, 
             'distributor'   => $distributor,
             'satuanBarang'  => $satuanBarang,
+            'caraPakai'     => $caraPakai,
+            'bentukSediaanObat'     => $bentukSediaanObat,
         ]);
     }
     public function store(Request $request){
@@ -116,6 +125,16 @@ class ObatController extends Controller
             'peringatan'      => $request->peringatan,
             'farmakologi'     => $request->farmakologi,
         ];
+        $dataSatuSehat = [
+            'code_obat'            => $dataObat['code_obat'],
+            'code_kfa_variant'     => 'DEFAULT',
+            'code_kfa_product'     => 'DEFAULT',
+            'code_kfa_ingredient'  => 'DEFAULT',
+            'cara_pakai'           => $request->cara_pakai,
+            'pola_pemberian'       => $request->pola_pemberian,
+            'bentuk_sediaan_obat'  => $request->bentuk_sediaan_obat,
+        ];
+        // echo"<pre>";print_r($dataSatuSehat);die; 
         // $findDistributor = $request->distributor;
         $findDistributor = Distributor::where('distributor_code', $request->distributor)->first();
         // echo"<pre>";print_r($findDistributor);die;
@@ -176,11 +195,12 @@ class ObatController extends Controller
             $createSatuanObat       = SatuanObat::create($satuanObat);
             $createSpekObat         = SpesifikasiObat::create($dataSpekObat);
             $createDistributor      = DistributorObat::create($dataDistributor);
+            $createSatuSehat        = SatuSehatObat::create($dataSatuSehat);
 
             $createSettingHargaObat = SettingHargaObat::insert($hargaObat['data_harga_obat']);
             $createStockLimit       = StockLimitObat::insert($stockLimit['data_stock_limit']);
 
-        if ($createObat && $createSpekDasar && $createHargaObat && $createSettingHargaObat && $createSatuanObat && $createStockLimit && $createSpekObat && $createDistributor) {
+        if ($createObat && $createSpekDasar && $createHargaObat && $createSettingHargaObat && $createSatuanObat && $createStockLimit && $createSpekObat && $createDistributor && $createSatuSehat) {
             return redirect()->route('data-obat')->with('success', 'Data obat berhasil disimpan.');
         } else {
             return redirect()->back()->with('error', 'Gagal menyimpan data obat.');
@@ -189,13 +209,15 @@ class ObatController extends Controller
     }
 
     public function edit($code){
-        $tipeHargaJual = TipeHargaJual::all();
-        $golonganObat  = GolonganObat::all();
-        $pabrik        = Pabrik::all();
-        $layanan       = Layanan::all();
-        $farmakologi   = Farmakologi::all();
-        $distributor   = Distributor::all();
-        $satuanBarang  = SatuanBarang::all();
+        $tipeHargaJual      = TipeHargaJual::all();
+        $golonganObat       = GolonganObat::all();
+        $pabrik             = Pabrik::all();
+        $layanan            = Layanan::all();
+        $farmakologi        = Farmakologi::all();
+        $distributor        = Distributor::all();
+        $satuanBarang       = SatuanBarang::all();
+        $caraPakai          = CaraPakaiObat::all();
+        $bentukSediaanObat  = BentukSediaanObat::all();
         
         $dataObat         = Obat::where('code_obat', $code)->first();
         $spekDasar        = SpesifikasiDasarObat::where('code_obat', $code)->first();
@@ -203,28 +225,31 @@ class ObatController extends Controller
         $settingHargaObat = SettingHargaObat::where('code_obat', $code)->get();
         $satuanObat       = SatuanObat::where('code_obat', $code)->first();
         $spekObat         = SpesifikasiObat::where('code_obat', $code)->first();
-        // echo"<pre>";print_r($spekObat);die;
+        $satuSehat         = SatuSehatObat::where('code_obat', $code)->first();
+        // echo"<pre>";print_r($satuSehat);die;
         $distributorObat  = DistributorObat::where('code_obat', $code)->first();
         $stockLimitObat   = StockLimitObat::where('code_obat', $code)->get();
         $data = [
-            'dataObat'         => $dataObat,
-            'tipeHargaJual'    => $tipeHargaJual,
-            'golonganObat'     => $golonganObat,
-            'pabrik'           => $pabrik,
-            'layanan'          => $layanan,
-            'farmakologi'      => $farmakologi,
-            'distributor'      => $distributor,
-            'spekObat'         => $spekObat,
-            'spekDasar'        => $spekDasar,
-            'hargaObat'        => $hargaObat,
-            'settingHargaObat' => $settingHargaObat,
-            'satuanObat'       => $satuanObat,
-            'distributorObat'  => $distributorObat,
-            'stockLimitObat'   => $stockLimitObat,
-            'satuanBarang'     => $satuanBarang,
+            'dataObat'              => $dataObat,
+            'tipeHargaJual'         => $tipeHargaJual,
+            'golonganObat'          => $golonganObat,
+            'pabrik'                => $pabrik,
+            'layanan'               => $layanan,
+            'farmakologi'           => $farmakologi,
+            'distributor'           => $distributor,
+            'spekObat'              => $spekObat,
+            'spekDasar'             => $spekDasar,
+            'hargaObat'             => $hargaObat,
+            'settingHargaObat'      => $settingHargaObat,
+            'satuanObat'            => $satuanObat,
+            'distributorObat'       => $distributorObat,
+            'stockLimitObat'        => $stockLimitObat,
+            'satuanBarang'          => $satuanBarang,
+            'caraPakai'             => $caraPakai,
+            'bentukSediaanObat'     => $bentukSediaanObat,
+            'satuSehat'             => $satuSehat,
         ];
-        
-        // echo "<pre>"; print_r($dataObat['code_obat']); die;
+        // echo"<pre>";print_r($data['caraPakai']);die;
         return view('pages.m_obat.edit-obat', ['data' => $data,  'title' => 'edit-obat',]);
     }
     public function update(Request $request, $code){
@@ -267,6 +292,17 @@ class ObatController extends Controller
             'peringatan'      => $request->peringatan,
             'farmakologi'     => $request->farmakologi,
         ];
+
+        $dataSatuSehat = [
+            'code_obat'            => $code,
+            'code_kfa_variant'     => 'DEFAULT',
+            'code_kfa_product'     => 'DEFAULT',
+            'code_kfa_ingredient'  => 'DEFAULT',
+            'cara_pakai'           => $request->cara_pakai,
+            'pola_pemberian'       => $request->pola_pemberian,
+            'bentuk_sediaan_obat'  => $request->bentuk_sediaan_obat,
+        ];
+
         // $findDistributor = $request->distributor;
         $findDistributor = Distributor::where('distributor_code', $request->distributor)->first();
         // echo"<pre>";print_r($findDistributor);die;
@@ -327,6 +363,7 @@ class ObatController extends Controller
             $updateSatuanObat      = SatuanObat::where('code_obat', $code)->update($satuanObat);
             $updateSpekObat        = SpesifikasiObat::where('code_obat', $code)->update($dataSpekObat);
             $updateDistributor     = DistributorObat::where('code_obat', $code)->update($dataDistributor);
+            $updateSatuSehat       = SatuSehatObat::where('code_obat', $code)->update($dataSatuSehat);
 
             foreach ($hargaObat['data_harga_obat'] as $harga) {
             SettingHargaObat::where('code_obat', $code)
@@ -339,7 +376,7 @@ class ObatController extends Controller
                 ->update($stockLimit);
             }
         
-        if ($updateObat && $updateSpekDasar && $updateHargaObat && $updateSatuanObat && $updateSpekObat && $updateDistributor) {
+        if ($updateObat && $updateSpekDasar && $updateHargaObat && $updateSatuanObat && $updateSpekObat && $updateDistributor && $updateSatuSehat) {
             return redirect()->route('data-obat')->with('success', 'Data obat berhasil disimpan.');
         } else {
             return redirect()->back()->with('error', 'Gagal menyimpan data obat.');
