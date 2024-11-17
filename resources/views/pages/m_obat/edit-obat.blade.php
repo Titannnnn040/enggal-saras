@@ -55,6 +55,7 @@
                                                         <li class="me-2"><button  id="btn-spek" type="button" class="btn btn-success">Spesifikasi</button></li>
                                                         <li class="me-2"><button  id="btn-distributor" type="button" class="btn btn-success">Distributor</button></li>
                                                         <li class="me-2"><button  id="btn-satu-sehat" type="button" class="btn btn-success">Satu Sehat</button></li>
+                                                        <li class="me-2"><button  id="btn-bpjs" type="button" class="btn btn-success">BPJS</button></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -510,6 +511,24 @@
                                                     </div>
 
                                                     <p style="color:red;font-size:13px">*Wajib diisi bila Bridging dengan Satu Sehat</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 ms-4 mb-4" id="form-bpjs" style="display: none;width:1500px !important">
+                                            <div class="row col-lg-12 ms-1 me-0">
+                                                <div class="row">
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label for="code_obat_dpoh" class="form-label">Kode Obat DPHO :</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <select class="form-select @error('code_obat_dpoh') is-invalid @enderror" name="code_obat_dpoh" id="code_obat_dpoh">
+                                                                <option value="">Please Select</option>
+                                                            </select>
+                                                            @error('code_obat_dpoh')
+                                                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <p style="color:red;font-size:13px">*Wajib diisi bila Bridging dengan BPJS</p>
                                                 </div>
                                             </div>
                                         </div>

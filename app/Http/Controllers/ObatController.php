@@ -20,6 +20,7 @@ use App\Models\Distributor;
 use App\Models\DistributorObat;
 use App\Models\BentukSediaanObat;
 use App\Models\SatuSehatObat;
+use App\Models\ObatBpjs;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -86,11 +87,10 @@ class ObatController extends Controller
         ]);
     }
     public function store(Request $request){
+        // return $request->all();
+        // die();
         $validatedData = $request->validate([
-            'obat_name'                   => ['required', 'string', 'max:255', 'unique:m_obat,name_obat'],
-            'code_obat'                   => ['required'],
-            'status'                      => ['required'],
-            'barang_racikan'              => ['required'],
+            'obat_name'                   => ['required', 'string', 'max:255'],
             'golongan_barang'             => ['required'],
             'pabrik_principal'            => ['required'],
             'lokasi_barang'               => ['required'],
@@ -112,14 +112,7 @@ class ObatController extends Controller
             'kontraindikasi'              => ['required'],
             'peringatan'                  => ['required'],
             'farmakologi'                 => ['required'],
-            'code_kfa_variant'            => ['required'],
-            'code_kfa_product'            => ['required'],
-            'code_kfa_ingredient'         => ['required'],
-            'cara_pakai'                  => ['required'],
-            'pola_pemberian'              => ['required'],
-            'bentuk_sediaan_obat'         => ['required'],
-            'distributor_code'            => ['required'],
-            'distributor_name'            => ['required'],     
+            'distributor'                 => ['required'],     
             'tipe_harga_jual_code'        => ['required'],
             'tipe_harga_jual_name'        => ['required'],
             'profit_margin'               => ['required'],
@@ -177,6 +170,10 @@ class ObatController extends Controller
             'cara_pakai'           => $request->cara_pakai,
             'pola_pemberian'       => $request->pola_pemberian,
             'bentuk_sediaan_obat'  => $request->bentuk_sediaan_obat,
+        ];
+        $dataBpjs = [
+            'code_obat'            => $dataObat['code_obat'],
+            'code_obat_dpoh'       => $request->code_obat_dpoh,
         ];
         // echo"<pre>";print_r($dataSatuSehat);die; 
         // $findDistributor = $request->distributor;
@@ -240,11 +237,12 @@ class ObatController extends Controller
             $createSpekObat         = SpesifikasiObat::create($dataSpekObat);
             $createDistributor      = DistributorObat::create($dataDistributor);
             $createSatuSehat        = SatuSehatObat::create($dataSatuSehat);
+            $createBpjs             = ObatBpjs::create($dataBpjs);
 
             $createSettingHargaObat = SettingHargaObat::insert($hargaObat['data_harga_obat']);
             $createStockLimit       = StockLimitObat::insert($stockLimit['data_stock_limit']);
 
-        if ($createObat && $createSpekDasar && $createHargaObat && $createSettingHargaObat && $createSatuanObat && $createStockLimit && $createSpekObat && $createDistributor && $createSatuSehat) {
+        if ($createObat && $createSpekDasar && $createHargaObat && $createSettingHargaObat && $createSatuanObat && $createStockLimit && $createSpekObat && $createDistributor && $createSatuSehat && $createBpjs) {
             return redirect()->route('data-obat')->with('success', 'Data obat berhasil disimpan.');
         } else {
             return redirect()->back()->with('error', 'Gagal menyimpan data obat.');
@@ -298,10 +296,8 @@ class ObatController extends Controller
     }
     public function update(Request $request, $code){
         $validatedData = $request->validate([
-            'obat_name'                   => ['required', 'string', 'max:255', 'unique:m_obat,name_obat'],
+            'obat_name'                   => ['required', 'string', 'max:255'],
             'code_obat'                   => ['required'],
-            'status'                      => ['required'],
-            'barang_racikan'              => ['required'],
             'golongan_barang'             => ['required'],
             'pabrik_principal'            => ['required'],
             'lokasi_barang'               => ['required'],
@@ -323,14 +319,7 @@ class ObatController extends Controller
             'kontraindikasi'              => ['required'],
             'peringatan'                  => ['required'],
             'farmakologi'                 => ['required'],
-            'code_kfa_variant'            => ['required'],
-            'code_kfa_product'            => ['required'],
-            'code_kfa_ingredient'         => ['required'],
-            'cara_pakai'                  => ['required'],
-            'pola_pemberian'              => ['required'],
-            'bentuk_sediaan_obat'         => ['required'],
-            'distributor_code'            => ['required'],
-            'distributor_name'            => ['required'],     
+            'distributor'                 => ['required'],
             'tipe_harga_jual_code'        => ['required'],
             'tipe_harga_jual_name'        => ['required'],
             'profit_margin'               => ['required'],
@@ -391,6 +380,10 @@ class ObatController extends Controller
             'bentuk_sediaan_obat'  => $request->bentuk_sediaan_obat,
         ];
 
+        $dataBpjs = [
+            'code_obat'            => $code,
+            'code_obat_dpoh'       => $request->code_obat_dpoh,
+        ];
         // $findDistributor = $request->distributor;
         $findDistributor = Distributor::where('distributor_code', $request->distributor)->first();
         // echo"<pre>";print_r($findDistributor);die;
@@ -452,6 +445,7 @@ class ObatController extends Controller
             $updateSpekObat        = SpesifikasiObat::where('code_obat', $code)->update($dataSpekObat);
             $updateDistributor     = DistributorObat::where('code_obat', $code)->update($dataDistributor);
             $updateSatuSehat       = SatuSehatObat::where('code_obat', $code)->update($dataSatuSehat);
+            $updateBpjs            = ObatBpjs::where('code_obat', $code)->update($dataBpjs);
 
             foreach ($hargaObat['data_harga_obat'] as $harga) {
             SettingHargaObat::where('code_obat', $code)
@@ -464,11 +458,11 @@ class ObatController extends Controller
                 ->update($stockLimit);
             }
         
-        if ($updateObat && $updateSpekDasar && $updateHargaObat && $updateSatuanObat && $updateSpekObat && $updateDistributor && $updateSatuSehat) {
             return redirect()->route('data-obat')->with('success', 'Data obat berhasil disimpan.');
-        } else {
-            return redirect()->back()->with('error', 'Gagal menyimpan data obat.');
-        }
+        // if ($updateObat && $updateSpekDasar && $updateHargaObat && $updateSatuanObat && $updateSpekObat && $updateDistributor && $updateSatuSehat && $updateBpjs) {
+        // } else {
+        //     return redirect()->back()->with('error', 'Gagal menyimpan data obat.');
+        // }
     }
     public function destroy($code){
         $deleteObat            = Obat::where('code_obat', $code)->delete();

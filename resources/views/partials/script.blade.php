@@ -32,6 +32,7 @@
             'btn-spek': '#form-spek',
             'btn-distributor': '#form-distributor',
             'btn-satu-sehat': '#form-satu-sehat',
+            'btn-bpjs': '#form-bpjs',
         };
 
         $.each(forms, function(buttonId, formId) {
