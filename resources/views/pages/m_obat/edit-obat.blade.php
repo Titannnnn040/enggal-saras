@@ -439,6 +439,7 @@
                                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                                             @enderror
                                                         </div>
+                                                    </div>
                                                     <div class="col-lg-12 mb-3">
                                                         <label for="code_kfa_product" class="form-label">Kode KFA Product (92xxxxxx) :</label>
                                                         <div class="col-lg-12 col-xl-12">
@@ -449,6 +450,7 @@
                                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                                             @enderror
                                                         </div>
+                                                    </div>
                                                     <div class="col-lg-12 mb-3">
                                                         <label for="code_kfa_ingredient" class="form-label">Kode KFA Ingredient (93xxxxxx) :</label>
                                                         <div class="col-lg-12 col-xl-12">

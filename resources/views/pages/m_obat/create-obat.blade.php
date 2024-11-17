@@ -16,7 +16,7 @@
                         <div class="form"  style="background-color:#FDFEFD;">
                             <div class="content">
                                 <form action="" method="post" class="d-flex col-lg-12"> 
-                                    @csrf     
+                                    @csrf  
                                     <div class="d-flex flex-column">
                                         <div class="d-flex col-lg-12 mb-4">
                                             <div class="col-lg-12 col-xl-12 col-xxl-12 me-0 row">
@@ -136,7 +136,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>   
+                                        </div> 
                                         <div class="col-lg-12 ms-4 mb-4" id="form-setting-harga" style="display: none">
                                             <div class="row ms-1 me-0">
                                                 <div class="col-lg-12 col-xl-12 col-xxl-12 d-flex">
@@ -433,6 +433,7 @@
                                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                                             @enderror
                                                         </div>
+                                                    </div>
                                                     <div class="col-lg-12 mb-3">
                                                         <label for="code_kfa_product" class="form-label">Kode KFA Product (92xxxxxx) :</label>
                                                         <div class="col-lg-12 col-xl-12">
@@ -443,6 +444,7 @@
                                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                                             @enderror
                                                         </div>
+                                                    </div>
                                                     <div class="col-lg-12 mb-3">
                                                         <label for="code_kfa_ingredient" class="form-label">Kode KFA Ingredient (93xxxxxx) :</label>
                                                         <div class="col-lg-12 col-xl-12">
@@ -500,7 +502,6 @@
                                                         </div>
                                                         <p class="mt-2" style="font-size:12px">Berisi data yang menjelaskan bentuk dari sediaan obat yang merujuk pada Peraturan Kepala Badan Pengawas Obat dan Makanan Republik Indonesia Nomor 24 Tahun 2017.</p>
                                                     </div>
-
                                                     <p style="color:red;font-size:13px">*Wajib diisi bila Bridging dengan Satu Sehat</p>
                                                 </div>
                                             </div>
@@ -508,8 +509,9 @@
                                         <div class="col-lg-12">
                                             <a href="{{route('data-obat')}}" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
                                             <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
-                                        </div> 
+                                        </div>
                                     </div>
+                                    
                                 </form>
                             </div>
                         </div>
