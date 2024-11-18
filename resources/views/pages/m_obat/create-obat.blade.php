@@ -65,7 +65,7 @@
                                                             <label for="barang_aktif" class="form-label col-lg-5 me-2">Barang Aktif :</label>
                                                             <div class="d-flex flex-column col-lg-9 col-xl-8">
                                                                 <div class="form-check form-switch">
-                                                                    <input type="checkbox" class="form-check-input @error('status') is-invalid @enderror" id="status" name="status" value="1">
+                                                                    <input type="checkbox" class="form-check-input @error('status') is-invalid @enderror" id="status" name="status" value="1" {{old('status') == '1' ? 'checked' : ''}}>
                                                                     <label for="status" class="form-label ms-2">Aktif</label>
                                                                 </div>
                                                                 @error('status')
@@ -79,7 +79,7 @@
                                                             <label for="barang_racikan" class="form-label col-lg-5 me-2">Barang Racikan :</label>
                                                             <div class="d-flex flex-column col-lg-9 col-xl-8">
                                                                 <div class="form-check form-switch">
-                                                                    <input type="checkbox" class="form-check-input @error('barang_racikan') is-invalid @enderror" id="barang_racikan" name="barang_racikan" value="1">
+                                                                    <input type="checkbox" class="form-check-input @error('barang_racikan') is-invalid @enderror" id="barang_racikan" name="barang_racikan" value="1" {{old('barang_racikan') == '1' ? 'checked' : ''}}>
                                                                     <label for="barang_racikan" class="form-label ms-2">Aktif</label>
                                                                 </div>
                                                                 @error('barang_racikan')
@@ -98,7 +98,7 @@
                                                                     <select class="form-select @error('golongan_barang') is-invalid @enderror" name="golongan_barang" id="golongan_barang">
                                                                         <option value="">Please Select</option>
                                                                         @foreach ($golonganObat as $item)
-                                                                            <option value="{{$item->golongan_obat_code}}">{{$item->golongan_obat_name}}</option>
+                                                                            <option value="{{$item->golongan_obat_code}}" {{old('golongan_barang') == $item->golongan_obat_code ? 'selected' : ''}}>{{$item->golongan_obat_name}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                     @error('golongan_barang')
@@ -114,7 +114,7 @@
                                                                     <select class="form-select @error('pabrik_principal') is-invalid @enderror" name="pabrik_principal" id="pabrik_principal">
                                                                         <option value="">Please Select</option>
                                                                         @foreach ($pabrik as $item)
-                                                                            <option value="{{$item->pabrik_code}}">{{$item->pabrik_name}}</option>
+                                                                            <option value="{{$item->pabrik_code}}"{{old('pabrik_principal') == $item->pabrik_code ? 'selected' : ''}}>{{$item->pabrik_name}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                     @error('pabrik_principal')
@@ -127,7 +127,7 @@
                                                             <div class="d-flex">
                                                                 <label for="lokasi_barang" class="form-label col-lg-3 col-xl-3 col-xxl-2 me-2">Lokasi Barang :</label>
                                                                 <div class="col-lg-12 col-xl-12">
-                                                                    <input type="text" class="form-control @error('lokasi_barang') is-invalid @enderror" id="lokasi_barang" name="lokasi_barang" value="">
+                                                                    <input type="text" class="form-control @error('lokasi_barang') is-invalid @enderror" id="lokasi_barang" name="lokasi_barang" value="{{old('lokasi_barang')}}">
                                                                     @error('lokasi_barang')
                                                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                                                     @enderror
@@ -186,7 +186,7 @@
                                                                                 <input type="text" class="form-control" name="tipe_harga_jual_name[]" value="{{$item->tipe_harga_jual_name}}" readonly>
                                                                             </td>
                                                                             <td class="align-middle text-center text-xs">
-                                                                                <input type="number" class="form-control" id="profit_margin_{{$item->id}}" value="0" name="profit_margin[]">
+                                                                                <input type="number" class="form-control" id="profit_margin_{{$item->id}}" value="0"  name="profit_margin[]">
                                                                             </td>
                                                                             <td class="align-middle text-center text-xs">
                                                                                 <input type="number" class="form-control" id="biaya_tambahan_{{$item->id}}" value="0" name="biaya_tambahan[]">
@@ -211,7 +211,7 @@
                                                                     <select class="form-select @error('satuan_kecil') is-invalid @enderror" name="satuan_kecil" id="satuan_kecil">
                                                                         <option value="">Please Select</option>
                                                                         @foreach ($satuanBarang as $option)
-                                                                            <option value="{{ $option->satuan_barang_code }}">{{ strtoupper($option->satuan_barang_name) }}</option>
+                                                                            <option value="{{ $option->satuan_barang_code }}"{{old('satuan_kecil') == $option->satuan_barang_code ? 'selected' : ''}}>{{ $option->satuan_barang_name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                     @error('satuan_kecil')
@@ -228,7 +228,7 @@
                                                                         <select class="form-select me-2 @error('satuan_kemasan') is-invalid @enderror" name="satuan_kemasan" id="satuan_kemasan" style="flex: 11; max-height: 100px; overflow-y: auto;">
                                                                             <option value="">Please Select</option>
                                                                             @foreach ($satuanBarang as $option)
-                                                                                <option value="{{ $option->satuan_barang_code }}">{{ strtoupper($option->satuan_barang_name) }}</option>
+                                                                                <option value="{{ $option->satuan_barang_code }}" {{old('satuan_kemasan') == $option->satuan_barang_code ? 'selected' : ''}}>{{ $option->satuan_barang_name }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <input type="number" class="form-control @error('qty_satuan_kemasan') is-invalid @enderror" id="qty_satuan_kemasan" name="qty_satuan_kemasan" value="" style="flex: 1;">
@@ -247,7 +247,7 @@
                                                                         <select class="form-select me-2 @error('satuan_kemasan_lainya') is-invalid @enderror" name="satuan_kemasan_lainya" id="satuan_kemasan_lainya" style="flex: 11;">
                                                                             <option value="">Please Select</option>
                                                                             @foreach ($satuanBarang as $option)
-                                                                                <option value="{{ $option->satuan_barang_code }}">{{ strtoupper($option->satuan_barang_name) }}</option>
+                                                                                <option value="{{ $option->satuan_barang_code }}" {{old('satuan_kemasan_lainya') == $option->satuan_barang_code ? 'selected' : ''}}>{{ $option->satuan_barang_name }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <input type="number" class="form-control @error('qty_satuan_kemasan_lainya') is-invalid @enderror" id="qty_satuan_kemasan_lainya" name="qty_satuan_kemasan_lainya" value="" style="flex: 1;">
@@ -267,7 +267,7 @@
                                                                         <select class="form-select @error('satuan_racik') is-invalid @enderror" name="satuan_racik" id="satuan_racik" style="flex: 11;">
                                                                             <option value="">Please Select</option>
                                                                             @foreach ($satuanBarang as $option)
-                                                                                <option value="{{ $option->satuan_barang_code }}">{{ strtoupper($option->satuan_barang_name) }}</option>
+                                                                                <option value="{{ $option->satuan_barang_code }}"{{old('satuan_racik') == $option->satuan_barang_code ? 'selected' : ''}}>{{ $option->satuan_barang_name }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -344,7 +344,7 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="isi_kandungan" class="form-label">Isi Kandungan :</label>
-                                                        <textarea name="isi_kandungan" id="isi_kandungan" class="form-control @error('isi_kandungan') is-invalid @enderror" cols="30" rows="5"></textarea>
+                                                        <textarea name="isi_kandungan" id="isi_kandungan" class="form-control @error('isi_kandungan') is-invalid @enderror" cols="30" rows="5">{{old('isi_kandungan')}}</textarea>
 
                                                         @error('isi_kandungan')
                                                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -390,7 +390,7 @@
                                                             <select class="form-select @error('farmakologi') is-invalid @enderror" name="farmakologi" id="farmakologi">
                                                                 <option value="">Please Select</option>
                                                                 @foreach ($farmakologi as $item)
-                                                                    <option value="{{$item->farmakologi_code}}">{{$item->farmakologi_name}}</option>
+                                                                    <option value="{{$item->farmakologi_code}}" {{old('farmakologi') == $item->farmakologi_code ? 'selected' : ''}}>{{$item->farmakologi_name}}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('farmakologi')
@@ -410,7 +410,7 @@
                                                             <select class="form-select @error('distributor') is-invalid @enderror" name="distributor" id="distributor">
                                                                 <option value="">Please Select</option>
                                                                 @foreach ($distributor as $item)
-                                                                    <option value="{{$item->distributor_code}}">{{$item->distributor_name}}</option>
+                                                                    <option value="{{$item->distributor_code}}" {{old('distributor') == $item->distributor_code ? 'selected' : ''}}>{{$item->distributor_name}}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('distributor')
@@ -425,7 +425,7 @@
                                             <div class="row col-lg-12 ms-1 me-0">
                                                 <div class="row">
                                                     <div class="col-lg-12 mb-3">
-                                                        <label for="code_kfa_variant" class="form-label">Kode KFA Variant (93xxxxxx) :</label>
+                                                        <label for="code_kfa_variant" class="form-label">Kode KFA Variant (91xxxxxx) :</label>
                                                         <div class="col-lg-12 col-xl-12">
                                                             <select class="form-select @error('code_kfa_variant') is-invalid @enderror" name="code_kfa_variant" id="code_kfa_variant">
                                                                 <option value="">Please Select</option>
@@ -464,7 +464,7 @@
                                                             <select class="form-select @error('cara_pakai') is-invalid @enderror" name="cara_pakai" id="cara_pakai">
                                                                 <option value="">Please Select</option>
                                                                 @foreach ($caraPakai as $item)
-                                                                    <option value="{{$item->cara_pakai_name}}">{{$item->cara_pakai_name}}</option>
+                                                                    <option value="{{$item->cara_pakai_name}}" {{old('cara_pakai') == $item->cara_pakai_name ? 'selected' : '' }}>{{$item->cara_pakai_name}}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('cara_pakai')
@@ -478,9 +478,9 @@
                                                         <div class="col-lg-12 col-xl-12">
                                                             <select class="form-select @error('pola_pemberian') is-invalid @enderror" name="pola_pemberian" id="pola_pemberian">
                                                                 <option value="">Please Select</option>
-                                                                <option value="Continuous long term therapy">Continuous long term therapy</option>
-                                                                <option value="Short course (acute) therapy">Short course (acute) therapy</option>
-                                                                <option value="Seasonal">Seasonal</option>
+                                                                <option value="Continuous long term therapy"  {{old('pola_pemberian') == 'Continuous long term therapy' ? 'selected' : '' }}>Continuous long term therapy</option>
+                                                                <option value="Short course (acute) therapy" {{old('pola_pemberian') == 'Short course (acute) therapy' ? 'selected' : '' }}>Short course (acute) therapy</option>
+                                                                <option value="Seasonal"  {{old('pola_pemberian') == 'Seasonal' ? 'selected' : '' }}>Seasonal</option>
                                                             </select>
                                                             @error('pola_pemberian')
                                                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -494,7 +494,7 @@
                                                             <select class="form-select @error('bentuk_sediaan_obat') is-invalid @enderror" name="bentuk_sediaan_obat" id="bentuk_sediaan_obat">
                                                                 <option value="">Please Select</option>
                                                                 @foreach ($bentukSediaanObat as $item)
-                                                                    <option value="{{$item->bentuk_sediaan_name}}">{{$item->bentuk_sediaan_name}}</option>
+                                                                    <option value="{{$item->bentuk_sediaan_name}}"  {{old('bentuk_sediaan_obat') == $item->bentuk_sediaan_name ? 'selected' : '' }}>{{$item->bentuk_sediaan_name}}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('bentuk_sediaan_obat')
