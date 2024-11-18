@@ -425,7 +425,7 @@
                                             <div class="row col-lg-12 ms-1 me-0">
                                                 <div class="row">
                                                     <div class="col-lg-12 mb-3">
-                                                        <label for="code_kfa_variant" class="form-label">Kode KFA Variant (91xxxxxx) :</label>
+                                                        <label for="code_kfa_variant" class="form-label">Kode KFA Variant (93xxxxxx) :</label>
                                                         <div class="col-lg-12 col-xl-12">
                                                             <select class="form-select @error('code_kfa_variant') is-invalid @enderror" name="code_kfa_variant" id="code_kfa_variant">
                                                                 <option value="">Please Select</option>
@@ -447,7 +447,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-3">
-                                                        <label for="code_kfa_ingredient" class="form-label">Kode KFA Ingredient (93xxxxxx) :</label>
+                                                        <label for="code_kfa_ingredient" class="form-label">Kode KFA Ingredient (91xxxxxx) :</label>
                                                         <div class="col-lg-12 col-xl-12">
                                                             <select class="form-select @error('code_kfa_ingredient') is-invalid @enderror" name="code_kfa_ingredient" id="code_kfa_ingredient">
                                                                 <option value="">Please Select</option>
