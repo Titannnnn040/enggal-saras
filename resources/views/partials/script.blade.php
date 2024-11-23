@@ -45,3 +45,41 @@
         });
     });
 </script> 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const satuanUmur = document.getElementById("satuan_umur");
+        const batasBawah = document.getElementById("batas_bawah");
+        const batasBawahHari = document.getElementById("batas_bawah_hari");
+        const batasAtas = document.getElementById("batas_atas");
+        const batasAtasHari = document.getElementById("batas_atas_hari");
+
+        // Mapping satuan umur ke jumlah hari
+        const satuanKeHari = {
+            "HARI": 1,
+            "MINGGU": 7,
+            "BULAN": 30,
+            "TAHUN": 365
+        };
+
+        // Fungsi untuk menghitung hari
+        function hitungHari(input, output) {
+            const satuan = satuanKeHari[satuanUmur.value] || 1; // Default ke 1 hari jika tidak ada value
+            const nilai = parseInt(input.value) || 0;
+            output.value = nilai * satuan;
+        }
+
+        // Tambahkan event listener
+        satuanUmur.addEventListener("change", function () {
+            hitungHari(batasBawah, batasBawahHari);
+            hitungHari(batasAtas, batasAtasHari);
+        });
+
+        batasBawah.addEventListener("input", function () {
+            hitungHari(batasBawah, batasBawahHari);
+        });
+
+        batasAtas.addEventListener("input", function () {
+            hitungHari(batasAtas, batasAtasHari);
+        });
+    });
+</script>

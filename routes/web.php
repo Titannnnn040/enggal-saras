@@ -28,6 +28,10 @@ use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\CaraPakaiObatController;
 use App\Http\Controllers\BentukSediaanObatController;
+use App\Http\Controllers\RentangUmurController;
+use App\Http\Controllers\SatuanLabController;
+use App\Http\Controllers\RentangNormalController;
+
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -305,3 +309,24 @@ Route::post('/bentuk-sediaan/create-bentuk-sediaan',[BentukSediaanObatController
 Route::get('/bentuk-sediaan/edit-bentuk-sediaan/{code}',[BentukSediaanObatController::class, 'edit'])->name('edit-bentuk-sediaan');
 Route::put('/bentuk-sediaan/update-bentuk-sediaan/{code}',[BentukSediaanObatController::class, 'update'])->name('update-bentuk-sediaan');
 Route::delete('/bentuk-sediaan/delete-bentuk-sediaan/{code}',[BentukSediaanObatController::class, 'destroy'])->name('delete-bentuk-sediaan');
+
+// ROUTE RENTANG UMUR
+Route::get('/rentang-umur/data-rentang-umur',[RentangUmurController::class,'index'])->name('data-rentang-umur');
+Route::get('/rentang-umur/edit-rentang-umur/{id}',[RentangUmurController::class,'edit'])->name('edit-rentang-umur');
+Route::put('/rentang-umur/update-rentang-umur/{id}',[RentangUmurController::class,'update'])->name('update-rentang-umur');
+
+// ROUTE SATUAN LAB
+Route::get('/satuan/data-satuan-lab',[SatuanLabController::class,'indexData'])->name('data-satuan-lab');
+Route::get('/satuan/create-satuan-lab',[SatuanLabController::class,'indexCreate'])->name('create-satuan-lab');
+Route::post('/satuan/create-satuan-lab',[SatuanLabController::class,'store'])->name('store-satuan-lab');
+Route::get('/satuan/edit-satuan-lab/{code}',[SatuanLabController::class,'edit'])->name('edit-satuan-lab');
+Route::put('/satuan/update-satuan-lab/{code}',[SatuanLabController::class,'update'])->name('update-satuan-lab');
+Route::delete('/satuan/delete-satuan-lab/{code}',[SatuanLabController::class,'destroy'])->name('delete-satuan-lab');
+
+// ROUTE RENTANG NORMAL
+Route::get('/rentang-normal/data-rentang-normal',[RentangNormalController::class,'indexData'])->name('data-rentang-normal');
+Route::get('/rentang-normal/create-rentang-normal',[RentangNormalController::class,'indexCreate'])->name('create-rentang-normal');
+Route::post('/rentang-normal/create-rentang-normal',[RentangNormalController::class,'store'])->name('store-rentang-normal');
+Route::get('/rentang-normal/edit-rentang-normal/{code}',[RentangNormalController::class,'edit'])->name('edit-rentang-normal');
+Route::put('/rentang-normal/update-rentang-normal/{code}',[RentangNormalController::class,'update'])->name('update-rentang-normal');
+Route::delete('/rentang-normal/delete-rentang-normal/{code}',[RentangNormalController::class,'destroy'])->name('delete-rentang-normal');
