@@ -55,6 +55,7 @@
 
         // Mapping satuan umur ke jumlah hari
         const satuanKeHari = {
+            "JAM": 0.0417,
             "HARI": 1,
             "MINGGU": 7,
             "BULAN": 30,
