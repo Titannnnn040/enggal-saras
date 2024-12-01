@@ -31,6 +31,7 @@ use App\Http\Controllers\BentukSediaanObatController;
 use App\Http\Controllers\RentangUmurController;
 use App\Http\Controllers\SatuanLabController;
 use App\Http\Controllers\RentangNormalController;
+use App\Http\Controllers\KelompokLabController;
 
 
 use App\Http\Controllers\LoginController;
@@ -330,3 +331,11 @@ Route::post('/rentang-normal/create-rentang-normal',[RentangNormalController::cl
 Route::get('/rentang-normal/edit-rentang-normal/{code}',[RentangNormalController::class,'edit'])->name('edit-rentang-normal');
 Route::put('/rentang-normal/update-rentang-normal/{code}',[RentangNormalController::class,'update'])->name('update-rentang-normal');
 Route::delete('/rentang-normal/delete-rentang-normal/{code}',[RentangNormalController::class,'destroy'])->name('delete-rentang-normal');
+
+// ROUTE KELOMPOK LAB
+Route::get('/kelompok-lab/data-kelompok-lab',[KelompokLabController::class,'indexData'])->name('data-kelompok-lab');
+Route::get('/kelompok-lab/create-kelompok-lab',[KelompokLabController::class,'indexCreate'])->name('create-kelompok-lab');
+Route::post('/kelompok-lab/create-kelompok-lab',[KelompokLabController::class,'store'])->name('store-kelompok-lab');
+Route::get('/kelompok-lab/edit-kelompok-lab/{code}',[KelompokLabController::class,'edit'])->name('edit-kelompok-lab');
+Route::put('/kelompok-lab/update-kelompok-lab/{code}',[KelompokLabController::class,'update'])->name('update-kelompok-lab');
+Route::delete('/kelompok-lab/delete-kelompok-lab/{code}',[KelompokLabController::class,'destroy'])->name('delete-kelompok-lab');
