@@ -324,6 +324,12 @@
                     <span class="nav-link-text ms-2">Kelompok</span>
                   </div>
                 </a>
+                <a href="{{ route('data-pemeriksaan-lab') }}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pemeriksaan-lab') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Pemeriksaan Lab</span>
+                  </div>
+                </a>
               </div>
             </div>
             <div class="sub-farmasi">

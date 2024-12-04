@@ -32,6 +32,7 @@ use App\Http\Controllers\RentangUmurController;
 use App\Http\Controllers\SatuanLabController;
 use App\Http\Controllers\RentangNormalController;
 use App\Http\Controllers\KelompokLabController;
+use App\Http\Controllers\PemeriksaanLabController;
 
 
 use App\Http\Controllers\LoginController;
@@ -339,3 +340,7 @@ Route::post('/kelompok-lab/create-kelompok-lab',[KelompokLabController::class,'s
 Route::get('/kelompok-lab/edit-kelompok-lab/{code}',[KelompokLabController::class,'edit'])->name('edit-kelompok-lab');
 Route::put('/kelompok-lab/update-kelompok-lab/{code}',[KelompokLabController::class,'update'])->name('update-kelompok-lab');
 Route::delete('/kelompok-lab/delete-kelompok-lab/{code}',[KelompokLabController::class,'destroy'])->name('delete-kelompok-lab');
+
+// ROUTE PEMERIKSAAN LAB
+Route::get('/pemeriksaan-lab/data-pemeriksaan-lab',[PemeriksaanLabController::class,'indexData'])->name('data-pemeriksaan-lab');
+Route::get('/pemeriksaan-lab/create-pemeriksaan-lab',[PemeriksaanLabController::class,'indexCreate'])->name('create-pemeriksaan-lab');
