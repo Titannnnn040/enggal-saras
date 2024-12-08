@@ -55,13 +55,18 @@
                       <thead>
                           <tr>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Pemeriksaan Lab</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Pemeriksaan Lab</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Code</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Pemeriksaan</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelompok</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Satuan</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Keterangan</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tipe</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
                       <?php $num = 1 ?>
-                      {{-- @foreach ($data as $item)
+                      @foreach ($data as $item)
                         <tbody>
                             <tr>
                                 <td class="align-middle text-center text-xs">
@@ -74,13 +79,28 @@
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->name }}</p>
                                 </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jenis }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kelompok }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->satuan }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->keterangan }}</p>
+                                </td>
+                                <td class="align-middle text-center text-xs">
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->tipe == 1 ? 'Kuantitatif' : ($item->tipe == 2 ? 'Kualitatif' : ($item->tipe == 3 ? 'Kualitatif Khusus' : '')) }}</p>
+                                </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                      <form action="{{route('edit-pemeriksaan-lab', ['code' => $item->code])}}">
+                                      <form action="{{route('edit-pemeriksaan-lab', ['uuid' => $item->uuid])}}">
                                         @csrf
                                         <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
                                       </form>
-                                      <form action="{{ route('delete-pemeriksaan-lab', ['code' => $item->code]) }}" id="delete-form-{{$item->id}}" data-id="{{$item->id}}" method="post">
+                                      <form action="{{ route('delete-pemeriksaan-lab', ['uuid' => $item->uuid]) }}" id="delete-form-{{$item->id}}" data-id="{{$item->id}}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button type="button" class="btn btn-outline-danger button-delete" data-id="{{$item->id}}" style="margin-top:10px;margin-bottom:10px;margin-right:10px;">
@@ -91,7 +111,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                      @endforeach --}}
+                      @endforeach
                   </table>
               </div>
           </div>

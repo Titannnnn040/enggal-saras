@@ -344,3 +344,6 @@ Route::delete('/kelompok-lab/delete-kelompok-lab/{code}',[KelompokLabController:
 // ROUTE PEMERIKSAAN LAB
 Route::get('/pemeriksaan-lab/data-pemeriksaan-lab',[PemeriksaanLabController::class,'indexData'])->name('data-pemeriksaan-lab');
 Route::get('/pemeriksaan-lab/create-pemeriksaan-lab',[PemeriksaanLabController::class,'indexCreate'])->name('create-pemeriksaan-lab');
+Route::post('/pemeriksaan-lab/create-pemeriksaan-lab',[PemeriksaanLabController::class,'store'])->name('store-pemeriksaan-lab');
+Route::get('/pemeriksaan-lab/edit-pemeriksaan-lab/{uuid}',[PemeriksaanLabController::class,'edit'])->name('edit-pemeriksaan-lab');
+Route::delete('/pemeriksaan-lab/delete-pemeriksaan-lab/{uuid}',[PemeriksaanLabController::class,'destroy'])->name('delete-pemeriksaan-lab');

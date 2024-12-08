@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pemeriksaan_labs', function (Blueprint $table) {
+        Schema::create('t_lab_kuantitatif', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid_test');
+            $table->string('rentang_normal');
+            $table->string('keterangan1');
+            $table->string('batas_bawah');
+            $table->string('antara');
+            $table->string('batas_atas');
+            $table->string('keterangan2');
             $table->timestamps();
         });
     }
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pemeriksaan_labs');
+        Schema::dropIfExists('t_lab_kuantitatif');
     }
 };
