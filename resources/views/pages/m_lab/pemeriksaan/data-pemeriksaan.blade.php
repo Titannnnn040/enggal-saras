@@ -72,7 +72,6 @@
                                 <td class="align-middle text-center text-xs">
                                     <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                                 </td>
-
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->code }}</p>
                                 </td>
