@@ -391,7 +391,7 @@
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label for="normal_kualitatif_khusus" class="form-label">Normal:</label>
-                                                <input type="text" class="form-control @error('normal_kualitatif_khusus') is-invalid @enderror" id="normal_kualitatif_khusus" name="normal_kualitatif_khusus" value="{{ $data['dataPemeriksaanLab']->normal_kualitatif_khusus}}">
+                                                <input type="text" class="form-control @error('normal_kualitatif_khusus') is-invalid @enderror" id="normal_kualitatif_khusus" name="normal_kualitatif_khusus">
                                                 @error('normal_kualitatif_khusus')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -402,7 +402,7 @@
                                         <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label for="keterangan_tidak_normal_kualitatif_khusus" class="form-label">Keterangan Tidak Normal:</label>
-                                                <input type="text" class="form-control @error('keterangan_tidak_normal_kualitatif_khusus') is-invalid @enderror" id="keterangan_tidak_normal_kualitatif_khusus" name="keterangan_tidak_normal_kualitatif_khusus" value="{{ $data['dataPemeriksaanLab']->keterangan_tidak_normal_kualitatif_khusus}}">
+                                                <input type="text" class="form-control @error('keterangan_tidak_normal_kualitatif_khusus') is-invalid @enderror" id="keterangan_tidak_normal_kualitatif_khusus" name="keterangan_tidak_normal_kualitatif_khusus">
                                                 @error('keterangan_tidak_normal_kualitatif_khusus')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -430,11 +430,11 @@
                                                     </thead>
                                                     @foreach ($data['dataTestLabKualitatifKhusus'] as $item)
                                                         <tbody>
-                                                            <tr>
+                                                            <tr data-id="{{ $item->id }}">
                                                                 <td>{{$item->rentang_normal}}</td>
                                                                 <td>{{$item->normal}}</td>
                                                                 <td>{{$item->keterangan_tidak_normal}}</td>
-                                                                <td><button type="button" class="btn btn-danger remove-row"><i class="fa fa-xmark"></i></button></td>
+                                                                <td><button type="button" class="btn btn-danger remove-row"  data-id="{{ $item->id }}"><i class="fa fa-xmark"></i></button></td>
                                                             </tr>
                                                         </tbody>
                                                     @endforeach
@@ -448,7 +448,8 @@
                                         <div class="col-lg-1 mb-5">
                                             <label for="skala_kualitatif_khusus" class="form-label">Skala Normal:</label>
                                             <div class="form-check form-switch">
-                                                <input type="checkbox" class="form-check-input @error('skala_kualitatif_khusus') is-invalid @enderror" id="skala_kualitatif_khusus" name="skala_kualitatif_khusus" {{ $data['dataTestLabKualitatifKhusus'][0]->skala == 1 ? 'checked' : '' }} value="1">
+                                                <input type="checkbox" class="form-check-input @error('skala_kualitatif_khusus') is-invalid @enderror" id="skala_kualitatif_khusus" name="skala_kualitatif_khusus"{{ isset($data['dataTestLabKualitatifKhusus'][0]->skala) && $data['dataTestLabKualitatifKhusus'][0]->skala == 1 ? 'checked' : '' }}
+                                                value="1">
                                                 @error('skala_kualitatif_khusus')
                                                 <div class="invalid-feedback d-block">
                                                     {{ $message }}
@@ -461,7 +462,7 @@
                                         <div class="col-lg-1 mb-5">
                                             <label for="narasi_kualitatif_khusus" class="form-label">Hasil Narasi:</label>
                                             <div class="form-check form-switch">
-                                                <input type="checkbox" class="form-check-input @error('narasi_kualitatif_khusus') is-invalid @enderror" id="narasi_kualitatif_khusus" name="narasi_kualitatif_khusus" {{$data['dataTestLabKualitatifKhusus'][0]->narasi == 1 ? 'checked' : ''}} value="1">
+                                                <input type="checkbox" class="form-check-input @error('narasi_kualitatif_khusus') is-invalid @enderror" id="narasi_kualitatif_khusus" name="narasi_kualitatif_khusus" {{isset($data['dataTestLabKualitatifKhusus'][0]->narasi) && $data['dataTestLabKualitatifKhusus'][0]->narasi == 1 ? 'checked' : '' }} value="1">
                                                 @error('narasi_kualitatif_khusus')
                                                 <div class="invalid-feedback d-block">
                                                     {{ $message }}
@@ -485,17 +486,15 @@
                                 <div class="col-lg-12">
                                     <a href="{{route('data-pemeriksaan-lab')}}" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
                                     <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
-
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
             </div>
-          </div>
         </div>
-      </div>
-  
+        </div>
+    </div>
 </main>
 
 
@@ -524,33 +523,40 @@
 
 <script>
     $(document).ready(function () {
-        // Fungsi umum untuk menginisialisasi DataTables dan menambahkan event listener
+        // Fungsi untuk memperbarui nilai hidden input berdasarkan data array
+        function updateHiddenInput(hiddenInput, rowDataArray) {
+            hiddenInput.val(JSON.stringify(rowDataArray));
+        }
+
+        // Fungsi untuk mengosongkan input setelah ditambahkan
+        function clearFields(fields) {
+            fields.forEach(function (field) {
+                $(field.id).val('');
+                if ($(field.id).is(':checkbox')) $(field.id).prop('checked', false);
+            });
+        }
+
+        // Fungsi untuk memvalidasi input sebelum ditambahkan
+        function validateFields(fields) {
+            let isValid = true;
+            fields.forEach(function (field) {
+                const value = $(field.id).val();
+                if (!value) {
+                    isValid = false;
+                }
+            });
+            return isValid;
+        }
+
+        // Fungsi utama untuk menginisialisasi DataTables dan event listener
         function initializeTable(tableId, buttonId, fields, hiddenInputId) {
-            // Inisialisasi DataTables
-            var table = $(tableId).DataTable();
-            var hiddenInput = $(hiddenInputId); // Input hidden untuk menyimpan data
-            
-            var rowDataArray = []; // Menyimpan semua data dalam bentuk array
+            const table = $(tableId).DataTable();
+            const hiddenInput = $(hiddenInputId);
+            let rowDataArray = [];
 
             // Event listener tombol Add
             $(buttonId).on('click', function () {
-                var rowData = {};
-                var valid = true;
-
-                // Ambil nilai input dari form berdasarkan array fields
-                fields.forEach(function (field) {
-                    const value = $(field.id).is(':checkbox') 
-                        ? ($(field.id).is(':checked') ? 'Aktif' : 'Tidak Aktif') 
-                        : $(field.id).val();
-
-                    if (!value) {
-                        valid = false;
-                    }
-
-                    rowData[field.name] = value; // Simpan data dalam objek
-                });
-
-                if (!valid) {
+                if (!validateFields(fields)) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -559,40 +565,56 @@
                     return;
                 }
 
+                const rowData = fields.reduce((acc, field) => {
+                    const value = $(field.id).is(':checkbox')
+                        ? ($(field.id).is(':checked') ? 'Aktif' : 'Tidak Aktif')
+                        : $(field.id).val();
+                    acc[field.name] = value;
+                    return acc;
+                }, {});
+
                 // Tambahkan data ke tabel DataTables
                 table.row.add([
-                    ...fields.map(field => rowData[field.name]), // Ambil nilai input
+                    ...fields.map(field => rowData[field.name]),
                     `<button type="button" class="btn btn-danger remove-row"><i class="fa fa-xmark"></i></button>`
                 ]).draw(false);
 
                 // Tambahkan data ke array rowDataArray
                 rowDataArray.push(rowData);
-                updateHiddenInput(); // Update hidden input dengan array terbaru
+                updateHiddenInput(hiddenInput, rowDataArray);
 
                 // Kosongkan input setelah ditambahkan
-                fields.forEach(function (field) {
-                    $(field.id).val('');
-                    if ($(field.id).is(':checkbox')) $(field.id).prop('checked', false);
-                });
+                clearFields(fields);
             });
 
             // Event listener untuk tombol hapus row
             $(tableId + ' tbody').on('click', '.remove-row', function () {
-                // Hapus baris dari tabel
-                var row = table.row($(this).parents('tr'));
-                var rowIndex = row.index();
+                const row = table.row($(this).parents('tr'));
+                const rowIndex = row.index();
 
                 // Hapus data dari array rowDataArray berdasarkan index
                 rowDataArray.splice(rowIndex, 1);
-                updateHiddenInput(); // Update hidden input setelah data dihapus
+                updateHiddenInput(hiddenInput, rowDataArray);
 
-                row.remove().draw(false); // Hapus row dari DataTable
+                // Hapus baris dari tabel
+                row.remove().draw(false);
             });
 
-            // Fungsi untuk memperbarui nilai hidden input
-            function updateHiddenInput() {
-                hiddenInput.val(JSON.stringify(rowDataArray));
-            }
+            $(tableId + ' tbody').on('click', '.remove-row', function () {
+                const row = $(this).closest('tr'); // Baris yang akan dihapus
+                const rowId = $(this).data('id'); // ID unik dari baris
+
+                // Konfirmasi sebelum menghapus
+                (result  => {
+                    if (result.isConfirmed) {
+                        // Hapus data dari server
+                        deleteRowFromServer(rowId);
+
+                        // Hapus baris dari tabel
+                        row.remove();
+                    }
+                });
+            });
         }
 
         // Inisialisasi untuk masing-masing tabel
@@ -604,6 +626,7 @@
             { id: '#batas_atas_kuantitatif', name: 'batas_atas_kuantitatif' },
             { id: '#keterangan2_kuantitatif', name: 'keterangan2_kuantitatif' }
         ], '#hiddenKuantitatif');
+
         initializeTable('#tableKualitatif', '#button-add-kualitatif', [
             { id: '#rentang_normal_kualitatif', name: 'rentang_normal_kualitatif' },
             { id: '#keterangan_positif_kualitatif', name: 'keterangan_positif_kualitatif' },
@@ -611,15 +634,14 @@
             { id: '#keterangan_negatif_kualitatif', name: 'keterangan_negatif_kualitatif' },
             { id: '#n_min_kualitatif', name: 'n_min_kualitatif' },
         ], '#hiddenKualitatif');
+
         initializeTable('#tableKualitatifKhusus', '#button-add-kualitatif-khusus', [
             { id: '#rentang_normal_kualitatif_khusus', name: 'rentang_normal_kualitatif_khusus' },
             { id: '#normal_kualitatif_khusus', name: 'normal_kualitatif_khusus' },
             { id: '#keterangan_tidak_normal_kualitatif_khusus', name: 'keterangan_tidak_normal_kualitatif_khusus' },
         ], '#hiddenKualitatifKhusus');
-
-        // Tambahkan inisialisasi lain jika diperlukan
+        
     });
-
 
 </script>
 

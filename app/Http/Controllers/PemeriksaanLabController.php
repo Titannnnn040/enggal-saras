@@ -196,6 +196,8 @@ class PemeriksaanLabController extends Controller
                     'keterangan2'    => $value->keterangan2_kuantitatif
                 ];
                 DataTestLabKuantitatif::where('uuid_test', $uuid)->delete();
+                DataTestLabKualitatifKhusus::where('uuid_test', $uuid)->delete();
+                DataTestLabKualitatif::where('uuid_test', $uuid)->delete();
                 $create = DataTestLabKuantitatif::create($dataKuantitatifInsert);
                 if(!$create){
                     return redirect()->route('data-pemeriksaan-lab')->with('error', 'Data Kuantitatif Gagal Ditambahkan');
@@ -203,38 +205,42 @@ class PemeriksaanLabController extends Controller
             }
         }elseif($data['change-form-lab'] == 2){
             $dataKualitatif = json_decode($data['hiddenKualitatif']);
-            foreach($dataKualitatif as $value){
-                $dataKualitatifInsert =[
-                    'uuid_test'      => $uuid,
-                    'rentang_normal'        => $value->rentang_normal_kualitatif,
-                    'keterangan_positif'    => $value->keterangan_positif_kualitatif,
-                    'n_plus'                => $value->n_plus_kualitatif == 'Aktif' ? 1 : 0,
-                    'keterangan_negatif'    => $value->keterangan_negatif_kualitatif,
-                    'n_min'                 => $value->n_min_kualitatif == 'Aktif' ? 1 : 0,
-                ];
-                DataTestLabKualitatif::where('uuid_test', $uuid)->delete();
-                $create = DataTestLabKualitatif::create($dataKualitatifInsert);
-                if(!$create){
-                    return redirect()->route('data-pemeriksaan-lab')->with('error', 'Data Kualitatif Gagal Ditambahkan');
-                }
+            foreach ($dataKualitatif as $value) {
+                DataTestLabKuantitatif::where('uuid_test', $uuid)->delete();
+                DataTestLabKualitatifKhusus::where('uuid_test', $uuid)->delete();
+                DataTestLabKualitatif::updateOrCreate(
+                    [
+                        'uuid_test' => $uuid, 
+                        'keterangan_positif' => $value->keterangan_positif
+                    ], // Unique constraints
+                    [
+                        'rentang_normal'        => $value->rentang_normal_kualitatif,
+                        'keterangan_positif'    => $value->keterangan_positif_kualitatif,
+                        'n_plus'                => $value->n_plus_kualitatif == 'Aktif' ? 1 : 0,
+                        'keterangan_negatif'    => $value->keterangan_negatif_kualitatif,
+                        'n_min'                 => $value->n_min_kualitatif == 'Aktif' ? 1 : 0,
+                    ]
+                );
             }
         }elseif($data['change-form-lab'] == 3){
             $dataKualitatifKhusus = json_decode($data['hiddenKualitatifKhusus']);
-            foreach($dataKualitatifKhusus as $value){
-                $datadataKualitatifKhususInsert =[
-                    'uuid_test'         => $uuid,
-                    'rentang_normal'    => $value->rentang_normal_kualitatif_khusus,
-                    'normal'            => $value->normal_kualitatif_khusus,
-                    'keterangan_tidak_normal' => $value->keterangan_tidak_normal_kualitatif_khusus,
-                    'skala' =>  isset($data['skala_kualitatif_khusus']) ? $data['skala_kualitatif_khusus'] : 0,
-                    'narasi' => isset($data['narasi_kualitatif_khusus']) ? $data['narasi_kualitatif_khusus'] : 0,
-                    'keterangan_normal' => $data['keterangan_normal_kualitatif_khusus'],
-                ];
-                DataTestLabKualitatifKhusus::where('uuid_test', $uuid)->delete();
-                $create = DataTestLabKualitatifKhusus::create($datadataKualitatifKhususInsert);
-                if(!$create){
-                    return redirect()->route('data-pemeriksaan-lab')->with('error', 'Data Kualitatif Khusus Gagal Diedit');
-                }
+            foreach ($dataKualitatifKhusus as $value) {
+                DataTestLabKualitatif::where('uuid_test', $uuid)->delete();
+                DataTestLabKuantitatif::where('uuid_test', $uuid)->delete();
+                DataTestLabKualitatifKhusus::updateOrCreate(
+                    [
+                        'uuid_test' => $uuid, 
+                        'normal' => $value->normal_kualitatif_khusus
+                    ], // Unique constraints
+                    [
+                        'normal' => $value->normal_kualitatif_khusus,
+                        'keterangan_tidak_normal' => $value->keterangan_tidak_normal_kualitatif_khusus,
+                        'skala' => $request->input('skala_kualitatif_khusus', 0),
+                        'narasi' => $request->input('narasi_kualitatif_khusus', 0),
+                        'keterangan_normal' => $request->input('keterangan_normal_kualitatif_khusus'),
+                        'rentang_normal'    => $value->rentang_normal_kualitatif_khusus,
+                    ]
+                );
             }
         }
         if($editPemeriksaanLab){
@@ -251,4 +257,17 @@ class PemeriksaanLabController extends Controller
             return redirect()->route('data-pemeriksaan-lab')->with('error', 'Data Gagal Dihapus');
         }
     }
+
+    public function deleteDataTest($id)
+    {
+        try {
+            $data = DataTestLabKualitatifKhususp::findOrFail($id);
+            $data->delete();
+
+            return response()->json(['success' => true, 'message' => 'Data berhasil dihapus.']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Gagal menghapus data.']);
+        }
+    }
+
 }
