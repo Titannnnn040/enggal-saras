@@ -33,6 +33,7 @@ use App\Http\Controllers\SatuanLabController;
 use App\Http\Controllers\RentangNormalController;
 use App\Http\Controllers\KelompokLabController;
 use App\Http\Controllers\PemeriksaanLabController;
+use App\Http\Controllers\GroupPemeriksaanController;
 
 
 use App\Http\Controllers\LoginController;
@@ -348,3 +349,8 @@ Route::post('/pemeriksaan-lab/create-pemeriksaan-lab',[PemeriksaanLabController:
 Route::get('/pemeriksaan-lab/edit-pemeriksaan-lab/{uuid}',[PemeriksaanLabController::class,'edit'])->name('edit-pemeriksaan-lab');
 Route::put('/pemeriksaan-lab/update-pemeriksaan-lab/{uuid}',[PemeriksaanLabController::class,'update'])->name('update-pemeriksaan-lab');
 Route::delete('/pemeriksaan-lab/delete-pemeriksaan-lab/{uuid}',[PemeriksaanLabController::class,'destroy'])->name('delete-pemeriksaan-lab');
+Route::post('/delete-data-test/{id}', [PemeriksaanLabController::class, 'deleteDataTest']);
+
+// ROUTE GROUP PEMERIKSAAN LAB
+Route::get('/group-pemeriksaan-lab/data-group-pemeriksaan-lab',[GroupPemeriksaanController::class,'indexData'])->name('data-group-pemeriksaan-lab');
+Route::get('/group-pemeriksaan-lab/edit-group-pemeriksaan-lab',[GroupPemeriksaanController::class,'edit'])->name('edit-group-pemeriksaan-lab');
