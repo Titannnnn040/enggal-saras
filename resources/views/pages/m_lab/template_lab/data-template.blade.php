@@ -4,39 +4,7 @@
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
   <h1 class="ms-3 mt-2 mb-0">Enggal Saras</h1>
   <div class="container-fluid py-4">
-    
     <div class="container-fluid py-1">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card my-3">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Filter</h6>
-              </div>
-            </div>
-            <div class="card-body px-5 pb-2">
-              <div class="filter-data mb-3">
-                <form action="" class="d-flex col-lg-12">
-                  <div class="row col-lg-12">
-                    <div class="search col-lg-6">
-                      <h6>Kode Template</h6>
-                      <input type="text" name="code">
-                    </div>
-                    <div class="search col-lg-6">
-                      <h6>Nama Template</h6>
-                      <input type="text" name="satuan">
-                    </div>
-                    <div class="submit-filter d-flex  justify-content-between mt-3">
-                      <button type="submit" class="btn btn-success col-lg-1">Search</button>
-                      <a href="{{route('data-template-lab')}}" class="btn btn-danger col-lg-1">clear</a>
-                    </div>
-                  </div>
-                </form>
-              </div>
-          </div>
-          </div>
-        </div>
-      </div>
       <div class="row">
         <div class="col-lg-12">
           <div class="card my-3">
