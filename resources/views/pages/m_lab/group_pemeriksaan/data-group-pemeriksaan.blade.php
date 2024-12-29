@@ -60,11 +60,38 @@
                           </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        <?php $i = 1 ?>
+                        @foreach ($data as $item)
+                          <tr>
+                            <td class="align-middle text-center text-xs">
+                                <h6 class="mb-0 text-xs">{{$i++}}</h6>
+                            </td>
+                            <td class="align-middle text-center text-xs">
+                                <p class="text-xs font-weight-bold mb-0 text-center">{{$item->code}}</p>
+                            </td>
+                            <td class="align-middle text-center text-xs">
+                                <p class="text-xs font-weight-bold mb-0 text-center">{{$item->name}}</p>
+                            </td>
+                            <td class="align-middle text-center text-xs">
+                                <p class="text-xs font-weight-bold mb-0 text-center">{{$item->jenis}}</p>
+                            </td>
+                            <td class="align-middle text-center text-xs">
+                                <p class="text-xs font-weight-bold mb-0 text-center">{{$item->keterangan}}</p>
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                  <form action="{{ route('edit-group-pemeriksaan-lab', ['uuid' => $item->uuid])}}">
+                                    @csrf
+                                    <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                  </form>
+                                </span>
+                            </td>
+                        </tr>
+                        @endforeach
+                        {{-- <tr>
                           <td class="align-middle text-center text-xs">
                               <h6 class="mb-0 text-xs">1</h6>
                           </td>
-
                           <td class="align-middle text-center text-xs">
                               <p class="text-xs font-weight-bold mb-0 text-center">TL-2212202401</p>
                           </td>
@@ -85,9 +112,8 @@
                                 </form>
                               </span>
                           </td>
-                      </tr>
+                      </tr> --}}
                       </tbody>
-                      <?php $num = 1 ?>
                       {{-- @foreach ($data as $item)
                         <tbody>
                             <tr>

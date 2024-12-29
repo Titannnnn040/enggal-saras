@@ -5625,20 +5625,20 @@ fieldset:disabled .btn {
   --bs-pagination-padding-x: 0.75rem;
   --bs-pagination-padding-y: 0.375rem;
   --bs-pagination-font-size: 1rem;
-  --bs-pagination-color: #e91e63;
+  --bs-pagination-color: #e91e6200;
   --bs-pagination-bg: #fff;
   --bs-pagination-border-width: 1px;
   --bs-pagination-border-color: #dee2e6;
   --bs-pagination-border-radius: 0.375rem;
-  --bs-pagination-hover-color: #e91e63;
+  --bs-pagination-hover-color: #ffffff;
   --bs-pagination-hover-bg: #f0f2f5;
   --bs-pagination-hover-border-color: #dee2e6;
-  --bs-pagination-focus-color: #e91e63;
+  --bs-pagination-focus-color: #e91e6200;
   --bs-pagination-focus-bg: #f0f2f5;
   --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
   --bs-pagination-active-color: #fff;
-  --bs-pagination-active-bg: #e91e63;
-  --bs-pagination-active-border-color: #e91e63;
+  --bs-pagination-active-bg: #e91e6200;
+  --bs-pagination-active-border-color: #e91e6200;
   --bs-pagination-disabled-color: #6c757d;
   --bs-pagination-disabled-bg: #fff;
   --bs-pagination-disabled-border-color: #dee2e6;
@@ -5646,7 +5646,6 @@ fieldset:disabled .btn {
   padding-left: 0;
   list-style: none;
 }
-
 .page-link {
   position: relative;
   display: block;
@@ -5654,7 +5653,6 @@ fieldset:disabled .btn {
   font-size: var(--bs-pagination-font-size);
   color: var(--bs-pagination-color);
   background-color: var(--bs-pagination-bg);
-  border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -28015,52 +28013,17 @@ pre[class*="language-"] {
   border:solid 1px #58B05C;
   transition: .3s;
 }
-
-/* Style Data Tables */
-#myTables_previous.paginate_button.previous{
-  color: #58B05C !important;
-  background-color: #fff !important;
-  border: solid 1px #58B05C !important;
-}
-#myTables_previous.paginate_button.previous.disabled{
-  color:#fff !important;
-  background-color: #5AB25E !important;
-  border: none !important;
-}
-
 .paginate_button{
   color: #58B05C !important;
   background-color: #fff !important;
   border: solid 1px #58B05C !important;
 }
-.dataTables_wrapper .dataTables_paginate .paginate_button.current{
-  background: unset !important;
-  background-color: #fff !important;
-  font-weight: 600;
-  color: #58B05C !important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button{
-  color:#fff !important;
-  background-color: #fff !important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
-  background: unset !important;
-  background-color: #58B05C !important;
-  color: #fff !important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
-  color: #fff !important;
-}
-#myTables_next.paginate_button.next{
+.paginate_button:hover{
   color: #58B05C !important;
   background-color: #fff !important;
   border: solid 1px #58B05C !important;
 }
-#myTables_next.paginate_button.next.disabled{
-  color:#fff !important;
-  background-color: #5AB25E !important;
-  border: none !important;
-}
+
 
 /* Styles for the modal */
 #createUserModal {
@@ -28146,10 +28109,6 @@ pre[class*="language-"] {
   width: 100%;
 }
 
-.dataTables_filter{
-  display: none !important;
-}
-
 .btn-add-data{
   background-color: white;
   color: #5DB461;
@@ -28159,4 +28118,13 @@ pre[class*="language-"] {
 }
 .btn-add-data:hover{  
   color: #5DB461;
+}
+
+.text-success {
+  color: #198754 !important;
+  font-size: 15px
+}
+.text-danger {
+  color: #dc3545 !important;
+  font-size: 15px
 }

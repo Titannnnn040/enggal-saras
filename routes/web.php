@@ -34,6 +34,7 @@ use App\Http\Controllers\RentangNormalController;
 use App\Http\Controllers\KelompokLabController;
 use App\Http\Controllers\PemeriksaanLabController;
 use App\Http\Controllers\GroupPemeriksaanController;
+use App\Http\Controllers\TemplateLabController;
 
 
 use App\Http\Controllers\LoginController;
@@ -353,4 +354,12 @@ Route::post('/delete-data-test/{id}', [PemeriksaanLabController::class, 'deleteD
 
 // ROUTE GROUP PEMERIKSAAN LAB
 Route::get('/group-pemeriksaan-lab/data-group-pemeriksaan-lab',[GroupPemeriksaanController::class,'indexData'])->name('data-group-pemeriksaan-lab');
-Route::get('/group-pemeriksaan-lab/edit-group-pemeriksaan-lab',[GroupPemeriksaanController::class,'edit'])->name('edit-group-pemeriksaan-lab');
+Route::get('/group-pemeriksaan-lab/edit-group-pemeriksaan-lab/{uuid}',[GroupPemeriksaanController::class,'edit'])->name('edit-group-pemeriksaan-lab');
+
+// ROUTE TEMPLATE LAB
+Route::get('/template-lab/data-template-lab',[TemplateLabController::class,'indexData'])->name('data-template-lab');
+Route::get('/template-lab/create-template-lab',[TemplateLabController::class,'indexCreate'])->name('create-template-lab');
+Route::post('/template-lab/create-template-lab',[TemplateLabController::class,'store'])->name('store-template-lab');
+Route::get('/template-lab/edit-template-lab/{uuid}',[TemplateLabController::class,'edit'])->name('edit-template-lab');
+Route::put('/template-lab/update-template-lab/{uuid}',[TemplateLabController::class,'update'])->name('update-template-lab');
+Route::delete('/template-lab/delete-template-lab/{uuid}',[TemplateLabController::class,'destroy'])->name('delete-template-lab');

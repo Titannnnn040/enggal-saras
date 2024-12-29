@@ -473,7 +473,7 @@
                                          <div class="col-lg-6">
                                             <div class="mb-5">
                                                 <label for="keterangan_normal_kualitatif_khusus" class="form-label">Keterangan Normal:</label>
-                                                <textarea name="keterangan_normal_kualitatif_khusus" class="form-control mt-2" id="keterangan_normal_kualitatif_khusus" cols="30" rows="2">{{$data['dataTestLabKualitatifKhusus'][0]->keterangan_normal}}</textarea>
+                                                <textarea name="keterangan_normal_kualitatif_khusus" class="form-control mt-2" id="keterangan_normal_kualitatif_khusus" cols="30" rows="2">{{isset($data['dataTestLabKualitatifKhusus'][0]->narasi) ? $data['dataTestLabKualitatifKhusus'][0]->keterangan_normal : ''}}</textarea>
                                                 @error('keterangan_normal_kualitatif_khusus')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}

@@ -18,7 +18,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>
-    Dashboard
+    {{$title}}
   </title>
   <link rel="icon" href="/img/enggal.gif" type="image/x-icon">
   <!--     Fonts and icons     -->
@@ -34,16 +34,9 @@
   <link id="pagestyle" href="/css/dashboard/material-dashboard.css" rel="stylesheet" />
   <!--Link Icons-->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
- <!-- DataTables CSS -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-  <link rel="stylesheet" href="">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- DataTables JS -->
-  {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> --}}
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <body class="g-sidenav-show  bg-gray-200">
