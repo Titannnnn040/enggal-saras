@@ -35,6 +35,8 @@ use App\Http\Controllers\KelompokLabController;
 use App\Http\Controllers\PemeriksaanLabController;
 use App\Http\Controllers\GroupPemeriksaanController;
 use App\Http\Controllers\TemplateLabController;
+use App\Http\Controllers\RadiologiController;
+use App\Http\Controllers\KondisiGigiController;
 
 
 use App\Http\Controllers\LoginController;
@@ -363,3 +365,19 @@ Route::post('/template-lab/create-template-lab',[TemplateLabController::class,'s
 Route::get('/template-lab/edit-template-lab/{uuid}',[TemplateLabController::class,'edit'])->name('edit-template-lab');
 Route::put('/template-lab/update-template-lab/{uuid}',[TemplateLabController::class,'update'])->name('update-template-lab');
 Route::delete('/template-lab/delete-template-lab/{uuid}',[TemplateLabController::class,'destroy'])->name('delete-template-lab');
+
+// ROUTE RADIOLOGI
+Route::get('/radiologi/data-template-ro',[RadiologiController::class,'indexData'])->name('data-template-ro');
+Route::get('/radiologi/create-template-ro',[RadiologiController::class,'indexCreate'])->name('create-template-ro');
+Route::get('/radiologi/edit-template-ro/{uuid}',[RadiologiController::class,'edit'])->name('edit-template-ro');
+Route::put('/radiologi/update-template-ro{uuid}',[RadiologiController::class,'update'])->name('update-template-ro');
+Route::post('/radiologi/create-template-ro',[RadiologiController::class,'store'])->name('store-template-ro');
+Route::delete('/radiologi/delete-template-ro/{uuid}',[RadiologiController::class,'destroy'])->name('delete-template-ro');
+
+// ROUTE ODONTOGRAM
+Route::get('/odontogram/data-kondisi-gigi',[KondisiGigiController::class,'indexData'])->name('data-kondisi-gigi');
+Route::get('/odontogram/create-kondisi-gigi',[KondisiGigiController::class,'indexCreate'])->name('create-kondisi-gigi');
+Route::post('/odontogram/create-kondisi-gigi',[KondisiGigiController::class,'store'])->name('store-kondisi-gigi');
+Route::get('/odontogram/edit-kondisi-gigi/{uuid}',[KondisiGigiController::class,'edit'])->name('edit-kondisi-gigi');
+Route::put('/odontogram/update-kondisi-gigi/{uuid}',[KondisiGigiController::class,'update'])->name('update-kondisi-gigi');
+Route::delete('/odontogram/delete-kondisi-gigi/{uuid}',[KondisiGigiController::class,'destroy'])->name('delete-kondisi-gigi');

@@ -1,38 +1,38 @@
 <style>
   ::-webkit-scrollbar {
-  display: none !important;  /* Chrome, Safari, and Opera */
-}
-.navbar-vertical.navbar-expand-xs {
-  /* display: block; */
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  max-width: 15.625rem !important;
-  padding: 0;
-}
-.sub-tarif, .sub-jaminan, .sub-tenaga-medis, .sub-farmasi, .sub-lab {
-  display: none;
-}
+    display: none !important;  /* Chrome, Safari, and Opera */
+  }
+  .navbar-vertical.navbar-expand-xs {
+    /* display: block; */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 15.625rem !important;
+    padding: 0;
+  }
+  .sub-tarif, .sub-jaminan, .sub-tenaga-medis, .sub-farmasi, .sub-lab, .sub-radiologi, .sub-odontogram{
+    display: none;
+  }
 
-/* Tampilkan sub-tenaga-medis saat menu-tenaga-medis di-hover */
-.menu-tenaga-medis:hover + .sub-tenaga-medis {
-  display: block;
-}
+  /* Tampilkan sub-tenaga-medis saat menu-tenaga-medis di-hover */
+  .menu-tenaga-medis:hover + .sub-tenaga-medis {
+    display: block;
+  }
 
-/* Tambahan untuk menjaga submenu tetap terbuka saat di-hover */
-.sub-tenaga-medis:hover {
-  display: block;
-}
-.nav-item{
-  position: relative;
-}
-.sub-menu{
-  position: absolute;top: 0;left:6cm;transform: translateY(0);z-index: 999;
-}
-.sub-tenaga-medis , .sub-jaminan, .sub-tarif, .sub-farmasi, .sub-lab{
-  position: absolute;top: 0;left:13cm;transform: translateY(0);z-index: 999;
-}
+  /* Tambahan untuk menjaga submenu tetap terbuka saat di-hover */
+  .sub-tenaga-medis:hover {
+    display: block;
+  }
+  .nav-item{
+    position: relative;
+  }
+  .sub-menu{
+    position: absolute;top: 0;left:6cm;transform: translateY(0);z-index: 999;
+  }
+  .sub-tenaga-medis , .sub-jaminan, .sub-tarif, .sub-farmasi, .sub-lab, .sub-radiologi, .sub-odontogram{
+    position: absolute;top: 0;left:13cm;transform: translateY(0);z-index: 999;
+  }
 </style>
 
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-light hide-scrollbar" id="sidenav-main">
@@ -177,6 +177,28 @@
                     <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                       <i class="fa-solid fa-stethoscope me-2"></i>
                       <span class="nav-link-text ms-1">Laboratorium</span>
+                    </a>
+                  </div>
+                  <div class="item">
+                    <i class="fas fa-angle-right dropdown"></i>
+                  </div>
+                </div>
+                <div class="dropdown-btn menu-odontogram col-lg-10 d-flex justify-content-between align-items-center" style="margin:2.5px;">
+                  <div class="item">
+                    <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                      <i class="fa-solid fa-stethoscope me-2"></i>
+                      <span class="nav-link-text ms-1">Odontogram</span>
+                    </a>
+                  </div>
+                  <div class="item">
+                    <i class="fas fa-angle-right dropdown"></i>
+                  </div>
+                </div>
+                <div class="dropdown-btn menu-radiologi col-lg-10 d-flex justify-content-between align-items-center" style="margin:2.5px;">
+                  <div class="item">
+                    <a class="text-decoration-none text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                      <i class="fa-solid fa-stethoscope me-2"></i>
+                      <span class="nav-link-text ms-1">Radiologi</span>
                     </a>
                   </div>
                   <div class="item">
@@ -414,6 +436,26 @@
                 </a>
               </div>
             </div>
+            <div class="sub-radiologi">
+              <div class="d-flex flex-column rounded p-2 ms-3 mt-2"  style="background-color:#FFFFFF;">
+                <a href="{{ route('data-template-ro') }}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'Data Template RO') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Template RO</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="sub-odontogram">
+              <div class="d-flex flex-column rounded p-2 ms-3 mt-2"  style="background-color:#FFFFFF;">
+                <a href="{{ route('data-kondisi-gigi') }}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'Data Kondisi Gigi') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Kondisi Gigi</span>
+                  </div>
+                </a>
+              </div>
+            </div>
           </li>
       </ul>
 
@@ -427,7 +469,7 @@
 
           // Fungsi untuk menyembunyikan semua submenu
           function hideAllSubMenus() {
-            document.querySelectorAll('.sub-tenaga-medis, .sub-jaminan, .sub-tarif, .sub-farmasi, .sub-lab').forEach(sub => {
+            document.querySelectorAll('.sub-tenaga-medis, .sub-jaminan, .sub-tarif, .sub-farmasi, .sub-lab, .sub-radiologi, .sub-odontogram').forEach(sub => {
               sub.style.display = 'none';
             });
           }
@@ -463,6 +505,8 @@
         handleSubMenu('.menu-tarif', '.sub-tarif');
         handleSubMenu('.menu-farmasi', '.sub-farmasi');
         handleSubMenu('.menu-lab', '.sub-lab');
+        handleSubMenu('.menu-radiologi', '.sub-radiologi');
+        handleSubMenu('.menu-odontogram', '.sub-odontogram');
 
       </script>
         

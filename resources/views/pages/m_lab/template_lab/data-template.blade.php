@@ -21,12 +21,10 @@
               <div class="table-responsive p-0">
                   <table class="table align-items-center mb-0" id="myTables">
                       <thead>
-                          <tr>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Template</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Default</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
-                          </tr>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Template</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Default</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       </thead>
                       <?php $num = 1 ?>
                       <tbody>
@@ -36,7 +34,7 @@
                                   <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                               </td>
                               <td class="align-middle text-center text-xs">
-                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->name }}</p>
+                                  {{ $item->name }}
                               </td>
                               <td class="align-middle text-center text-xs">
                                   <i class="{{$item->default == 1 ? 'fa fa-check text-success' : 'fa fa-xmark text-danger'}}"></i>
@@ -107,7 +105,12 @@
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 <script>
-  let table = new DataTable('#myTables');
+  $(document).ready(function () {
+    let table = new DataTable('#myTables', {
+        processing: false,
+        serverSide: false,
+    });
+  });
 </script>
 <script>
   var win = navigator.platform.indexOf('Win') > -1;
