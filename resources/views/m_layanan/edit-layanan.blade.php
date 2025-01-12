@@ -46,15 +46,17 @@
                         
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="jenis_layanan_id" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jenis Layanan :</label>
+                                                <label for="jenis_layanan" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jenis Layanan :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <select class="form-select @error('jenis_layanan_id') is-invalid @enderror" name="jenis_layanan_id"  id="jenis_layanan_id">
+                                                    <select class="form-select @error('jenis_layanan') is-invalid @enderror" name="jenis_layanan"  id="jenis_layanan">
                                                         <option value="">Please Select</option>
-                                                        @foreach ($jenisLayanan as $item)
-                                                            <option value="{{ $item->id }}" {{ $item->id == $layanan->jenis_layanan_id ? 'selected' : '' }}>{{ $item->nama_jenis_layanan }}</option>
-                                                        @endforeach
+                                                        <option value="RAWAT JALAN" {{$layanan->jenis_layanan == 'RAWAT JALAN' ? 'selected' : ''}}>RAWAT JALAN</option>
+                                                        <option value="KAMAR BERSALIN" {{$layanan->jenis_layanan == 'KAMAR BERSALIN' ? 'selected' : ''}}>KAMAR BERSALIN</option>
+                                                        <option value="PENUNJANG" {{$layanan->jenis_layanan == 'PENUNJANG' ? 'selected' : ''}}>PENUNJANG</option>
+                                                        <option value="RAWAT INAP" {{$layanan->jenis_layanan == 'RAWAT INAP' ? 'selected' : ''}}>RAWAT INAP</option>
+                                                        <option value="UGD"  {{$layanan->jenis_layanan == 'UGD' ? 'selected' : ''}}>UGD</option>
                                                     </select>          
-                                                    @error('jenis_layanan_id')
+                                                    @error('jenis_layanan')
                                                     <div class="invalid-feedback d-block">
                                                         {{ $message }}
                                                     </div>

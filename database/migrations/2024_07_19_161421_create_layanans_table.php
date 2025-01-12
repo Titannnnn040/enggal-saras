@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_layanan');
             $table->string('nama_layanan');
-            $table->foreignId('jenis_layanan_id');
+            $table->foreignId('jenis_layanan');
             $table->string('kode_layanan_bpjs')->nullable();
             $table->string('id_satu_sehat')->nullable();
             $table->string('medical_checkup')->nullable();

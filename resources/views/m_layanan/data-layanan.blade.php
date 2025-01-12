@@ -66,13 +66,12 @@
                           </tr>
                       </thead>
                       <?php $num = 1 ?>
-                      @foreach ($layanan as $item)
-                        <tbody>
+                      <tbody>
+                          @foreach ($layanan as $item)
                             <tr>
                                 <td class="align-middle text-center text-xs">
                                     <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                                 </td>
-
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kode_layanan }}</p>
                                 </td>
@@ -80,7 +79,7 @@
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_layanan }}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->JenisLayanan->nama_jenis_layanan }}</p>
+                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jenis_layanan}}</p>
                                 </td>
                                 <td class="align-middle text-center text-xs">
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kode_layanan_bpjs }}</p>
@@ -95,25 +94,23 @@
                                     <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->ibu_hamil }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                  <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
                                     <form action="/layanan/edit-layanan/{{ $item->id }}">
                                       @csrf
                                       <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
                                     </form>
-                                    
-                                      <form action="/layanan/delete-layanan/{{ $item->id }}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">
+                                    <form action="{{ route('delete-layanan', ['id' => $item->id]) }}" id="delete-form-{{$item->id}}" data-id="{{$item->id}}" method="post">
+                                      @method('delete')
+                                      @csrf
+                                      <button type="button" class="btn btn-outline-danger button-delete" data-id="{{$item->id}}" style="margin-top:10px;margin-bottom:10px;margin-right:10px;">
                                           <i class="fa-solid fa-trash"></i>
-                                        </button>                                      
-                                      </form>
-
-                                    </span>
+                                      </button>
+                                    </form>  
+                                  </span>
                                 </td>
                             </tr>
+                          @endforeach
                         </tbody>
-                      @endforeach
                   </table>
               </div>
           </div>
@@ -156,326 +153,6 @@
 </main>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-<!--   Core JS Files   -->
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/perfect-scrollbar.min.js"></script>
-<script src="/js/smooth-scrollbar.min.js"></script>
-<script src="/js/chartjs.min.js"></script>
-<script>
-  var ctx = document.getElementById("chart-bars").getContext("2d");
-
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ["M", "T", "W", "T", "F", "S", "S"],
-      datasets: [{
-        label: "Sales",
-        tension: 0.4,
-        borderWidth: 0,
-        borderRadius: 4,
-        borderSkipped: false,
-        backgroundColor: "rgba(255, 255, 255, .8)",
-        data: [50, 20, 10, 22, 50, 10, 40],
-        maxBarThickness: 6
-      }, ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        }
-      },
-      interaction: {
-        intersect: false,
-        mode: 'index',
-      },
-      scales: {
-        y: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-            color: 'rgba(255, 255, 255, .2)'
-          },
-          ticks: {
-            suggestedMin: 0,
-            suggestedMax: 500,
-            beginAtZero: true,
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-            color: "#fff"
-          },
-        },
-        x: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-            color: 'rgba(255, 255, 255, .2)'
-          },
-          ticks: {
-            display: true,
-            color: '#f8f9fa',
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-      },
-    },
-  });
-
-
-  var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-  new Chart(ctx2, {
-    type: "line",
-    data: {
-      labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      datasets: [{
-        label: "Mobile apps",
-        tension: 0,
-        borderWidth: 0,
-        pointRadius: 5,
-        pointBackgroundColor: "rgba(255, 255, 255, .8)",
-        pointBorderColor: "transparent",
-        borderColor: "rgba(255, 255, 255, .8)",
-        borderColor: "rgba(255, 255, 255, .8)",
-        borderWidth: 4,
-        backgroundColor: "transparent",
-        fill: true,
-        data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-        maxBarThickness: 6
-
-      }],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        }
-      },
-      interaction: {
-        intersect: false,
-        mode: 'index',
-      },
-      scales: {
-        y: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-            color: 'rgba(255, 255, 255, .2)'
-          },
-          ticks: {
-            display: true,
-            color: '#f8f9fa',
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-        x: {
-          grid: {
-            drawBorder: false,
-            display: false,
-            drawOnChartArea: false,
-            drawTicks: false,
-            borderDash: [5, 5]
-          },
-          ticks: {
-            display: true,
-            color: '#f8f9fa',
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-      },
-    },
-  });
-
-  var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
-
-  new Chart(ctx3, {
-    type: "line",
-    data: {
-      labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      datasets: [{
-        label: "Mobile apps",
-        tension: 0,
-        borderWidth: 0,
-        pointRadius: 5,
-        pointBackgroundColor: "rgba(255, 255, 255, .8)",
-        pointBorderColor: "transparent",
-        borderColor: "rgba(255, 255, 255, .8)",
-        borderWidth: 4,
-        backgroundColor: "transparent",
-        fill: true,
-        data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-        maxBarThickness: 6
-
-      }],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        }
-      },
-      interaction: {
-        intersect: false,
-        mode: 'index',
-      },
-      scales: {
-        y: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-            color: 'rgba(255, 255, 255, .2)'
-          },
-          ticks: {
-            display: true,
-            padding: 10,
-            color: '#f8f9fa',
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-        x: {
-          grid: {
-            drawBorder: false,
-            display: false,
-            drawOnChartArea: false,
-            drawTicks: false,
-            borderDash: [5, 5]
-          },
-          ticks: {
-            display: true,
-            color: '#f8f9fa',
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-      },
-    },
-  });
-</script>
-<script>
-  var win = navigator.platform.indexOf('Win') > -1;
-  if (win && document.querySelector('#sidenav-scrollbar')) {
-    var options = {
-      damping: '0.5'
-    }
-    Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-  }
-</script>
-<!-- Github buttons -->
-<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="js/material-dashboard.min.js"></script>
-<script>
-  $(document).ready(function () {
-      $('#myTables').DataTable();
-  });
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Get the modal
-    var modal = document.getElementById("createUserModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("button-create-user");
-
-    // Get the <span> element that closes the modal
-    var closeBtn = document.querySelector(".close");
-
-    // When the user clicks the button, open the modal
-    btn.onclick = function () {
-        modal.style.display = "block"; // Ensure the modal is displayed
-        setTimeout(function () {
-            modal.classList.add("show"); // Add the transition class after a slight delay
-        }, 10);
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    closeBtn.onclick = function () {
-        modal.classList.remove("show"); // Remove the transition class
-        setTimeout(function () {
-            modal.style.display = "none"; // Hide the modal after the transition
-        }, 400); // Match this duration with the CSS transition duration
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.classList.remove("show"); // Remove the transition class
-            setTimeout(function () {
-                modal.style.display = "none"; // Hide the modal after the transition
-            }, 400); // Match this duration with the CSS transition duration
-        }
-    }
-});
-</script>
-{{-- Notification --}}
-<script>
-  document.addEventListener('DOMContentLoaded', (event) => {
-      const alert = document.getElementById('success-alert');
-      if (alert) {
-          setTimeout(() => {
-              alert.style.display = 'none';
-          }, 5000); // 5000 ms = 5 detik
-      }
-  });
-</script>
 @endsection
 
 

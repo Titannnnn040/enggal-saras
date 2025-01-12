@@ -45,15 +45,17 @@
                         
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
-                                                <label for="jenis_layanan_id" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jenis Layanan :</label>
+                                                <label for="jenis_layanan" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jenis Layanan :</label>
                                                 <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <select class="form-select @error('jenis_layanan_id') is-invalid @enderror" name="jenis_layanan_id"  id="jenis_layanan_id">
+                                                    <select class="form-select @error('jenis_layanan') is-invalid @enderror" name="jenis_layanan"  id="jenis_layanan">
                                                         <option value="">Please Select</option>
-                                                        @foreach ($jenisLayanan as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->nama_jenis_layanan }}</option>
-                                                        @endforeach
+                                                        <option value="RAWAT JALAN" {{old('jenis_layanan') == 'RAWAT JALAN' ? 'selected' : ''}}>RAWAT JALAN</option>
+                                                        <option value="KAMAR BERSALIN" {{old('jenis_layanan') == 'KAMAR BERSALIN' ? 'selected' : ''}}>KAMAR BERSALIN</option>
+                                                        <option value="PENUNJANG" {{old('jenis_layanan') == 'PENUNJANG' ? 'selected' : ''}}>PENUNJANG</option>
+                                                        <option value="RAWAT INAP" {{old('jenis_layanan')== 'RAWAT INAP' ? 'selected' : ''}}>RAWAT INAP</option>
+                                                        <option value="UGD"  {{old('jenis_layanan') == 'UGD' ? 'selected' : ''}}>UGD</option>
                                                     </select>          
-                                                    @error('jenis_layanan_id')
+                                                    @error('jenis_layanan')
                                                     <div class="invalid-feedback d-block">
                                                         {{ $message }}
                                                     </div>
@@ -85,7 +87,7 @@
                                                     </div>
                                                     <div class="d-flex form-check form-switch mt-3">
                                                         <div class="">
-                                                            <input type="checkbox" class="form-check-input @error('medical_checkup') is-invalid @enderror" id="medical_checkup" name="medical_checkup" value="yes">
+                                                            <input type="checkbox" class="form-check-input @error('medical_checkup') is-invalid @enderror" {{old('medical_checkup') == 'yes' ? 'checked' : ''}} id="medical_checkup" name="medical_checkup" value="yes">
                                                             {{-- @if (old('medical_checkup', $medicalCheckupYes ?? false))@endif --}}
                                                             <label for="medical_checkup" class="form-label me-2">Medical Check Up</label>
                                                             @error('medical_checkup')
@@ -95,7 +97,7 @@
                                                             @enderror
                                                         </div>
                                                         <div class="ms-5">
-                                                            <input type="checkbox" class="form-check-input @error('ibu_hamil') is-invalid @enderror" id="ibu_hamil" name="ibu_hamil" value="yes">
+                                                            <input type="checkbox" class="form-check-input @error('ibu_hamil') is-invalid @enderror" {{old('ibu_hamil') == 'yes' ? 'checked' : ''}} id="ibu_hamil" name="ibu_hamil" value="yes">
                                                             {{-- @if (old('ibu_hamil', $ibuhamilYes ?? false))@endif --}}
                                                             <label for="ibu_hamil" class="form-label me-2">Kohort Ibu Hamil</label>
                                                             @error('ibu_hamil')

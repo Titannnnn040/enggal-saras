@@ -34,7 +34,7 @@ class LayananController extends Controller
         // die;
         $validatedData = $request->validate([
             'nama_layanan'      => ['required'],
-            'jenis_layanan_id'  => ['required'],
+            'jenis_layanan'     => ['required'],
             'kode_layanan_bpjs' => ['numeric', 'digits_between:13,15'],
             'medical_checkup'   => [],
             'ibu_hamil'         => []
@@ -51,9 +51,7 @@ class LayananController extends Controller
      */
     public function store(Request $request)
     {
-        $layanan = Layanan::all();
-        $jenisLayanan = JenisLayanan::all();
-        return view('m_layanan/create-layanan', ['jenisLayanan' => $jenisLayanan,'title' => 'create-layanan']);
+        return view('m_layanan/create-layanan', ['title' => 'create-layanan']);
     }
 
     public function storeData(Request $request)
@@ -65,7 +63,6 @@ class LayananController extends Controller
         if(request('nama_layanan')){
             $layanan->where('nama_layanan', 'like', '%' . request('nama_layanan') . '%');
         } 
-        $jenisLayanan = JenisLayanan::all();
         return view('m_layanan/data-layanan', ['layanan' => $layanan->get(),'title' => 'data-layanan']);
     }
 
@@ -82,9 +79,8 @@ class LayananController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $jenisLayanan = JenisLayanan::all();
         $layanan = Layanan::find($id);
-        return view('m_layanan/edit-layanan', ['jenisLayanan' => $jenisLayanan, 'title' => 'edit-layanan', 'layanan' => $layanan]);
+        return view('m_layanan/edit-layanan', ['title' => 'edit-layanan', 'layanan' => $layanan]);
     }
 
     /**
@@ -94,7 +90,7 @@ class LayananController extends Controller
     {
         $request->validate([
             'nama_layanan'      => ['required'],
-            'jenis_layanan_id'  => ['required'],
+            'jenis_layanan'     => ['required'],
             'kode_layanan_bpjs' => ['numeric', 'digits_between:13,15'],
             'medical_checkup'   => [],
             'ibu_hamil'         => []
@@ -102,7 +98,7 @@ class LayananController extends Controller
         $layanan = Layanan::find($id);
         $layanan->update([
             'nama_layanan'      => $request->nama_layanan,
-            'jenis_layanan_id'  => $request->jenis_layanan_id,
+            'jenis_layanan'     => $request->jenis_layanan,
             'kode_layanan_bpjs' => $request->kode_layanan_bpjs,
             'medical_checkup'   => $request->medical_checkup,
             'ibu_hamil'         => $request->ibu_hamil,

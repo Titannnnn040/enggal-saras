@@ -16,10 +16,6 @@ class Layanan extends Model
     public function Dokter(){
         return $this->hasMany(Dokter::class);
     }
-    public function JenisLayanan(){
-        return $this->belongsTo(JenisLayanan::class);
-    }
-
     public function PenjadwalanDokter(){
         return $this->hasMany(PenjadwalanDokter::class);
     }
