@@ -8,30 +8,26 @@ use Illuminate\Http\Request;
 
 class LayananController extends Controller
 {
-    private function generateLmNumber()
-    {
+    private function generateLmNumber(){
         $count = Layanan::all('id')->count();
-
         $count = $count + 1;
         $kd = str_pad($count, 5, '0', STR_PAD_LEFT);
-
         return 'LM' . '-' . $kd;
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function indexData(Request $request){
+        $layanan = Layanan::latest();
+        if(request('kode_layanan')){
+            $layanan->where('kode_layanan', 'like', '%' . request('kode_layanan') . '%');
+        } 
+        if(request('nama_layanan')){
+            $layanan->where('nama_layanan', 'like', '%' . request('nama_layanan') . '%');
+        } 
+        return view('pages.layanan.data-layanan', ['layanan' => $layanan->get(),'title' => 'data-layanan']);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request $request)
-    {
-        // return $request->all();
-        // die;
+    public function indexCreate(Request $request){
+        return view('pages.layanan.create-layanan', ['title' => 'create-layanan']);
+    }
+    public function store(Request $request){
         $validatedData = $request->validate([
             'nama_layanan'      => ['required'],
             'jenis_layanan'     => ['required'],
@@ -43,51 +39,12 @@ class LayananController extends Controller
         Layanan::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/layanan/data-layanan');
-
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        return view('m_layanan/create-layanan', ['title' => 'create-layanan']);
-    }
-
-    public function storeData(Request $request)
-    {
-        $layanan = Layanan::latest();
-        if(request('kode_layanan')){
-            $layanan->where('kode_layanan', 'like', '%' . request('kode_layanan') . '%');
-        } 
-        if(request('nama_layanan')){
-            $layanan->where('nama_layanan', 'like', '%' . request('nama_layanan') . '%');
-        } 
-        return view('m_layanan/data-layanan', ['layanan' => $layanan->get(),'title' => 'data-layanan']);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Layanan $layanan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Request $request, $id)
-    {
+    public function edit(Request $request, $id){
         $layanan = Layanan::find($id);
-        return view('m_layanan/edit-layanan', ['title' => 'edit-layanan', 'layanan' => $layanan]);
+        return view('pages.layanan.edit-layanan', ['title' => 'edit-layanan', 'layanan' => $layanan]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $request->validate([
             'nama_layanan'      => ['required'],
             'jenis_layanan'     => ['required'],
@@ -111,12 +68,7 @@ class LayananController extends Controller
             return redirect('/layanan/data-layanan');
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-public function destroy(Request $request, $id)
-    {   
+    public function destroy(Request $request, $id){   
         $layanan = Layanan::find($id);
         $layanan->delete($id);
         if($layanan){

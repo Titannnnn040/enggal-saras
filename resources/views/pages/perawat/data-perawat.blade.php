@@ -20,17 +20,17 @@
                 <form action="" class="d-flex col-lg-12">
                   <div class="row col-lg-12">
                     <div class="search col-lg-6">
-                      <h6>Nama Dokter</h6>
+                      <h6>Nama Lengkap</h6>
                       <input type="text" name="nama_lengkap">
                     </div>
-                    
+                   
                     <div class="search col-lg-6">
                       <h6>Nik</h6>
                       <input type="text" name="nik">
                     </div>
                     <div class="submit-filter d-flex  justify-content-between mt-3">
                       <button type="submit" class="btn btn-success col-lg-1">Search</button>
-                      <a href="/dashboard/perawat/data-perawat" class="btn btn-danger col-lg-1">clear</a>
+                      <a href="/perawat/data-perawat" class="btn btn-danger col-lg-1">clear</a>
                     </div>
                   </div>
                 </form>
@@ -44,8 +44,8 @@
           <div class="card my-3">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Jadwal Dokter</h6>
-                <a href="/tenaga-medis/create-jadwal-dokter" class="my-0 me-3 btn-add-data d-flex align-items-center">
+                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Perawat</h6>
+                <a href="/perawat/create-perawat" class="my-0 me-3 btn-add-data d-flex align-items-center">
                   <i class="fa-solid fa-plus me-1"></i>
                   tambah data
                 </a>
@@ -57,77 +57,46 @@
                       <thead>
                           <tr>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Praktik</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Senin</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Selasa</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rabu</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kamis</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumat</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sabtu</th>
-                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Minggu</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Perawat</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Lengkap</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NIK</th>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
                       <?php $num = 1 ?>
-                      @foreach ($jadwalDokter as $item)
-                        <tbody>
-                            <tr>
-                                <td class="align-middle text-center text-xs">
-                                    <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
-                                </td>
-
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Layanan->nama_layanan }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Dokter->nama_lengkap }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jadwal_praktik }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->senin }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->selasa }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->rabu }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kamis }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jumat }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->sabtu }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->minggu }}</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                    <form action="/tenaga-medis/edit-jadwal-dokter/{{ $item->id }}">
-                                      @csrf
-                                      <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
-                                    </form>
-                                    
-                                      <form action="/tenaga-medis/delete-jadwal-dokter/{{ $item->id }}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">
-                                          <i class="fa-solid fa-trash"></i>
-                                        </button>                                      
-                                      </form>
-
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                      @endforeach
+                      <tbody>
+                        @foreach ($perawat as $item)
+                          <tr>
+                            <td class="align-middle text-center text-xs">
+                                <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
+                            </td>
+                            <td class="align-middle text-center text-xs">
+                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->perawat_code }}</p>
+                            </td>
+                            <td class="align-middle text-center text-xs">
+                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_lengkap }}</p>
+                            </td>
+                            <td class="align-middle text-center text-xs">
+                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nik }}</p>
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                <form action="{{route('edit-perawat', ['id' => $item->id])}}">
+                                  @csrf
+                                  <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                </form>
+                                <form action="/perawat/{{ $item->id }}" method="post">
+                                  @method('delete')
+                                  @csrf
+                                  <button class="btn btn-outline-danger" onclick="return confirm('You Sure?')" style="margin-top:10px; margin-bottom:10px;">
+                                    <i class="fa-solid fa-trash"></i>
+                                  </button>                                      
+                                </form>
+                              </span>
+                            </td>
+                          </tr>
+                        @endforeach
+                      </tbody>
                   </table>
               </div>
           </div>

@@ -31,23 +31,21 @@ class BentukSediaanObatController extends Controller
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
-    public function indexDataBentukSediaan()
+    public function indexData()
     {
         $bentukSediaan = BentukSediaanObat::latest();
-        // echo"<pre>";print_r($bentukSediaan);die();
         if (request('bentuk_sediaan_code')) {
             $this->filterData('bentuk_sediaan_code', $bentukSediaan);
         }
         if (request('bentuk_sediaan_name')) {
             $this->filterData('bentuk_sediaan_name', $bentukSediaan);
         }
-        return view('pages.m_bentuk_sediaan.data-bentuk-sediaan', ['title' => 'data-bentuk-sediaan', 'bentukSediaan' => $bentukSediaan->get()]);
+        return view('pages.bentuk_sediaan.data-bentuk-sediaan', ['title' => 'data-bentuk-sediaan', 'bentukSediaan' => $bentukSediaan->get()]);
     }
-    public function indexCreateBentukSediaan()
+    public function indexCreate()
     {
-        return view('pages.m_bentuk_sediaan.create-bentuk-sediaan', ['title' => 'create-bentuk-sediaan']);
+        return view('pages.bentuk_sediaan.create-bentuk-sediaan', ['title' => 'create-bentuk-sediaan']);
     }
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -68,10 +66,8 @@ class BentukSediaanObatController extends Controller
     public function edit($code)
     {
         $bentukSediaan = BentukSediaanObat::where('bentuk_sediaan_code', $code)->first();
-        // echo"<pre>";print_r($golonganObat);die();
-        return view('pages.m_bentuk_sediaan.edit-bentuk-sediaan', ['title' => 'edit-bentuk-sediaan', 'bentukSediaan' => $bentukSediaan]);
+        return view('pages.bentuk_sediaan.edit-bentuk-sediaan', ['title' => 'edit-bentuk-sediaan', 'bentukSediaan' => $bentukSediaan]);
     }
-
     public function update(Request $request, $code)
     {
         $validatedData = $request->validate([
@@ -89,7 +85,6 @@ class BentukSediaanObatController extends Controller
             return redirect()->route('data-bentuk-sediaan')->with('success', 'Data berhasil diubah');
         }
     }
-
     public function destroy(Request $request, $code)
     {
         $delete = BentukSediaanObat::where('bentuk_sediaan_code', $code)->delete();

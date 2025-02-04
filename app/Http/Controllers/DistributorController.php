@@ -33,7 +33,7 @@ class DistributorController extends Controller
         }
     }
 
-    public function indexDataDistributor()
+    public function indexData()
     {
         $data = Distributor::latest();
         if (request('distributor_code')) {
@@ -45,12 +45,12 @@ class DistributorController extends Controller
         if (request('city')) {
             $this->filterData('city', $data);
         }
-        return view('pages.m_distributor.data-distributor', ['title' => 'data-distributor', 'data' => $data->get()]);
+        return view('pages.distributor.data-distributor', ['title' => 'data-distributor', 'data' => $data->get()]);
     }
     
-    public function indexCreateDistributor()
+    public function indexCreate()
     {
-        return view('pages.m_distributor.create-distributor', ['title' => 'create-distributor']);
+        return view('pages.distributor.create-distributor', ['title' => 'create-distributor']);
     }
 
     public function store(Request $request)
@@ -84,7 +84,7 @@ class DistributorController extends Controller
     public function edit($code)
     {
         $data = Distributor::where('distributor_code', $code)->first();
-        return view('pages.m_distributor.edit-distributor', ['title' => 'distributor', 'data' => $data]);
+        return view('pages.distributor.edit-distributor', ['title' => 'distributor', 'data' => $data]);
     }
 
     public function update(Request $request, $code)

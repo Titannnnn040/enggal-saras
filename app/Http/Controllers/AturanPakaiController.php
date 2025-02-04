@@ -31,7 +31,7 @@ class AturanPakaiController extends Controller
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
-    public function indexDataAturanPakai()
+    public function indexData()
     {
         $aturanPakai = AturanPakai::latest();
         if (request('aturan_pakai_code')) {
@@ -40,13 +40,12 @@ class AturanPakaiController extends Controller
         if (request('aturan_pakai_name')) {
             $this->filterData('aturan_pakai_name', $aturanPakai);
         }
-        return view('pages.m_aturan_pakai.data-aturan-pakai', ['title' => 'data-aturan-pakai', 'aturanPakai' => $aturanPakai->get()]);
+        return view('pages.aturan_pakai.data-aturan-pakai', ['title' => 'data-aturan-pakai', 'aturanPakai' => $aturanPakai->get()]);
     }
-    public function indexCreateAturanPakai()
+    public function indexCreate()
     {
-        return view('pages.m_aturan_pakai.create-aturan-pakai', ['title' => 'create2-aturan-pakai']);
+        return view('pages.aturan_pakai.create-aturan-pakai', ['title' => 'create2-aturan-pakai']);
     }
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -68,9 +67,8 @@ class AturanPakaiController extends Controller
     {
         $aturanPakai = AturanPakai::where('aturan_pakai_code', $code)->first();
         // echo"<pre>";print_r($aturanPakai);die();
-        return view('pages.m_aturan_pakai.edit-aturan-pakai', ['title' => 'edit-aturan-pakai', 'aturanPakai' => $aturanPakai]);
+        return view('pages.aturan_pakai.edit-aturan-pakai', ['title' => 'edit-aturan-pakai', 'aturanPakai' => $aturanPakai]);
     }
-
     public function update(Request $request, $code)
     {
         $validatedData = $request->validate([
@@ -88,7 +86,6 @@ class AturanPakaiController extends Controller
             return redirect()->route('data-aturan-pakai')->with('success', 'Data berhasil diubah');
         }
     }
-
     public function destroy(Request $request, $code)
     {
         $delete = AturanPakai::where('aturan_pakai_code', $code)->delete();

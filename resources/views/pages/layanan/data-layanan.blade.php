@@ -1,8 +1,6 @@
 @extends('layouts/dashboard')
 @section('dashboard')
-<!-- Page Content  -->
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-
   <h1 class="ms-3 mt-2 mb-0">Enggal Saras</h1>
   <div class="container-fluid py-4">
     <div class="container-fluid py-1">
@@ -95,7 +93,7 @@
                                 </td>
                                 <td class="align-middle text-center">
                                   <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                    <form action="/layanan/edit-layanan/{{ $item->id }}">
+                                    <form action="{{route('edit-layanan', ['id' => $item->id])}}">
                                       @csrf
                                       <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
                                     </form>
@@ -151,8 +149,6 @@
     </footer>
   </div>
 </main>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 @endsection
 
 

@@ -38,11 +38,11 @@ class PerawatController extends Controller
             $perawat->where('nik', 'like', request('nik'));
         }
 
-        return view('m_perawat/data-perawat', ['title' => 'data-perawat', 'perawat' => $perawat->get()]);
+        return view('pages.perawat.data-perawat', ['title' => 'data-perawat', 'perawat' => $perawat->get()]);
     }
     public function indexCreate()
     {
-        return view('m_perawat/create-perawat', ['title' => 'create-perawat']);
+        return view('pages.perawat.create-perawat', ['title' => 'create-perawat']);
     }
     public function store(Request $request)
     {
@@ -60,7 +60,7 @@ class PerawatController extends Controller
     }
     public function edit($id){
         $findPerawat = Perawat::find($id);
-        return view('m_perawat/edit-perawat', ['perawat' => $findPerawat, 'title' => 'edit-perawat']);
+        return view('pages.perawat.edit-perawat', ['perawat' => $findPerawat, 'title' => 'edit-perawat']);
 
     }
     public function update(Request $request, $id){

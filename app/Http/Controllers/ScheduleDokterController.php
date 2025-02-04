@@ -10,32 +10,37 @@ use Illuminate\Support\Facades\DB;
 
 class ScheduleDokterController extends Controller
 {
-    public function getJadwal($dokter_id, $layanan_id) {
+    public function getJadwal($dokter_id, $layanan_id){
         $jadwal = PenjadwalanDokter::where('dokter_id', $dokter_id)
                                     ->where('layanan_id', $layanan_id)
                                     ->first();
         return response()->json($jadwal);
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-
-    }
-    public function filterData($field, $model)
-    {
+    public function filterData($field, $model){
         if (request($field)) {
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
-    public function filterDataUnique($field, $model)
-    {
+    public function filterDataUnique($field, $model){
         if (request($field)) {
             $model->where($field, request($field));
         }
     }
-    public function create(Request $request) {
+    public function indexData(){
+        $jadwalDokter = PenjadwalanDokter::latest();
+
+        if(request('nama_lengkap')) {
+            $this->filterData('nama_lengkap', $dokter);
+        }
+        return view('pages.dokter.jadwal_dokter.jadwal-dokter', ['title' => 'jadwal-dokter', 'jadwalDokter' => $jadwalDokter->get()]);
+    }
+    public function indexCreate(){
+        $layanan = Layanan::all();
+        $dokter = Dokter::all();
+        $jadwals = PenjadwalanDokter::all();
+        return view('pages.dokter.jadwal_dokter.create-jadwal-dokter', ['title' => 'create-jadwal-dokter', 'layanan' => $layanan, 'dokter' => $dokter, 'jadwals' => $jadwals]);
+    }
+    public function store(Request $request){
         $validatedData = $request->validate([
             'layanan_id'     => ['required'],
             'dokter_id'      => ['required'],
@@ -46,65 +51,21 @@ class ScheduleDokterController extends Controller
     
         $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
         $data = [];
-
         foreach ($days as $day) {
             $data[$day] = $request->has($day) ? $request->start . '-' . $request->finish : '';
         }
-
         $validatedData = array_merge($validatedData, $data);
-    
-        // dd($validatedData);
-
         PenjadwalanDokter::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/tenaga-medis/jadwal-dokter');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store()
-    {
-        $jadwalDokter = PenjadwalanDokter::latest();
-
-        if(request('nama_lengkap')) {
-            $this->filterData('nama_lengkap', $dokter);
-        }
-        return view('m_dokter/jadwal-dokter', ['title' => 'jadwal-dokter', 'jadwalDokter' => $jadwalDokter->get()]);
-    }
-
-    public function storeForm()
-    {
-        $layanan = Layanan::all();
-        $dokter = Dokter::all();
-        $jadwals = PenjadwalanDokter::all();
-        return view('m_dokter/create-jadwal-dokter', ['title' => 'create-jadwal-dokter', 'layanan' => $layanan, 'dokter' => $dokter, 'jadwals' => $jadwals]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(PenjadwalanDokter $penjadwalanDokter)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
+    public function edit($id){
         $layanan = Layanan::all();
         $dokter = Dokter::all();
         $penjadwalanDokter = PenjadwalanDokter::find($id);
-        return view('m_dokter/edit-jadwal-dokter', ['title' => 'edit-jadwal-dokter', 'layanan' => $layanan, 'dokter' => $dokter, 'penjadwalanDokter' => $penjadwalanDokter]);
+        return view('pages.dokter.jadwal_dokter.edit-jadwal-dokter', ['title' => 'edit-jadwal-dokter', 'layanan' => $layanan, 'dokter' => $dokter, 'penjadwalanDokter' => $penjadwalanDokter]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $validatedData = $request->validate([
             'layanan_id'     => ['required'],
             'dokter_id'      => ['required'],
@@ -113,7 +74,6 @@ class ScheduleDokterController extends Controller
             'finish'         => ['required']
         ]);
     
-        // Mengatur nilai untuk setiap hari berdasarkan checkbox
         $data = [
             'senin'  => $request->has('senin') ? $request->start . '-' . $request->finish : '-',
             'selasa' => $request->has('selasa') ? $request->start . '-' . $request->finish : '-',
@@ -124,12 +84,10 @@ class ScheduleDokterController extends Controller
             'minggu' => $request->has('minggu') ? $request->start . '-' . $request->finish : '-'
         ];
     
-        // Gabungkan data checkbox dengan data yang divalidasi
         $validatedData = array_merge($validatedData, $data);
 
         $penjadwalanDokter = PenjadwalanDokter::find($id);
         $penjadwalanDokter->update([
-           
                 'layanan_id'     => $request->layanan_id,
                 'dokter_id'      => $request->dokter_id,
                 'jadwal_praktik' => $request->jadwal_praktik,
@@ -152,12 +110,7 @@ class ScheduleDokterController extends Controller
             return redirect('/tenaga-medis/jadwal-dokter');
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request, $id)
-    {
+    public function destroy(Request $request, $id){
         $penjadwalanDokter = PenjadwalanDOkter::find($id);
         $penjadwalanDokter->destroy($id);
         if($penjadwalanDokter){

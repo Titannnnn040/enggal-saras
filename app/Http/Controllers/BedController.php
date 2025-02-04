@@ -28,22 +28,24 @@ class BedController extends Controller
     
         return 'KB-' . date('dmy') . $kd;
     }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function indexData(Request $request)
     {
-        //
+        $bed = Bed::latest();
+        if(request('kode_bed')){
+            $bed->where('kode_bed', 'like' , '%' . request('kode_bed') . '%');
+        }
+        if(request('nama_bed')){
+            $bed->where('nama_bed', 'like' , '%' . request('nama_bed') . '%');
+        }
+        return view('pages.bed.data-bed', ['title' => 'data-bed', 'bed' => $bed->get()]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request $request)
+    public function indexCreate()
     {
-        // return $request->all();
-        // die;
+        $kamar = Kamar::all();
+        return view('pages.bed.create-bed', ['title' => 'create-bed', 'kamar' => $kamar]);
+    }
+    public function store(Request $request)
+    {
         $validatedData = $request->validate([
             'kode_bed'  => [],
             'nama_bed'  => ['required'],
@@ -58,60 +60,20 @@ class BedController extends Controller
         if($request['cadangan'] == ''){
             $validatedData['cadangan'] = 'No';
         }
-
         Bed::create($validatedData);
         $kamar = Kamar::find($validatedData['kamar_id']);
         if ($kamar) {
-            // Increment the jumlah_bed by 1
             $kamar->increment('jumlah_bed');
         }
         $request->session()->flash('success', 'Data berhasil ditambahkan');
-        return redirect('/kamar/data-kamar');
-
+        return redirect('/bed/data-bed');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function storeForm()
-    {
-        $kamar = Kamar::all();
-        return view('/pages/m_bed/create-bed', ['title' => 'create-bed', 'kamar' => $kamar]);
-    }
-
-    public function storeData(Request $request)
-    {
-        $bed = Bed::latest();
-        if(request('kode_bed')){
-            $bed->where('kode_bed', 'like' , '%' . request('kode_bed') . '%');
-        }
-        if(request('nama_bed')){
-            $bed->where('nama_bed', 'like' , '%' . request('nama_bed') . '%');
-        }
-        return view('/pages/m_bed/data-bed', ['title' => 'data-bed', 'bed' => $bed->get()]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Bed $bed)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $bed = Bed::find($id);
         $kamar = Kamar::all();
-        return view('pages/m_bed/edit-bed', ['title' => 'edit-bed', 'bed' => $bed, 'kamar' => $kamar]);
+        return view('pages.bed.edit-bed', ['title' => 'edit-bed', 'bed' => $bed, 'kamar' => $kamar]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -140,10 +102,6 @@ class BedController extends Controller
         $request->session()->flash('success', 'Data berhasil diubah');
         return redirect('/bed/data-bed');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request, $id)
     {
         $bed = Bed::find($id);
@@ -155,6 +113,6 @@ class BedController extends Controller
             $kamar->decrement('jumlah_bed');
         }
         $request->session()->flash('success', 'Data berhasil dihapus');
-        return redirect('/kamar/data-kamar');
+        return redirect('/bed/data-bed');
     }
 }

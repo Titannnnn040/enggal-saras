@@ -31,7 +31,7 @@ class GolonganObatController extends Controller
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
-    public function indexDataGolonganObat()
+    public function indexData()
     {
         $golonganObat = GolonganObat::latest();
         if (request('golongan_obat_code')) {
@@ -40,11 +40,11 @@ class GolonganObatController extends Controller
         if (request('golongan_obat_name')) {
             $this->filterData('golongan_obat_name', $golonganObat);
         }
-        return view('pages.m_golongan_obat.data-golongan-obat', ['title' => 'data-golongan-obat', 'golonganObat' => $golonganObat->get()]);
+        return view('pages.golongan_obat.data-golongan-obat', ['title' => 'data-golongan-obat', 'golonganObat' => $golonganObat->get()]);
     }
-    public function indexCreateGolonganObat()
+    public function indexCreate()
     {
-        return view('pages.m_golongan_obat.create-golongan-obat', ['title' => 'create-golongan-obat']);
+        return view('pages.golongan_obat.create-golongan-obat', ['title' => 'create-golongan-obat']);
     }
 
     public function store(Request $request)
@@ -74,7 +74,7 @@ class GolonganObatController extends Controller
     {
         $golonganObat = GolonganObat::where('golongan_obat_code', $code)->first();
         // echo"<pre>";print_r($golonganObat);die();
-        return view('pages.m_golongan_obat.edit-golongan-obat', ['title' => 'edit-golongan-obat', 'golonganObat' => $golonganObat]);
+        return view('pages.golongan_obat.edit-golongan-obat', ['title' => 'edit-golongan-obat', 'golonganObat' => $golonganObat]);
     }
 
     public function update(Request $request, $code)

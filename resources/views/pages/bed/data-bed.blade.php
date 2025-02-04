@@ -1,11 +1,8 @@
 @extends('layouts/dashboard')
 @section('dashboard')
-<!-- Page Content  -->
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-
   <h1 class="ms-3 mt-2 mb-0">Enggal Saras</h1>
   <div class="container-fluid py-4">
-    
     <div class="container-fluid py-1">
       <div class="row">
         <div class="col-lg-12">
@@ -20,16 +17,16 @@
                 <form action="" class="d-flex col-lg-12">
                   <div class="row col-lg-12">
                     <div class="search col-lg-6">
-                      <h6>Kode Farmakologi</h6>
-                      <input type="text" name="farmakologi_code">
+                      <h6>Kode Bed</h6>
+                      <input type="text" name="kode_bed">
                     </div>
                     <div class="search col-lg-6">
-                      <h6>Nama Farmakologi</h6>
-                      <input type="text" name="farmakologi_name">
+                      <h6>Nama Bed</h6>
+                      <input type="text" name="nama_bed">
                     </div>
                     <div class="submit-filter d-flex  justify-content-between mt-3">
                       <button type="submit" class="btn btn-success col-lg-1">Search</button>
-                      <a href="{{route('data-farmakologi')}}" class="btn btn-danger col-lg-1">clear</a>
+                      <a href="/bed/data-bed" class="btn btn-danger col-lg-1">clear</a>
                     </div>
                   </div>
                 </form>
@@ -43,8 +40,8 @@
           <div class="card my-3">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Farmakologi</h6>
-                <a href="{{route('create-farmakologi')}}" class="my-0 me-3 btn-add-data d-flex align-items-center">
+                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Bed</h6>
+                <a href="/bed/create-bed" class="my-0 me-3 btn-add-data d-flex align-items-center">
                   <i class="fa-solid fa-plus me-1"></i>
                   tambah data
                 </a>
@@ -56,47 +53,54 @@
                       <thead>
                           <tr>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Farmakologi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Farmakologi</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Bed</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Bed</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Kamar</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cadangan</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                           </tr>
                       </thead>
                       <?php $num = 1 ?>
-                      @foreach ($farmakologi as $item)
-                        <tbody>
-                            <tr>
-                                <td class="align-middle text-center text-xs">
-                                    <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
-                                </td>
-
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->farmakologi_code }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->farmakologi_name }}</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                      <form action="{{ route('edit-farmakologi', ['code' => $item->farmakologi_code]) }}" method="get">
-                                        @csrf
-                                        <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;">
-                                            <i class="fa-solid fa-user-pen"></i>
-                                        </button>
-                                      </form>
-                                    
-                                      <form action="{{ route('delete-farmakologi', ['code' => $item->farmakologi_code]) }}" id="delete-form-{{$item->id}}" data-id="{{$item->id}}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="button" class="btn btn-outline-danger button-delete" data-id="{{$item->id}}" style="margin-top:10px;margin-bottom:10px;margin-right:10px;">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                      </form>                                    
-
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                      @endforeach
+                      <tbody>
+                        @foreach ($bed as $item)
+                          <tr>
+                              <td class="align-middle text-center text-xs">
+                                  <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
+                              </td>
+                              <td class="align-middle text-center text-xs">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kode_bed }}</p>
+                              </td>
+                              <td class="align-middle text-center text-xs">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_bed }}</p>
+                              </td>
+                              <td class="align-middle text-center text-xs">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kamar->nama_kamar }}</p>
+                              </td>
+                              <td class="align-middle text-center text-xs">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->status }}</p>
+                              </td>
+                              <td class="align-middle text-center text-xs">
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->cadangan }}</p>
+                              </td>
+                              <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                  <form action="{{ route('edit-bed', ['id' => $item->id]) }}">
+                                    @csrf
+                                    <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                  </form>
+                                  <form action="{{ route('delete-bed', ['id' => $item->id]) }}" id="delete-form-{{$item->id}}" data-id="{{$item->id}}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="button" class="btn btn-outline-danger button-delete" data-id="{{$item->id}}" style="margin-top:10px;margin-bottom:10px;margin-right:10px;">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                  </form>  
+                                </span>
+                              </td>
+                          </tr>
+                        @endforeach
+                      </tbody>
                   </table>
               </div>
           </div>
@@ -137,8 +141,6 @@
     </footer>
   </div>
 </main>
-
-
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <!--   Core JS Files   -->
@@ -449,7 +451,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
-
 </script>
 {{-- Notification --}}
 <script>

@@ -28,31 +28,33 @@ class DokterController extends Controller
 
         return 'TM-' . date('dmy') . $kd;
     }
-    public function filterData($field, $model, $unique)
-    {
+    public function filterData($field, $model, $unique){
         if (request($field)) {
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
-    public function filterDataUnique($field, $model)
-    {
+    public function filterDataUnique($field, $model){
         if (request($field)) {
             $model->where($field, request($field));
         }
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+    public function indexData(Request $request){   
+        $dokter = Dokter::latest();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request $request)
-    {   
+        if (request('no_dokter')) {
+            $this->filterDataUnique('no_dokter', $dokter);
+        }
+        if(request('nama_lengkap')) {
+            $this->filterData('nama_lengkap', $dokter);
+        }
+        // $layanan = Layanan::all();
+        return view('pages.dokter.data_dokter.data-dokter', ['title' => 'data-dokter', 'dokter' => $dokter->get()]);
+    }
+    public function indexCreate(Request $request){   
+        $layanan = Layanan::all();
+        return view('pages.dokter.data_dokter.create-dokter', ['title' => 'create-dokter', 'layanan' => $layanan]);
+    }
+    public function create(Request $request){   
         $validatedDokter = $request->validate([
             'no_dokter'     => [''],
             'nama_lengkap'  => ['required', 'max:255'],
@@ -76,52 +78,12 @@ class DokterController extends Controller
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/tenaga-medis/data-tenaga-medis');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function indexCreateDokter(Request $request)
-    {   
-        $layanan = Layanan::all();
-        return view('m_dokter/create-dokter', ['title' => 'create-dokter', 'layanan' => $layanan]);
-    }
-    public function indexDataDokter(Request $request)
-    {   
-        $dokter = Dokter::latest();
-
-        if (request('no_dokter')) {
-            $this->filterDataUnique('no_dokter', $dokter);
-        }
-        if(request('nama_lengkap')) {
-            $this->filterData('nama_lengkap', $dokter);
-        }
-        // $layanan = Layanan::all();
-        return view('m_dokter/data-dokter', ['title' => 'data-dokter', 'dokter' => $dokter->get()]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Dokter $dokter)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
+    public function edit($id){
         $dokter = Dokter::find($id);
         $layanan = Layanan::all();
-        return view('m_dokter/edit-dokter', compact('dokter', 'layanan'), ['title' => 'edit-dokter']);
+        return view('pages.dokter.data_dokter.edit-dokter', compact('dokter', 'layanan'), ['title' => 'edit-dokter']);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request,$id)
-    {
+    public function update(Request $request,$id){
         $request->validate([
             'nama_lengkap'  => ['required', 'max:255'],
             'code_bpjs'     => ['required', 'numeric', 'digits_between:12,15', Rule::unique('m_dokter', 'code_bpjs')->ignore($id)],
@@ -161,12 +123,7 @@ class DokterController extends Controller
             return redirect('/tenaga-medis/data-tenaga-medis');
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request, $id)
-    {
+    public function destroy(Request $request, $id){
         $dokter = Dokter::find($id);
         $dokter->delete($id);
         if($dokter){

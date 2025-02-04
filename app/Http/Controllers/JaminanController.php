@@ -33,7 +33,7 @@ class JaminanController extends Controller
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
-    public function indexDataJaminan()
+    public function indexData()
     {
         $Jaminan = Jaminan::latest();
         if (request('code_jaminan')) {
@@ -42,15 +42,15 @@ class JaminanController extends Controller
         if (request('nama_jaminan')) {
             $this->filterData('nama_jaminan', $Jaminan);
         }
-        return view('pages/m_jaminan/data-jaminan', ['title' => 'data-jaminan', 'Jaminan' => $Jaminan->get()]);
+        return view('pages.jaminan.data-jaminan', ['title' => 'data-jaminan', 'Jaminan' => $Jaminan->get()]);
     }
 
-    public function indexCreateJaminan()
+    public function indexCreate()
     {
-        return view('pages/m_jaminan/create-jaminan', ['title' => 'create-jaminan']);
+        return view('pages.jaminan.create-jaminan', ['title' => 'create-jaminan']);
     }
 
-    public function storeJaminan(Request $request)
+    public function store(Request $request)
     {
         // return $request->all();
         // die();
@@ -75,7 +75,7 @@ class JaminanController extends Controller
     {
         $tipeJaminan = TipeJaminan::all();
         $jaminan = Jaminan::find($id);
-        return view('pages/m_jaminan/edit-jaminan', ['title' => 'edit-jaminan', 'tipeJaminan' => $tipeJaminan, 'jaminan' => $jaminan]);
+        return view('pages.jaminan.edit-jaminan', ['title' => 'edit-jaminan', 'tipeJaminan' => $tipeJaminan, 'jaminan' => $jaminan]);
     }
 
     public function update(Request $request, $id)

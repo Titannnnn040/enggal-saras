@@ -31,7 +31,7 @@ class FarmakologiController extends Controller
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
-    public function indexDataFarmakologi()
+    public function indexData()
     {
         $farmakologi = Farmakologi::latest();
         if (request('farmakologi_code')) {
@@ -40,11 +40,11 @@ class FarmakologiController extends Controller
         if (request('farmakologi_name')) {
             $this->filterData('farmakologi_name', $farmakologi);
         }
-        return view('pages.m_farmakologi.data-farmakologi', ['title' => 'data-farmakologi', 'farmakologi' => $farmakologi->get()]);
+        return view('pages.farmakologi.data-farmakologi', ['title' => 'data-farmakologi', 'farmakologi' => $farmakologi->get()]);
     }
-    public function indexCreateFarmakologi()
+    public function indexCreate()
     {
-        return view('pages.m_farmakologi.create-farmakologi', ['title' => 'create-farmakologi']);
+        return view('pages.farmakologi.create-farmakologi', ['title' => 'create-farmakologi']);
     }
     public function store(Request $request)
     {
@@ -62,27 +62,11 @@ class FarmakologiController extends Controller
             return redirect()->route('data-farmakologi')->with('success', 'Data berhasil ditambahkan');
         }
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Farmakologi $farmakologi)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Request $request, $code)
     {
         $farmakologi = Farmakologi::where('farmakologi_code', $code)->first();
-        return view('pages.m_farmakologi.edit-farmakologi', ['title' => 'edit-farmakologi', 'farmakologi' => $farmakologi]);
+        return view('pages.farmakologi.edit-farmakologi', ['title' => 'edit-farmakologi', 'farmakologi' => $farmakologi]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $code)
     {
         $validatedData = $request->validate([
@@ -98,10 +82,6 @@ class FarmakologiController extends Controller
             return redirect()->route('data-farmakologi')->with('success', 'Data berhasil diubah');
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request){
         $farmakologi = Farmakologi::where('farmakologi_code', $request->code)->delete();
         if (!$farmakologi) {

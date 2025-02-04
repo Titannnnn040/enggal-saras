@@ -31,7 +31,7 @@ class CaraPakaiObatController extends Controller
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
-    public function indexDataCaraPakai()
+    public function indexData()
     {
         $caraPakai = CaraPakaiObat::latest();
         if (request('cara_pakai_code')) {
@@ -40,13 +40,12 @@ class CaraPakaiObatController extends Controller
         if (request('cara_pakai_name')) {
             $this->filterData('cara_pakai_name', $caraPakai);
         }
-        return view('pages.m_cara_pakai_obat.data-cara-pakai', ['title' => 'data-cara-pakai', 'caraPakai' => $caraPakai->get()]);
+        return view('pages.cara_pakai_obat.data-cara-pakai', ['title' => 'data-cara-pakai', 'caraPakai' => $caraPakai->get()]);
     }
-    public function indexCreateCaraPakai()
+    public function indexCreate()
     {
-        return view('pages.m_cara_pakai_obat.create-cara-pakai', ['title' => 'create-cara-pakai']);
+        return view('pages.cara_pakai_obat.create-cara-pakai', ['title' => 'create-cara-pakai']);
     }
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -68,7 +67,7 @@ class CaraPakaiObatController extends Controller
     {
         $caraPakai = CaraPakaiObat::where('cara_pakai_code', $code)->first();
         // echo"<pre>";print_r($golonganObat);die();
-        return view('pages.m_cara_pakai_obat.edit-cara-pakai', ['title' => 'edit-cara-pakai', 'caraPakai' => $caraPakai]);
+        return view('pages.cara_pakai_obat.edit-cara-pakai', ['title' => 'edit-cara-pakai', 'caraPakai' => $caraPakai]);
     }
 
     public function update(Request $request, $code)
