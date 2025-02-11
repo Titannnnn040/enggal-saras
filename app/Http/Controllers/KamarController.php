@@ -10,38 +10,26 @@ use Carbon\Carbon;
 class KamarController extends Controller
 
 {
-    /**
-     * Display a listing of the resource.
-     */
     private function generateTmNumber()
     {
         $lastTmNumber = Kamar::whereDate('created_at', Carbon::today())
                             ->where('kode_kamar', 'like', 'KM-' . date('dmy') . '%')
                             ->orderBy('kode_kamar', 'desc')
                             ->first();
-    
         if ($lastTmNumber) {
             $lastNumber = intval(substr($lastTmNumber->kode_kamar, -2));
             $newNumber = $lastNumber + 1;
         } else {
             $newNumber = 1;
         }
-    
         $kd = str_pad($newNumber, 2, '0', STR_PAD_LEFT);
-    
         return 'KM-' . date('dmy') . $kd;
     }
-
-    public function index()
+    public function indexCreate()
     {
-        //
+        return view('pages/kamar/create-kamar', ['title' => 'create-kamar']);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request $request)
-    {
+    public function store(Request $request){
         $validatedData = $request->validate([
             'kode_kamar'  => [],
             'nama_kamar'  => ['required'],
@@ -50,8 +38,6 @@ class KamarController extends Controller
             'status'      => []
         ]);
         
-        
-        
         $validatedData['kode_kamar'] = $this->generateTmNumber();
         if($request['status'] == ''){
             $validatedData['status'] = 'tidak aktif';
@@ -59,23 +45,12 @@ class KamarController extends Controller
         if($request['jumlah_bed'] == NULL){
             $validatedData['jumlah_bed'] = '0';
         }
-        // return $request->all();
 
         Kamar::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/kamar/data-kamar');
-
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function storeForm()
-    {
-        return view('pages/m_kamar/create-kamar', ['title' => 'create-kamar']);
-    }
-
-    public function storeData(Request $request)
+    public function indexData(Request $request)
     {
         $kamar = Kamar::latest();
         if(request('kode_kamar')){
@@ -84,46 +59,27 @@ class KamarController extends Controller
         if(request('nama_kamar')){
             $kamar->where('nama_kamar', 'like', '%' . request('nama_kamar') . '%');
         }
-        return view('pages/m_kamar/data-kamar', ['title' => 'data-kamar', 'kamar' => $kamar->get()]);
+        return view('pages/kamar/data-kamar', ['title' => 'data-kamar', 'kamar' => $kamar->get()]);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Kamar $kamar)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $kamar = Kamar::find($id);
-        return view('pages/m_kamar/edit-kamar', ['title' => 'edit-kamar', 'kamar' => $kamar]);
+        return view('pages/kamar/edit-kamar', ['title' => 'edit-kamar', 'kamar' => $kamar]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     { 
-         $validatedData = $request->validate([
+        $validatedData = $request->validate([
             'kode_kamar'  => [],
             'nama_kamar'  => ['required'],
             'jenis_kamar' => ['required'],
             'jumlah_bed'  => [],
             'status'      => []
         ]);
-
         $validatedData['kode_kamar'] = $this->generateTmNumber();
         if($request['status'] == ''){
             $request['status'] = 'tidak aktif';
         }
-
         $kamar = Kamar::find($id);
-
         $kamar->update([
             'nama_kamar'  => $request->nama_kamar,
             'jenis_kamar' => $request->jenis_kamar,
@@ -132,10 +88,6 @@ class KamarController extends Controller
         $request->session()->flash('success', 'Data berhasil dirubah');
         return redirect('/kamar/data-kamar');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request, $id)
     {
         $kamar = Kamar::find($id);

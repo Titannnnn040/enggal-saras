@@ -62,7 +62,7 @@ class PasienController extends Controller
             $rawatJalan->where('no_bpjs_asuransi', 'like', request('no_bpjs'));
         } 
 
-        return view('pages/m_pasien/data-pasien', ['title' => 'data-pasien', "rawatJalan" => $rawatJalan->get()]);
+        return view('pages/pasien/data-pasien', ['title' => 'data-pasien', "rawatJalan" => $rawatJalan->get()]);
     }
 
     public function storePasien(Request $request)
@@ -111,7 +111,7 @@ class PasienController extends Controller
         $province = Province::all();
         $city     = City::all();
         $kecamatan     = Kecamatan::all();
-        return view('pages/m_pasien/create-pasien', compact('province', 'city', 'kecamatan', 'payment'), ['title' => 'create-pasien']);
+        return view('pages/pasien/create-pasien', compact('province', 'city', 'kecamatan', 'payment'), ['title' => 'create-pasien']);
     }
     /**
      * Display the specified resource.
@@ -132,7 +132,7 @@ class PasienController extends Controller
         $kecamatan     = Kecamatan::all();
         $kelurahan     = Kelurahan::all();
         $rawatJalan = Rawat_Jalan::find($id);
-        return view('pages/m_pasien/edit-pasien', compact('rawatJalan', 'province', 'city', 'kecamatan', 'kelurahan', 'payment'), ['title' => 'edit-pasien']);        
+        return view('pages/pasien/edit-pasien', compact('rawatJalan', 'province', 'city', 'kecamatan', 'kelurahan', 'payment'), ['title' => 'edit-pasien']);        
     }
 
     /**

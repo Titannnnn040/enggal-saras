@@ -38,11 +38,11 @@ class SatuanLabController extends Controller
         }elseif(request('satuan')){
             $this->filterData('satuan', $data);
         }
-        return view('pages.m_lab.satuan.data-satuan', ['data' => $data->get(), 'title' => 'data-satuan-lab']);
+        return view('pages.lab.satuan.data-satuan', ['data' => $data->get(), 'title' => 'data-satuan-lab']);
     }
 
     public function indexCreate(){
-        return view('pages.m_lab.satuan.create-satuan', ['title' => 'create-satuan-lab']);
+        return view('pages.lab.satuan.create-satuan', ['title' => 'create-satuan-lab']);
     }
 
     public function store(Request $request){
@@ -64,7 +64,7 @@ class SatuanLabController extends Controller
 
     public function edit($code){
         $data = SatuanLab::where('code', $code)->first();
-        return view('pages.m_lab.satuan.edit-satuan', ['title' => 'edit-satuan-lab', 'data' => $data]);
+        return view('pages.lab.satuan.edit-satuan', ['title' => 'edit-satuan-lab', 'data' => $data]);
     }
 
     public function update(Request $request, $code){

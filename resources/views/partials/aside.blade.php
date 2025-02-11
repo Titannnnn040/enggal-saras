@@ -205,19 +205,19 @@
                     <i class="fas fa-angle-right dropdown"></i>
                   </div>
                 </div>
-                <a href="/layanan/data-layanan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pasien') ? 'active' : '' }} text-decoration-none" style="margin:2.5px;">
+                <a href="/layanan/data-layanan" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-layanan') ? 'active' : '' }} text-decoration-none" style="margin:2.5px;">
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-clipboard-user me-2"></i>
                     <span class="nav-link-text ms-2">Layanan</span>
                   </div>
                 </a>
-                <a href="/kamar/data-kamar" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pasien') ? 'active' : '' }} text-decoration-none" style="margin:2.5px;">
+                <a href="/kamar/data-kamar" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-kamar') ? 'active' : '' }} text-decoration-none" style="margin:2.5px;">
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-clipboard-user me-2"></i>
                     <span class="nav-link-text ms-2">Kamar</span>
                   </div>
                 </a>
-                <a href="/bed/data-bed" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-pasien') ? 'active' : '' }} text-decoration-none" style="margin:2.5px;">
+                <a href="/bed/data-bed" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-bed') ? 'active' : '' }} text-decoration-none" style="margin:2.5px;">
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-clipboard-user me-2"></i>
                     <span class="nav-link-text ms-2">Bed</span>

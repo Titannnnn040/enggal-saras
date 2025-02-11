@@ -5,358 +5,354 @@
     <div class="container-fluid py-1">
         <h1 class="fw-bolder m-1 " style="font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif'; font-size:48px; color:#344767;">Enggal Saras</h1>
         <div class="row">
-          <div class="mt-4"> 
-            <div class="card my-3  border border-0">
-              <div class="card-header p-0 position-relative border border-0 mt-n4 mx-3 z-index-2">
-                <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
-                  <h6 class="text-white text-capitalize ps-3">CREATE RESERVASI PASIEN</h6>
-                </div>
-              </div>
-              <div class="card-body px-5 pb-2">
-                <div class="form"  style="background-color:#FDFEFD;">
-                    <div class="content">
-                        <form action="" method="post" class="d-flex col-lg-12"> 
-                            @csrf     
-                            <div class="d-flex flex-column">
+            <div class="mt-4"> 
+                <div class="card my-3  border border-0">
+                    <div class="card-header p-0 position-relative border border-0 mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">CREATE RESERVASI PASIEN</h6>
+                        </div>
+                    </div>
+                    <div class="card-body px-5 pb-2">
+                        <div class="form"  style="background-color:#FDFEFD;">
+                            <div class="content">
+                                <form action="" method="post" class="d-flex col-lg-12"> 
+                                    @csrf     
+                                    <div class="d-flex flex-column">
 
-                                <div class="d-flex col-lg-12 mb-4">
-                                    <div class="col-lg-12 col-xl-12 col-xxl-12 me-0 row">
+                                        <div class="d-flex col-lg-12 mb-4">
+                                            <div class="col-lg-12 col-xl-12 col-xxl-12 me-0 row">
 
-                                        <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-                                            <div class="d-flex">
-                                                <label for="date_now" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Tanggal & Jam :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                                                     <div class="d-flex">
-                                                        <div class="col-md-7 col-lg-9">
-                                                            <input type="date_now" class="form-control @error('date_now') is-invalid @enderror" id="date_now" name="date_now" value="" readonly>      
+                                                        <label for="date_now" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Tanggal & Jam :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <div class="d-flex">
+                                                                <div class="col-md-7 col-lg-9">
+                                                                    <input type="date_now" class="form-control @error('date_now') is-invalid @enderror" id="date_now" name="date_now" value="" readonly>      
+                                                                </div>
+                                                                <div class="col-lg-3 ms-3">
+                                                                    <input type="time_now" class="form-control @error('time_now') is-invalid @enderror" id="time_now" name="time_now" value="" readonly>      
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-3 ms-3">
-                                                            <input type="time_now" class="form-control @error('time_now') is-invalid @enderror" id="time_now" name="time_now" value="" readonly>      
-                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-3">
-                                            <div class="d-flex">
-                                                <label for="no_antrian" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No Antrian :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('no_antrian') is-invalid @enderror" id="no_antrian" name="no_antrian" value="" readonly>
-                                                    @error('no_antrian')
-                                                    <div class="invalid-feedback d-block">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                
-                                    </div>
-
-                                </div>   
-                                <div class="d-flex col-lg-6 mb-4">
-                                    <div class="col-lg-12 col-xl-12 col-xxl-12 me-0 row">
-
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
-                                            <div class="d-flex">
-                                                <label for="code" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Kode Reservasi :</label>
-                                                <label>autogenerate</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
-                                            <div class="d-flex">
-                                                <label for="no_rm" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Nomor Med. Record :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <select id="mySelect" class="form-select @error('no_rm') is-invalid @enderror" name="no_rm"  id="no_rm">
-                                                        <option value="">Please Select</option>
-                                                        @foreach ($rawatJalan as $item)
-                                                            <option value="{{$item->no_rekam_medis}}">{{$item->no_rekam_medis}}  &nbsp; | &nbsp; {{$item->nama_lengkap}}</option>
-                                                        @endforeach
-
-                                                    </select>          
-                                                    @error('no_rm')
-                                                    <div class="invalid-feedback d-block">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Tambahkan CSS Select2 -->
-                                       
-
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
-                                            <div class="d-flex">
-                                                <label for="pasien_name" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama Pasien :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('pasien_name') is-invalid @enderror" id="pasien_name" name="pasien_name" value="" readonly>
-                                                    @error('pasien_name')
-                                                    <div class="invalid-feedback d-block">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3 d-none">
-                                            <div class="d-flex">
-                                                <label for="no_bpjs" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No BPJS :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('no_bpjs') is-invalid @enderror" id="no_bpjs" name="no_bpjs" value="" readonly>
-                                                    @error('no_bpjs')
-                                                    <div class="invalid-feedback d-block">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-6 mb-3">
-                                            <div class="d-flex">
-                                                <label for="address" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Alamat :</label>
-                                                <div class="d-flex flex-column  col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" readonly>
-                                                    @error('address')
-                                                        <div class="invalid-feedback d-block">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-6 mb-3">
-                                            <div class="d-flex">
-                                                <label for="phone_no" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No. Telp :</label>
-                                                <div class="d-flex flex-column  col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('phone_no') is-invalid @enderror" id="phone_no" name="phone_no" value="{{ old('phone_no') }}" readonly>
-                                                    @error('phone_no')
-                                                        <div class="invalid-feedback d-block">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
-                                            <div class="d-flex">
-                                                <label for="gender" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jenis Kelamin :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <input type="text" class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender" value="{{ old('gender') }}" readonly>   
-                                                    @error('gender')
-                                                    <div class="invalid-feedback d-block">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                    <button type="button" class="btn btn-success col-lg-5 mt-3" onclick="openPopup()">
-                                                        <i class="fa-regular fa-calendar-days"></i> Jadwal Dokter
-                                                    </button>      
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-12 col-xl-12 col-xxl-12 me-0 row">
-
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                                            <div class="d-flex">
-                                                <label for="reservasi_date" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Tanggal Reservasi :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-3">
                                                     <div class="d-flex">
-                                                        <div class="col-md-7 col-lg-9">
-                                                            <input type="date" class="form-control @error('reservasi_date') is-invalid @enderror" id="reservasi_date" name="reservasi_date" value="{{ old('reservasi_date') }}">      
+                                                        <label for="no_antrian" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No Antrian :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <input type="text" class="form-control @error('no_antrian') is-invalid @enderror" id="no_antrian" name="no_antrian" value="" readonly>
+                                                            @error('no_antrian')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
-                                                        <div class="col-lg-3 ms-1">
-                                                            <input type="time" class="form-control @error('time') is-invalid @enderror" id="time" name="time" value="{{ old('time') }}" >      
-                                                        </div>
                                                     </div>
-                                                    @error('reservasi_date')
-                                                    <div class="invalid-feedback d-block">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
                                                 </div>
-                                            </div>
-                                        </div>
-                                
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                                            <div class="d-flex">
-                                                <label for="layanan_id" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Layanan :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <select class="form-select @error('layanan_id') is-invalid @enderror" name="layanan_id" id="layananSelect">
-                                                        <option value="">Please Select</option>
-                                                        @foreach ($layanan as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->nama_layanan }}</option>
-                                                        @endforeach
-                                                    </select>          
-                                                    @error('layanan_id')
-                                                    <div class="invalid-feedback d-block">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                                            <div class="d-flex">
-                                                <label for="dokter_code" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Dokter :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <select id="dokterSelect" class="form-select @error('dokter_code') is-invalid @enderror" name="dokter_code">
-                                                        <option value="">Please Select</option>
-                                                    </select>          
-                                                    @error('dokter_code')
-                                                    <div class="invalid-feedback d-block">
-                                                        {{ $message }}
-                                                    </div>
-                                                    @enderror
-                                                </div>
                                             </div>
-                                        </div>
-                                    
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                                            <div class="d-flex">
-                                                <label for="jadwal_praktik" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Jadwal Praktik :</label>
+
+                                        </div>   
+                                        <div class="d-flex col-lg-6 mb-4">
+                                            <div class="col-lg-12 col-xl-12 col-xxl-12 me-0 row">
+
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                                    <div class="d-flex">
+                                                        <label for="code" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Kode Reservasi :</label>
+                                                        <label>autogenerate</label>
+                                                    </div>
+                                                </div>
                                                 
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <select class="form-select @error('jadwal_praktik') is-invalid @enderror" name="jadwal_praktik" id="jadwal_praktik">
-                                                        <option value="">please select</option>
-                                                        <option value="PAGI" {{ old('jadwal_praktik') == 'PAGI' ? 'selected' : '' }}>PAGI</option>
-                                                        <option value="SORE-MALAM" {{ old('jadwal_praktik') == 'SORE-MALAM' ? 'selected' : '' }}>SORE MALAM</option>
-                                                    </select>
-                                                    @error('jadwal_praktik')
-                                                        <div class="invalid-feedback d-block">
-                                                            {{ $message }}
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                                    <div class="d-flex">
+                                                        <label for="no_rm" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Nomor Med. Record :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <select id="mySelect" class="form-select @error('no_rm') is-invalid @enderror" name="no_rm"  id="no_rm">
+                                                                <option value="">Please Select</option>
+                                                                @foreach ($rawatJalan as $item)
+                                                                    <option value="{{$item->no_rekam_medis}}">{{$item->no_rekam_medis}}  &nbsp; | &nbsp; {{$item->nama_lengkap}}</option>
+                                                                @endforeach
+
+                                                            </select>          
+                                                            @error('no_rm')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                                            <div class="d-flex">
-                                                <label for="jaminan_id" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jaminan :</label>
-                                                <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
-                                                    <select class="form-select @error('jaminan_id') is-invalid @enderror" name="jaminan_id"  id="jaminan_id">
-                                                        <option value="">Please Select</option>
-                                                        @foreach ($jaminan as $item)
-                                                            <option value="{{$item->id}}" {{$item->id == old('jaminan_id')}}>{{$item->nama_jaminan}}</option>
-                                                        @endforeach
-                                                    </select>          
-                                                    @error('jaminan_id')
-                                                    <div class="invalid-feedback d-block">
-                                                        {{ $message }}
                                                     </div>
-                                                    @enderror
+                                                </div>
+                                                <!-- Tambahkan CSS Select2 -->
+                                            
+
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                                    <div class="d-flex">
+                                                        <label for="pasien_name" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Nama Pasien :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <input type="text" class="form-control @error('pasien_name') is-invalid @enderror" id="pasien_name" name="pasien_name" value="" readonly>
+                                                            @error('pasien_name')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3 d-none">
+                                                    <div class="d-flex">
+                                                        <label for="no_bpjs" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No BPJS :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <input type="text" class="form-control @error('no_bpjs') is-invalid @enderror" id="no_bpjs" name="no_bpjs" value="" readonly>
+                                                            @error('no_bpjs')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-6 mb-3">
+                                                    <div class="d-flex">
+                                                        <label for="address" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Alamat :</label>
+                                                        <div class="d-flex flex-column  col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" readonly>
+                                                            @error('address')
+                                                                <div class="invalid-feedback d-block">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-6 mb-3">
+                                                    <div class="d-flex">
+                                                        <label for="phone_no" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">No. Telp :</label>
+                                                        <div class="d-flex flex-column  col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <input type="text" class="form-control @error('phone_no') is-invalid @enderror" id="phone_no" name="phone_no" value="{{ old('phone_no') }}" readonly>
+                                                            @error('phone_no')
+                                                                <div class="invalid-feedback d-block">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
+                                                    <div class="d-flex">
+                                                        <label for="gender" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jenis Kelamin :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <input type="text" class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender" value="{{ old('gender') }}" readonly>   
+                                                            @error('gender')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                            <button type="button" class="btn btn-success col-lg-5 mt-3" onclick="openPopup()">
+                                                                <i class="fa-regular fa-calendar-days"></i> Jadwal Dokter
+                                                            </button>      
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12 col-xl-12 col-xxl-12 me-0 row">
+
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                    <div class="d-flex">
+                                                        <label for="reservasi_date" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Tanggal Reservasi :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <div class="d-flex">
+                                                                <div class="col-md-7 col-lg-9">
+                                                                    <input type="date" class="form-control @error('reservasi_date') is-invalid @enderror" id="reservasi_date" name="reservasi_date" value="{{ old('reservasi_date') }}">      
+                                                                </div>
+                                                                <div class="col-lg-3 ms-1">
+                                                                    <input type="time" class="form-control @error('time') is-invalid @enderror" id="time" name="time" value="{{ old('time') }}" >      
+                                                                </div>
+                                                            </div>
+                                                            @error('reservasi_date')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                    <div class="d-flex">
+                                                        <label for="layanan_id" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Layanan :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <select class="form-select @error('layanan_id') is-invalid @enderror" name="layanan_id" id="layananSelect">
+                                                                <option value="">Please Select</option>
+                                                                @foreach ($layanan as $item)
+                                                                    <option value="{{ $item->id }}">{{ $item->nama_layanan }}</option>
+                                                                @endforeach
+                                                            </select>          
+                                                            @error('layanan_id')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                    <div class="d-flex">
+                                                        <label for="dokter_code" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Dokter :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <select id="dokterSelect" class="form-select @error('dokter_code') is-invalid @enderror" name="dokter_code">
+                                                                <option value="">Please Select</option>
+                                                            </select>          
+                                                            @error('dokter_code')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                    <div class="d-flex">
+                                                        <label for="jadwal_praktik" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2">Jadwal Praktik :</label>
+                                                        
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <select class="form-select @error('jadwal_praktik') is-invalid @enderror" name="jadwal_praktik" id="jadwal_praktik">
+                                                                <option value="">please select</option>
+                                                                <option value="PAGI" {{ old('jadwal_praktik') == 'PAGI' ? 'selected' : '' }}>PAGI</option>
+                                                                <option value="SORE-MALAM" {{ old('jadwal_praktik') == 'SORE-MALAM' ? 'selected' : '' }}>SORE MALAM</option>
+                                                            </select>
+                                                            @error('jadwal_praktik')
+                                                                <div class="invalid-feedback d-block">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                    <div class="d-flex">
+                                                        <label for="jaminan_id" class="form-label col-lg-2 col-xl-3 col-xxl-2 me-2 ">Jaminan :</label>
+                                                        <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-8 col-xxl-9">
+                                                            <select class="form-select @error('jaminan_id') is-invalid @enderror" name="jaminan_id"  id="jaminan_id">
+                                                                <option value="">Please Select</option>
+                                                                @foreach ($jaminan as $item)
+                                                                    <option value="{{$item->id}}" {{$item->id == old('jaminan_id')}}>{{$item->nama_jaminan}}</option>
+                                                                @endforeach
+                                                            </select>          
+                                                            @error('jaminan_id')
+                                                            <div class="invalid-feedback d-block">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>   
+
+                                        <div class="col-lg-12">
+                                            <a href="/pasien/data-reservasi-pasien" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
+                                            <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
+                                        </div> 
+
                                     </div>
-                                </div>   
-
-                                <div class="col-lg-12">
-                                    <a href="/pasien/data-reservasi-pasien" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
-                                    <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
-                                  </div> 
-
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="overlay" id="overlay" onclick="closePopup()"></div>
-
-    <!-- Popup -->
+    </div>
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
     <div class="popup" id="popup">
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
             <div class="container-fluid py-4">
-                
                 <div class="container-fluid py-1">
-                <div class="row">
-                    <div class="col-lg-12">
-                    <div class="card my-3">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
-                            <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Jadwal Dokter</h6>
-                        </div>
-                        </div>
-                        <div class="card-body px-5 pb-2">
-                        <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0" id="myTables">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Praktik</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Senin</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Selasa</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rabu</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kamis</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumat</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sabtu</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Minggu</th>
-                                    </tr>
-                                </thead>
-                                <?php $num = 1 ?>
-                                @foreach ($jadwalDokter as $item)
-                                    <tbody>
-                                        <tr>
-                                            <td class="align-middle text-center text-xs">
-                                                <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
-                                            </td>
-            
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Layanan->nama_layanan }}</p>
-                                            </td>
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Dokter->nama_lengkap }}</p>
-                                            </td>
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jadwal_praktik }}</p>
-                                            </td>
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->senin }}</p>
-                                            </td>
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->selasa }}</p>
-                                            </td>
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->rabu }}</p>
-                                            </td>
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kamis }}</p>
-                                            </td>
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jumat }}</p>
-                                            </td>
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->sabtu }}</p>
-                                            </td>
-                                            <td class="align-middle text-center text-xs">
-                                                <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->minggu }}</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                @endforeach
-                            </table>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card my-3">
+                                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                    <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
+                                        <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Jadwal Dokter</h6>
+                                    </div>
+                                </div>
+                                <div class="card-body px-5 pb-2">
+                                    <div class="table-responsive p-0">
+                                        <table class="table align-items-center mb-0" id="myTables">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Praktik</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Senin</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Selasa</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rabu</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kamis</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumat</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sabtu</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Minggu</th>
+                                                </tr>
+                                            </thead>
+                                            <?php $num = 1 ?>
+                                            <tbody>
+                                                @foreach ($jadwalDokter as $item)
+                                                    <tr>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Layanan->nama_layanan }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Dokter->nama_lengkap }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jadwal_praktik }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->senin }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->selasa }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->rabu }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kamis }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jumat }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->sabtu }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-xs">
+                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->minggu }}</p>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                    </div>
-                </div>
                 </div>
             </div>
         </main>

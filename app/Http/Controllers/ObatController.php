@@ -50,7 +50,7 @@ class ObatController extends Controller
         $settingHargaObat = SettingHargaObat::all();
         $pabrik           = Pabrik::all();
 
-        return view('pages.m_obat.data-obat', [
+        return view('pages.obat.data-obat', [
             'title'            => 'data-obat',
             'dataObat'         => $dataObat,
             'spekObat'         => $spekObat,
@@ -73,7 +73,7 @@ class ObatController extends Controller
         
         // dd($caraPakai);
         
-        return view('pages.m_obat.create-obat', [
+        return view('pages.obat.create-obat', [
             'title'         => 'create-obat',
             'tipeHargaJual' => $tipeHargaJual, 
             'golonganObat'  => $golonganObat, 
@@ -292,7 +292,7 @@ class ObatController extends Controller
             'satuSehat'             => $satuSehat,
         ];
         // echo"<pre>";print_r($data['caraPakai']);die;
-        return view('pages.m_obat.edit-obat', ['data' => $data,  'title' => 'edit-obat',]);
+        return view('pages.obat.edit-obat', ['data' => $data,  'title' => 'edit-obat',]);
     }
     public function update(Request $request, $code){
         $validatedData = $request->validate([

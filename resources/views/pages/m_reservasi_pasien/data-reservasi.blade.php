@@ -1,11 +1,8 @@
 @extends('layouts/dashboard')
 @section('dashboard')
-<!-- Page Content  -->
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-
   <h1 class="ms-3 mt-2 mb-0">Enggal Saras</h1>
   <div class="container-fluid py-4">
-    
     <div class="container-fluid py-1">
       <div class="row">
         <div class="col-lg-12">
@@ -103,116 +100,116 @@
             </div>
             <div class="card-body px-5 pb-2">
               <div class="table-responsive p-0">
-                  <table class="table align-items-center mb-0" id="myTables">
-                      <thead>
-                          <tr>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Reservasi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Reservasi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam Reservasi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Praktek</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Medical Record</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Pasien</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nomor HP</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Antrian</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
-                          </tr>
-                      </thead>
-                      <?php $num = 1 ?>
-                      @foreach ($reservasi as $item)
-                        <tbody>
-                            <tr>
-                                <td class="align-middle text-center text-xs">
-                                    <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_reservasi }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->reservasi_date }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->time }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Layanan->nama_layanan }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                  @foreach ($dokter as $itemDokter)
-                                    @if ($item->dokter_code == $itemDokter->no_dokter)
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $itemDokter->nama_lengkap }}</p>
-                                    @endif
-                                  @endforeach
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jadwal_praktik }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_rm }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pasien_name }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->phone_no }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_antrian }}</p>
-                                </td>
-                                <td class="align-middle text-center text-xs">
-                                  @if($item->status == 1)
-                                    <span class="btn btn-sm btn-info mt-3">Booking</span>
-                                  @elseif ($item->status == 2)
-                                    <span class="btn btn-sm btn-warning mt-3">Confirm</span>
-                                  @elseif ($item->status == 3)
-                                    <span class="btn btn-sm btn-danger mt-3">Skip</span>
-                                  @elseif ($item->status == 4)
-                                    <span class="btn btn-sm btn-success mt-3">Terdaftar</span>
-                                  @endif
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                                      @if ($item->status == 1 || $item->status == 2 || $item->status == 3) 
-                                        <form class="update-form" data-id="{{ $item->id }}" action="/pasien/update-status-reservasi/{{ $item->id }}" method="post">
-                                          @csrf
-                                          @method('put')
-                                          <button type="button" class="btn btn-success mt-3 button-create-user" data-id="{{ $item->id }}" style="margin-right:10px;">
-                                              <i class="fa-solid fa-check"></i>
-                                          </button>
-                                        </form>
-                                      
-                                        <form action="/pasien/register-pasien/{{ $item->id }}">
-                                          @csrf
-                                          <button class="btn btn-facebook mt-3" style="margin-right:10px;">
-                                            <i class="fa-solid fa-address-card"></i>
-                                          </button>
-                                        </form>
-                                      
+                <table class="table align-items-center mb-0" id="myTables">
+                  <thead>
+                      <tr>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Reservasi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Reservasi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam Reservasi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Layanan</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dokter</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Praktek</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Medical Record</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Pasien</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nomor HP</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Antrian</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                      </tr>
+                  </thead>
+                  <?php $num = 1 ?>
+                  <tbody>
+                    @foreach ($reservasi as $item)
+                      <tr>
+                          <td class="align-middle text-center text-xs">
+                              <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_reservasi }}</p>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->reservasi_date }}</p>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->time }}</p>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Layanan->nama_layanan }}</p>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                            @foreach ($dokter as $itemDokter)
+                              @if ($item->dokter_code == $itemDokter->no_dokter)
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $itemDokter->nama_lengkap }}</p>
+                              @endif
+                            @endforeach
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jadwal_praktik }}</p>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_rm }}</p>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pasien_name }}</p>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->phone_no }}</p>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                              <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->no_antrian }}</p>
+                          </td>
+                          <td class="align-middle text-center text-xs">
+                            @if($item->status == 1)
+                              <span class="btn btn-sm btn-info mt-3">Booking</span>
+                            @elseif ($item->status == 2)
+                              <span class="btn btn-sm btn-warning mt-3">Confirm</span>
+                            @elseif ($item->status == 3)
+                              <span class="btn btn-sm btn-danger mt-3">Skip</span>
+                            @elseif ($item->status == 4)
+                              <span class="btn btn-sm btn-success mt-3">Terdaftar</span>
+                            @endif
+                          </td>
+                          <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                                @if ($item->status == 1 || $item->status == 2 || $item->status == 3) 
+                                  <form class="update-form" data-id="{{ $item->id }}" action="/pasien/update-status-reservasi/{{ $item->id }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button type="button" class="btn btn-success mt-3 button-create-user" data-id="{{ $item->id }}" style="margin-right:10px;">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                  </form>
+                                
+                                  <form action="/pasien/register-pasien/{{ $item->id }}">
+                                    @csrf
+                                    <button class="btn btn-facebook mt-3" style="margin-right:10px;">
+                                      <i class="fa-solid fa-address-card"></i>
+                                    </button>
+                                  </form>
+                                
 
-                                        <form action="/pasien/edit-reservasi-pasien/{{ $item->id }}">
-                                          @csrf
-                                          <button class="btn btn-outline-success mt-3" style="margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
-                                        </form>
-                                      
-                                        <form action="/pasien/delete-reservasi-pasien/{{ $item->id }}"  method="post" class="delete-form" data-id="{{$item->id}}">
-                                          @method('delete')
-                                          @csrf
-                                          <button type="button" class="btn btn-outline-danger mt-3 button-delete" data-id="{{$item->id}}" style=" ">
-                                              <i class="fa-solid fa-trash"></i>
-                                          </button>
-                                      </form>
-                                      @endif
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                      @endforeach
-                  </table>
+                                  <form action="/pasien/edit-reservasi-pasien/{{ $item->id }}">
+                                    @csrf
+                                    <button class="btn btn-outline-success mt-3" style="margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
+                                  </form>
+                                
+                                  <form action="/pasien/delete-reservasi-pasien/{{ $item->id }}"  method="post" class="delete-form" data-id="{{$item->id}}">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="button" class="btn btn-outline-danger mt-3 button-delete" data-id="{{$item->id}}" style=" ">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                                @endif
+                              </span>
+                          </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
               </div>
-          </div>
+            </div>
           </div>
         </div>
       </div>
@@ -250,271 +247,6 @@
     </footer>
   </div>
 </main>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-<!--   Core JS Files   -->
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/perfect-scrollbar.min.js"></script>
-<script src="/js/smooth-scrollbar.min.js"></script>
-<script src="/js/chartjs.min.js"></script>
-<script>
-  var ctx = document.getElementById("chart-bars").getContext("2d");
-
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ["M", "T", "W", "T", "F", "S", "S"],
-      datasets: [{
-        label: "Sales",
-        tension: 0.4,
-        borderWidth: 0,
-        borderRadius: 4,
-        borderSkipped: false,
-        backgroundColor: "rgba(255, 255, 255, .8)",
-        data: [50, 20, 10, 22, 50, 10, 40],
-        maxBarThickness: 6
-      }, ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        }
-      },
-      interaction: {
-        intersect: false,
-        mode: 'index',
-      },
-      scales: {
-        y: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-            color: 'rgba(255, 255, 255, .2)'
-          },
-          ticks: {
-            suggestedMin: 0,
-            suggestedMax: 500,
-            beginAtZero: true,
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-            color: "#fff"
-          },
-        },
-        x: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-            color: 'rgba(255, 255, 255, .2)'
-          },
-          ticks: {
-            display: true,
-            color: '#f8f9fa',
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-      },
-    },
-  });
-
-
-  var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-  new Chart(ctx2, {
-    type: "line",
-    data: {
-      labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      datasets: [{
-        label: "Mobile apps",
-        tension: 0,
-        borderWidth: 0,
-        pointRadius: 5,
-        pointBackgroundColor: "rgba(255, 255, 255, .8)",
-        pointBorderColor: "transparent",
-        borderColor: "rgba(255, 255, 255, .8)",
-        borderColor: "rgba(255, 255, 255, .8)",
-        borderWidth: 4,
-        backgroundColor: "transparent",
-        fill: true,
-        data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-        maxBarThickness: 6
-
-      }],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        }
-      },
-      interaction: {
-        intersect: false,
-        mode: 'index',
-      },
-      scales: {
-        y: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-            color: 'rgba(255, 255, 255, .2)'
-          },
-          ticks: {
-            display: true,
-            color: '#f8f9fa',
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-        x: {
-          grid: {
-            drawBorder: false,
-            display: false,
-            drawOnChartArea: false,
-            drawTicks: false,
-            borderDash: [5, 5]
-          },
-          ticks: {
-            display: true,
-            color: '#f8f9fa',
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-      },
-    },
-  });
-
-  var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
-
-  new Chart(ctx3, {
-    type: "line",
-    data: {
-      labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      datasets: [{
-        label: "Mobile apps",
-        tension: 0,
-        borderWidth: 0,
-        pointRadius: 5,
-        pointBackgroundColor: "rgba(255, 255, 255, .8)",
-        pointBorderColor: "transparent",
-        borderColor: "rgba(255, 255, 255, .8)",
-        borderWidth: 4,
-        backgroundColor: "transparent",
-        fill: true,
-        data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-        maxBarThickness: 6
-
-      }],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        }
-      },
-      interaction: {
-        intersect: false,
-        mode: 'index',
-      },
-      scales: {
-        y: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-            color: 'rgba(255, 255, 255, .2)'
-          },
-          ticks: {
-            display: true,
-            padding: 10,
-            color: '#f8f9fa',
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-        x: {
-          grid: {
-            drawBorder: false,
-            display: false,
-            drawOnChartArea: false,
-            drawTicks: false,
-            borderDash: [5, 5]
-          },
-          ticks: {
-            display: true,
-            color: '#f8f9fa',
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: 'normal',
-              lineHeight: 2
-            },
-          }
-        },
-      },
-    },
-  });
-</script>
-<script>
-  var win = navigator.platform.indexOf('Win') > -1;
-  if (win && document.querySelector('#sidenav-scrollbar')) {
-    var options = {
-      damping: '0.5'
-    }
-    Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-  }
-</script>
-{{-- SWEET ALERT --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />

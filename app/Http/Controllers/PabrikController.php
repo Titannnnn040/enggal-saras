@@ -40,24 +40,12 @@ class PabrikController extends Controller
         if (request('pabrik_name')) {
             $this->filterData('pabrik_name', $pabrik);
         }
-        return view('pages.m_pabrik.data-pabrik', ['title' => 'data-pabrik', 'pabrik' => $pabrik->get()]);
+        return view('pages.pabrik.data-pabrik', ['title' => 'data-pabrik', 'pabrik' => $pabrik->get()]);
     }
     public function indexCreatePabrik()
     {
-        return view('pages.m_pabrik.create-pabrik', ['title' => 'create-pabrik']);
+        return view('pages.pabrik.create-pabrik', ['title' => 'create-pabrik']);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -75,27 +63,11 @@ class PabrikController extends Controller
             return redirect()->route('data-pabrik')->with('success', 'Data berhasil ditambahkan');
         }
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pabrik $pabrik)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($code)
     {
         $pabrik = Pabrik::where('pabrik_code', $code)->first();
-        return view('pages.m_pabrik.edit-pabrik', ['title' => 'edit-pabrik', 'pabrik' => $pabrik]);
+        return view('pages.pabrik.edit-pabrik', ['title' => 'edit-pabrik', 'pabrik' => $pabrik]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $code)
     {
         $validatedData = $request->validate([
@@ -112,10 +84,6 @@ class PabrikController extends Controller
             return redirect()->route('data-pabrik')->with('success', 'Data berhasil diubah');
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(request $request, $code)
     {
         $pabrik = Pabrik::where('pabrik_code', $code)->delete();

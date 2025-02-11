@@ -11,10 +11,10 @@ class TemplateLabController extends Controller
 {
     public function indexData(){
         $data = TemplateLab::all();
-        return view('pages.m_lab.template_lab.data-template', ['title' => 'data-template-lab', 'data' => $data]);
+        return view('pages.lab.template_lab.data-template', ['title' => 'data-template-lab', 'data' => $data]);
     }
     public function indexCreate(){
-        return view('pages.m_lab.template_lab.create-template', ['title' => 'create-template-lab']);
+        return view('pages.lab.template_lab.create-template', ['title' => 'create-template-lab']);
     }
     public function store(Request $request){
         // return $request->all();
@@ -38,7 +38,7 @@ class TemplateLabController extends Controller
     }
     public function edit($uuid){
         $data = TemplateLab::where('uuid', $uuid)->first();
-        return view('pages.m_lab.template_lab.edit-template', ['title' => 'edit-template-lab', 'data' => $data]);
+        return view('pages.lab.template_lab.edit-template', ['title' => 'edit-template-lab', 'data' => $data]);
     }
     public function update($uuid, Request $request){
         $request->validate([

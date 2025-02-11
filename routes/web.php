@@ -114,9 +114,9 @@ Route::put('/layanan/update-layanan/{id}',[LayananController::class,'update'])->
 Route::delete('/layanan/delete-layanan/{id}',[LayananController::class,'destroy'])->name('delete-layanan');
 
 // ROUTE MASTER KAMAR
-Route::get('/kamar/create-kamar',[KamarController::class,'storeForm'])->name('create-kamar');
-Route::post('/kamar/create-kamar',[KamarController::class,'create'])->name('create-kamar');
-Route::get('/kamar/data-kamar',[KamarController::class,'storeData'])->name('data-kamar');
+Route::get('/kamar/data-kamar',[KamarController::class,'indexData'])->name('data-kamar');
+Route::get('/kamar/create-kamar',[KamarController::class,'indexCreate'])->name('create-kamar');
+Route::post('/kamar/create-kamar',[KamarController::class,'store'])->name('store-kamar');
 Route::get('/kamar/edit-kamar/{id}',[KamarController::class,'edit'])->name('edit-kamar');
 Route::put('/kamar/update-kamar/{id}',[KamarController::class,'update'])->name('update-kamar');
 Route::delete('/kamar/delete-kamar/{id}',[KamarController::class,'destroy'])->name('delete-kamar');

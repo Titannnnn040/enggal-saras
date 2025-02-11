@@ -40,12 +40,12 @@ class RentangNormalController extends Controller
         }elseif(request('name')){
             $this->filterData('name', $data);
         }
-        return view('pages.m_lab.rentang_normal.data-rentang-normal', ['data' => $data->get(), 'title' => 'data-rentang-normal']); 
+        return view('pages.lab.rentang_normal.data-rentang-normal', ['data' => $data->get(), 'title' => 'data-rentang-normal']); 
     }
 
     public function indexCreate(){
         $rentangUmur = RentangUmur::all();
-        return view('pages.m_lab.rentang_normal.create-rentang-normal', ['title' => 'create-rentang-normal', 'rentangUmur' => $rentangUmur]); 
+        return view('pages.lab.rentang_normal.create-rentang-normal', ['title' => 'create-rentang-normal', 'rentangUmur' => $rentangUmur]); 
     }
 
     public function store(Request $request){
@@ -82,7 +82,7 @@ class RentangNormalController extends Controller
     public function edit($code){
         $rentangUmur = RentangUmur::all();
         $data = RentangNormal::where('code', $code)->first();
-        return view('pages.m_lab.rentang_normal.edit-rentang-normal', ['title' => 'create-rentang-normal', 'data' => $data, 'rentangUmur' => $rentangUmur]); 
+        return view('pages.lab.rentang_normal.edit-rentang-normal', ['title' => 'create-rentang-normal', 'data' => $data, 'rentangUmur' => $rentangUmur]); 
     }
 
     public function update(Request $request, $code){

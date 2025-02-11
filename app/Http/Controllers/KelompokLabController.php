@@ -40,11 +40,11 @@ class KelompokLabController extends Controller
         }elseif(request('kelompok')){
             $this->filterData('kelompok', $data);
         }
-        return view('pages.m_lab.kelompok.data-kelompok', ['title' => 'data-kelompok-lab', 'data' => $data->get()]);
+        return view('pages.lab.kelompok.data-kelompok', ['title' => 'data-kelompok-lab', 'data' => $data->get()]);
     }
     public function indexCreate()
     {
-        return view('pages.m_lab.kelompok.create-kelompok', ['title' => 'create-kelompok-lab']);
+        return view('pages.lab.kelompok.create-kelompok', ['title' => 'create-kelompok-lab']);
     }
     public function store(Request $request)
     {
@@ -69,7 +69,7 @@ class KelompokLabController extends Controller
     public function edit($code)
     {
         $data = KelompokLab::where('code', $code)->first();
-        return view('pages.m_lab.kelompok.edit-kelompok', ['title' => 'edit-kelompok-lab', 'data' => $data]);
+        return view('pages.lab.kelompok.edit-kelompok', ['title' => 'edit-kelompok-lab', 'data' => $data]);
     }
 
     public function update(Request $request, $code){

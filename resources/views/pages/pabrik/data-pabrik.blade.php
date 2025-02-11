@@ -17,16 +17,16 @@
                 <form action="" class="d-flex col-lg-12">
                   <div class="row col-lg-12">
                     <div class="search col-lg-6">
-                      <h6>Kode Layanan</h6>
-                      <input type="text" name="kode_layanan">
+                      <h6>Kode Pabrik & Principal</h6>
+                      <input type="text" name="pabrik_code">
                     </div>
                     <div class="search col-lg-6">
-                      <h6>Nama Layanan</h6>
-                      <input type="text" name="nama_layanan">
+                      <h6>Nama Pabrik & Principal</h6>
+                      <input type="text" name="pabrik_name">
                     </div>
                     <div class="submit-filter d-flex  justify-content-between mt-3">
                       <button type="submit" class="btn btn-success col-lg-1">Search</button>
-                      <a href="/layanan/data-layanan" class="btn btn-danger col-lg-1">clear</a>
+                      <a href="{{route('data-pabrik')}}" class="btn btn-danger col-lg-1">clear</a>
                     </div>
                   </div>
                 </form>
@@ -40,8 +40,8 @@
           <div class="card my-3">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-success shadow-success d-flex align-items-center justify-content-between border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Layanan</h6>
-                <a href="/layanan/create-layanan" class="my-0 me-3 btn-add-data d-flex align-items-center">
+                <h6 class="text-white text-capitalize ps-3 mb-0  d-flex align-items-center" style="margin-top:-9px;">Data Pabrik & Principal</h6>
+                <a href="{{route('create-pabrik')}}" class="my-0 me-3 btn-add-data d-flex align-items-center">
                   <i class="fa-solid fa-plus me-1"></i>
                   tambah data
                 </a>
@@ -52,59 +52,41 @@
                 <table class="table align-items-center mb-0" id="myTables">
                   <thead>
                       <tr>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Layanan</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Layanan</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Layanan</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode BPJS Layanan</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Satu Sehat</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Medical Checkup</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ibu Hamil</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Pabrik / Principal</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Pabrik / Principal</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       </tr>
                   </thead>
                   <?php $num = 1 ?>
                   <tbody>
-                    @foreach ($layanan as $item)
+                    @foreach ($pabrik as $item)
                       <tr>
                         <td class="align-middle text-center text-xs">
                             <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                         </td>
                         <td class="align-middle text-center text-xs">
-                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kode_layanan }}</p>
+                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pabrik_code }}</p>
                         </td>
                         <td class="align-middle text-center text-xs">
-                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_layanan }}</p>
-                        </td>
-                        <td class="align-middle text-center text-xs">
-                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->jenis_layanan}}</p>
-                        </td>
-                        <td class="align-middle text-center text-xs">
-                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->kode_layanan_bpjs }}</p>
-                        </td>
-                        <td class="align-middle text-center text-xs">
-                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->id_satu_sehat }}</p>
-                        </td>
-                        <td class="align-middle text-center text-xs">
-                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->medical_checkup }}</p>
-                        </td>
-                        <td class="align-middle text-center text-xs">
-                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->ibu_hamil }}</p>
+                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->pabrik_name }}</p>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
-                            <form action="{{route('edit-layanan', ['id' => $item->id])}}">
-                              @csrf
-                              <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;"><i class="fa-solid fa-user-pen"></i></button>
-                            </form>
-                            <form action="{{ route('delete-layanan', ['id' => $item->id]) }}" id="delete-form-{{$item->id}}" data-id="{{$item->id}}" method="post">
-                              @method('delete')
-                              @csrf
-                              <button type="button" class="btn btn-outline-danger button-delete" data-id="{{$item->id}}" style="margin-top:10px;margin-bottom:10px;margin-right:10px;">
-                                  <i class="fa-solid fa-trash"></i>
-                              </button>
-                            </form>  
-                          </span>
+                            <span class="text-secondary text-xs font-weight-bolder d-flex justify-content-center align-center">
+                              <form action="{{ route('edit-pabrik', ['code' => $item->pabrik_code]) }}" method="get">
+                                @csrf
+                                <button class="btn btn-outline-success" id="button-create-user" style="margin-top:10px;margin-bottom:10px;margin-right:10px;">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                </button>
+                              </form>
+                              <form action="{{ route('delete-pabrik', ['code' => $item->pabrik_code]) }}" id="delete-form-{{$item->id}}" data-id="{{$item->id}}" method="post">
+                                @method('delete')
+                                @csrf
+                                <button type="button" class="btn btn-outline-danger button-delete" data-id="{{$item->id}}" style="margin-top:10px;margin-bottom:10px;margin-right:10px;">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                              </form>                                    
+                            </span>
                         </td>
                       </tr>
                     @endforeach

@@ -40,7 +40,7 @@ class PemeriksaanLabController extends Controller
     }
     public function indexData(){
         $dataPemeriksaan = PemeriksaanLab::latest();
-        return view('pages.m_lab.pemeriksaan.data-pemeriksaan', ['title' => 'data-pemeriksaan-lab', 'data' => $dataPemeriksaan->get()]);
+        return view('pages.lab.pemeriksaan.data-pemeriksaan', ['title' => 'data-pemeriksaan-lab', 'data' => $dataPemeriksaan->get()]);
     }
 
     public function indexCreate(){
@@ -54,7 +54,7 @@ class PemeriksaanLabController extends Controller
             'satuan' => $satuanLab,
             'rentangNormal' => $rentangNormal,
         ];
-        return view('pages.m_lab.pemeriksaan.create-pemeriksaan', ['title' => 'create-pemeriksaan-lab', 'data' => $data]);
+        return view('pages.lab.pemeriksaan.create-pemeriksaan', ['title' => 'create-pemeriksaan-lab', 'data' => $data]);
     }
     
     public function store(Request $request){
@@ -159,7 +159,7 @@ class PemeriksaanLabController extends Controller
             'dataTestLabKualitatifKhusus' => $dataTestLabKualitatifKhusus,
         ];
         // echo"<pre>";print_r($data['dataTestLabKualitatifKhusus']);die;
-        return view('pages.m_lab.pemeriksaan.edit-pemeriksaan', ['title' => 'edit-pemeriksaan-lab', 'data' => $data]);
+        return view('pages.lab.pemeriksaan.edit-pemeriksaan', ['title' => 'edit-pemeriksaan-lab', 'data' => $data]);
     }
     public function update(Request $request, $uuid){
         $request->validate([

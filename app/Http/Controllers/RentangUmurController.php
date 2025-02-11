@@ -8,11 +8,11 @@ class RentangUmurController extends Controller
 {
     public function index(){
         $rentangUmur = RentangUmur::all();
-        return view('pages.m_lab.rentang_umur.data-rentang-umur', ['rentangUmur' => $rentangUmur, 'title' => 'data-rentang-umur']);
+        return view('pages.lab.rentang_umur.data-rentang-umur', ['rentangUmur' => $rentangUmur, 'title' => 'data-rentang-umur']);
     }
     public function edit($id){
         $data = RentangUmur::find($id);
-        return view('pages.m_lab.rentang_umur.edit-rentang-umur', ['data' => $data, 'title' => 'edit-rentang-umur']);
+        return view('pages.lab.rentang_umur.edit-rentang-umur', ['data' => $data, 'title' => 'edit-rentang-umur']);
     }
     public function update(Request $request, $id){
         $validatedData = $request->validate([
