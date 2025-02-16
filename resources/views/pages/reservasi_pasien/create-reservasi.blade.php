@@ -263,7 +263,7 @@
                                         </div>   
 
                                         <div class="col-lg-12">
-                                            <a href="/pasien/data-reservasi-pasien" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
+                                            <a href="{{route('data-reservasi')}}" class="btn btn-danger col-lg-2 ms-1">Cancel</a>
                                             <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
                                         </div> 
 
@@ -315,7 +315,11 @@
                                                             <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                                                         </td>
                                                         <td class="align-middle text-center text-xs">
-                                                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Layanan->nama_layanan }}</p>
+                                                            @foreach ($layanan as $itemLayanan)
+                                                                @if ($item->layanan_id == $itemLayanan->id)
+                                                                    <p class="text-xs font-weight-bold mb-0 text-center">{{ $itemLayanan->nama_layanan }}</p>
+                                                                @endif
+                                                            @endforeach
                                                         </td>
                                                         <td class="align-middle text-center text-xs">
                                                             <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Dokter->nama_lengkap }}</p>

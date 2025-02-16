@@ -33,7 +33,7 @@ class TipeJaminanController extends Controller
             $model->where($field, 'like', '%' . request($field) . '%');
         }
     }
-    public function indexDataTipeJaminan()
+    public function indexData()
     {
         $tipeJaminan = TipeJaminan::latest();
         if (request('code_tipe_jaminan')) {
@@ -42,16 +42,16 @@ class TipeJaminanController extends Controller
         if (request('nama_tipe_jaminan')) {
             $this->filterData('nama_tipe_jaminan', $tipeJaminan);
         }
-        return view('pages/m_tipe_jaminan/data-tipe-jaminan', ['title' => 'data-tipe-jaminan', 'tipeJaminan' => $tipeJaminan->get()]);
+        return view('pages.tipe_jaminan.data-tipe-jaminan', ['title' => 'data-tipe-jaminan', 'tipeJaminan' => $tipeJaminan->get()]);
     }
 
-    public function indexCreateTipeJaminan()
+    public function indexCreate()
     {
         $payment = Payment_Method::all();
-        return view('pages/m_tipe_jaminan/create-tipe-jaminan', ['title' => 'create-tipe-jaminan']);
+        return view('pages.tipe_jaminan.create-tipe-jaminan', ['title' => 'create-tipe-jaminan']);
     }
 
-    public function storeTipeJaminan(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'code_tipe_jaminan'  => [''],
@@ -63,7 +63,6 @@ class TipeJaminanController extends Controller
             $validatedData['code_tipe_jaminan'] = $this->generateTjNumber();
         }
         $validatedData['nama_tipe_jaminan'] = strtoupper($validatedData['nama_tipe_jaminan']);
-        // echo"<pre>";print_r($validatedData);die();
         $tipeJaminan = TipeJaminan::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/tipe-jaminan/data-tipe-jaminan');
@@ -72,7 +71,7 @@ class TipeJaminanController extends Controller
     public function edit($id)
     {
         $tipeJaminan = TipeJaminan::find($id);
-        return view('pages/m_tipe_jaminan/edit-tipe-jaminan', ['title' => 'edit-tipe-jaminan', 'tipeJaminan' => $tipeJaminan]);
+        return view('pages.tipe_jaminan.edit-tipe-jaminan', ['title' => 'edit-tipe-jaminan', 'tipeJaminan' => $tipeJaminan]);
     }
 
     public function update(Request $request, $id)

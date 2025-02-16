@@ -1,11 +1,8 @@
 @extends('layouts/dashboard')
 @section('dashboard')
-<!-- Page Content  -->
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-
   <h1 class="ms-3 mt-2 mb-0">Enggal Saras</h1>
   <div class="container-fluid py-4">
-    
     <div class="container-fluid py-1">
       <div class="row">
         <div class="col-lg-12">
@@ -141,16 +138,6 @@
     </footer>
   </div>
 </main>
-<script>
-  document.addEventListener('DOMContentLoaded', (event) => {
-      const alert = document.getElementById('success-alert');
-      if (alert) {
-          setTimeout(() => {
-              alert.style.display = 'none';
-          }, 5000); // 5000 ms = 5 detik
-      }
-  });
-</script>
 @endsection
 
 
