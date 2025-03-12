@@ -75,7 +75,7 @@
                             <h6 class="mb-0 text-xs">{{ $num++ }}</h6>
                         </td>
                         <td class="align-middle text-center text-xs">
-                            <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Layanan->nama_layanan }}</p>
+                            <p class="text-xs font-weight-bold mb-0 text-center">{{ !empty($item->Layanan->nama_layanan) ? $item->Layanan->nama_layanan : '' }}</p>
                         </td>
                         <td class="align-middle text-center text-xs">
                             <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->Dokter->nama_lengkap }}</p>

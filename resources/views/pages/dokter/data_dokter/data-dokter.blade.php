@@ -82,7 +82,7 @@
                                   <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->nama_lengkap }}</p>
                               </td>
                               <td class="align-middle text-center text-xs">
-                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->layanan->nama_layanan }}</p>
+                                  <p class="text-xs font-weight-bold mb-0 text-center">{{ !empty($item->layanan->nama_layanan) ? $item->layanan->nama_layanan : '' }}</p>
                               </td>
                               <td class="align-middle text-center text-xs">
                                   <p class="text-xs font-weight-bold mb-0 text-center">{{ $item->code_bpjs }}</p>

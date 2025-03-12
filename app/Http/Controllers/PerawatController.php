@@ -7,6 +7,7 @@ use App\Models\Perawat;
 use App\Http\Requests\StorePerawatRequest;
 use App\Http\Requests\UpdatePerawatRequest;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 class PerawatController extends Controller
 {
