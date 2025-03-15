@@ -21,8 +21,6 @@ class PenjadwalanDokter extends Model
         'jumat',
         'sabtu',
         'minggu',
-        'start',
-        'finish'
     ];
 
     public function Layanan(){

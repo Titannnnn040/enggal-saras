@@ -41,20 +41,25 @@ class ScheduleDokterController extends Controller
         return view('pages.dokter.jadwal_dokter.create-jadwal-dokter', ['title' => 'create-jadwal-dokter', 'layanan' => $layanan, 'dokter' => $dokter, 'jadwals' => $jadwals]);
     }
     public function store(Request $request){
+        // return $request->all();die();
         $validatedData = $request->validate([
             'layanan_id'     => ['required'],
             'dokter_id'      => ['required'],
             'jadwal_praktik' => ['required'],
-            'start'          => ['required'],
-            'finish'         => ['required']
+            // 'start  '          => ['required'],
+            // 'finish'         => ['required']
         ]);
     
         $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
         $data = [];
         foreach ($days as $day) {
-            $data[$day] = $request->has($day) ? $request->start . '-' . $request->finish : '';
+            $start = $request->input($day . '_start');
+            $finish = $request->input($day . '_finish');
+            // echo"<pre>";print_r($start);die;
+            $data[$day] = $request->has($day) ? $start . '-' . $finish : '';
         }
         $validatedData = array_merge($validatedData, $data);
+        // echo"<pre>";print_r($validatedData);die;
         PenjadwalanDokter::create($validatedData);
         $request->session()->flash('success', 'Data berhasil ditambahkan');
         return redirect('/tenaga-medis/jadwal-dokter');
@@ -63,44 +68,47 @@ class ScheduleDokterController extends Controller
         $layanan = Layanan::all();
         $dokter = Dokter::all();
         $penjadwalanDokter = PenjadwalanDokter::find($id);
-        return view('pages.dokter.jadwal_dokter.edit-jadwal-dokter', ['title' => 'edit-jadwal-dokter', 'layanan' => $layanan, 'dokter' => $dokter, 'penjadwalanDokter' => $penjadwalanDokter]);
+        // echo"<pre>";print_r($penjadwalanDokter);die;    
+        $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
+        $scheduleDoctor = [];
+        foreach ($days as $day) {
+            $time = explode('-', $penjadwalanDokter->$day);
+            $start = $time[0] ?? '';
+            $finish = $time[1] ?? '';
+            $scheduleDoctor[$day . '_start'] = $start;
+            $scheduleDoctor[$day . '_finish'] = $finish;
+        }
+
+        $data = [
+            'id'             => $penjadwalanDokter->id,
+            'layanan_id'     => $penjadwalanDokter->layanan_id,
+            'dokter_id'      => $penjadwalanDokter->dokter_id,
+            'jadwal_praktik' => $penjadwalanDokter->jadwal_praktik,
+        ];
+        
+        $data = array_merge($data, $scheduleDoctor);
+        // echo"<pre>";print_r($data);die;
+        return view('pages.dokter.jadwal_dokter.edit-jadwal-dokter', ['title' => 'edit-jadwal-dokter', 'layanan' => $layanan, 'dokter' => $dokter, 'data' => $data]);
     }
     public function update(Request $request, $id){
+        // echo"<pre>";print_r($request->all());die;
         $validatedData = $request->validate([
             'layanan_id'     => ['required'],
             'dokter_id'      => ['required'],
             'jadwal_praktik' => ['required'],
-            'start'          => ['required'],
-            'finish'         => ['required']
         ]);
-    
-        $data = [
-            'senin'  => $request->has('senin') ? $request->start . '-' . $request->finish : '-',
-            'selasa' => $request->has('selasa') ? $request->start . '-' . $request->finish : '-',
-            'rabu'   => $request->has('rabu') ? $request->start . '-' . $request->finish : '-',
-            'kamis'  => $request->has('kamis') ? $request->start . '-' . $request->finish : '-',
-            'jumat'  => $request->has('jumat') ? $request->start . '-' . $request->finish : '-',
-            'sabtu'  => $request->has('sabtu') ? $request->start . '-' . $request->finish : '-',
-            'minggu' => $request->has('minggu') ? $request->start . '-' . $request->finish : '-'
-        ];
-    
+        $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
+        $data = [];
+        foreach ($days as $day) {
+            $start = $request->input($day . '_start');
+            $finish = $request->input($day . '_finish');
+            $data[$day] = $request->has($day) ? $start . '-' . $finish : '';
+        }
         $validatedData = array_merge($validatedData, $data);
+        // echo"<pre>";print_r($validatedData);die;
 
         $penjadwalanDokter = PenjadwalanDokter::find($id);
-        $penjadwalanDokter->update([
-                'layanan_id'     => $request->layanan_id,
-                'dokter_id'      => $request->dokter_id,
-                'jadwal_praktik' => $request->jadwal_praktik,
-                'start'          => $request->start,
-                'finish'         => $request->finish,
-                'senin'          => $request->has('senin') ? $request->start . '-' . $request->finish : '-',
-                'selasa'         => $request->has('selasa') ? $request->start . '-' . $request->finish : '-',
-                'rabu'           => $request->has('rabu') ? $request->start . '-' . $request->finish : '-',
-                'kamis'          => $request->has('kamis') ? $request->start . '-' . $request->finish : '-',
-                'jumat'          => $request->has('jumat') ? $request->start . '-' . $request->finish : '-',
-                'sabtu'          => $request->has('sabtu') ? $request->start . '-' . $request->finish : '-',
-                'minggu'         => $request->has('minggu') ? $request->start . '-' . $request->finish : '-'
-        ]);
+        $penjadwalanDokter->update($validatedData);
 
         if($penjadwalanDokter){
             $request->session()->flash('success','Data berhasil di ubah');

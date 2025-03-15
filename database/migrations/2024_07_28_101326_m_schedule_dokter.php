@@ -23,8 +23,6 @@ return new class extends Migration
             $table->string('jumat')->nullable();
             $table->string('sabtu')->nullable();
             $table->string('minggu')->nullable();
-            $table->string('start');
-            $table->string('finish');
             $table->timestamps();
 
             $table->foreign('dokter_id')->references('id')->on('m_dokter')->onDelete('cascade');
