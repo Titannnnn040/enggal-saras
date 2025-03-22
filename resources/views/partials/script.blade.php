@@ -90,3 +90,12 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('.btn-regist').on('click', function(){
+            $('input[name="is_regist"]').val(1);
+            $('#form-create-pasien').submit();
+        })
+    });
+</script>

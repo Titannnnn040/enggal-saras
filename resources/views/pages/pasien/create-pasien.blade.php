@@ -15,7 +15,7 @@
               <div class="card-body px-5 pb-2">
                 <div class="form"  style="background-color:#FDFEFD;">
                     <div class="content">
-                        <form action="" method="post" class="d-flex col-lg-12" enctype="multipart/form-data"> 
+                        <form action="" method="post" class="d-flex col-lg-12" id="form-create-pasien" enctype="multipart/form-data"> 
                             @csrf     
                             <div class="d-flex flex-column">
                                 <div class="d-flex create-pasien  col-lg-12">
@@ -25,6 +25,7 @@
                                             <div class="d-flex">
                                                 <label for="code" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">No.Rekam Medis :</label>
                                                 <label>autogenerate</label>
+                                                <input type="hidden" class="form-control @error('is_regist') is-invalid @enderror" id="is_regist" name="is_regist" value="{{ old('is_regist') }}">
                                             </div>
                                         </div>
 
@@ -41,7 +42,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                     
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="nama_panggilan" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Nama Panggilan :</label>
@@ -467,7 +467,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                       
                                         <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3">
                                             <div class="d-flex">
                                                 <label for="kondisi_khusus" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Kondisi Khusus :</label>
@@ -492,12 +491,14 @@
                                     </div>
 
                                 </div>   
-                                <div class="col-lg-12">
+                                <div class="col-lg-12 d-flex justify-content-between">
                                     <a href="/pasien/data-pasien" class="btn btn-danger col-lg-1 ms-1">Cancel</a>
-                                    <button type="submit" class="btn btn-success col-lg-1" style="position:absolute; right:2%">Save</button>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-regist btn-primary me-2">Save dan Registrasi</button>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
                                 </div> 
                             </div>
-                                                               
                         </form>
                     </div>
                 </div>
@@ -506,7 +507,6 @@
           </div>
         </div>
       </div>
-  
 </main>
 
 @endsection

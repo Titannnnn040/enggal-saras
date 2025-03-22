@@ -89,6 +89,27 @@ class RegisterPasienController extends Controller
 
         return view('pages/regist-pasien/create-regist',  ['title' => 'create-regist', 'tarifPendaftaran' => $tarifPendaftaran, 'perawat' => $perawat, 'rawatJalan' => $rawatJalan, 'layanan' => $layanan, 'dokter' => $dokter, 'jaminan' => $jaminan, 'jadwalDokter' => $jadwalDokter, 'reservasi' => $reservasi, 'dokterAll' => $dokterAll]);
     }
+    public function indexCreateRegistPasien(Request $request, $id)
+    {
+        $rawatJalan = Rawat_Jalan::all();
+        $layanan = Layanan::all();
+        $jaminan = Jaminan::all();
+        $jadwalDokter = PenjadwalanDokter::all();
+        $dokterAll = Dokter::all();
+        
+        // echo "<pre>";print_r($dokterAll);die();
+        $perawat = Perawat::all();
+        $tarifPendaftaran = DB::table('m_tarif_pendaftaran')->select('code_pendaftaran', 'nama_pendaftaran', 'total_tarif')->get();   
+        
+        $reservasi = ReservasiPasien::find($id);
+        // echo "<pre>";print_r($reservasi);die();
+        $layananId = $request->input('layanan_id');
+
+        $dokter = Dokter::where('layanan_id', $layananId)->get();
+        // dd($dokterAll);
+
+        return view('pages/regist-pasien/create-regist-reservasi',  ['title' => 'create-regist', 'tarifPendaftaran' => $tarifPendaftaran, 'perawat' => $perawat, 'rawatJalan' => $rawatJalan, 'layanan' => $layanan, 'dokter' => $dokter, 'jaminan' => $jaminan, 'jadwalDokter' => $jadwalDokter, 'reservasi' => $reservasi, 'dokterAll' => $dokterAll]);
+    }
 
     /**
      * Show the form for creating a new resource.

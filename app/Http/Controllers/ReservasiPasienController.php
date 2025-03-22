@@ -103,6 +103,7 @@ class ReservasiPasienController extends Controller
             'jaminan' => $jaminan,
             'jadwalDokter' => $jadwalDokter
         ];
+        // echo"<pre>";print_r($data['dokter']);die();
         return view('pages.reservasi_pasien.create-reservasi', $data);
     }
     public function getQueue($requestParam, $input, $parameter, $table, $output1, $output2){
