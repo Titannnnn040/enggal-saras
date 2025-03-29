@@ -37,6 +37,7 @@ use App\Http\Controllers\GroupPemeriksaanController;
 use App\Http\Controllers\TemplateLabController;
 use App\Http\Controllers\RadiologiController;
 use App\Http\Controllers\KondisiGigiController;
+use App\Http\Controllers\KuotaReservasiController;
 
 
 use App\Http\Controllers\LoginController;
@@ -382,3 +383,10 @@ Route::post('/odontogram/create-kondisi-gigi',[KondisiGigiController::class,'sto
 Route::get('/odontogram/edit-kondisi-gigi/{uuid}',[KondisiGigiController::class,'edit'])->name('edit-kondisi-gigi');
 Route::put('/odontogram/update-kondisi-gigi/{uuid}',[KondisiGigiController::class,'update'])->name('update-kondisi-gigi');
 Route::delete('/odontogram/delete-kondisi-gigi/{uuid}',[KondisiGigiController::class,'destroy'])->name('delete-kondisi-gigi');
+
+// ROUTE KUOTA RESERVASI
+Route::get('/kuota-reservasi/data-kuota-reservasi',[KuotaReservasiController::class,'indexData'])->name('data-kuota-reservasi');
+Route::post('/kuota-reservasi/create-kuota-reservasi',[KuotaReservasiController::class,'store'])->name('store-kuota-reservasi');
+Route::get('/kuota-reservasi/getData',[KuotaReservasiController::class,'getData'])->name('getData.kuotaReservasi');
+Route::put('/kuota-reservasi/update-kuota-reservasi',[KuotaReservasiController::class,'update'])->name('update-kuota-reservasi');
+Route::delete('/kuota-reservasi/delete-kuota-reservasi/{id}',[KuotaReservasiController::class,'destroy'])->name('delete-kuota-reservasi');

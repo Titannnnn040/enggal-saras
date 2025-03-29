@@ -3,6 +3,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
+{{-- <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+<script src="https:////cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css"></script> --}}
 <script>
     $(document).ready(function () {
         $('#myTables').DataTable();
@@ -98,4 +101,110 @@
             $('#form-create-pasien').submit();
         })
     });
+</script>
+
+{{-- KUOTA RESERVASI START --}}
+<script>
+    $(document).ready(function() {
+    function loadDataTable(layanan = '', dokter = '') {
+        $('#table-kuota-reservasi').DataTable().destroy();
+
+        $('#table-kuota-reservasi').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "{{ route('getData.kuotaReservasi') }}",
+                "type": "GET",
+                "data": function(d) {
+                    d.layanan = layanan;
+                    d.dokter = dokter;
+                }
+            },
+            "columns": [
+                { "data": "nama_layanan" },
+                { "data": "nama_lengkap" },
+                { "data": "day" },
+                { "data": "praktek" },
+                { "data": "type" },
+                { "data": "max_reservasi" },
+                { "data": null, "render": function(data, type, row) {
+                    return `
+                        <div class="d-flex justify-content-center align-center">
+                            <form class="delete-form" method="post">
+                                <button type="button" class="btn btn-primary btn-edit mb-0" data-bs-toggle="modal" data-bs-target="#editModal" data-id="${data.id}">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                @csrf
+                                @method('delete')
+                                <button type="button" class="btn btn-danger button-delete" data-id="${data.id}" style="margin-top:10px;margin-bottom:10px;margin-right:10px;">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    `;
+                }}
+            ]
+        });
+
+        
+    }
+    $(document).on("click", ".button-delete", function() {
+        let id = $(this).data("id"); // Ambil ID dari tombol
+        let form = $(this).closest(".delete-form"); // Ambil form terdekat
+
+        form.attr("action", "{{ route('delete-kuota-reservasi', ['id' => '__ID__']) }}".replace('__ID__', id));
+        Swal.fire({
+            title: "Apakah Anda yakin?",
+            text: "Data akan dihapus secara permanen!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Ya, Hapus!",
+            cancelButtonText: "Batal"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit(); // Kirim form jika dikonfirmasi
+            }
+        });
+    });
+
+    $(document).on('click', '.btn-edit', function() {
+        let id = $(this).data('id');
+        $.ajax({
+            url: "{{ route('getData.kuotaReservasi') }}",
+            type: "GET",
+            data: { id: id },
+            success: function(data) {
+                $('#editModal').modal('show');
+                
+                console.log(data); // Debugging: Log the response to check its structure
+                if (data) {
+                    $('input[name="id"]').val(parseInt(data.id) || '');
+                    $('input[name="max_reservasi"]').val(parseInt(data.max_reservasi) || '');
+                    $('select[name="layanan"]').find(`option[value="${data.layanan}"]`).prop('selected', true);
+                    $('select[name="dokter"]').find(`option[value="${data.dokter}"]`).prop('selected', true);
+                    $('select[name="day"]').find(`option[value="${data.day}"]`).prop('selected', true);
+                    $('select[name="praktek"]').find(`option[value="${data.praktek}"]`).prop('selected', true);
+                    $('select[name="type"]').find(`option[value="${data.type}"]`).prop('selected', true);
+                } else {
+                    console.error('Response data is missing or invalid');
+                }
+            }
+        });
+    });
+
+    loadDataTable();
+
+    $('.btn-search').on('click', function() {
+        let layanan = $('#layanan_id').val();
+        let dokter = $('#dokter_id').val();
+        loadDataTable(layanan, dokter);
+    });
+    $('.btn-clear').on('click', function() {
+        loadDataTable();
+    });
+    
+   
+});
 </script>

@@ -104,6 +104,12 @@
                     <span class="nav-link-text ms-2">Jadwal Dokter</span>
                   </div>
                 </a>
+                <a href="{{route('data-kuota-reservasi')}}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'kuota-reservasi') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Kuota Reservasi</span>
+                  </div>
+                </a>
               </div>
             </div>
           </li>
