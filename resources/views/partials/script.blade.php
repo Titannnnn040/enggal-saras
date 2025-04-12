@@ -204,6 +204,45 @@
     $('.btn-clear').on('click', function() {
         loadDataTable();
     });
+    $('.option-layanan').on('change', function(){
+        var id = $(this).val();
+        $.ajax({
+            url: "{{ route('getDataDoctor') }}",
+            type: "GET",
+            data: { layanan_id: $(this).val() },
+            success: function(response) {
+                $('.option-dokter').empty(); // Clear existing options
+                $('.option-dokter').append('<option value="">-- Please Select--</option>'); // Add default option
+                $.each(response, function(index, dokter) {
+                    $('.option-dokter').append(
+                        `<option value="${dokter.id}">${dokter.nama_lengkap}</option>`
+                    );
+                });
+            },
+        });
+    });
+    $('.select2').select2();
+    $('.option-patient').on('change', function(){
+        var id = $(this).val();
+        $.ajax({
+            url: "{{ route('getDataPatient') }}",
+            type: "GET",
+            data: { id: $(this).val() },
+            success: function(response) {
+                $('input[name="address"]').val(response[0].address)
+                $('input[name="dob"]').val(response[0].birth_date)
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Sorry,',
+                    text:  'Data Not Found',
+                    timer: 5000,
+                    showConfirmButton: false
+                });
+            }
+        });
+    })
     
    
 });

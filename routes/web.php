@@ -38,7 +38,7 @@ use App\Http\Controllers\TemplateLabController;
 use App\Http\Controllers\RadiologiController;
 use App\Http\Controllers\KondisiGigiController;
 use App\Http\Controllers\KuotaReservasiController;
-
+use App\Http\Controllers\RegistrasiPasienLuarController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -390,3 +390,13 @@ Route::post('/kuota-reservasi/create-kuota-reservasi',[KuotaReservasiController:
 Route::get('/kuota-reservasi/getData',[KuotaReservasiController::class,'getData'])->name('getData.kuotaReservasi');
 Route::put('/kuota-reservasi/update-kuota-reservasi',[KuotaReservasiController::class,'update'])->name('update-kuota-reservasi');
 Route::delete('/kuota-reservasi/delete-kuota-reservasi/{id}',[KuotaReservasiController::class,'destroy'])->name('delete-kuota-reservasi');
+
+// ROUTE REGISTRASI PASIEN LUAR
+Route::get('/registrasi-pasien-luar/data-registrasi',[RegistrasiPasienLuarController::class,'indexData'])->name('data-registrasi-pasien-luar');
+Route::get('/registrasi-pasien-luar/create-registrasi',[RegistrasiPasienLuarController::class,'indexCreate'])->name('create-registrasi-pasien-luar');
+Route::post('/registrasi-pasien-luar/create-registrasi',[RegistrasiPasienLuarController::class,'store'])->name('store-registrasi-pasien-luar');
+Route::get('/registrasi-pasien-luar/edit-registrasi/{id}',[RegistrasiPasienLuarController::class,'edit'])->name('edit-registrasi-pasien-luar');
+Route::put('/registrasi-pasien-luar/update-registrasi/{id}',[RegistrasiPasienLuarController::class,'update'])->name('update-registrasi-pasien-luar');
+Route::delete('/registrasi-pasien-luar/delete-registrasi/{id}',[RegistrasiPasienLuarController::class,'destroy'])->name('delete-registrasi-pasien-luar');
+Route::get('/get-dokter',[RegistrasiPasienLuarController::class,'getDataDoctor'])->name('getDataDoctor');
+Route::get('/get-patient',[RegistrasiPasienLuarController::class,'getDataPatient'])->name('getDataPatient');
