@@ -39,6 +39,7 @@ use App\Http\Controllers\RadiologiController;
 use App\Http\Controllers\KondisiGigiController;
 use App\Http\Controllers\KuotaReservasiController;
 use App\Http\Controllers\RegistrasiPasienLuarController;
+use App\Http\Controllers\TracerRekamMedisController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -400,3 +401,12 @@ Route::put('/registrasi-pasien-luar/update-registrasi/{id}',[RegistrasiPasienLua
 Route::delete('/registrasi-pasien-luar/delete-registrasi/{id}',[RegistrasiPasienLuarController::class,'destroy'])->name('delete-registrasi-pasien-luar');
 Route::get('/get-dokter',[RegistrasiPasienLuarController::class,'getDataDoctor'])->name('getDataDoctor');
 Route::get('/get-patient',[RegistrasiPasienLuarController::class,'getDataPatient'])->name('getDataPatient');
+
+// ROUTE TRACER REKAM MEDIS
+Route::get('data-tracer-rekam-medis',[TracerRekamMedisController::class,'indexData'])->name('data-tracer-rekam-medis');
+Route::get('create-tracer-rekam-medis',[TracerRekamMedisController::class,'indexCreate'])->name('create-tracer-rekam-medis');
+Route::post('create-tracer-rekam-medis',[TracerRekamMedisController::class,'store'])->name('store-tracer-rekam-medis');
+Route::get('edit-tracer-rekam-medis/{code}',[TracerRekamMedisController::class,'edit'])->name('edit-tracer-rekam-medis');
+Route::put('update-tracer-rekam-medis/{code}',[TracerRekamMedisController::class,'update'])->name('update-tracer-rekam-medis');
+Route::delete('delete-tracer-rekam-medis/{code}',[TracerRekamMedisController::class,'destroy'])->name('delete-tracer-rekam-medis');
+Route::put('update-status-tracer/{code}',[TracerRekamMedisController::class,'updateStatus'])->name('update-status-tracer');
