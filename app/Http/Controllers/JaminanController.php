@@ -52,8 +52,6 @@ class JaminanController extends Controller
 
     public function store(Request $request)
     {
-        // return $request->all();
-        // die();
         $validatedData = $request->validate([
             'code_jaminan' => [''],
             'nama_jaminan' => ['required', 'unique:m_jaminan,nama_jaminan'],

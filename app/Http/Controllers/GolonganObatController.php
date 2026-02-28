@@ -64,12 +64,6 @@ class GolonganObatController extends Controller
             return redirect()->route('data-golongan-obat')->with('success', 'Data berhasil ditambahkan');
         }
     }
-
-    public function show(SatuanBarang $satuanBarang)
-    {
-        //
-    }
-
     public function edit($code)
     {
         $golonganObat = GolonganObat::where('golongan_obat_code', $code)->first();

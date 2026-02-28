@@ -36,17 +36,6 @@ class PasienController extends Controller
 
         return 'RM-' . date('dmy') . $kd;
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
-    {
-       
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function indexDataPasien(Request $request)
     {
         $rawatJalan = Rawat_Jalan::latest();
@@ -186,17 +175,6 @@ class PasienController extends Controller
         $kecamatan     = Kecamatan::all();
         return view('pages/pasien/create-pasien', compact('province', 'city', 'kecamatan', 'payment'), ['title' => 'create-pasien']);
     }
-    /**
-     * Display the specified resource.
-     */
-    public function show(Rawat_Jalan $rawat_Jalan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $payment = Payment_Method::all();
@@ -207,94 +185,85 @@ class PasienController extends Controller
         $rawatJalan = Rawat_Jalan::find($id);
         return view('pages/pasien/edit-pasien', compact('rawatJalan', 'province', 'city', 'kecamatan', 'kelurahan', 'payment'), ['title' => 'edit-pasien']);        
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
-{
-    // Validasi
-    $request->validate([
-        'nama_lengkap'      => ['required','max:255'],
-        'nama_panggilan'    => ['required','max:255'],
-        'jenis_kelamin'     => ['required'],
-        'umur'              => ['required','numeric', 'min:1', 'max:100'],
-        'birth_date'        => ['required'],
-        'nik'               => ['required','numeric', 'digits_between:15,17', Rule::unique('m_pasien', 'nik')->ignore($id)],
-        'status_pernikahan' => ['required'],
-        'pekerjaan'         => ['required','max:255'],
-        'payment_id'        => ['required'],
-        'no_bpjs_asuransi'  => ['nullable','numeric', 'digits_between:13,16'],
-        'upload_foto'       => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:1024'],
-        'note'              => ['required','max:255'],
-        'phone_number'      => ['required', 'numeric','digits_between:11,14'],
-        'province_id'       => ['required'],
-        'cities_id'         => ['required'],
-        'kecamatan_id'      => ['required'],
-        'kelurahan_id'      => ['required'],
-        'address'           => ['required','max:255'],
-        'agama'             => ['required'],
-        'pendidikan'        => ['required'],
-        'nama_ayah'         => ['nullable','max:255'],
-        'nama_ibu'          => ['nullable','max:255'],
-        'kondisi_khusus'    => ['nullable','max:255'],
-    ]);
+    {
+        // Validasi
+        $request->validate([
+            'nama_lengkap'      => ['required','max:255'],
+            'nama_panggilan'    => ['required','max:255'],
+            'jenis_kelamin'     => ['required'],
+            'umur'              => ['required','numeric', 'min:1', 'max:100'],
+            'birth_date'        => ['required'],
+            'nik'               => ['required','numeric', 'digits_between:15,17', Rule::unique('m_pasien', 'nik')->ignore($id)],
+            'status_pernikahan' => ['required'],
+            'pekerjaan'         => ['required','max:255'],
+            'payment_id'        => ['required'],
+            'no_bpjs_asuransi'  => ['nullable','numeric', 'digits_between:13,16'],
+            'upload_foto'       => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:1024'],
+            'note'              => ['required','max:255'],
+            'phone_number'      => ['required', 'numeric','digits_between:11,14'],
+            'province_id'       => ['required'],
+            'cities_id'         => ['required'],
+            'kecamatan_id'      => ['required'],
+            'kelurahan_id'      => ['required'],
+            'address'           => ['required','max:255'],
+            'agama'             => ['required'],
+            'pendidikan'        => ['required'],
+            'nama_ayah'         => ['nullable','max:255'],
+            'nama_ibu'          => ['nullable','max:255'],
+            'kondisi_khusus'    => ['nullable','max:255'],
+        ]);
 
-    $rawatJalan = Rawat_Jalan::find($id);
+        $rawatJalan = Rawat_Jalan::find($id);
 
-    // Cek jika ada file yang diupload
-    if ($request->hasFile('upload_foto')) {
-        // Hapus file lama jika ada
-        if ($rawatJalan->upload_foto) {
-            Storage::delete($rawatJalan->upload_foto);
+        // Cek jika ada file yang diupload
+        if ($request->hasFile('upload_foto')) {
+            // Hapus file lama jika ada
+            if ($rawatJalan->upload_foto) {
+                Storage::delete($rawatJalan->upload_foto);
+            }
+            // Simpan file baru dan dapatkan path-nya
+            $filePath = $request->file('upload_foto')->store('post_images');
+        } else {
+            // Jika tidak ada file baru, tetap gunakan path lama
+            $filePath = $rawatJalan->upload_foto;
         }
-        // Simpan file baru dan dapatkan path-nya
-        $filePath = $request->file('upload_foto')->store('post_images');
-    } else {
-        // Jika tidak ada file baru, tetap gunakan path lama
-        $filePath = $rawatJalan->upload_foto;
+
+        // Update data
+        $rawatJalan->update([
+            'nama_lengkap'      => $request->nama_lengkap,
+            'nama_panggilan'    => $request->nama_panggilan,
+            'jenis_kelamin'     => $request->jenis_kelamin,
+            'umur'              => $request->umur,
+            'birth_date'        => $request->birth_date,
+            'nik'               => $request->nik,
+            'status_pernikahan' => $request->status_pernikahan,
+            'pekerjaan'         => $request->pekerjaan,
+            'payment_id'        => $request->payment_id,
+            'no_bpjs_asuransi'  => $request->no_bpjs_asuransi,
+            'upload_foto'       => $filePath,
+            'note'              => $request->note,
+            'phone_number'      => $request->phone_number,
+            'province_id'       => $request->province_id,
+            'cities_id'         => $request->cities_id,
+            'kecamatan_id'      => $request->kecamatan_id,
+            'kelurahan_id'      => $request->kelurahan_id,
+            'address'           => $request->address,
+            'agama'             => $request->agama,
+            'pendidikan'        => $request->pendidikan,
+            'nama_ayah'         => $request->nama_ayah,
+            'nama_ibu'          => $request->nama_ibu,
+            'kondisi_khusus'    => $request->kondisi_khusus,
+        ]);
+
+        if ($rawatJalan) {
+            $request->session()->flash('success', 'Data berhasil diubah');
+            return redirect('/pasien/data-pasien');
+        } else {
+            $request->session()->flash('failed', 'Data gagal diubah');
+            return redirect('/pasien/data-pasien');
+        }
     }
-
-    // Update data
-    $rawatJalan->update([
-        'nama_lengkap'      => $request->nama_lengkap,
-        'nama_panggilan'    => $request->nama_panggilan,
-        'jenis_kelamin'     => $request->jenis_kelamin,
-        'umur'              => $request->umur,
-        'birth_date'        => $request->birth_date,
-        'nik'               => $request->nik,
-        'status_pernikahan' => $request->status_pernikahan,
-        'pekerjaan'         => $request->pekerjaan,
-        'payment_id'        => $request->payment_id,
-        'no_bpjs_asuransi'  => $request->no_bpjs_asuransi,
-        'upload_foto'       => $filePath,
-        'note'              => $request->note,
-        'phone_number'      => $request->phone_number,
-        'province_id'       => $request->province_id,
-        'cities_id'         => $request->cities_id,
-        'kecamatan_id'      => $request->kecamatan_id,
-        'kelurahan_id'      => $request->kelurahan_id,
-        'address'           => $request->address,
-        'agama'             => $request->agama,
-        'pendidikan'        => $request->pendidikan,
-        'nama_ayah'         => $request->nama_ayah,
-        'nama_ibu'          => $request->nama_ibu,
-        'kondisi_khusus'    => $request->kondisi_khusus,
-    ]);
-
-    if ($rawatJalan) {
-        $request->session()->flash('success', 'Data berhasil diubah');
-        return redirect('/pasien/data-pasien');
-    } else {
-        $request->session()->flash('failed', 'Data gagal diubah');
-        return redirect('/pasien/data-pasien');
-    }
-}
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request, $id)
     {
         $rawatJalan = Rawat_Jalan::find($id);

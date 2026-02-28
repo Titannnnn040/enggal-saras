@@ -65,7 +65,7 @@ class KuotaReservasiController extends Controller
         $data = [
             'title'   => 'kuota-reservasi',
             'layanan' => $layanan,
-            'dokter' => $dokter
+            'dokter'  => $dokter
         ];
         return view('pages.pendaftaran.kuota-reservasi.index-data', $data);
     }
@@ -81,10 +81,10 @@ class KuotaReservasiController extends Controller
         $data = [
             'layanan'       => $request->layanan,
             'dokter'        => $request->dokter,
-            'day'              => $request->day,
-            'praktek'          => $request->praktek,
-            'type'             => $request->type,
-            'max_reservasi'    => $request->max_reservasi,
+            'day'           => $request->day,
+            'praktek'       => $request->praktek,
+            'type'          => $request->type,
+            'max_reservasi' => $request->max_reservasi,
         ];
         $create = KuotaReservasi::create($data);
         if($create){
@@ -105,10 +105,10 @@ class KuotaReservasiController extends Controller
         $data = [
             'layanan'       => $request->layanan,
             'dokter'        => $request->dokter,
-            'day'              => $request->day,
-            'praktek'          => $request->praktek,
-            'type'             => $request->type,
-            'max_reservasi'    => $request->max_reservasi,
+            'day'           => $request->day,
+            'praktek'       => $request->praktek,
+            'type'          => $request->type,
+            'max_reservasi' => $request->max_reservasi,
         ];
         $update = KuotaReservasi::where('id', $request->id)->update($data);
         if($update){

@@ -74,16 +74,16 @@ class ObatController extends Controller
         // dd($caraPakai);
         
         return view('pages.obat.create-obat', [
-            'title'         => 'create-obat',
-            'tipeHargaJual' => $tipeHargaJual, 
-            'golonganObat'  => $golonganObat, 
-            'pabrik'        => $pabrik, 
-            'layanan'       => $layanan, 
-            'farmakologi'   => $farmakologi, 
-            'distributor'   => $distributor,
-            'satuanBarang'  => $satuanBarang,
-            'caraPakai'     => $caraPakai,
-            'bentukSediaanObat'     => $bentukSediaanObat,
+            'title'              => 'create-obat',
+            'tipeHargaJual'      => $tipeHargaJual, 
+            'golonganObat'       => $golonganObat, 
+            'pabrik'             => $pabrik, 
+            'layanan'            => $layanan, 
+            'farmakologi'        => $farmakologi, 
+            'distributor'        => $distributor,
+            'satuanBarang'       => $satuanBarang,
+            'caraPakai'          => $caraPakai,
+            'bentukSediaanObat'  => $bentukSediaanObat,
         ]);
     }
     public function store(Request $request){
@@ -175,10 +175,7 @@ class ObatController extends Controller
             'code_obat'            => $dataObat['code_obat'],
             'code_obat_dpoh'       => $request->code_obat_dpoh,
         ];
-        // echo"<pre>";print_r($dataSatuSehat);die; 
-        // $findDistributor = $request->distributor;
         $findDistributor = Distributor::where('distributor_code', $request->distributor)->first();
-        // echo"<pre>";print_r($findDistributor);die;
         $dataDistributor = [
             'code_obat'            => $dataObat['code_obat'],
             'distributor_code'     => $request->distributor,

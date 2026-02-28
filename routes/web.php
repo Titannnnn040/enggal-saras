@@ -409,4 +409,4 @@ Route::post('create-tracer-rekam-medis',[TracerRekamMedisController::class,'stor
 Route::get('edit-tracer-rekam-medis/{code}',[TracerRekamMedisController::class,'edit'])->name('edit-tracer-rekam-medis');
 Route::put('update-tracer-rekam-medis/{code}',[TracerRekamMedisController::class,'update'])->name('update-tracer-rekam-medis');
 Route::delete('delete-tracer-rekam-medis/{code}',[TracerRekamMedisController::class,'destroy'])->name('delete-tracer-rekam-medis');
-Route::put('update-status-tracer/{code}',[TracerRekamMedisController::class,'updateStatus'])->name('update-status-tracer');
+Route::put('update-status-tracer/{code}',[TracerRekamMedisController::class,'updateStatus'])->name('update-status-tracer'); 
