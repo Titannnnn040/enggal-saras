@@ -118,7 +118,7 @@
                                                 </div>
                                                 <div class="col-md-9 col-lg-9 col-xl-9 col-xxl-9 mb-3">
                                                     <div class="d-flex">
-                                                        <label for="hasil_rahasia" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Hasil Bersifat Rahasian :</label>
+                                                        <label for="hasil_rahasia" class="form-label col-lg-3 col-xl-4 col-xxl-3 me-2">Hasil Bersifat Rahasia :</label>
                                                         <div class="d-flex flex-column form-check form-switch col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                                             <input type="checkbox" class="form-check-input @error('hasil_rahasia') is-invalid @enderror" id="hasil_rahasia" name="hasil_rahasia" value="1" {{$data['dataPemeriksaanLab']->hasil_rahasia== 1 ? 'checked' : ''}}>
                                                             @error('hasil_rahasia')
@@ -131,19 +131,19 @@
                                                 </div>
                                                 <div class="d-flex justify-content-center">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="change-form-lab" id="button-open-kuantitatif" {{$data['dataPemeriksaanLab']->tipe == 1 ? 'checked' : ''}} value="1">
+                                                        <input class="form-check-input" type="radio" name=" required-lab" id="button-open-kuantitatif" {{$data['dataPemeriksaanLab']->tipe == 1 ? 'checked' : ''}} value="1" required>
                                                         <label class="form-check-label" for="button-open-kuantitatif">
                                                             Kuantitatif
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="change-form-lab" id="button-open-kualitatif" {{$data['dataPemeriksaanLab']->tipe == 2 ? 'checked' : ''}}  value="2">
+                                                        <input class="form-check-input" type="radio" name="change-form-lab" id="button-open-kualitatif" {{$data['dataPemeriksaanLab']->tipe == 2 ? 'checked' : ''}}  value="2" required>
                                                         <label class="form-check-label" for="button-open-kualitatif">
                                                             Kualitatif
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="change-form-lab" id="button-open-kualitatif-khusus" {{$data['dataPemeriksaanLab']->tipe == 3 ? 'checked' : ''}}  value="3">
+                                                        <input class="form-check-input" type="radio" name="change-form-lab" id="button-open-kualitatif-khusus" {{$data['dataPemeriksaanLab']->tipe == 3 ? 'checked' : ''}}  value="3" required>
                                                         <label class="form-check-label" for="button-open-kualitatif-khusus">
                                                             Kualitatif Khusus
                                                         </label>
