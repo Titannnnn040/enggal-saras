@@ -40,6 +40,7 @@ use App\Http\Controllers\KondisiGigiController;
 use App\Http\Controllers\KuotaReservasiController;
 use App\Http\Controllers\RegistrasiPasienLuarController;
 use App\Http\Controllers\TracerRekamMedisController;
+use App\Http\Controllers\AnjunganAntrianController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -410,3 +411,12 @@ Route::get('edit-tracer-rekam-medis/{code}',[TracerRekamMedisController::class,'
 Route::put('update-tracer-rekam-medis/{code}',[TracerRekamMedisController::class,'update'])->name('update-tracer-rekam-medis');
 Route::delete('delete-tracer-rekam-medis/{code}',[TracerRekamMedisController::class,'destroy'])->name('delete-tracer-rekam-medis');
 Route::put('update-status-tracer/{code}',[TracerRekamMedisController::class,'updateStatus'])->name('update-status-tracer'); 
+
+
+// ROUTE ANJUNGAN & ANTRIAN
+Route::get('anjungan',[AnjunganAntrianController::class,'indexAnjungan'])->name('index.anjungan');
+Route::post('anjungan',[AnjunganAntrianController::class,'storeAnjungan'])->name('store.anjungan');
+Route::get('/anjungan/print/{id}', [AnjunganAntrianController::class, 'printAntrian'])->name('print.anjungan');
+
+Route::get('antrian',[AnjunganAntrianController::class,'indexAntrian'])->name('index.antrian');
+Route::post('/queue/call/{id}', [AnjunganAntrianController::class, 'callQueue'])->name('queue.call');

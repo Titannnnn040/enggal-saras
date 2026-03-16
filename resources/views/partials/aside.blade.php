@@ -92,6 +92,12 @@
                     <span class="nav-link-text ms-2">Reservasi Pasien</span>
                   </div>
                 </a>
+                <a href="{{route('index.antrian')}}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'antrian') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Antrian Pendaftaran</span>
+                  </div>
+                </a>
                 <a href="/pasien/data-regist-pasien" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'data-regist-pasien') ? 'active' : '' }} text-decoration-none">
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-clipboard-user me-2"></i>
@@ -476,6 +482,18 @@
                   <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-clipboard-user me-2"></i>
                     <span class="nav-link-text ms-2">Kondisi Gigi</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item d-flex ms-3 align-items-baseline" style="cursor: pointer">
+            <div class="sub-menu d-block m-0" style="position:unset">
+              <div class="d-flex flex-column">
+                <a href="{{route('index.anjungan')}}" class="dropdown-menu col-lg-10 d-flex mt-1 {{ ($title === 'anjungan') ? 'active' : '' }} text-decoration-none">
+                  <div class="text-white text-center ms-1 me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-clipboard-user me-2"></i>
+                    <span class="nav-link-text ms-2">Anjungan</span>
                   </div>
                 </a>
               </div>
