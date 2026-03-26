@@ -326,11 +326,11 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <!--   Core JS Files   -->
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/perfect-scrollbar.min.js"></script>
-<script src="/js/smooth-scrollbar.min.js"></script>
-<script src="/js/chartjs.min.js"></script>
+<script src="/public/js/popper.min.js"></script>
+<script src="/public/js/bootstrap.min.js"></script>
+<script src="/public/js/perfect-scrollbar.min.js"></script>
+<script src="/public/js/smooth-scrollbar.min.js"></script>
+<script src="/public/js/chartjs.min.js"></script>
 <script>
   var ctx = document.getElementById("chart-bars").getContext("2d");
 
