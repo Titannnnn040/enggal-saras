@@ -211,11 +211,11 @@
 
     <header class="header">
         <div class="logo-placeholder">
-             <img src="/img/enggal.gif" class="" style="width:2cm" alt="main_logo">
+             <img src="/public/img/enggal.gif" class="" style="width:2cm" alt="main_logo">
         </div>
         <h1 class="header-title">KLINIK ENGGAL SARAS MHCC</h1>
         <div class="logo-bpjs">
-           <img src="/img/bpjs.png" class="" style="width:7cm" alt="main_logo">
+           <img src="/public/img/bpjs.png" class="" style="width:7cm" alt="main_logo">
         </div>
     </header>
 
