@@ -20,7 +20,7 @@
   <title>
     {{$title}}
   </title>
-  <link rel="icon" href="/img/enggal.gif" type="image/x-icon">
+  <link rel="icon" href="{{app()->environment('production') ? '/public/img/enggal.gif' : '/img/enggal.gif'}}" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" /> 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link id="pagestyle" href="{{app()->environment('production') ? '/public/css/dashboard/material-dashboard.css' : 'css/dashboard/material-dashboard.css'}}" rel="stylesheet" />

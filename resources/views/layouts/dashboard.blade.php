@@ -21,7 +21,7 @@
     {{$title}}
   </title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="icon" href="/img/enggal.gif" type="image/x-icon">
+  <link rel="icon" href="{{app()->environment('production') ? '/public/img/enggal.gif' : '/img/enggal.gif'}}" type="image/x-icon">
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" /> 
   <!-- Nucleo Icons -->
