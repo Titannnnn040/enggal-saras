@@ -326,11 +326,11 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <!--   Core JS Files   -->
-<script src="/public/js/popper.min.js"></script>
-<script src="/public/js/bootstrap.min.js"></script>
-<script src="/public/js/perfect-scrollbar.min.js"></script>
-<script src="/public/js/smooth-scrollbar.min.js"></script>
-<script src="/public/js/chartjs.min.js"></script>
+<script src="{{app()->environment('production') ? '/public/js/popper.min.js' : 'js/popper.min.js'}}"></script>
+<script src="{{app()->environment('production') ? '/public/js/bootstrap.min.js' : 'js/bootstrap.min.js'}}"></script>
+<script src="{{app()->environment('production') ? '/public/js/perfect-scrollbar.min.js' : 'js/perfect-scrollbar.min.js'}}"></script>
+<script src="{{app()->environment('production') ? '/public/js/smooth-scrollbar.min.js' : 'js/smooth-scrollbar.min.js'}}"></script>
+<script src="{{app()->environment('production') ? '/public/js/chartjs.min.js' : 'js/chartjs.min.js'}}"></script>
 <script>
   var ctx = document.getElementById("chart-bars").getContext("2d");
 

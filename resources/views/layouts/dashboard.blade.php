@@ -29,7 +29,7 @@
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="//public/css/dashboard/material-dashboard.css" rel="stylesheet" />
+  <link id="pagestyle" href="{{app()->environment('production') ? '/public/css/dashboard/material-dashboard.css' : 'css/dashboard/material-dashboard.css'}}" rel="stylesheet" />
   <!--Link Icons-->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
